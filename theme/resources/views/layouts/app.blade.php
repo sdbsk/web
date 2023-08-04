@@ -1,0 +1,10 @@
+@include('sections.header')
+<main>
+    @yield('content')
+</main>
+@hasSection('sidebar')
+    <aside>
+        @yield('sidebar')
+    </aside>
+@endif
+@include('sections.footer')
