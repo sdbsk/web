@@ -1,0 +1,5 @@
+/.env.local
+/.idea
+/vendor
+/web/app
+/web/wp
