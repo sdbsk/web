@@ -1,15 +1,13 @@
-<article @php(post_class('h-entry'))>
+<article @php post_class() @endphp>
     <header>
-        <h1 class="p-name">
-            {{ get_the_title() }}
-        </h1>
+        <h1>{{ get_the_title() }}</h1>
         @include('partials.entry-meta')
     </header>
-    <div class="e-content">
-        @php(the_content())
+    <div>
+        @php the_content() @endphp
     </div>
     <footer>
-        {!! wp_link_pages(['echo' => 0, 'before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']) !!}
+        @php wp_link_pages() @endphp
     </footer>
-    @php(comments_template())
+    @php comments_template() @endphp
 </article>

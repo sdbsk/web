@@ -1,15 +1,13 @@
-@extends('layouts.app')
+@extends('layout')
 @section('content')
-    @include('partials.page-header')
+    <h1>Vyhľadávanie</h1>
     @if (! have_posts())
-        <div type="warning">
-            {!! __('Sorry, no results were found.', 'sage') !!}
-        </div>
-        {!! get_search_form(false) !!}
+        <div>Nič sa nenašlo</div>
+        @php get_search_form() @endphp
     @endif
     @while(have_posts())
-        @php(the_post())
+        @php the_post() @endphp
         @include('partials.content-search')
     @endwhile
-    {!! get_the_posts_navigation() !!}
+    @php get_the_posts_navigation() @endphp
 @endsection

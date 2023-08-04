@@ -1,18 +1,13 @@
-@extends('layouts.app')
+@extends('layout')
 @section('content')
-    @include('partials.page-header')
+    <h1>{{ get_the_title() }}</h1>
     @if (! have_posts())
-        <div>
-            {!! __('Sorry, no results were found.', 'sage') !!}
-        </div>
-        {!! get_search_form(false) !!}
+        <div>Nič sa nenašlo</div>
+        @php get_search_form() @endphp
     @endif
     @while(have_posts())
-        @php(the_post())
+        @php the_post() @endphp
         @includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
     @endwhile
-    {!! get_the_posts_navigation() !!}
-@endsection
-@section('sidebar')
-    @include('sections.sidebar')
+    @php get_the_posts_navigation() @endphp
 @endsection

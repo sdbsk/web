@@ -26,3 +26,9 @@ add_action('after_setup_theme', function (): void {
     add_theme_support('customize-selective-refresh-widgets');
 }, 20);
 
+add_action('widgets_init', function (): void {
+    $config = ['after_widget' => '', 'before_widget' => ''];
+
+    register_sidebar(['name' => 'Propagačná lišta', 'id' => 'sidebar-promotion-bar'] + $config);
+    register_sidebar(['name' => 'Pätička', 'id' => 'sidebar-footer'] + $config);
+});
