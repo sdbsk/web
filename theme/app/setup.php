@@ -17,7 +17,7 @@ add_action('enqueue_block_editor_assets', function (): void {
 add_action('after_setup_theme', function (): void {
     add_theme_support('soil', ['clean-up', 'nav-walker', 'nice-search', 'relative-urls']);
     remove_theme_support('block-templates');
-    register_nav_menus(['primary_navigation' => __('Primary Navigation', 'sage')]);
+    register_nav_menus(['header' => __('Hlavička', 'sage')]);
     remove_theme_support('core-block-patterns');
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');

@@ -1,0 +1,9 @@
+uprava existujuceho bloku
+    do bloku latest-posts skusit pridat moznost "Zobrazit kategorie" do "Nastavenia Post Meta"
+    vytvorit blok Call to action
+
+custom post type "campaign"
+    aktivna
+    nadpis
+    popis
+    externy link (volitelne)
