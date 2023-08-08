@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App;
 
 use function Roots\bundle;
+use function Roots\view;
+use const TEMPLATEPATH;
 
 add_action('wp_enqueue_scripts', function (): void {
     bundle('app')->enqueue();
@@ -31,4 +33,19 @@ add_action('widgets_init', function (): void {
 
     register_sidebar(['name' => 'Propagačná lišta', 'id' => 'sidebar-promotion-bar'] + $config);
     register_sidebar(['name' => 'Pätička', 'id' => 'sidebar-footer'] + $config);
+});
+
+add_action('init', function (): void {
+    foreach (scandir(TEMPLATEPATH . '/resources/views/blocks/') as $filename) {
+        preg_match('~([a-zA-Z0-9-]+)\.blade\.php~', $filename, $matches);
+
+        if (isset($matches[1])) {
+            register_block_type('theme/' . $matches[1], [
+                'render_callback' => fn(array $attributes): string => view(
+                    'blocks/' . $matches[1],
+                    ['attributes' => $attributes],
+                )->render(),
+            ]);
+        }
+    }
 });
