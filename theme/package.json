@@ -1,5 +1,5 @@
 {
-    "name": "saleziani",
+    "name": "theme",
     "private": true,
     "browserslist": [
         "extends @roots/browserslist-config"
