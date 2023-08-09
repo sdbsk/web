@@ -1,11 +1,3 @@
-povolit len bloky, ktore budeme supportovat
-    nadpis
-    odsek
-    zoznam
-    oddelovac
-    obrazok
-    stlpce
-
 vytvorit blok Call to action
 
 custom post type "campaign"
