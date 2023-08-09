@@ -1,5 +1,0 @@
-custom post type "campaign"
-    aktivna
-    nadpis
-    popis
-    externy link (volitelne)
