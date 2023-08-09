@@ -4,14 +4,29 @@ declare(strict_types=1);
 
 namespace App;
 
-add_filter('allowed_block_types_all', fn(): array => [
-    'core/column',
-    'core/columns',
-    'core/cover',
-    'core/heading',
-    'core/image',
-    'core/list',
-    'core/paragraph',
-    'core/separator',
-    'theme/latest-default-category-posts',
-], 10, 2);
+use const TEMPLATEPATH;
+
+add_filter('allowed_block_types_all', function (): array {
+    $allowedBlocks = [
+        'core/button',
+        'core/buttons',
+        'core/column',
+        'core/columns',
+        'core/cover',
+        'core/heading',
+        'core/image',
+        'core/list',
+        'core/paragraph',
+        'core/separator',
+    ];
+
+    foreach (scandir(TEMPLATEPATH . '/resources/scripts/blocks/') as $filename) {
+        preg_match('~([a-zA-Z0-9-]+)\.block\.jsx~', $filename, $matches);
+
+        if (isset($matches[1])) {
+            $allowedBlocks[] = 'theme/' . $matches[1];
+        }
+    }
+
+    return $allowedBlocks;
+}, 10, 2);
