@@ -83,24 +83,5 @@ add_action('init', function (): void {
         'menu_position' => 20,
         'rewrite' => ['slug' => 'kampane'],
         'show_in_rest' => true,
-        'supports' => ['thumbnail', 'title'],
     ]);
-});
-
-add_action('add_meta_boxes_campaign', function (): void {
-    add_meta_box('campaign_meta', 'Kampaň', function (): void {
-        $postId = get_post()->ID;
-        /** @noinspection PhpUnhandledExceptionInspection */
-        echo view('metabox/campaign', [
-            'enabled' => false === empty(get_post_meta($postId, 'campaign_enabled', true)),
-            'description' => get_post_meta($postId, 'campaign_description', true),
-            'externalUrl' => get_post_meta($postId, 'campaign_external_url', true),
-        ])->render();
-    });
-});
-
-add_action('save_post_campaign', function (int $postId) {
-    update_post_meta($postId, 'campaign_enabled', isset($_POST['campaign_enabled']));
-    update_post_meta($postId, 'campaign_description', $_POST['campaign_description'] ?? '');
-    update_post_meta($postId, 'campaign_external_url', $_POST['campaign_external_url'] ?? '');
 });

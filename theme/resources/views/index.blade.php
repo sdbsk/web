@@ -1,8 +1,6 @@
 @extends('layout')
 @section('content')
-    @php
-        $category = get_queried_object();
-    @endphp
+    @php $category = get_queried_object(); @endphp
     @if($category instanceof WP_Term)
         <h1>{{ $category->name }}</h1>
         @foreach(get_categories(['parent' => $category->term_id]) as $child)
@@ -11,7 +9,16 @@
     @endif
     @while(have_posts())
         @php the_post() @endphp
-        @include('partials.content-' . get_post_type())
+        <article>
+            <header>
+                <h2>
+                    <a href="{{ get_permalink() }}">{{ the_title() }}</a>
+                </h2>
+            </header>
+            <div>
+                @php the_excerpt(); @endphp
+            </div>
+        </article>
     @endwhile
-    @php get_the_posts_navigation() @endphp
+    @php get_the_posts_navigation(); @endphp
 @endsection

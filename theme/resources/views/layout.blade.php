@@ -6,11 +6,11 @@
     @endif
     <button type="button" class="btn btn-dark">Podporte nás</button>
 </header>
-@php dynamic_sidebar('sidebar-promotion-bar') @endphp
+@php dynamic_sidebar('sidebar-promotion-bar'); @endphp
 <main>
     @yield('content')
 </main>
 <footer>
-    @php dynamic_sidebar('sidebar-footer') @endphp
+    @php dynamic_sidebar('sidebar-footer'); @endphp
 </footer>
 
