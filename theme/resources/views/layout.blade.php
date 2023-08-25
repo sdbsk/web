@@ -14,7 +14,6 @@
         </div>
     </div>
 </header>
-@php dynamic_sidebar('sidebar-promotion-bar'); @endphp
 <main>
     @yield('content')
 </main>
