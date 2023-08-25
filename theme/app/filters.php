@@ -30,3 +30,8 @@ add_filter('allowed_block_types_all', function (): array {
 
     return $allowedBlocks;
 }, 10, 2);
+
+add_filter('upload_mimes', function (array $mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+});
