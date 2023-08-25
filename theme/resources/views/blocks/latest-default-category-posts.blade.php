@@ -1,3 +1,4 @@
-@foreach($posts as $post)
-    @dump($post)
-@endforeach
+@dump([
+    'category' => $category,
+    'posts' => $posts,
+])

@@ -10,12 +10,14 @@ readonly class Category
 {
     public int $id;
     public string $title;
+    public string $description;
     public string $url;
 
     public function __construct(WP_Term $term)
     {
         $this->id = $term->term_id;
         $this->title = $term->name;
+        $this->description = $term->description;
         $this->url = get_category_link($term);
     }
 }
