@@ -5,12 +5,7 @@
   "settings": {
     "color": {
       "custom": false,
-      "customGradient": false,
-      "customDuotone": false,
-      "defaultDuotone": false,
-      "defaultGradients": false,
-      "defaultPalette": false,
-      "duotone": []
+      "customGradient": false
     },
     "custom": {
       "spacing": {},
@@ -33,6 +28,10 @@
     "typography": {
       "customFontSize": false,
       "dropCap": false
+    },
+    "layout": {
+      "contentSize": "1200px",
+      "wideSize": "1600px"
     }
   }
 }
