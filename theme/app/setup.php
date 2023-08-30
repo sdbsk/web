@@ -5,38 +5,23 @@ declare(strict_types=1);
 namespace App;
 
 use function Roots\bundle;
-use function Roots\view;
 use const TEMPLATEPATH;
-
-add_action('wp_enqueue_scripts', function (): void {
-    bundle('app')->enqueue();
-}, 100);
 
 add_action('enqueue_block_editor_assets', function (): void {
     bundle('editor')->enqueue();
 }, 100);
 
-add_action('widgets_init', function (): void {
-    register_sidebar([
-        'after_widget' => '',
-        'before_widget' => '',
-        'id' => 'sidebar-footer',
-        'name' => 'Pätička',
-    ]);
-});
-
 add_action('init', function (): void {
-    foreach (scandir(TEMPLATEPATH . '/resources/views/blocks/') as $filename) {
-        preg_match('~([a-zA-Z0-9-]+)\.blade\.php~', $filename, $matches);
-
-        if (isset($matches[1])) {
-            register_block_type('theme/' . $matches[1], [
-                'render_callback' => fn(array $attributes): string => view(
-                    'blocks/' . $matches[1],
+    foreach (get_theme_block_types() as $blockType) {
+        register_block_type(
+            'theme/' . $blockType,
+            is_file(TEMPLATEPATH . '/resources/views/blocks/' . $blockType . '.blade.php') ?
+                ['render_callback' => fn(array $attributes): string => view(
+                    'blocks/' . $blockType,
                     ['attributes' => $attributes],
-                )->render(),
-            ]);
-        }
+                )->render()] :
+                [],
+        );
     }
 
     register_post_type('campaign', [
@@ -75,3 +60,31 @@ add_action('init', function (): void {
         'show_in_rest' => true,
     ]);
 });
+
+add_action('widgets_init', function (): void {
+    register_sidebar([
+        'after_widget' => '',
+        'before_widget' => '',
+        'id' => 'sidebar-footer',
+        'name' => 'Pätička',
+    ]);
+});
+
+add_action('wp_enqueue_scripts', function (): void {
+    wp_add_inline_style('global-styles', wp_get_custom_css() . wp_get_global_styles_custom_css());
+});
+
+function get_theme_block_types(): array
+{
+    $blocks = [];
+
+    foreach (scandir(TEMPLATEPATH . '/resources/scripts/blocks/') as $filename) {
+        preg_match('~([a-zA-Z0-9-]+)\.block\.jsx~', $filename, $matches);
+
+        if (isset($matches[1])) {
+            $blocks[] = $matches[1];
+        }
+    }
+
+    return $blocks;
+}

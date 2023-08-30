@@ -3,8 +3,12 @@
         <div class="container-fluid">
             <div class="main-menu">
                 <nav>
-                    <button class="hamburger-menu"><img src="{{ asset('images/hamburger.svg') }}" alt="Menu"/></button>
-                    <a class="logo" href="{{ get_site_url() }}"><img src="{{ asset('images/logo.svg') }}" alt="Saleziáni"/></a>
+                    <button class="hamburger-menu">
+                        <img src="{{ asset('images/hamburger.svg') }}" alt="Menu"/>
+                    </button>
+                    <a class="logo" href="{{ get_site_url() }}">
+                        <img src="{{ asset('images/logo.svg') }}" alt="Saleziáni"/>
+                    </a>
                     @if (has_nav_menu('header'))
                         {{ wp_nav_menu(['theme_location' => 'header']) }}
                     @endif

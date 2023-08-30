@@ -12,11 +12,10 @@ export default {
     description: 'Vytvorte pútavý blok s nadpisom, popisom a tlačidlom.',
     category: 'theme',
     example: {innerBlocks: TEMPLATE.map((i) => ({name: i[0], attributes: i[1]}))},
-    edit: () => (
-        <div {...useBlockProps()}>
-            <InnerBlocks allowedBlocks={['core/button', 'core/heading', 'core/paragraph']} template={TEMPLATE} templateLock={'all'}/>
-        </div>
-    ),
+    edit: () =>
+        <div {...useBlockProps()} className={'wp-block-theme-call-to-action'}>
+            <InnerBlocks allowedBlocks={['core/button', 'core/heading', 'core/paragraph']} template={TEMPLATE}/>
+        </div>,
     save: () => (
         <div {...useBlockProps.save()}>
             <InnerBlocks.Content/>

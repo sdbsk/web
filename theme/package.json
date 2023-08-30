@@ -13,12 +13,10 @@
         "prod": "bud build"
     },
     "devDependencies": {
-        "@popperjs/core": "^2.11",
         "@roots/bud": "^6.15",
         "@roots/bud-sass": "^6.15",
         "@roots/sage": "^6.15",
         "@wordpress/block-editor": "^12.6",
-        "@wordpress/server-side-render": "^4.15",
-        "bootstrap": "^5.3"
+        "@wordpress/server-side-render": "^4.17"
     }
 }

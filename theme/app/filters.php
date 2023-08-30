@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use const TEMPLATEPATH;
-
 add_filter('allowed_block_types_all', function (): array {
     $allowedBlocks = [
         'core/button',
@@ -20,12 +18,8 @@ add_filter('allowed_block_types_all', function (): array {
         'core/separator',
     ];
 
-    foreach (scandir(TEMPLATEPATH . '/resources/scripts/blocks/') as $filename) {
-        preg_match('~([a-zA-Z0-9-]+)\.block\.jsx~', $filename, $matches);
-
-        if (isset($matches[1])) {
-            $allowedBlocks[] = 'theme/' . $matches[1];
-        }
+    foreach (get_theme_block_types() as $blockType) {
+        $allowedBlocks[] = 'theme/' . $blockType;
     }
 
     return $allowedBlocks;
