@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "color": {
+            "palette": [
+                {
+                    "name": "Red 200",
+                    "slug": "red-200",
+                    "color": "#f8dad3"
+                }
+            ]
+        },
+        "layout": {
+            "contentSize": "75rem",
+            "wideSize": "100rem"
+        }
+    }
+}

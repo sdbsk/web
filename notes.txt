@@ -1,0 +1,7 @@
+zo stareho stacku presunut
+    fitlers.php
+    setup.php
+    call-to-action block
+    latest-default-category-posts block
+v admine loadovat CSSko, ktore bude obalovat frontend css do .editor-styles-wrapper
+definovat druhe menu, ktore sa bude zobrazovat vo footri

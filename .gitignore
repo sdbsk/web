@@ -1,5 +1,12 @@
 /.env.local
 /.idea
 /vendor
-/web/app
+/web/app/cache
+/web/app/languages
+/web/app/mu-plugins
+/web/app/plugins
+/web/app/themes/saleziani/assets/public
+/web/app/themes/saleziani/node_modules
+/web/app/upgrade
+/web/app/uploads
 /web/wp
