@@ -1,5 +1,8 @@
 .wp-block-saleziani-call-to-action {
     padding: 3rem 0;
+    @media(max-width: 50rem) {
+        padding: 3rem 1rem;
+    }
 
     .inner {
         background-color: #ffffff;
@@ -8,6 +11,9 @@
         margin: 0 auto;
         max-width: 48rem;
         padding: 3rem 4rem;
+        @media(max-width: 50rem) {
+            padding: 1rem;
+        }
 
         p {
             line-height: 1.5rem;

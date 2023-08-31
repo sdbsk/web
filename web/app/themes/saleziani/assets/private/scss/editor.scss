@@ -6,6 +6,10 @@
     @import 'parts/all';
     font-family: 'Fira Sans', sans-serif;
 
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+
     .wp-block-post-title {
         margin-bottom: 1rem;
     }
