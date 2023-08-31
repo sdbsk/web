@@ -6,15 +6,6 @@
     ];
 
     return wp.blocks.registerBlockType('saleziani/call-to-action', {
-        attributes: {
-            style: {
-                default: {
-                    color: {
-                        background: 'var(--wp--preset--color--apricot)'
-                    }
-                }
-            }
-        },
         category: 'theme',
         description: 'Vytvorte pútavý blok s nadpisom, popisom a tlačidlom.',
         example: {innerBlocks: template.map((i) => ({name: i[0], attributes: i[1]}))},
