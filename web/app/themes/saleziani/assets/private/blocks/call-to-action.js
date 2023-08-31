@@ -29,7 +29,8 @@
                     wp.blockEditor.InnerBlocks,
                     {
                         allowedBlocks: ['core/button', 'core/heading', 'core/paragraph'],
-                        template: template
+                        template: template,
+                        templateLock: 'all'
                     }
                 )
             )
