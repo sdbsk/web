@@ -5,9 +5,14 @@
         "color": {
             "palette": [
                 {
-                    "name": "Red 200",
-                    "slug": "red-200",
+                    "name": "Apricot",
+                    "slug": "apricot",
                     "color": "#f8dad3"
+                },
+                {
+                    "name": "Mint",
+                    "slug": "mint",
+                    "color": "#cbe8e1"
                 }
             ]
         },

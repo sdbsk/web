@@ -1,7 +1,12 @@
+@import 'fonts/all';
+
 .editor-styles-wrapper {
     @import 'blocks/all';
     @import 'elements/all';
-    @import 'fonts/all';
     @import 'parts/all';
     font-family: 'Fira Sans', sans-serif;
+
+    .wp-block-post-title {
+        margin-bottom: 1rem;
+    }
 }

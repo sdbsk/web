@@ -1,7 +1,8 @@
+@import 'fonts/all';
+
 .wp-site-blocks {
     @import 'blocks/all';
     @import 'elements/all';
-    @import 'fonts/all';
     @import 'parts/all';
     font-family: 'Fira Sans', sans-serif;
 }
