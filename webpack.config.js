@@ -5,15 +5,15 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    .addEntry('editor', './assets/private/editor.js')
-    .addEntry('style', './assets/private/style.js')
+    .addEntry('editor', './assets/editor.js')
+    .addEntry('style', './assets/style.js')
     .cleanupOutputBeforeBuild()
     .enableSassLoader()
     .enableSingleRuntimeChunk()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
-    .setOutputPath('assets/public/')
-    .setPublicPath('/app/themes/saleziani/assets/public')
+    .setOutputPath('web/app/themes/saleziani/assets/')
+    .setPublicPath('/app/themes/saleziani/assets')
     .splitEntryChunks()
 ;
 

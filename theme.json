@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "color": {
+            "palette": [
+                {
+                    "name": "Apricot",
+                    "slug": "apricot",
+                    "color": "#f8dad3"
+                },
+                {
+                    "name": "Mint",
+                    "slug": "mint",
+                    "color": "#cbe8e1"
+                }
+            ]
+        },
+        "layout": {
+            "contentSize": "75rem",
+            "wideSize": "100rem"
+        }
+    }
+}
