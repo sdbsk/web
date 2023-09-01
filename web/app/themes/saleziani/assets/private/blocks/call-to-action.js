@@ -1,11 +1,21 @@
 (wp => {
     const template = [
-        ['core/heading', {content: 'Nadpis výzvy k akcii', level: 2}],
-        ['core/paragraph', {content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at justo viverra metus egestas hendrerit. In sed mauris eget mi vestibulum interdum sit amet ut magna. Sed eu molestie mi. Cras malesuada ut neque vel mollis. Pellentesque sollicitudin quis sapien eu tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce metus quam, elementum vitae accumsan tristique, consequat non turpis.'}],
-        ['core/button', {text: 'Vestibulum ante ipsum'}]
+        ['core/heading', {content: 'Vaša podpora je dôležitá', level: 2}],
+        ['core/paragraph', {content: 'Saleziánske dielo je sieť saleziánskych komunitných centier, v ktorých tisíce ľudí denne trávia zmysluplný čas. Každý je vítaný. Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj športových, kultúrnych, sociálnych a duchovných aktivít pre deti, mladých, rodičov aj seniorov.'}],
+        ['core/button', {text: 'Podporiť teraz'}]
     ];
 
     return wp.blocks.registerBlockType('saleziani/call-to-action', {
+        attributes: {
+            align: {
+                default: 'full',
+                type: 'string'
+            },
+            backgroundColor: {
+                default: 'apricot',
+                type: 'string'
+            }
+        },
         category: 'theme',
         description: 'Vytvorte pútavý blok s nadpisom, popisom a tlačidlom.',
         example: {innerBlocks: template.map((i) => ({name: i[0], attributes: i[1]}))},
