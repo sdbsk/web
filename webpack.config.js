@@ -7,6 +7,10 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .addEntry('editor', './assets/editor.js')
     .addEntry('style', './assets/style.js')
+    .copyFiles({
+        from: 'assets/blocks',
+        to: 'blocks/[path][name]' + (Encore.isProduction() ? '.[hash:8]' : '') + '.[ext]'
+    })
     .cleanupOutputBeforeBuild()
     .enableSassLoader()
     .enableSingleRuntimeChunk()

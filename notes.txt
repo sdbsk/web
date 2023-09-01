@@ -1,4 +1,2 @@
 zo stareho stacku presunut
     latest-default-category-posts block
-definovat druhe menu, ktore sa bude zobrazovat vo footri
-    https://www.wpbeginner.com/wp-themes/how-to-add-custom-navigation-menus-in-wordpress-3-0-themes/#adding-custom-navigation-full-site-editor

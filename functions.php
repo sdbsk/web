@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-$manifest = json_decode(file_get_contents(__DIR__ . '/web/app/themes/saleziani/assets/manifest.json'), true);
+$assets = 'app/themes/saleziani/assets/';
+$manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
 add_action('init', function (): void {
     register_post_type('campaign', [
@@ -42,51 +43,16 @@ add_action('init', function (): void {
     ]);
 });
 
-add_action('enqueue_block_editor_assets', function () use ($manifest): void {
-    wp_enqueue_style('editor', home_url() . $manifest['app/themes/saleziani/assets/editor.css']);
+add_action('enqueue_block_editor_assets', function () use ($assets, $manifest): void {
+    wp_enqueue_style('editor', home_url() . $manifest[$assets . 'editor.css']);
 
-    foreach (get_cumstom_block_types() as $blockType) {
-        wp_enqueue_script($blockType . '-block', get_template_directory_uri() . '/assets/blocks/' . $blockType . '.js', ['wp-blocks', 'wp-element']);
-    }
-});
-
-add_action('wp_enqueue_scripts', function () use ($manifest): void {
-    wp_enqueue_style('style', home_url() . $manifest['app/themes/saleziani/assets/style.css']);
-});
-
-add_filter('allowed_block_types_all', function (): array {
-    $blockTypes = [
-        'core/button',
-        'core/buttons',
-        'core/cover',
-        'core/heading',
-        'core/image',
-        'core/list',
-        'core/paragraph',
-        'core/separator',
-        'wp-bootstrap-blocks/column',
-        'wp-bootstrap-blocks/container',
-        'wp-bootstrap-blocks/row',
-    ];
-
-    foreach (get_cumstom_block_types() as $blockType) {
-        $blockTypes[] = 'saleziani/' . $blockType;
-    }
-
-    return $blockTypes;
-}, 10, 2);
-
-function get_cumstom_block_types(): array
-{
-    $blockTypes = [];
-
-    foreach (scandir(__DIR__ . '/assets/blocks/') as $filename) {
-        preg_match('~([a-zA-Z0-9-]+)\.js~', $filename, $matches);
-
-        if (isset($matches[1])) {
-            $blockTypes[] = $matches[1];
+    foreach ($manifest as $filename) {
+        if (preg_match('~/assets/blocks/([a-z\-]+)\..+~', $filename, $matches)) {
+            wp_enqueue_script($matches[1] . '-block', get_template_directory_uri() . $matches[0], ['wp-blocks']);
         }
     }
+});
 
-    return $blockTypes;
-}
+add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
+    wp_enqueue_style('style', home_url() . $manifest[$assets . 'style.css']);
+});
