@@ -7,12 +7,8 @@ $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
 add_action('init', function () use ($template): void {
-    foreach (scandir(__DIR__ . '/src/blocks') as $filename) {
-        if (preg_match('~(.+)\.php~', $filename, $matches)) {
-            register_block_type($template . '/' . $matches[1], [
-                'render_callback' => fn(): string => require __DIR__ . '/src/blocks/' . $matches[0],
-            ]);
-        }
+    foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
+        register_block_type($template . '/' . $type, $args);
     }
 
     foreach (require __DIR__ . '/src/post-types.php' as $type => $args) {
