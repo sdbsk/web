@@ -15,12 +15,6 @@ add_action('init', function () use ($template): void {
         }
     }
 
-    foreach (scandir(__DIR__ . '/src/patterns') as $filename) {
-        if (preg_match('~(.+)\.php~', $filename, $matches)) {
-            register_block_pattern($template . '/' . $matches[1], require __DIR__ . '/src/patterns/' . $matches[0]);
-        }
-    }
-
     foreach (require __DIR__ . '/src/post-types.php' as $type => $args) {
         register_post_type($type, $args);
     }
