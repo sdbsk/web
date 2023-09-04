@@ -2,15 +2,22 @@
 
 declare(strict_types=1);
 
-$assets = 'app/themes/saleziani/assets/';
+$template = wp_get_theme()->get_template();
+$assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
-add_action('init', function (): void {
+add_action('init', function () use ($template): void {
     foreach (scandir(__DIR__ . '/src/blocks') as $filename) {
         if (preg_match('~(.+)\.php~', $filename, $matches)) {
-            register_block_type('saleziani/' . $matches[1], [
+            register_block_type($template . '/' . $matches[1], [
                 'render_callback' => fn(): string => require __DIR__ . '/src/blocks/' . $matches[0],
             ]);
+        }
+    }
+
+    foreach (scandir(__DIR__ . '/src/patterns') as $filename) {
+        if (preg_match('~(.+)\.php~', $filename, $matches)) {
+            register_block_pattern($template . '/' . $matches[1], require __DIR__ . '/src/patterns/' . $matches[0]);
         }
     }
 
