@@ -27,7 +27,6 @@ return [
 
                     foreach (wp_get_post_categories($post->ID) as $categoryId) {
                         $category = get_category($categoryId);
-
                         if ($category->parent > 0) {
                             $output .= '<a href="' . get_category_link($category) . '">' . $category->name . '</a>';
                         }
