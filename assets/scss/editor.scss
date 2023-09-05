@@ -4,6 +4,7 @@
 .editor-styles-wrapper {
     @import 'blocks/all';
     @import 'elements/all';
+    @import 'parts/all';
     font-family: 'Fira Sans', sans-serif;
 
     *, :after, :before {
