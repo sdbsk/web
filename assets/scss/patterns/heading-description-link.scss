@@ -1,0 +1,12 @@
+.wp-pattern-saleziani-heading-description-link {
+  p {
+    color: #272727;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+
+    a {
+      @include link_with_arrow;
+    }
+  }
+}
