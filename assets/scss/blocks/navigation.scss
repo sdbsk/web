@@ -1,0 +1,35 @@
+.wp-block-navigation{
+  .wp-block-navigation-item{
+    margin: 0 1rem;
+    &:first-child{
+      margin: 0;
+    }
+
+    &.btn-orange{
+      position: absolute;
+      right: 0;
+      color: #fff;
+      background-color: #EE8D0F;
+      border-radius: 0.94rem;
+      font-size: 0.9375rem;
+      line-height: 1.375rem;
+      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+    }
+    &:last-child{
+      margin: 0 0 0 1rem;
+    }
+  }
+  .wp-block-navigation-item__content {
+    text-decoration: unset;
+    .wp-block-navigation-item__label {
+      font-size: 1rem;
+      line-height: 1.125rem;
+    }
+  }
+
+}
+
+header{
+  padding: 0.75rem 0;
+}
