@@ -33,7 +33,7 @@ return [
                         }
                     }
 
-                    $output .= '<a href="' . $permalink . '"><h2>' . $post->post_title . '</h2></a>';
+                    $output .= '<a href="' . $permalink . '"><h3>' . $post->post_title . '</h3></a>';
                     $output .= '<div>' . get_the_excerpt($post) . '</div>';
                     $output .= '<a href="' . $permalink . '">Dozvedieť sa viac</a>';
                     $output .= '</div>';
@@ -66,7 +66,7 @@ return [
                         $output .= '<a href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
                     }
 
-                    $output .= '<a href="' . $permalink . '"><h2>' . $page->post_title . '</h2></a>';
+                    $output .= '<a href="' . $permalink . '"><h3>' . $page->post_title . '</h3></a>';
                     $output .= '<div>' . get_the_excerpt($page) . '</div>';
                     $output .= '<a href="' . $permalink . '">Dozvedieť sa viac</a>';
                 }
