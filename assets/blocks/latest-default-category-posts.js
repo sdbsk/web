@@ -5,6 +5,8 @@
         example: {},
         icon: 'text-page',
         title: 'Najnovšie články',
-        edit: props => wp.element.createElement(wp.serverSideRender, {block: props.name})
+        edit: props => wp.element.createElement('div', wp.blockEditor.useBlockProps(),
+            wp.element.createElement(wp.serverSideRender, {block: props.name})
+        )
     });
 })(window.wp);
