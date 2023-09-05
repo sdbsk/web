@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-$assets = 'app/themes/saleziani/assets/';
+$template = wp_get_theme()->get_template();
+$assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
-add_action('init', function (): void {
-    foreach (scandir(__DIR__ . '/src/blocks') as $filename) {
-        if (preg_match('~(.+)\.php~', $filename, $matches)) {
-            register_block_type('saleziani/' . $matches[1], [
-                'render_callback' => fn(): string => require __DIR__ . '/src/blocks/' . $matches[0],
-            ]);
-        }
+add_action('init', function () use ($template): void {
+    foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
+        register_block_type($template . '/' . $type, $args);
     }
 
     foreach (require __DIR__ . '/src/post-types.php' as $type => $args) {
