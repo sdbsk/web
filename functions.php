@@ -12,7 +12,7 @@ add_action('init', function () use ($template): void {
     ]);
 
     foreach (require __DIR__ . '/src/block-patterns.php' as $name => $properties) {
-        register_block_pattern($name, $properties);
+        register_block_pattern($name, $properties + ['categories' => [$template]]);
     }
 
     foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
