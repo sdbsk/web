@@ -7,6 +7,14 @@ $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
 add_action('init', function () use ($template): void {
+    register_block_pattern_category($template, [
+        'label' => 'Saleziáni',
+    ]);
+
+    foreach (require __DIR__ . '/src/block-patterns.php' as $name => $properties) {
+        register_block_pattern($name, $properties + ['categories' => [$template]]);
+    }
+
     foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
         register_block_type($template . '/' . $type, $args);
     }

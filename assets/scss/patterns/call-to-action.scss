@@ -1,10 +1,10 @@
-.wp-block-saleziani-call-to-action {
+.wp-pattern-saleziani-call-to-action {
     padding: 3rem 0;
     @media(max-width: 50rem) {
         padding: 3rem 1rem;
     }
 
-    .inner {
+    .wp-block-group {
         background-color: #ffffff;
         border-radius: 0.25rem;
         color: #272727;
@@ -36,6 +36,7 @@
         }
 
         .wp-block-heading {
+            color: #272727;
             font-size: 2rem;
             color: #272727;
             line-height: 2.8125rem;

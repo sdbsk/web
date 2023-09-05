@@ -10,15 +10,55 @@
                     "color": "#f8dad3"
                 },
                 {
+                    "name": "Blackberry",
+                    "slug": "blackberry",
+                    "color": "#272727"
+                },
+                {
+                    "name": "Blueberry",
+                    "slug": "blueberry",
+                    "color": "#5795d6"
+                },
+                {
+                    "name": "Lime",
+                    "slug": "lime",
+                    "color": "#69bcaa"
+                },
+                {
                     "name": "Mint",
                     "slug": "mint",
                     "color": "#cbe8e1"
+                },
+                {
+                    "name": "Pineapple",
+                    "slug": "pineapple",
+                    "color": "#eec351"
+                },
+                {
+                    "name": "Potato",
+                    "slug": "potato",
+                    "color": "#cf3942"
+                },
+                {
+                    "name": "Pumpkin",
+                    "slug": "pumpkin",
+                    "color": "#ee8d0f"
                 }
             ]
         },
         "layout": {
             "contentSize": "75rem",
             "wideSize": "100rem"
+        },
+        "spacing": {
+            "padding": true,
+            "margin": true,
+            "units": [
+                "rem"
+            ]
+        },
+        "typography": {
+            "lineHeight": true
         }
     }
 }
