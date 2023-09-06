@@ -1,0 +1,14 @@
+.latest-post-box {
+    padding: 1.5rem;
+
+    .box-image {
+        width: 100%;
+        height: 10.0625rem;
+        border-radius: 0.25rem;
+        margin-bottom: 2rem;
+
+        .wp-post-image {
+            width: 100%;
+        }
+    }
+}

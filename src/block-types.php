@@ -17,12 +17,12 @@ return [
                 $output .= '<div class="row">';
 
                 foreach ($posts as $post) {
-                    $output .= '<div class="col-4">';
+                    $output .= '<div class="col-4"><div class="latest-post-box">';
                     $permalink = get_permalink($post);
                     $thumbnail = get_the_post_thumbnail($post, 'medium_large');
 
                     if (false === empty($thumbnail)) {
-                        $output .= '<a href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
+                        $output .= '<a href="' . $permalink . '" style="display:block;" class="box-image">' . $thumbnail . '</a>';
                     }
 
                     foreach (wp_get_post_categories($post->ID) as $categoryId) {
@@ -36,7 +36,7 @@ return [
                     $output .= '<a href="' . $permalink . '"><h3>' . $post->post_title . '</h3></a>';
                     $output .= '<div>' . get_the_excerpt($post) . '</div>';
                     $output .= '<a href="' . $permalink . '">Dozvedieť sa viac</a>';
-                    $output .= '</div>';
+                    $output .= '</div></div>';
                 }
 
                 $output .= '</div>';
