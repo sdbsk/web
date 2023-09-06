@@ -27,7 +27,6 @@ return [
 
                     foreach (wp_get_post_categories($post->ID) as $categoryId) {
                         $category = get_category($categoryId);
-
                         if ($category->parent > 0) {
                             $output .= '<a href="' . get_category_link($category) . '">' . $category->name . '</a>';
                         }
@@ -63,12 +62,12 @@ return [
                     $thumbnail = get_the_post_thumbnail($page, 'medium_large');
 
                     if (false === empty($thumbnail)) {
-                        $output .= '<a href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
+                        $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
                     }
 
-                    $output .= '<a href="' . $permalink . '"><h3>' . $page->post_title . '</h3></a>';
-                    $output .= '<div>' . get_the_excerpt($page) . '</div>';
-                    $output .= '<a href="' . $permalink . '">Dozvedieť sa viac</a>';
+                    $output .= '<div class="content"><div class="text"><a href="' . $permalink . '"><h3>' . $page->post_title . '</h3></a>';
+                    $output .= '<p>' . get_the_excerpt($page) . '</p></div>';
+                    $output .= '<a class="link" href="' . $permalink . '">Dozvedieť sa viac</a></div>';
                 }
 
                 return wrap_block_content($block, $output);

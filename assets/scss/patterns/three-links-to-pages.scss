@@ -1,0 +1,50 @@
+.wp-pattern-saleziani-three-links-to-pages{
+  .wp-block-saleziani-link-to-page{
+    padding: 1.5rem;
+    border-radius: 0.25rem;
+    background: #F9F6F4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .image {
+      border-radius: 0.25rem;
+      > img{
+        width: 100%;
+        height: auto;
+        border-radius: 0.25rem;
+        margin-bottom: 2rem;
+      }
+    }
+    .content{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 100%;
+      .text{
+        a{
+          text-decoration: unset;
+          > h3{
+            color: #272727;
+            font-size:1.3125rem;
+            font-weight: 700;
+            line-height: 1.8125rem;
+            margin: 0 0 1rem;
+          }
+        }
+        p{
+          color: #272727;
+          font-size: 0.9375rem;
+          font-weight: 400;
+          line-height: 1.3125rem;
+          margin-bottom: 1.75rem;
+        }
+      }
+    }
+
+
+
+    .link{
+      @include link_with_arrow;
+    }
+  }
+}

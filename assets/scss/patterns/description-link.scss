@@ -1,0 +1,10 @@
+.wp-pattern-saleziani-description-link {
+  p {
+    color: #272727;
+    font-size: 1.3125rem;
+    line-height: 1.8125rem;
+    a {
+      @include link_with_arrow;
+    }
+  }
+}
