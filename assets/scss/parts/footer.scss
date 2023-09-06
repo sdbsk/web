@@ -1,53 +1,57 @@
 footer {
-  background-color: #F9F6F4;
-  padding-top: 3rem;
+    background-color: #f9f6f4;
+    padding-top: 3rem;
 
-  .wp-bootstrap-blocks-row {
-    margin: 0 auto;
-    max-width: var(--wp--style--global--content-size);
-  }
-
-  p {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.125rem;
-    color: #272727CC;
-
-    a {
-      text-decoration: unset;
-      color: #272727CC;
-      font-size: 0.875rem;
-      font-weight: 400;
-      line-height: 1.125rem;
-      display: inline-block;
-      margin-top: 0.28rem;
-      margin-bottom: 0.28rem;
-
-      strong {
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1.25rem;
-        margin-bottom: 0.3125rem;
-        display: inline-block;
-      }
-
-      + a {
-        margin-left: 1rem;
-      }
+    .wp-block-separator {
+        border-color: rgba(39, 39, 39, 0.12);
+        border-width: 0.0625rem 0 0 0;
+        margin: 0.75rem 0;
     }
 
-    strong {
-      a {
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1.25rem;
-        margin-bottom: 0.75rem;
-        display: inline-block;
-      }
-
+    .wp-bootstrap-blocks-row {
+        margin: 0 auto;
+        max-width: var(--wp--style--global--content-size);
     }
 
-  }
+    p {
+        color: #272727cc;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.125rem;
+        margin-bottom: 0;
+        margin-top: 0;
+
+        a {
+            color: #272727cc;
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.125rem;
+            margin-bottom: 0.28rem;
+            margin-top: 0.28rem;
+            text-decoration: unset;
+
+            strong {
+                display: inline-block;
+                font-size: 1rem;
+                font-weight: 700;
+                line-height: 1.25rem;
+                margin-bottom: 0.3125rem;
+            }
+
+            + a {
+                margin-left: 1rem;
+            }
+        }
+
+        strong {
+            a {
+                display: inline-block;
+                font-size: 1rem;
+                font-weight: 700;
+                line-height: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+    }
 }

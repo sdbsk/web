@@ -1,10 +1,21 @@
+@import '../mixin';
+
 .wp-pattern-saleziani-description-link {
-  p {
-    color: #272727;
-    font-size: 1.3125rem;
-    line-height: 1.8125rem;
-    a {
-      @include link_with_arrow;
+    p {
+        color: #272727;
+        font-size: 1.3125rem;
+        line-height: 1.8125rem;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        a {
+            @include link-with-arrow;
+        }
     }
-  }
 }

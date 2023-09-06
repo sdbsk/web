@@ -51,14 +51,9 @@
             "wideSize": "100rem"
         },
         "spacing": {
-            "padding": true,
-            "margin": true,
             "units": [
                 "rem"
             ]
-        },
-        "typography": {
-            "lineHeight": true
         }
     }
 }

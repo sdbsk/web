@@ -1,6 +1,5 @@
 @import 'bootstrap/scss/bootstrap-grid';
 @import 'fonts/all';
-@import 'mixin/mixin';
 
 .wp-site-blocks {
     @import 'blocks/all';
@@ -11,5 +10,13 @@
 
     *, :after, :before {
         box-sizing: border-box;
+    }
+
+    .wp-block-post-content > * {
+        margin-bottom: 6rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }

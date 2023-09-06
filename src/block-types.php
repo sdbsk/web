@@ -17,7 +17,7 @@ return [
                 $output .= '<div class="row">';
 
                 foreach ($posts as $post) {
-                    $output .= '<div class="col-4"><div class="latest-post-box">';
+                    $output .= '<div class="col-4"><div class="box">';
                     $permalink = get_permalink($post);
                     $thumbnail = get_the_post_thumbnail($post, 'medium_large');
 
@@ -52,28 +52,39 @@ return [
             ],
         ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            $output = '';
+            $template = function (string $thumbnail, string $title, string $permalink, string $excerpt): string {
+                $output = '';
+
+                if (false === empty($thumbnail)) {
+                    $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
+                }
+
+                $output .= '<div class="content"><div class="text"><a href="' . $permalink . '"><h3>' . $title . '</h3></a>';
+                $output .= '<p>' . $excerpt . '</p></div>';
+                $output .= '<a class="link" href="' . $permalink . '">Dozvedieť sa viac</a></div>';
+
+                return $output;
+            };
 
             if (isset($attributes['page']) && $attributes['page'] > 0) {
                 $page = get_post($attributes['page']);
 
                 if ($page instanceof WP_Post) {
-                    $permalink = get_permalink($page);
-                    $thumbnail = get_the_post_thumbnail($page, 'medium_large');
-
-                    if (false === empty($thumbnail)) {
-                        $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
-                    }
-
-                    $output .= '<div class="content"><div class="text"><a href="' . $permalink . '"><h3>' . $page->post_title . '</h3></a>';
-                    $output .= '<p>' . get_the_excerpt($page) . '</p></div>';
-                    $output .= '<a class="link" href="' . $permalink . '">Dozvedieť sa viac</a></div>';
+                    return wrap_block_content($block, $template(
+                        get_the_post_thumbnail($page, 'medium_large'),
+                        $page->post_title,
+                        get_permalink($page),
+                        get_the_excerpt($page),
+                    ));
                 }
-
-                return wrap_block_content($block, $output);
             }
 
-            return wrap_block_content($block, 'Cieľová stránka nie je nastavená.');
+            return wrap_block_content($block, $template(
+                '<img src="https://place-hold.it/320x160?text">',
+                'Cieľová stránka nie je nastavená.',
+                '#',
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
+            ));
         },
     ],
 ];

@@ -1,6 +1,5 @@
 @import 'bootstrap/scss/bootstrap-grid';
 @import 'fonts/all';
-@import 'mixin/mixin';
 
 .editor-styles-wrapper {
     @import 'blocks/all';
@@ -15,5 +14,14 @@
 
     .wp-block-post-title {
         margin-bottom: 1rem;
+    }
+
+    [data-type='wp-bootstrap-blocks/column'] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .wp-block a {
+        pointer-events: none;
     }
 }

@@ -1,14 +1,16 @@
-.latest-post-box {
-    padding: 1.5rem;
+.wp-block-saleziani-latest-default-category-posts {
+    .box {
+        padding: 1.5rem;
 
-    .box-image {
-        width: 100%;
-        height: 10.0625rem;
-        border-radius: 0.25rem;
-        margin-bottom: 2rem;
-
-        .wp-post-image {
+        .image {
+            border-radius: 0.25rem;
+            height: 10.0625rem;
+            margin-bottom: 2rem;
             width: 100%;
+
+            .wp-post-image {
+                width: 100%;
+            }
         }
     }
 }

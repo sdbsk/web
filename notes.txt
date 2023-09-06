@@ -1,0 +1,10 @@
+vytvorit pattern
+    icon-title-description - sme saleziani - rozum/nabozenstvo/laskavost
+    link-list - sme saleziani - dalsie informacie
+    citat - Dobrovoľníctvo a osobnostný rozvoj dobrovoľníkov - felix 25 rokov
+
+vypnut wp bloky citat, citacia a dalsie...
+
+stranka zoznamu clankov - Aktuality
+    filter kategorii
+    strankovanie
