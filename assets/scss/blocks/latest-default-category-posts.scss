@@ -1,16 +1,57 @@
+@import '../mixin';
+
 .wp-block-saleziani-latest-default-category-posts {
     .box {
         padding: 1.5rem;
+        border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
 
         .image {
             border-radius: 0.25rem;
-            height: 10.0625rem;
             margin-bottom: 2rem;
-            width: 100%;
 
             .wp-post-image {
                 width: 100%;
             }
+        }
+
+        .category {
+            display: block;
+            color: #cf3942;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            line-height: 1.125rem;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 1rem;
+
+            h3 {
+                color: #272727;
+                font-size: 1.125rem;
+                font-weight: 700;
+                line-height: 1.5625rem;
+                margin: 0;
+            }
+        }
+
+        .description {
+            color: rgba(39, 39, 39, 0.80);
+            font-size: 0.9375rem;
+            line-height: 1.3125rem;
+            margin-bottom: 1.61rem;
+        }
+
+        .link {
+            @include link-with-arrow;
+            width: fit-content;
         }
     }
 }

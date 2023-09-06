@@ -17,24 +17,24 @@ return [
                 $output .= '<div class="row">';
 
                 foreach ($posts as $post) {
-                    $output .= '<div class="col-4"><div class="box">';
+                    $output .= '<div class="col-4"><div class="box"><div>';
                     $permalink = get_permalink($post);
                     $thumbnail = get_the_post_thumbnail($post, 'medium_large');
 
                     if (false === empty($thumbnail)) {
-                        $output .= '<a href="' . $permalink . '" style="display:block;" class="box-image">' . $thumbnail . '</a>';
+                        $output .= '<a href="' . $permalink . '" style="display:block;" class="image">' . $thumbnail . '</a>';
                     }
 
                     foreach (wp_get_post_categories($post->ID) as $categoryId) {
                         $category = get_category($categoryId);
                         if ($category->parent > 0) {
-                            $output .= '<a href="' . get_category_link($category) . '">' . $category->name . '</a>';
+                            $output .= '<a href="' . get_category_link($category) . '" class="category">' . $category->name . '</a>';
                         }
                     }
 
-                    $output .= '<a href="' . $permalink . '"><h3>' . $post->post_title . '</h3></a>';
-                    $output .= '<div>' . get_the_excerpt($post) . '</div>';
-                    $output .= '<a href="' . $permalink . '">Dozvedieť sa viac</a>';
+                    $output .= '<a href="' . $permalink . '" class="title"><h3>' . $post->post_title . '</h3></a>';
+                    $output .= '<div class="description">' . get_the_excerpt($post) . '</div></div>';
+                    $output .= '<a href="' . $permalink . '" class="link">Čítať viac</a>';
                     $output .= '</div></div>';
                 }
 
