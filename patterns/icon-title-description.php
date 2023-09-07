@@ -13,8 +13,8 @@ declare(strict_types=1);
 <div class="wp-block-group wp-pattern-saleziani-icon-title-description">
     <!-- wp:wp-bootstrap-blocks/row {"template":"custom"} -->
     <!-- wp:wp-bootstrap-blocks/column {"sizeMd":4} -->
-    <!-- wp:group -->
-    <div class="wp-block-group">
+    <!-- wp:group {"className":"box"} -->
+    <div class="box wp-block-group">
         <!-- wp:image -->
         <figure class="wp-block-image"><img src="https://place-hold.it/40x40?text"/></figure>
         <!-- /wp:image -->
@@ -28,8 +28,8 @@ declare(strict_types=1);
     <!-- /wp:group -->
     <!-- /wp:wp-bootstrap-blocks/column -->
     <!-- wp:wp-bootstrap-blocks/column {"sizeMd":4} -->
-    <!-- wp:group -->
-    <div class="wp-block-group">
+    <!-- wp:group {"className":"box"} -->
+    <div class="box wp-block-group">
         <!-- wp:image -->
         <figure class="wp-block-image"><img src="https://place-hold.it/40x40?text"/></figure>
         <!-- /wp:image -->
@@ -43,8 +43,8 @@ declare(strict_types=1);
     <!-- /wp:group -->
     <!-- /wp:wp-bootstrap-blocks/column -->
     <!-- wp:wp-bootstrap-blocks/column {"sizeMd":4} -->
-    <!-- wp:group -->
-    <div class="wp-block-group">
+    <!-- wp:group {"className":"box"} -->
+    <div class="box wp-block-group">
         <!-- wp:image -->
         <figure class="wp-block-image"><img src="https://place-hold.it/40x40?text"/></figure>
         <!-- /wp:image -->
