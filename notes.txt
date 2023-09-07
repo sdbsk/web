@@ -3,6 +3,8 @@ vytvorit pattern
     link-list - sme saleziani - dalsie informacie
     citat - Dobrovoľníctvo a osobnostný rozvoj dobrovoľníkov - felix 25 rokov
 
+zabezpecit rovnake paddingy medzi blokmi aj v CMS
+
 vypnut wp bloky citat, citacia a dalsie...
 
 stranka zoznamu clankov - Aktuality
