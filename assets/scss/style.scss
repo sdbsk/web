@@ -2,10 +2,6 @@
 @import 'fonts/all';
 
 .wp-site-blocks {
-    @import 'blocks/all';
-    @import 'elements/all';
-    @import 'parts/all';
-    @import 'patterns/all';
     font-family: 'Fira Sans', sans-serif;
 
     *, :after, :before {
@@ -19,4 +15,9 @@
             margin-bottom: 0;
         }
     }
+
+    @import 'blocks/all';
+    @import 'elements/all';
+    @import 'parts/all';
+    @import 'patterns/all';
 }

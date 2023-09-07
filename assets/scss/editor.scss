@@ -2,10 +2,7 @@
 @import 'fonts/all';
 
 .editor-styles-wrapper {
-    @import 'blocks/all';
-    @import 'elements/all';
-    @import 'parts/all';
-    @import 'patterns/all';
+
     font-family: 'Fira Sans', sans-serif;
 
     *, :after, :before {
@@ -16,6 +13,10 @@
         margin-bottom: 1rem;
     }
 
+    .wp-pattern-saleziani-description-link{
+        margin-bottom: 3rem;
+    }
+
     [data-type='wp-bootstrap-blocks/column'] {
         padding-left: 0 !important;
         padding-right: 0 !important;
@@ -24,4 +25,39 @@
     .wp-block a {
         pointer-events: none;
     }
+
+    .wp-block-image{
+        margin-bottom: 4rem;
+    }
+
+    .wp-pattern-saleziani-three-links-to-pages {
+        .wp-block-wp-bootstrap-blocks-column {
+            height: 100%;
+
+            .block-editor-inner-blocks {
+                height: 100%;
+
+                .block-editor-block-list__layout {
+                    height: 100%;
+
+                    .block-editor-block-list__block {
+                        height: 100%;
+
+                        .block-editor-block-list__block {
+                            height: 100%;
+
+                            div {
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @import 'blocks/all';
+    @import 'elements/all';
+    @import 'parts/all';
+    @import 'patterns/all';
 }

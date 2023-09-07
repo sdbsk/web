@@ -8,6 +8,7 @@
     align-items: center;
     padding-bottom: 0.25rem;
     position: relative;
+    width: fit-content;
     &:after {
         background-image: url('../images/arrow-right-orange.svg');
         content: '';
