@@ -1,10 +1,8 @@
-vytvorit pattern
-    citat - Dobrovoľníctvo a osobnostný rozvoj dobrovoľníkov - felix 25 rokov
-
-zabezpecit rovnake paddingy medzi blokmi aj v CMS
-
 vypnut wp bloky citat, citacia a dalsie...
 
 stranka zoznamu clankov - Aktuality
     filter kategorii
     strankovanie
+
+blok latest posts a ikonky ked su pod sebou nemaju v CMS zarovnane vertikalne bordery - prvy ano, a dalsie dva su posunute
+je mozne spravit patterny live? - ze ked zmenim html patternu tak sa aplikuje vsade, kde je pouzity?

@@ -2,12 +2,12 @@
 
 .wp-block-saleziani-latest-default-category-posts {
     .box {
-        padding: 1.5rem;
         border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         height: 100%;
+        justify-content: space-between;
+        padding: 1.5rem;
 
         .image {
             border-radius: 0.25rem;
@@ -19,19 +19,19 @@
         }
 
         .category {
-            display: block;
             color: #cf3942;
+            display: block;
             font-size: 0.9375rem;
             font-weight: 500;
             line-height: 1.125rem;
-            text-decoration: none;
             margin-bottom: 1rem;
+            text-decoration: none;
         }
 
         .title {
             display: block;
-            text-decoration: none;
             margin-bottom: 1rem;
+            text-decoration: none;
 
             h3 {
                 color: #272727;
