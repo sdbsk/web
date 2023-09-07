@@ -11,10 +11,6 @@ add_action('init', function () use ($template): void {
         'label' => 'Saleziáni',
     ]);
 
-    foreach (require __DIR__ . '/src/block-patterns.php' as $name => $properties) {
-        register_block_pattern($name, $properties);
-    }
-
     foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
         register_block_type($template . '/' . $type, $args);
     }
