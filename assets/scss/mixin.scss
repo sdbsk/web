@@ -1,8 +1,22 @@
+@mixin layout() {
+    font-family: 'Fira Sans', sans-serif;
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+    .wp-block-post-content > * {
+        margin-bottom: 6rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
 @mixin link-with-arrow() {
     color: #ee8d0f;
-    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 1.5rem;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
