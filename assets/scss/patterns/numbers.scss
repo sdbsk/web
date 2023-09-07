@@ -1,11 +1,14 @@
 .wp-pattern-saleziani-numbers {
     font-weight: 700;
     text-align: center;
-
+    max-width: 48rem !important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     h2 {
         color: #272727;
         font-size: 2rem;
         line-height: 2.8125rem;
+        margin-bottom: 3rem;
     }
 
     h3 {
