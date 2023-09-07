@@ -22,7 +22,7 @@ declare(strict_types=1);
         <h3 class="wp-block-heading has-blackberry-color has-text-color">Lorem ipsum</h3>
         <!-- /wp:heading -->
         <!-- wp:paragraph -->
-        <p>Nam vel tristique massa, ac malesuada urna. Morbi ultrices ullamcorper leo quis maximus. Nam aliquam bibendum risus a porttitor. Etiam elit libero.</p>
+        <p class="description">Nam vel tristique massa, ac malesuada urna. Morbi ultrices ullamcorper leo quis maximus. Nam aliquam bibendum risus a porttitor. Etiam elit libero.</p>
         <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->
@@ -37,7 +37,7 @@ declare(strict_types=1);
         <h3 class="wp-block-heading has-blackberry-color has-text-color">Dolor sit amet</h3>
         <!-- /wp:heading -->
         <!-- wp:paragraph -->
-        <p>Integer a turpis fermentum lorem ornare dictum. Nam porta nisl eget neque auctor, non facilisis dolor placerat. Cras in posuere purus, id faucibus urna.</p>
+        <p class="description">Integer a turpis fermentum lorem ornare dictum. Nam porta nisl eget neque auctor, non facilisis dolor placerat. Cras in posuere purus, id faucibus urna.</p>
         <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->
@@ -52,7 +52,7 @@ declare(strict_types=1);
         <h3 class="wp-block-heading has-blackberry-color has-text-color">Consectetur adipiscing</h3>
         <!-- /wp:heading -->
         <!-- wp:paragraph -->
-        <p>In blandit mi tempor, laoreet turpis eu, volutpat ante. Suspendisse fringilla cursus semper. Ut quis iaculis nisl.</p>
+        <p class="description">In blandit mi tempor, laoreet turpis eu, volutpat ante. Suspendisse fringilla cursus semper. Ut quis iaculis nisl.</p>
         <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->
