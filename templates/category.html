@@ -1,24 +1,22 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
-<div class="container-fluid">
-    <!-- wp:group {"layout":{"type":"constrained"}, "tagName":"main"} -->
-    <main class="wp-block-group">
-        <!-- wp:query-title {"showPrefix":false,"type":"category"} /-->
-        <!-- wp:query {"query":{"perPage":6}} -->
-        <div class="wp-block-query">
-            <!-- wp:post-template -->
-            <div class="row">
-                <div class="col-9">
-                    <!-- wp:post-title {"isLink":true} /-->
-                    <!-- wp:post-excerpt /-->
-                </div>
-                <div class="col-3">
-                    <!-- wp:post-featured-image {"isLink":true} /-->
-                </div>
+<!-- wp:group {"className":"container-fluid","layout":{"type":"constrained"},"tagName":"main"} -->
+<main class="container-fluid wp-block-group">
+    <!-- wp:query-title {"showPrefix":false,"type":"category"} /-->
+    <!-- wp:query {"query":{"perPage":6}} -->
+    <div class="wp-block-query">
+        <!-- wp:post-template -->
+        <div class="row">
+            <div class="col-9">
+                <!-- wp:post-title {"isLink":true} /-->
+                <!-- wp:post-excerpt /-->
             </div>
-            <!-- /wp:post-template -->
+            <div class="col-3">
+                <!-- wp:post-featured-image {"isLink":true} /-->
+            </div>
         </div>
-        <!-- /wp:query -->
-    </main>
-    <!-- /wp:group -->
-</div>
+        <!-- /wp:post-template -->
+    </div>
+    <!-- /wp:query -->
+</main>
+<!-- /wp:group -->
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

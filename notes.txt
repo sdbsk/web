@@ -1,7 +1,5 @@
-vypnut wp bloky citat, citacia a dalsie...
-
-stranka zoznamu clankov - Aktuality
-    filter kategorii
-    strankovanie
-
-je mozne spravit patterny live? - ze ked zmenim html patternu tak sa aplikuje vsade, kde je pouzity?
+Aktuality
+    v zozname clankov
+        pri kazdom clanku zobrazovat aj jeho kategorie
+        filter kategorii - zobrazovat len podkategorie kategorie, ktorej stranka sa zobrazuje
+        strankovanie

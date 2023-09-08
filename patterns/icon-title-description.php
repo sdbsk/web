@@ -3,14 +3,14 @@
 declare(strict_types=1);
 
 /**
- * Title: Ikona, nadpis a odkaz
- * Slug: saleziani/icon-title-description
+ * Title: 3 x ikona, nadpis a odkaz
+ * Slug: saleziani/three-icon-heading-description
  * Categories: saleziani
  */
 ?>
 
-<!-- wp:group {"className":"wp-pattern-saleziani-icon-title-description"} -->
-<div class="wp-block-group wp-pattern-saleziani-icon-title-description">
+<!-- wp:group {"className":"wp-pattern-saleziani-three-icon-heading-description"} -->
+<div class="wp-block-group wp-pattern-saleziani-three-icon-heading-description">
     <!-- wp:group {"className":"row"} -->
     <div class="wp-block-group row">
         <!-- wp:group {"className":"col-12 col-md-4"} -->

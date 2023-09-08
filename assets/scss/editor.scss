@@ -8,7 +8,7 @@ $grid-gutter-width: 1.875rem !default;
     @import 'elements/all';
     @import 'parts/all';
     @import 'patterns/all';
-    // Set height of Bootstrap column children. Used in three-links-to-pages pattern.
+    // Set height of Bootstrap column children. Used in three-link-to-page pattern.
     [class*='col-'] {
         > div {
             height: 100%;

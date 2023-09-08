@@ -16,7 +16,7 @@ declare(strict_types=1);
         <!-- wp:group {"className":"col-12 col-md-6"} -->
         <div class="wp-block-group col-12 col-md-6">
             <!-- wp:heading -->
-            <h2 class="wp-block-heading">Nadpis</h2>
+            <h2 class="wp-block-heading">Consectetur adipiscing elit</h2>
             <!-- /wp:heading -->
         </div>
         <!-- /wp:group -->
