@@ -1,9 +1,7 @@
 $grid-gutter-width: 1.875rem !default;
-
 @import 'bootstrap/scss/bootstrap-grid';
 @import 'fonts/all';
 @import 'mixin';
-
 .wp-site-blocks {
     @include layout;
     @import 'blocks/all';
