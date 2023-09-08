@@ -33,3 +33,8 @@ add_action('enqueue_block_editor_assets', function () use ($assets, $manifest): 
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('style', home_url() . $manifest[$assets . 'style.css']);
 });
+
+function placeholder_image_path(int $width, int $height): string
+{
+    return 'https://placehold.co/' . $width . 'x' . $height . '/F8DAD3/272727';
+}

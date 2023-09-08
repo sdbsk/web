@@ -18,7 +18,9 @@ declare(strict_types=1);
             <!-- wp:group {"className":"box"} -->
             <div class="box wp-block-group">
                 <!-- wp:image -->
-                <figure class="wp-block-image"><img src="https://place-hold.it/40x40?text"/></figure>
+                <figure class="wp-block-image">
+                    <img src="<?php echo placeholder_image_path(40, 40) ?>"/>
+                </figure>
                 <!-- /wp:image -->
                 <!-- wp:heading {"level":3,"textColor":"blackberry"} -->
                 <h3 class="wp-block-heading has-blackberry-color has-text-color">Lorem ipsum</h3>
@@ -35,7 +37,9 @@ declare(strict_types=1);
             <!-- wp:group {"className":"box"} -->
             <div class="box wp-block-group">
                 <!-- wp:image -->
-                <figure class="wp-block-image"><img src="https://place-hold.it/40x40?text"/></figure>
+                <figure class="wp-block-image">
+                    <img src="<?php echo placeholder_image_path(40, 40) ?>"/>
+                </figure>
                 <!-- /wp:image -->
                 <!-- wp:heading {"level":3,"textColor":"blackberry"} -->
                 <h3 class="wp-block-heading has-blackberry-color has-text-color">Dolor sit amet</h3>
@@ -52,7 +56,9 @@ declare(strict_types=1);
             <!-- wp:group {"className":"box"} -->
             <div class="box wp-block-group">
                 <!-- wp:image -->
-                <figure class="wp-block-image"><img src="https://place-hold.it/40x40?text"/></figure>
+                <figure class="wp-block-image">
+                    <img src="<?php echo placeholder_image_path(40, 40) ?>"/>
+                </figure>
                 <!-- /wp:image -->
                 <!-- wp:heading {"level":3,"textColor":"blackberry"} -->
                 <h3 class="wp-block-heading has-blackberry-color has-text-color">Consectetur adipiscing</h3>

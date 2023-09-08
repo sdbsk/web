@@ -27,7 +27,7 @@ declare(strict_types=1);
         <div class="wp-block-group col-12 col-sm-6">
             <!-- wp:image -->
             <figure class="wp-block-image">
-                <img src="https://place-hold.it/370x185"/>
+                <img src="<?php echo placeholder_image_path(375, 185) ?>"/>
             </figure>
             <!-- /wp:image -->
         </div>

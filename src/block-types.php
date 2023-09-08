@@ -80,7 +80,7 @@ return [
             }
 
             return wrap_block_content($block, $template(
-                '<img src="https://place-hold.it/320x160?text">',
+                '<img src="' . placeholder_image_path(320, 160) . '">',
                 'Cieľová stránka nie je nastavená.',
                 '#',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
