@@ -11,16 +11,24 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-three-links-to-pages"} -->
 <div class="wp-block-group wp-pattern-saleziani-three-links-to-pages">
-    <!-- wp:wp-bootstrap-blocks/row {"template":"custom"} -->
-    <!-- wp:wp-bootstrap-blocks/column {"sizeMd":4,"sizeSm":6} -->
-    <!-- wp:saleziani/link-to-page /-->
-    <!-- /wp:wp-bootstrap-blocks/column -->
-    <!-- wp:wp-bootstrap-blocks/column {"sizeMd":4,"sizeSm":6} -->
-    <!-- wp:saleziani/link-to-page /-->
-    <!-- /wp:wp-bootstrap-blocks/column -->
-    <!-- wp:wp-bootstrap-blocks/column {"sizeMd":4,"sizeSm":6} -->
-    <!-- wp:saleziani/link-to-page /-->
-    <!-- /wp:wp-bootstrap-blocks/column -->
-    <!-- /wp:wp-bootstrap-blocks/row -->
+    <!-- wp:group {"className":"row"} -->
+    <div class="wp-block-group row">
+        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
+        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+            <!-- wp:saleziani/link-to-page /-->
+        </div>
+        <!-- /wp:group -->
+        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
+        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+            <!-- wp:saleziani/link-to-page /-->
+        </div>
+        <!-- /wp:group -->
+        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
+        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+            <!-- wp:saleziani/link-to-page /-->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
 </div>
 <!-- /wp:group -->

@@ -5,4 +5,6 @@ stranka zoznamu clankov - Aktuality
     strankovanie
 
 blok latest posts a ikonky ked su pod sebou nemaju v CMS zarovnane vertikalne bordery - prvy ano, a dalsie dva su posunute
+    to sa zrejme poriesi, ked sa zbavime zavislosti na wp-bootstrap
+
 je mozne spravit patterny live? - ze ked zmenim html patternu tak sa aplikuje vsade, kde je pouzity?
