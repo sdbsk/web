@@ -42,8 +42,7 @@
         "roots/wordpress": "^6.3",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.1",
-        "wp-cli/wp-cli": "^2.8",
-        "wpackagist-plugin/wp-bootstrap-blocks": "^5.1"
+        "wp-cli/wp-cli": "^2.8"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

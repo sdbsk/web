@@ -6,24 +6,33 @@ $grid-gutter-width: 1.875rem !default;
 
 .editor-styles-wrapper {
     @include layout;
-
-    [data-type='wp-bootstrap-blocks/column'] {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .wp-block a {
-        pointer-events: none;
-    }
-
-    .wp-pattern-saleziani-link-list {
-        p {
-            white-space: unset!important;
-        }
-    }
-
     @import 'blocks/all';
     @import 'elements/all';
     @import 'parts/all';
     @import 'patterns/all';
+    // Set height of Bootstrap column children. Used in three-links-to-pages pattern.
+    [class*='col-'] {
+        > div {
+            height: 100%;
+
+            > div {
+                height: 100%;
+
+                > div {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    .wp-block {
+        * {
+            // Override inline style white-space: pre-wrap from @wordpress/rich-text.
+            white-space: normal !important;
+        }
+
+        a {
+            pointer-events: none;
+        }
+    }
 }

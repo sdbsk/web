@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5472f9d57f79b44ec21b8f87a4344b7e",
+    "content-hash": "2d802450bdd1785bb203e83ec7700474",
     "packages": [
         {
             "name": "composer/installers",
@@ -1415,24 +1415,6 @@
                 "source": "https://github.com/wp-cli/wp-cli"
             },
             "time": "2023-06-05T06:55:55+00:00"
-        },
-        {
-            "name": "wpackagist-plugin/wp-bootstrap-blocks",
-            "version": "5.1.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wp-bootstrap-blocks/",
-                "reference": "tags/5.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-bootstrap-blocks.5.1.0.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/wp-bootstrap-blocks/"
         }
     ],
     "packages-dev": [
