@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 /**
  * Title: Nadpis, popis a obrázok
- * Slug: saleziani/title-description-image
+ * Slug: saleziani/heading-description-image
  * Categories: saleziani
  */
 ?>
 
-<!-- wp:group {"className":"wp-pattern-saleziani-title-description-image"} -->
-<div class="wp-block-group wp-pattern-saleziani-title-description-image">
+<!-- wp:group {"className":"wp-pattern-saleziani-heading-description-image"} -->
+<div class="wp-block-group wp-pattern-saleziani-heading-description-image">
     <!-- wp:group {"className":"row"} -->
     <div class="wp-block-group row">
         <!-- wp:group {"className":"col-12 col-sm-6"} -->

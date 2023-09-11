@@ -18,9 +18,19 @@ add_action('init', function () use ($template): void {
     foreach (require __DIR__ . '/src/post-types.php' as $type => $args) {
         register_post_type($type, $args);
     }
+
+    unregister_block_pattern('core/query-standard-posts');
+    unregister_block_pattern('core/query-medium-posts');
+    unregister_block_pattern('core/query-small-posts');
+    unregister_block_pattern('core/query-grid-posts');
+    unregister_block_pattern('core/query-large-title-posts');
+    unregister_block_pattern('core/query-offset-posts');
+    unregister_block_pattern('core/social-links-shared-background-color');
+    unregister_block_pattern_category('featured');
+    unregister_block_pattern_category('text');
 });
 
-add_action('enqueue_block_editor_assets', function () use ($assets, $manifest): void {
+add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
     wp_enqueue_style('editor', home_url() . $manifest[$assets . 'editor.css']);
 
     foreach ($manifest as $filename) {
@@ -33,6 +43,23 @@ add_action('enqueue_block_editor_assets', function () use ($assets, $manifest): 
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('style', home_url() . $manifest[$assets . 'style.css']);
 });
+
+add_filter('allowed_block_types_all', function (): array {
+    return [
+        'core/buttons',
+        'core/group',
+        'core/heading',
+        'core/image',
+        'core/list',
+        'core/navigation-link',
+        'core/paragraph',
+        'core/pullquote',
+        'core/site-logo',
+        'core/template-part',
+        'saleziani/latest-default-category-posts',
+        'saleziani/link-to-page',
+    ];
+}, 10, 2);
 
 function placeholder_image_path(int $width, int $height): string
 {
