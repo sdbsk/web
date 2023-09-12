@@ -1,9 +1,24 @@
 .wp-block-image {
+    img{
+        width: 100%;
+    }
+    &.alignfull{
+        margin-left: -$grid-gutter-width/2 !important;
+        margin-right: -$grid-gutter-width/2 !important;
+    }
     &.alignwide {
         @media (max-width: 1624px) {
-            margin-left: -0.75rem !important;
-            margin-right: -0.75rem !important;
+            margin-left: -$grid-gutter-width/2 !important;
+            margin-right: -$grid-gutter-width/2 !important;
             max-width: unset;
+        }
+    }
+}
+
+.single{
+    .wp-block-image {
+        img {
+            border-radius: 0.25rem;
         }
     }
 }
