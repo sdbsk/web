@@ -1,5 +1,0 @@
-Aktuality
-    v zozname clankov
-        pri kazdom clanku zobrazovat aj jeho kategorie
-        filter kategorii - zobrazovat len podkategorie kategorie, ktorej stranka sa zobrazuje
-        strankovanie

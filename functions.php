@@ -44,22 +44,24 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('style', home_url() . $manifest[$assets . 'style.css']);
 });
 
-//add_filter('allowed_block_types_all', function (): array {
-//    return [
-//        'core/buttons',
-//        'core/group',
-//        'core/heading',
-//        'core/image',
-//        'core/list',
-//        'core/navigation-link',
-//        'core/paragraph',
-//        'core/pullquote',
-//        'core/site-logo',
-//        'core/template-part',
-//        'saleziani/latest-default-category-posts',
-//        'saleziani/link-to-page',
-//    ];
-//}, 10, 2);
+add_filter('allowed_block_types_all', function (): array {
+    return [
+        'core/button',
+        'core/buttons',
+        'core/group',
+        'core/heading',
+        'core/image',
+        'core/list',
+        'core/list-item',
+        'core/navigation-link',
+        'core/paragraph',
+        'core/pullquote',
+        'core/site-logo',
+        'core/template-part',
+        'saleziani/latest-default-category-posts',
+        'saleziani/link-to-page',
+    ];
+}, 10, 2);
 
 function placeholder_image_path(int $width, int $height): string
 {
