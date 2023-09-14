@@ -1,17 +1,13 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
-
-<div class="container-fluid single">
-    <!-- wp:group {"tagName":"main"} -->
-    <main class="wp-block-group">
-        <!-- wp:group {"layout":{"type":"constrained"}} -->
-        <div class="wp-block-group single">
-            <!-- wp:post-title {"level":1} /-->
-        </div>
-        <!-- /wp:group -->
-        <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
-    </main>
+<!-- wp:group {"className":"container-fluid single", "tagName":"main"} -->
+<main class="container-fluid wp-block-group single">
+    <!-- wp:group {"className":"single", "layout":{"type":"constrained"}} -->
+    <div class="wp-block-group single">
+        <!-- wp:post-title {"level":1} /-->
+    </div>
     <!-- /wp:group -->
-</div>
-
+    <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+</main>
+<!-- /wp:group -->
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
 
