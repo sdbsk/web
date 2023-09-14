@@ -43,6 +43,11 @@
                     "name": "Pumpkin",
                     "slug": "pumpkin",
                     "color": "#ee8d0f"
+                },
+                {
+                    "name": "Cappuccino",
+                    "slug": "cappuccino",
+                    "color": "#F9F6F4"
                 }
             ]
         },
