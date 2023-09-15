@@ -50,10 +50,14 @@ return [
                 'default' => 0,
                 'type' => 'integer',
             ],
+            'color' => [
+                'default' => '',
+                'type' => 'string',
+            ],
         ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            $template = function (string $thumbnail, string $title, string $permalink, string $excerpt): string {
-                $output = '';
+            $template = function (string $thumbnail, string $title, string $permalink, string $excerpt, string $bgColor): string {
+                $output = '<div class="card-body" style="background-color: ' . $bgColor .'">';
 
                 if (false === empty($thumbnail)) {
                     $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
@@ -62,6 +66,7 @@ return [
                 $output .= '<div class="content"><div class="text"><a href="' . $permalink . '"><h3>' . $title . '</h3></a>';
                 $output .= '<p>' . $excerpt . '</p></div>';
                 $output .= '<a class="link" href="' . $permalink . '">Dozvedieť sa viac</a></div>';
+                $output .= '</div>';
 
                 return $output;
             };
@@ -75,6 +80,7 @@ return [
                         $page->post_title,
                         get_permalink($page),
                         get_the_excerpt($page),
+                        $attributes['color'] ?? '#F9F6F4'
                     ));
                 }
             }
@@ -84,6 +90,7 @@ return [
                 'Cieľová stránka nie je nastavená.',
                 '#',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
+                '#F9F6F4'
             ));
         },
     ],

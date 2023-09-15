@@ -17,7 +17,7 @@
     }
 }
 
-@mixin link-with-arrow() {
+@mixin link-with-icon() {
     color: #5795D6;
     font-size: 1.0625rem;
     font-weight: 500;
@@ -31,7 +31,6 @@
     width: fit-content;
     &:after {
         background-image: url('../images/arrow-right-blue.svg');
-        background-position: -20px;
         content: '';
         display: inline-block;
         height: 1.25rem;
@@ -47,5 +46,10 @@
         background-color: #5795D6;
         position: absolute;
         bottom: 0;
+    }
+    &[target="_blank"]{
+        &:after {
+            background-image: url('../images/external-link-blue.svg');
+        }
     }
 }

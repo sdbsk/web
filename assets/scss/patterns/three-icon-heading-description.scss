@@ -28,7 +28,7 @@
             line-height: 1.5rem;
             margin: 0;
             a{
-                @include link-with-arrow;
+                @include link-with-icon;
             }
         }
     }

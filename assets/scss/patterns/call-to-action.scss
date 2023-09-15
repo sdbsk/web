@@ -1,13 +1,13 @@
 .wp-pattern-saleziani-call-to-action {
-    margin-left: -0.75rem;
-    margin-right: -0.75rem;
+    margin-left: -$grid-gutter-width/2;
+    margin-right: -$grid-gutter-width/2;
     padding: 3rem 0;
     @media(max-width: 50rem) {
         padding: 3rem 1rem;
     }
 
     .wp-block-group {
-        border-radius: 0.25rem;
+        border-radius: 1rem;
         color: #272727;
         margin: 0 auto;
         max-width: 48rem;
