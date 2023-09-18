@@ -1,5 +1,12 @@
 (wp => {
     const pages = [];
+    const colors = [
+        { name: 'Žltá', color: '#fcf4e0' },
+        { name: 'Hnedá', color: '#F9F6F4' },
+        { name: 'Oranžová', color: '#fbece9' },
+        { name: 'Modrá', color: '#e1ecf8' },
+        { name: 'Zelená', color: '#e5f3f0' }
+    ];
     load();
 
     return wp.blocks.registerBlockType('saleziani/link-to-page', {
@@ -7,7 +14,12 @@
             page: {
                 default: 0,
                 type: 'integer'
-            }
+            },
+            color: {
+                default: '',
+                type: 'string'
+            },
+
         },
         category: 'theme',
         description: 'Zobrazte odkaz na stránku s jej obrázkom, nadpisom a útržkom obsahu.',
@@ -15,7 +27,7 @@
         icon: 'admin-links',
         title: 'Odkaz na stránku',
         edit: props => wp.element.createElement('div', wp.blockEditor.useBlockProps(), [
-            wp.element.createElement(wp.blockEditor.InspectorControls, {key: 'inspector-controls'},
+            wp.element.createElement(wp.blockEditor.InspectorControls, {key: 'inspector-controls'},[
                 wp.element.createElement(wp.components.PanelBody, {title: 'Cieľová stránka'},
                     wp.element.createElement(wp.components.SelectControl, {
                         label: 'Stránka',
@@ -23,7 +35,15 @@
                         options: pages,
                         value: props.attributes.page
                     })
-                )
+                ),
+                wp.element.createElement(wp.components.PanelBody, {title: 'Farba Pozadia'},
+                    wp.element.createElement(wp.components.ColorPalette, {
+                        colors: colors,
+                        label: 'Farba',
+                        onChange: (value) => props.setAttributes({color: value}),
+                        value: props.attributes.color
+                    })
+                )]
             ),
             wp.element.createElement(wp.serverSideRender, {attributes: props.attributes, block: props.name, key: 'rendered'})
         ])

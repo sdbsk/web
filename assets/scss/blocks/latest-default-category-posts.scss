@@ -52,7 +52,7 @@
         }
 
         .link {
-            @include link-with-arrow;
+            @include link-with-icon;
             width: fit-content;
         }
     }
