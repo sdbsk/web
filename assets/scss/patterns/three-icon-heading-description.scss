@@ -31,9 +31,5 @@
                 @include link-with-icon;
             }
         }
-
-        a {
-            @include link-with-arrow;
-        }
     }
 }
