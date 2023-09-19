@@ -1,0 +1,111 @@
+.newsletter-form {
+    .ec-v-form-holder {
+        background-color: transparent !important;
+        width: unset !important;
+        max-width: 37.5rem;
+
+        form {
+            min-height: unset !important;
+
+            .ec-v-form-step {
+                height: auto !important;
+
+                .ec-v-form-column {
+                    padding: 0 0.9375rem;
+
+                    > div {
+                        padding: 0 !important;
+                    }
+
+
+                    .ec-v-form-text {
+                        padding-bottom: 1rem !important;
+
+                        p {
+                            color: #272727 !important;
+                            font-family: Merriweather, serif;
+                            font-size: 18px !important;
+                            font-weight: 700;
+                            line-height: 25px;
+                            margin: 0 !important;
+                        }
+                    }
+
+                    .ec-v-form-input {
+                        padding-bottom: 1rem !important;
+
+                        .ec-v-forms-label {
+                            display: none;
+                        }
+
+                        input {
+                            color: rgba(39, 39, 39, 0.60);
+                            font-size: 1rem;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 1.1875rem;
+                            padding: 0.875rem 1.5rem 0.9375rem 1.5rem;
+                            border-radius: 0.25rem;
+                            border: 1px solid rgba(39, 39, 39, 0.12);
+                            background: #fff;
+                        }
+
+                        input[type=checkbox] {
+                            + label{
+                                height: 1.125rem;
+                                margin-bottom: 0;
+                                top: .25rem;
+                                &:before {
+                                    width: 1.125rem;
+                                    height: 1.125rem;
+                                    background-color: transparent;
+                                    border: 0.125rem solid #7b7a79;
+                                    border-radius: 0.125rem;
+                                }
+                                &:after {
+                                    border-color: #7b7a79;
+                                    top: .1875rem;
+                                    left: .375rem;
+                                    width: .375rem;
+                                    height: .625rem;
+                                }
+                            }
+                        }
+                        .ec-forms-chck-lbl-text{
+                            p{
+                                margin-left: 0;
+                                span,
+                                a {
+                                    color: rgba(39, 39, 39, 0.80);
+                                    font-size: 1rem;
+                                    font-weight: 400;
+                                    line-height: 1.1875rem;
+                                }
+                                a{
+                                    color: #5795D6 !important;
+                                }
+                            }
+                        }
+                        .ec-v-form-error{
+                            margin-top: 0.3125rem;
+                        }
+
+                    }
+
+                    .ec-v-form-submit {
+                        button {
+                            background-color: #5795D6 !important;
+                            border-radius: 0.25rem;
+                            color: #ffffff !important;
+                            margin: 0;
+                            font-size: 1.0625rem;
+                            font-weight: 500;
+                            line-height: 1.5rem;
+                            padding: 0.5rem 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
