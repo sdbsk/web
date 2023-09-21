@@ -7,19 +7,21 @@
         line-height: 3.5rem;
         margin: 7rem 0;
     }
-    .wp-block-post-template{
+
+    .wp-block-post-template {
         padding-left: 0;
     }
+
     .wp-block-post {
-        padding: 1.5rem 0 1.5rem 1.38rem;
         border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
         margin-bottom: 3rem;
+        padding: 1.5rem 0 1.5rem 1.38rem;
 
         .taxonomy-category {
             margin-bottom: 1rem;
 
             a {
-                color: #CF3942;
+                color: #cf3942;
                 font-size: 1.0625rem;
                 font-weight: 500;
                 line-height: 1.5rem;
@@ -29,10 +31,10 @@
         }
 
         .wp-block-post-title {
-            margin: 0 0 1rem 0;
             font-size: 1.3125rem;
             font-weight: 700;
             line-height: 1.8125rem;
+            margin: 0 0 1rem 0;
 
             a {
                 color: #272727;
@@ -68,13 +70,13 @@
         }
 
         a {
-            color: #CF3942;
+            color: #cf3942;
             font-size: 1.0625rem;
             font-weight: 500;
             line-height: 1.5rem;
+            margin-bottom: 0;
             margin-right: 1.94rem;
             text-decoration: none;
-            margin-bottom: 0;
         }
 
         span.dots,

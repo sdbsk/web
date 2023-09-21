@@ -6,7 +6,7 @@
     .wp-block-post-content > * {
         margin-bottom: 6rem;
 
-        &.has-background{
+        &.has-background {
             padding-top: 6rem;
             padding-bottom: 6rem;
         }
@@ -18,7 +18,7 @@
 }
 
 @mixin link-with-icon() {
-    color: #5795D6;
+    color: #5795d6;
     font-size: 1.0625rem;
     font-weight: 500;
     line-height: 1.5rem;
@@ -37,17 +37,16 @@
         margin-left: 0.25rem;
         width: 1.25rem;
     }
-
     &:before {
         content: '';
         left: 0;
         right: 0;
         height: 0.125rem;
-        background-color: #5795D6;
+        background-color: #5795d6;
         position: absolute;
         bottom: 0;
     }
-    &[target="_blank"]{
+    &[target='_blank'] {
         &:after {
             background-image: url('../images/external-link-blue.svg');
         }
