@@ -1,0 +1,34 @@
+saleziani.sk
+
+- verzia 07
+
+Mato&Lukas:
+- newsletter pridatelny ako block
+- ako oznacovat externe odkazy
+- nahodit stranku projekty (rozdelenu na Nase projekty, atd.)
+- aktualizovat homepage o projekty (rozdelene, atd.)
+- nahodit farebne "Sami by sme to nezvladli" na test
+- zoznam kategorii nad zoznamom clankov
+- call to action na konci kazdej stranky nad footrom
+
+Palo:
+- /aktuality bude samostatna page sablona so zoznamom clankov aj s category part
+- vyhodit root kategoriu "Aktuality"
+- root kategorii bude "aktuality"
+- overit a implementovat pridavanie projektovej navigacie
+    vytvorit blok, ktory zoberie top level stranku aktualnej a vyrenderuje menu z jej potomkov
+- preco nefiltruje clanky podla kategorie: https://saleziani.test.bratia.sk/kategoria/aktuality/vzdelavanie-a-kurzy
+- navnimat a nasetupovat cache a seo plugin
+
+Filip:
+- vyhodit "Insert your text." z ecomail formulara
+- dat Palovi pristupy k saleziani.sk
+
+001:
+- ako ma vyzerat newsletter formular, ked nie je v paticke
+- stranka Co ponukame (konkretna oblast) - ake zmeny tam nastanu vo verzi 07 - nemoze mat rovnaky layout ako ostatne stranky?
+- navrhnut stranku Kde sme a detail lokality
+- aktualizovat Kontakt podla verzie 07
+- stranka Podporte nas
+- prejst projektovu stranku (napr. breadcrumby)
+- ako robit hovery?

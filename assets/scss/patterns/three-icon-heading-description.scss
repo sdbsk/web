@@ -27,7 +27,8 @@
             font-size: 1.0625rem;
             line-height: 1.5rem;
             margin: 0;
-            a{
+
+            a {
                 @include link-with-icon;
             }
         }

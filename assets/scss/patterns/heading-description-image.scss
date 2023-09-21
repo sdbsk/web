@@ -16,9 +16,11 @@
         font-size: 1.0625rem;
         font-weight: 400;
         line-height: 1.5rem;
-        &:last-child{
+
+        &:last-child {
             margin-bottom: 0;
         }
+
         a {
             @include link-with-icon;
         }
@@ -26,10 +28,11 @@
 
     .wp-block-image {
         margin-bottom: 0;
+
         img {
             border-radius: 0.25rem;
-            width: 100%;
             margin-bottom: 0;
+            width: 100%;
         }
     }
 
