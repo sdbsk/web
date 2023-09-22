@@ -15,9 +15,9 @@ Palo:
 - /aktuality bude samostatna page sablona so zoznamom clankov aj s category part
 - vyhodit root kategoriu "Aktuality"
 - root kategorii bude "aktuality"
+- preco nefiltruje clanky podla kategorie: https://saleziani.test.bratia.sk/kategoria/aktuality/vzdelavanie-a-kurzy
 - overit a implementovat pridavanie projektovej navigacie
     vytvorit blok, ktory zoberie top level stranku aktualnej a vyrenderuje menu z jej potomkov
-- preco nefiltruje clanky podla kategorie: https://saleziani.test.bratia.sk/kategoria/aktuality/vzdelavanie-a-kurzy
 - navnimat a nasetupovat cache a seo plugin
 
 Filip:
