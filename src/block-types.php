@@ -8,6 +8,26 @@ function wrap_block_content(WP_Block $block, string $content): string
 }
 
 return [
+    'navigation' => [
+        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+            $output = '<ul>';
+            $post = get_post();
+            $ancestors = get_post_ancestors($post);
+            $children = get_children([
+                'order' => 'ASC',
+                'orderby' => 'menu_order',
+                'post_parent' => empty($ancestors) ? $post->ID : end($ancestors),
+            ]);
+
+            foreach ($children as $child) {
+                $output .= '<li><a href="' . get_permalink($child) . '">' . $child->post_title . '</a></li>';
+            }
+
+            $output .= '</ul>';
+
+            return wrap_block_content($block, $output);
+        },
+    ],
     'latest-default-category-posts' => [
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
             $output = '';
@@ -80,7 +100,7 @@ return [
                         $page->post_title,
                         get_permalink($page),
                         get_the_excerpt($page),
-                        $attributes['color'] ?? '#F9F6F4'
+                        $attributes['color'] ?? '#F9F6F4',
                     ));
                 }
             }
@@ -90,7 +110,7 @@ return [
                 'Cieľová stránka nie je nastavená.',
                 '#',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
-                '#F9F6F4'
+                '#F9F6F4',
             ));
         },
     ],
