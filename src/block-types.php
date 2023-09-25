@@ -57,7 +57,7 @@ return [
         ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
             $template = function (string $thumbnail, string $title, string $permalink, string $excerpt, string $bgColor): string {
-                $output = '<div class="card-body" style="background-color: ' . $bgColor .'">';
+                $output = '<div class="card-body" style="background-color: ' . $bgColor . '">';
 
                 if (false === empty($thumbnail)) {
                     $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
@@ -92,6 +92,27 @@ return [
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
                 '#F9F6F4'
             ));
+        },
+    ],
+    'newsletter-form' => [
+        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+            return "<div class='newsletter-form'>
+                        <script>
+                        (function (w, d, s, o, f, js, fjs) {
+                            w['ecm-widget'] = o;
+                            w[o] = w[o] || function () {
+                                (w[o].q = w[o].q || []).push(arguments)
+                            };
+                            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+                            js.id = '1-43c2cd496486bcc27217c3e790fb4088';
+                            js.dataset.a = 'sdbsk';
+                            js.src = f;
+                            js.async = 1;
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(window, document, 'script', 'ecmwidget', 'https://d70shl7vidtft.cloudfront.net/widget.js'));
+                    </script>
+
+                    <div id='f-1-43c2cd496486bcc27217c3e790fb4088'></div></div>";
         },
     ],
 ];
