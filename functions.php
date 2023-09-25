@@ -63,6 +63,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/latest-default-category-posts',
         'saleziani/link-to-page',
         'saleziani/navigation',
+        'saleziani/newsletter-form',
     ];
 }, 10, 2);
 

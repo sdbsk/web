@@ -1,21 +1,28 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 <!-- wp:group {"className":"container-fluid category-post-list","layout":{"type":"constrained"},"tagName":"main"} -->
 <main class="container-fluid wp-block-group category-post-list">
-    <!-- wp:query-title {"showPrefix":false,"type":"category"} /-->
+    <!-- wp:query-title {"showPrefix":false,"type":"archive"} /-->
+    <!-- wp:core/categories {"showPostCounts":false,"displayAsDropdown":false,"showHierarchy":false} /-->
     <!-- wp:query {"query":{"inherit":true, "perPage":6}} -->
     <div class="wp-block-query">
         <!-- wp:post-template -->
-        <div class="row">
-            <div class="col-8">
-                <!-- wp:post-terms {"term":"category", "separator": ""} /-->
-                <!-- wp:post-title {"isLink":true} /-->
-                <!-- wp:post-excerpt /-->
-                <!-- wp:read-more {"content": "Čítať viac"} /-->
+            <!-- wp:group {"className":"row"} -->
+            <div class="wp-block-group row">
+                <!-- wp:group {"className":"col-8"} -->
+                <div class="wp-block-group col-8">
+                    <!-- wp:post-terms {"term":"category", "separator": ""} /-->
+                    <!-- wp:post-title {"isLink":true} /-->
+                    <!-- wp:post-excerpt /-->
+                    <!-- wp:read-more {"content": "Čítať viac"} /-->
+                </div>
+                <!-- /wp:group -->
+                <!-- wp:group {"className":"col-4"} -->
+                <div class="wp-block-group col-4">
+                    <!-- wp:post-featured-image {"isLink":true} /-->
+                </div>
+                <!-- /wp:group -->
             </div>
-            <div class="col-4">
-                <!-- wp:post-featured-image {"isLink":true} /-->
-            </div>
-        </div>
+            <!-- /wp:group -->
         <!-- /wp:post-template -->
         <!-- wp:query-pagination -->
         <!-- wp:query-pagination-previous {"label":"Predchádzajúca"} /-->
@@ -26,4 +33,6 @@
     <!-- /wp:query -->
 </main>
 <!-- /wp:group -->
+<!-- wp:template-part {"slug":"category-content"} /-->
+<!-- wp:pattern {"slug":"saleziani/call-to-action"} /-->
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

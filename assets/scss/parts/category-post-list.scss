@@ -5,7 +5,35 @@
         font-size: 2.5rem;
         font-weight: 700;
         line-height: 3.5rem;
-        margin: 7rem 0;
+        margin: 7rem 0 2rem;
+    }
+    .wp-block-categories-list{
+        padding-left: 0;
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .cat-item{
+            display: inline-block;
+            a{
+                text-decoration: none;
+                color: #272727;
+                font-size: 0.875rem;
+                font-weight: 400;
+                line-height: 1rem;
+                padding: 0.38rem 0.75rem;
+                margin-right: 0.5rem;
+                border-radius: 0.9375rem;
+                border: 1px solid rgba(39, 39, 39, 0.20);
+            }
+            &.current-cat{
+                a{
+                    color: #fff;
+                    background-color: #CF3942;
+                    border-color: #CF3942;
+                }
+            }
+        }
     }
 
     .wp-block-post-template {

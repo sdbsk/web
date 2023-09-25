@@ -57,6 +57,31 @@
                     "name": "Cappuccino",
                     "slug": "cappuccino",
                     "color": "#F9F6F4"
+                },
+                {
+                    "color": "#e1ecf8",
+                    "slug": "light-blue",
+                    "name": "Svetlo Modrá"
+                },
+                {
+                    "color": "#e5f3f0",
+                    "slug": "light-green",
+                    "name": "Svetlo Zelená"
+                },
+                {
+                    "color": "#f9f6f4",
+                    "slug": "light-brown",
+                    "name": "Svetlo Hnedá"
+                },
+                {
+                    "color": "#fbece9",
+                    "slug": "light-orange",
+                    "name": "Svetlo Oranžová"
+                },
+                {
+                    "color": "#fcf4e0",
+                    "slug": "light-yellow",
+                    "name": "Svetlo Žltá"
                 }
             ]
         },
