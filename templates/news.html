@@ -2,20 +2,27 @@
 <!-- wp:group {"className":"container-fluid category-post-list","layout":{"type":"constrained"},"tagName":"main"} -->
 <main class="container-fluid wp-block-group category-post-list">
     <!-- wp:post-title {"level": 1} /-->
+    <!-- wp:core/categories {"showPostCounts":false,"displayAsDropdown":false,"showHierarchy":false} /-->
     <!-- wp:query {"query":{"perPage":6}} -->
     <div class="wp-block-query">
         <!-- wp:post-template -->
-        <div class="row">
-            <div class="col-8">
+        <!-- wp:group {"className":"row"} -->
+        <div class="wp-block-group row">
+            <!-- wp:group {"className":"col-8"} -->
+            <div class="wp-block-group col-8">
                 <!-- wp:post-terms {"term":"category", "separator": ""} /-->
                 <!-- wp:post-title {"isLink":true} /-->
                 <!-- wp:post-excerpt /-->
                 <!-- wp:read-more {"content": "Čítať viac"} /-->
             </div>
-            <div class="col-4">
+            <!-- /wp:group -->
+            <!-- wp:group {"className":"col-4"} -->
+            <div class="wp-block-group col-4">
                 <!-- wp:post-featured-image {"isLink":true} /-->
             </div>
+            <!-- /wp:group -->
         </div>
+        <!-- /wp:group -->
         <!-- /wp:post-template -->
         <!-- wp:query-pagination -->
         <!-- wp:query-pagination-previous {"label":"Predchádzajúca"} /-->
