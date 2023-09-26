@@ -1,9 +1,13 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
-<!-- wp:group {"className":"container-fluid","layout":{"type":"constrained"},"tagName":"main"} -->
+<!-- wp:group {"className":"container-fluid", "tagName":"main"} -->
 <main class="container-fluid wp-block-group">
-    <!-- wp:post-title {"level":1} /-->
-    <!-- wp:post-content /-->
+    <!-- wp:group {"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group">
+        <!-- wp:post-title {"level":1} /-->
+    </div>
+    <!-- /wp:group -->
+    <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+    <!-- wp:pattern {"slug":"saleziani/call-to-action"} /-->
 </main>
 <!-- /wp:group -->
-<!-- wp:pattern {"slug":"saleziani/call-to-action"} /-->
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
