@@ -7,30 +7,34 @@
         line-height: 3.5rem;
         margin: 7rem 0 2rem;
     }
-    .wp-block-categories-list{
-        padding-left: 0;
-        margin-bottom: 3rem;
+
+    .wp-block-categories-list {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        .cat-item{
+        margin-bottom: 3rem;
+        padding-left: 0;
+
+        .cat-item {
             display: inline-block;
-            a{
-                text-decoration: none;
+
+            a {
+                border: 1px solid rgba(39, 39, 39, 0.20);
+                border-radius: 0.9375rem;
                 color: #272727;
                 font-size: 0.875rem;
                 font-weight: 400;
                 line-height: 1rem;
-                padding: 0.38rem 0.75rem;
                 margin-right: 0.5rem;
-                border-radius: 0.9375rem;
-                border: 1px solid rgba(39, 39, 39, 0.20);
+                padding: 0.38rem 0.75rem;
+                text-decoration: none;
             }
-            &.current-cat{
-                a{
-                    color: #fff;
-                    background-color: #CF3942;
-                    border-color: #CF3942;
+
+            &.current-cat {
+                a {
+                    background-color: #cf3942;
+                    border-color: #cf3942;
+                    color: #ffffff;
                 }
             }
         }

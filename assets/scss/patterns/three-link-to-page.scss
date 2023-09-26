@@ -18,14 +18,17 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            .wp-block-image{
-                margin-bottom: 0;
+
+            .wp-block-image {
                 border-radius: 1rem;
-                img{
+                margin-bottom: 0;
+
+                img {
                     border-radius: 1rem;
                     width: 100%;
                 }
             }
+
             .image {
                 border-radius: 1rem;
 
@@ -45,18 +48,18 @@
                 padding: 1.5rem;
 
                 .text {
-
                     a, h3 {
-                        text-decoration: unset;
-                        margin: 0 0 1rem;
                         display: block;
+                        margin: 0 0 1rem;
+                        text-decoration: unset;
+
                         > h3, a {
-                            text-decoration: unset;
                             color: #272727;
                             font-size: 1.3125rem;
                             font-weight: 700;
                             line-height: 1.8125rem;
                             margin: 0;
+                            text-decoration: unset;
                         }
                     }
 
@@ -66,21 +69,18 @@
                         font-weight: 400;
                         line-height: 1.3125rem;
                         margin-bottom: 1rem;
-
                     }
-
-
                 }
-                *{
-                    &:last-child{
+
+                * {
+                    &:last-child {
                         margin-bottom: 0;
                     }
                 }
-
             }
 
             .link,
-            p a{
+            p a {
                 @include link-with-icon;
             }
         }

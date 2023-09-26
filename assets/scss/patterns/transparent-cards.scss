@@ -1,12 +1,12 @@
 .wp-pattern-saleziani-transparent-cards {
     .transparent-card {
-        border-radius: 1rem;
         border: 1px solid rgba(39, 39, 39, 0.20);
-        padding: 3rem 6rem;
-        height: 100%;
+        border-radius: 1rem;
         display: flex;
         flex-direction: column;
+        height: 100%;
         justify-content: space-between;
+        padding: 3rem 6rem;
         @media(max-width: 62rem) {
             padding: 2rem 3rem;
         }
@@ -15,16 +15,16 @@
             margin-bottom: 3rem;
 
             img {
-                width: 16rem;
-                height: 16rem;
                 border-radius: 50%;
+                height: 16rem;
+                width: 16rem;
             }
         }
 
         .content {
-            height: 100%;
             display: flex;
             flex-direction: column;
+            height: 100%;
             justify-content: space-between;
 
             .content-top {
@@ -56,5 +56,4 @@
             }
         }
     }
-
 }
