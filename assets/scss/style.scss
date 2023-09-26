@@ -1,4 +1,4 @@
-$grid-gutter-width: 1.875rem !default;
+@import "bootstrap-override";
 @import 'bootstrap/scss/bootstrap-grid';
 @import 'fonts/all';
 @import 'mixin';

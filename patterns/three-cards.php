@@ -15,8 +15,8 @@ declare(strict_types=1);
     <div class="wp-block-group row">
         <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
         <div class="wp-block-group col-12 col-md-4 col-sm-6">
-            <!-- wp:group {"className":"wp-saleziani-pattern-card"} -->
-            <div class="wp-block-group wp-saleziani-pattern-card">
+            <!-- wp:group {"className":"wp-saleziani-basic-card"} -->
+            <div class="wp-block-group wp-saleziani-basic-card">
                 <!-- wp:group {"style":{"color":{"background":"#e1ecf8"}},"className":"card-body"} -->
                 <div class="wp-block-group card-body has-background" style="background-color:#e1ecf8">
                     <!-- wp:image -->
@@ -49,8 +49,8 @@ declare(strict_types=1);
         <!-- /wp:group -->
         <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
         <div class="wp-block-group col-12 col-md-4 col-sm-6">
-            <!-- wp:group {"className":"wp-saleziani-pattern-card"} -->
-            <div class="wp-block-group wp-saleziani-pattern-card">
+            <!-- wp:group {"className":"wp-saleziani-basic-card"} -->
+            <div class="wp-block-group wp-saleziani-basic-card">
                 <!-- wp:group {"style":{"color":{"background":"#e1ecf8"}},"className":"card-body"} -->
                 <div class="wp-block-group card-body has-background" style="background-color:#e1ecf8">
                     <!-- wp:image -->
@@ -83,8 +83,8 @@ declare(strict_types=1);
         <!-- /wp:group -->
         <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
         <div class="wp-block-group col-12 col-md-4 col-sm-6">
-            <!-- wp:group {"className":"wp-saleziani-pattern-card"} -->
-            <div class="wp-block-group wp-saleziani-pattern-card">
+            <!-- wp:group {"className":"wp-saleziani-basic-card"} -->
+            <div class="wp-block-group wp-saleziani-basic-card">
                 <!-- wp:group {"style":{"color":{"background":"#e1ecf8"}},"className":"card-body"} -->
                 <div class="wp-block-group card-body has-background" style="background-color:#e1ecf8">
                     <!-- wp:image -->
