@@ -6,6 +6,7 @@
                 const meta = wp.data.useSelect((select) => select('core/editor').getEditedPostAttribute('meta')) ?? {};
                 const {editPost} = wp.data.useDispatch('core/editor');
                 const [backgroundColor, setBackgroundColor] = wp.element.useState(meta.background_color);
+                const selectedBackgroundColor = colors.filter((c) => backgroundColor === c.slug)[0];
 
                 wp.element.useEffect(() => {
                     editPost({meta: {...meta, background_color: backgroundColor}});
@@ -17,7 +18,7 @@
                         clearable: true,
                         disableCustomColors: true,
                         onChange: (value, index) => setBackgroundColor(undefined === index ? '' : colors[index].slug),
-                        value: backgroundColor
+                        value: undefined === selectedBackgroundColor ? '' : selectedBackgroundColor.color
                     })
                 );
             }

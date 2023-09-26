@@ -1,5 +1,12 @@
 (wp => {
     const pages = [];
+    const backgroundColors = [
+        {color: '#e1ecf8', name: 'Modrá', slug: 'light-blue'},
+        {color: '#e5f3f0', name: 'Zelená', slug: 'light-green'},
+        {color: '#f9f6f4', name: 'Hnedá', slug: 'light-brown'},
+        {color: '#fbece9', name: 'Oranžová', slug: 'light-orange'},
+        {color: '#fcf4e0', name: 'Žltá', slug: 'light-yellow'}
+    ];
 
     load();
 
@@ -9,8 +16,8 @@
                 default: 0,
                 type: 'integer'
             },
-            color: {
-                default: '',
+            backgroundColor: {
+                default: 'light-brown',
                 type: 'string'
             }
         },
@@ -34,31 +41,12 @@
                     ),
                     wp.element.createElement(wp.components.PanelBody, {key: 'background-color', title: 'Farba Pozadia'},
                         wp.element.createElement(wp.components.ColorPalette, {
-                            colors: [
-                                {
-                                    color: '#e1ecf8',
-                                    name: 'Modrá'
-                                },
-                                {
-                                    color: '#e5f3f0',
-                                    name: 'Zelená'
-                                },
-                                {
-                                    color: '#f9f6f4',
-                                    name: 'Hnedá'
-                                },
-                                {
-                                    color: '#fbece9',
-                                    name: 'Oranžová'
-                                },
-                                {
-                                    color: '#fcf4e0',
-                                    name: 'Žltá'
-                                }
-                            ],
+                            colors: backgroundColors,
+                            clearable: true,
+                            disableCustomColors: true,
                             label: 'Farba',
-                            onChange: (value) => props.setAttributes({color: value}),
-                            value: props.attributes.color
+                            onChange: (value, index) => props.setAttributes({backgroundColor: undefined === index ? '' : backgroundColors[index].slug}),
+                            value: backgroundColors.filter((bc) => props.attributes.backgroundColor === bc.slug)[0].color
                         })
                     )
                 ]
