@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-three-cards"} -->
 <div class="wp-block-group wp-pattern-saleziani-three-cards">
-    <!-- wp:group {"className":"row"} -->
-    <div class="wp-block-group row">
-        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+    <!-- wp:group {"className":"row row-cols-1 row-cols-sm-2 row-cols-md-3"} -->
+    <div class="wp-block-group row row-cols-1 row-cols-sm-2 row-cols-md-3">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"className":"wp-saleziani-basic-card"} -->
             <div class="wp-block-group wp-saleziani-basic-card">
                 <!-- wp:group {"style":{"color":{"background":"#e1ecf8"}}, "className":"card-body"} -->
@@ -47,8 +47,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"className":"wp-saleziani-basic-card"} -->
             <div class="wp-block-group wp-saleziani-basic-card">
                 <!-- wp:group {"style":{"color":{"background":"#e1ecf8"}}, "className":"card-body"} -->
@@ -81,8 +81,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"className":"wp-saleziani-basic-card"} -->
             <div class="wp-block-group wp-saleziani-basic-card">
                 <!-- wp:group {"style":{"color":{"background":"#e1ecf8"}}, "className":"card-body"} -->
