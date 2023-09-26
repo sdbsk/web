@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-colored-cards"} -->
 <div class="wp-block-group wp-pattern-saleziani-colored-cards">
-    <!-- wp:group {"className":"row g-4"} -->
-    <div class="wp-block-group row g-4">
-        <!-- wp:group {"className":"col-12 col-sm-6", "layout":{"type":"constrained"}} -->
-        <div class="wp-block-group col-12 col-sm-6">
+    <!-- wp:group {"className":"row row-cols-1 row-cols-sm-2 g-4"} -->
+    <div class="wp-block-group row row-cols-1 row-cols-sm-2 g-4">
+        <!-- wp:group {"className":"col", "layout":{"type":"constrained"}} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"backgroundColor":"potato","className":"colored-card"} -->
             <div class="wp-block-group colored-card has-potato-background-color has-background">
                 <!-- wp:image -->
@@ -48,8 +48,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-sm-6", "layout":{"type":"constrained"}} -->
-        <div class="wp-block-group col-12 col-sm-6">
+        <!-- wp:group {"className":"col", "layout":{"type":"constrained"}} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"backgroundColor":"black","textColor":"white", "className":"colored-card"} -->
             <div class="wp-block-group colored-card has-white-color has-black-background-color has-text-color has-background">
                 <!-- wp:image -->
