@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection CommaExpressionJS */
+
 declare(strict_types=1);
 
 function wrap_block_content(WP_Block $block, string $content): string
@@ -77,7 +79,8 @@ return [
         ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
             $template = function (string $thumbnail, string $title, string $permalink, string $excerpt, string $bgColor): string {
-                $output = '<div class="card-body" style="background-color: ' . $bgColor . '">';
+                // todo: refactor bg color to class "has-background has-$bgColor-background"
+                $output = '<div class="basic-card" style="background-color: ' . $bgColor . '">';
 
                 if (false === empty($thumbnail)) {
                     $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
@@ -115,24 +118,6 @@ return [
         },
     ],
     'newsletter-form' => [
-        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            return "<div class='newsletter-form'>
-                        <script>
-                        (function (w, d, s, o, f, js, fjs) {
-                            w['ecm-widget'] = o;
-                            w[o] = w[o] || function () {
-                                (w[o].q = w[o].q || []).push(arguments)
-                            };
-                            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
-                            js.id = '1-43c2cd496486bcc27217c3e790fb4088';
-                            js.dataset.a = 'sdbsk';
-                            js.src = f;
-                            js.async = 1;
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(window, document, 'script', 'ecmwidget', 'https://d70shl7vidtft.cloudfront.net/widget.js'));
-                    </script>
-
-                    <div id='f-1-43c2cd496486bcc27217c3e790fb4088'></div></div>";
-        },
+        'render_callback' => fn(array $attributes, string $content, WP_Block $block): string => wrap_block_content($block, '<script>(function(w,d,s,o,f,js,fjs){w["ecm-widget"]=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments);};js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id="1-43c2cd496486bcc27217c3e790fb4088";js.dataset.a="sdbsk";js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,"script","ecmwidget","https://d70shl7vidtft.cloudfront.net/widget.js"));</script><div id="f-1-43c2cd496486bcc27217c3e790fb4088"></div>'),
     ],
 ];

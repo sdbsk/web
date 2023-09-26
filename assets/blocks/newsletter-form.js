@@ -1,7 +1,7 @@
 (wp => {
     return wp.blocks.registerBlockType('saleziani/newsletter-form', {
         category: 'theme',
-        description: 'Zbieranie kontaktov do nášho newslettra',
+        description: 'Získajte nových adresátov vašich newslettrov.',
         example: {},
         icon: 'email',
         title: 'Newsletter formulár',

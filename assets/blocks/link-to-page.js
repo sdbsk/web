@@ -18,6 +18,9 @@
         description: 'Zobrazte odkaz na stránku s jej obrázkom, nadpisom a útržkom obsahu.',
         example: {},
         icon: 'admin-links',
+        supports: {
+            inserter: false
+        },
         title: 'Odkaz na stránku',
         edit: props => wp.element.createElement('div', wp.blockEditor.useBlockProps(), [
             wp.element.createElement(wp.blockEditor.InspectorControls, {key: 'inspector-controls'}, [
