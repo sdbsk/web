@@ -13,7 +13,7 @@ declare(strict_types=1);
 <div class="wp-block-group wp-pattern-saleziani-transparent-cards">
     <!-- wp:group {"className":"row g-4"} -->
     <div class="wp-block-group row g-4">
-        <!-- wp:group {"className":"col-12 col-sm-6", "layout":{"type":"constrained"}} -->
+        <!-- wp:group {"className":"col-12 col-sm-6","layout":{"type":"constrained"}} -->
         <div class="wp-block-group col-12 col-sm-6">
             <!-- wp:group {"className":"transparent-card"} -->
             <div class="wp-block-group transparent-card">
@@ -46,7 +46,7 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-sm-6", "layout":{"type":"constrained"}} -->
+        <!-- wp:group {"className":"col-12 col-sm-6","layout":{"type":"constrained"}} -->
         <div class="wp-block-group col-12 col-sm-6">
             <!-- wp:group {"className":"transparent-card"} -->
             <div class="wp-block-group transparent-card">

@@ -13,7 +13,7 @@ declare(strict_types=1);
 <div class="wp-block-group wp-pattern-saleziani-colored-cards">
     <!-- wp:group {"className":"row g-4"} -->
     <div class="wp-block-group row g-4">
-        <!-- wp:group {"className":"col-12 col-sm-6", "layout":{"type":"constrained"}} -->
+        <!-- wp:group {"className":"col-12 col-sm-6","layout":{"type":"constrained"}} -->
         <div class="wp-block-group col-12 col-sm-6">
             <!-- wp:group {"backgroundColor":"potato","className":"colored-card"} -->
             <div class="wp-block-group colored-card has-potato-background-color has-background">
@@ -48,9 +48,9 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-sm-6", "layout":{"type":"constrained"}} -->
+        <!-- wp:group {"className":"col-12 col-sm-6","layout":{"type":"constrained"}} -->
         <div class="wp-block-group col-12 col-sm-6">
-            <!-- wp:group {"backgroundColor":"black","textColor":"white", "className":"colored-card"} -->
+            <!-- wp:group {"backgroundColor":"black","textColor":"white","className":"colored-card"} -->
             <div class="wp-block-group colored-card has-white-color has-black-background-color has-text-color has-background">
                 <!-- wp:image -->
                 <figure class="wp-block-image"><img src="<?php echo placeholder_image_path(570, 356) ?>"/></figure>
