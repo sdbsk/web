@@ -21,43 +21,44 @@
         title: 'Odkaz na stránku',
         edit: props => wp.element.createElement('div', wp.blockEditor.useBlockProps(), [
             wp.element.createElement(wp.blockEditor.InspectorControls, {key: 'inspector-controls'}, [
-                wp.element.createElement(wp.components.PanelBody, {title: 'Cieľová stránka'},
-                    wp.element.createElement(wp.components.SelectControl, {
-                        label: 'Stránka',
-                        onChange: (value) => props.setAttributes({page: parseInt(value)}),
-                        options: pages,
-                        value: props.attributes.page
-                    })
-                ),
-                wp.element.createElement(wp.components.PanelBody, {title: 'Farba Pozadia'},
-                    wp.element.createElement(wp.components.ColorPalette, {
-                        colors: [
-                            {
-                                color: '#e1ecf8',
-                                name: 'Modrá'
-                            },
-                            {
-                                color: '#e5f3f0',
-                                name: 'Zelená'
-                            },
-                            {
-                                color: '#f9f6f4',
-                                name: 'Hnedá'
-                            },
-                            {
-                                color: '#fbece9',
-                                name: 'Oranžová'
-                            },
-                            {
-                                color: '#fcf4e0',
-                                name: 'Žltá'
-                            }
-                        ],
-                        label: 'Farba',
-                        onChange: (value) => props.setAttributes({color: value}),
-                        value: props.attributes.color
-                    })
-                )]
+                    wp.element.createElement(wp.components.PanelBody, {key: 'target-page', title: 'Cieľová stránka'},
+                        wp.element.createElement(wp.components.SelectControl, {
+                            label: 'Stránka',
+                            onChange: (value) => props.setAttributes({page: parseInt(value)}),
+                            options: pages,
+                            value: props.attributes.page
+                        })
+                    ),
+                    wp.element.createElement(wp.components.PanelBody, {key: 'background-color', title: 'Farba Pozadia'},
+                        wp.element.createElement(wp.components.ColorPalette, {
+                            colors: [
+                                {
+                                    color: '#e1ecf8',
+                                    name: 'Modrá'
+                                },
+                                {
+                                    color: '#e5f3f0',
+                                    name: 'Zelená'
+                                },
+                                {
+                                    color: '#f9f6f4',
+                                    name: 'Hnedá'
+                                },
+                                {
+                                    color: '#fbece9',
+                                    name: 'Oranžová'
+                                },
+                                {
+                                    color: '#fcf4e0',
+                                    name: 'Žltá'
+                                }
+                            ],
+                            label: 'Farba',
+                            onChange: (value) => props.setAttributes({color: value}),
+                            value: props.attributes.color
+                        })
+                    )
+                ]
             ),
             wp.element.createElement(wp.serverSideRender, {attributes: props.attributes, block: props.name, key: 'rendered'})
         ])
