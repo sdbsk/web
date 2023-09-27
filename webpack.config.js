@@ -11,6 +11,10 @@ Encore
         from: 'assets/blocks',
         to: 'blocks/[path][name]' + (Encore.isProduction() ? '.[hash:8]' : '') + '.[ext]'
     })
+    .copyFiles({
+        from: 'assets/metaboxes',
+        to: 'metaboxes/[path][name]' + (Encore.isProduction() ? '.[hash:8]' : '') + '.[ext]'
+    })
     .cleanupOutputBeforeBuild()
     .enableSassLoader()
     .enableSingleRuntimeChunk()

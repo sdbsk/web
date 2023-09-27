@@ -19,6 +19,12 @@ add_action('init', function () use ($template): void {
         register_post_type($type, $args);
     }
 
+    foreach (require __DIR__ . '/src/post-metas.php' as $type => $metas) {
+        foreach ($metas as $key => $args) {
+            register_post_meta($type, $key, $args);
+        }
+    }
+
     unregister_block_pattern('core/query-standard-posts');
     unregister_block_pattern('core/query-medium-posts');
     unregister_block_pattern('core/query-small-posts');
@@ -35,7 +41,11 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
 
     foreach ($manifest as $filename) {
         if (preg_match('~/assets/blocks/([a-z\-]+)\..+~', $filename, $matches)) {
-            wp_enqueue_script($matches[1] . '-block', get_template_directory_uri() . $matches[0], ['wp-blocks']);
+            wp_enqueue_script($matches[1] . '-block', get_template_directory_uri() . $matches[0], ['wp-blocks', 'wp-components', 'wp-element', 'wp-server-side-render'], false, ['in_footer' => true]);
+        }
+
+        if (preg_match('~/assets/metaboxes/([a-z\-]+)\..+~', $filename, $matches)) {
+            wp_enqueue_script($matches[1] . '-metabox', get_template_directory_uri() . $matches[0], ['wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-plugins'], false, ['in_footer' => true]);
         }
     }
 });
@@ -60,12 +70,22 @@ add_filter('allowed_block_types_all', function (): array {
         'core/site-logo',
         'core/spacer',
         'core/template-part',
-        'saleziani/latest-default-category-posts',
+        'saleziani/latest-posts',
         'saleziani/link-to-page',
         'saleziani/navigation',
         'saleziani/newsletter-form',
     ];
 }, 10, 2);
+
+add_filter('wp_list_categories', function (string $output): string {
+    $pageForPosts = get_post((int)get_option('page_for_posts'));
+
+    if ($pageForPosts instanceof WP_Post) {
+        return '<li class="cat-item' . (is_home() ? ' current-cat' : '') . '"><a href="' . get_permalink($pageForPosts) . '">Všetko</a></li>' . $output;
+    }
+
+    return $output;
+});
 
 function placeholder_image_path(int $width, int $height): string
 {

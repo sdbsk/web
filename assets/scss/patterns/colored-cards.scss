@@ -2,19 +2,20 @@
 
 .wp-pattern-saleziani-colored-cards {
     .colored-card {
-        border-radius: 1rem;
+        border-radius: 1.05rem;
         display: flex;
         flex-direction: column;
         height: 100%;
         justify-content: space-between;
-        overflow: hidden;
 
         .wp-block-image {
             margin-bottom: 3rem;
             width: 100%;
+            border-radius: .95rem;
 
             img {
                 width: 100%;
+                border-radius: .95rem;
             }
         }
 
