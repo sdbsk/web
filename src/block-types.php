@@ -42,10 +42,10 @@ return [
             $posts = get_posts(['numberposts' => $attributes['count']]);
 
             if (count($posts) > 0) {
-                $output .= '<div class="row">';
+                $output .= '<div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3">';
 
                 foreach ($posts as $post) {
-                    $output .= '<div class="col-4"><div class="box"><div>';
+                    $output .= '<div class="col"><div class="box"><div>';
                     $permalink = get_permalink($post);
                     $thumbnail = get_the_post_thumbnail($post, 'medium_large');
 
