@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Title: Copyright
+ * Title: Pattern Copyright
  * Slug: saleziani/page-copyright
  * Categories: saleziani
  * Inserter: false
@@ -11,6 +11,12 @@ declare(strict_types=1);
 ?>
 
 <!-- wp:group {"className":"wp-pattern-page-copyright"} -->
-<div class="wp-block-group wp-pattern-page-copyright">&copy;&nbsp;<?php echo date('Y') ?> Saleziáni don&nbsp;Bosca</div>
+    <div class="wp-block-group wp-pattern-page-copyright">
+        <!-- wp:paragraph -->
+        <p>
+        &copy;&nbsp;<?php echo date('Y') ?> Saleziáni don&nbsp;Bosca
+        </p>
+        <!-- /wp:paragraph -->
+    </div>
 <!-- /wp:group -->
 
