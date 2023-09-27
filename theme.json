@@ -93,6 +93,10 @@
             "units": [
                 "rem"
             ]
+        },
+        "typography": {
+            "lineHeight": true
         }
     }
+
 }
