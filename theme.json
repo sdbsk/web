@@ -14,74 +14,69 @@
         "color": {
             "palette": [
                 {
+                    "color": "#f8dad3",
                     "name": "Apricot",
-                    "slug": "apricot",
-                    "color": "#f8dad3"
+                    "slug": "apricot"
                 },
                 {
+                    "color": "#272727",
                     "name": "Blackberry",
-                    "slug": "blackberry",
-                    "color": "#272727"
+                    "slug": "blackberry"
                 },
                 {
+                    "color": "#5795d6",
                     "name": "Blueberry",
-                    "slug": "blueberry",
-                    "color": "#5795d6"
+                    "slug": "blueberry"
                 },
                 {
+                    "color": "#69bcaa",
                     "name": "Lime",
-                    "slug": "lime",
-                    "color": "#69bcaa"
+                    "slug": "lime"
                 },
                 {
+                    "color": "#cbe8e1",
                     "name": "Mint",
-                    "slug": "mint",
-                    "color": "#cbe8e1"
+                    "slug": "mint"
                 },
                 {
+                    "color": "#eec351",
                     "name": "Pineapple",
-                    "slug": "pineapple",
-                    "color": "#eec351"
+                    "slug": "pineapple"
                 },
                 {
+                    "color": "#cf3942",
                     "name": "Potato",
-                    "slug": "potato",
-                    "color": "#cf3942"
+                    "slug": "potato"
                 },
                 {
+                    "color": "#ee8d0f",
                     "name": "Pumpkin",
-                    "slug": "pumpkin",
-                    "color": "#ee8d0f"
-                },
-                {
-                    "name": "Cappuccino",
-                    "slug": "cappuccino",
-                    "color": "#F9F6F4"
+                    "slug": "pumpkin"
                 },
                 {
                     "color": "#e1ecf8",
-                    "slug": "light-blue",
-                    "name": "Svetlo Modrá"
+                    "name": "Svetlo Modrá",
+                    "slug": "light-blue"
                 },
                 {
                     "color": "#e5f3f0",
-                    "slug": "light-green",
-                    "name": "Svetlo Zelená"
+                    "name": "Svetlo Zelená",
+                    "slug": "light-green"
                 },
                 {
                     "color": "#f9f6f4",
-                    "slug": "light-brown",
-                    "name": "Svetlo Hnedá"
+                    "name": "Svetlo Hnedá",
+                    "slug": "light-brown"
                 },
                 {
                     "color": "#fbece9",
-                    "slug": "light-orange",
-                    "name": "Svetlo Oranžová"
+                    "name": "Svetlo Oranžová",
+                    "slug": "light-orange"
                 },
                 {
                     "color": "#fcf4e0",
-                    "slug": "light-yellow",
-                    "name": "Svetlo Žltá"
+                    "name": "Svetlo Žltá",
+                    "slug": "light-yellow"
                 }
             ]
         },

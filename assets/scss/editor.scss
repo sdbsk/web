@@ -1,7 +1,8 @@
-@import "bootstrap-override";
+@import 'bootstrap-override';
 @import 'bootstrap/scss/bootstrap-grid';
 @import 'fonts/all';
 @import 'mixin';
+
 .editor-styles-wrapper {
     @include layout;
     @import 'blocks/all';
@@ -9,20 +10,6 @@
     @import 'parts/all';
     @import 'patterns/all';
     @import 'templates/all';
-    // Set height of Bootstrap column children. Used in three-link-to-page pattern.
-    [class*='col-'] {
-        > div {
-            height: 100%;
-
-            > div {
-                height: 100%;
-
-                > div {
-                    height: 100%;
-                }
-            }
-        }
-    }
 
     .wp-block {
         * {
@@ -33,5 +20,14 @@
         a {
             pointer-events: none;
         }
+    }
+
+    .wp-block-saleziani-newsletter-form {
+        background-color: #e5e5e5;
+        color: #272727;
+        margin: 0 auto;
+        max-width: 37.5rem;
+        padding: 6rem 0;
+        text-align: center;
     }
 }

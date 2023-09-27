@@ -1,6 +1,8 @@
 footer {
-    background-color: #f9f6f4;
-    padding-top: 4rem;
+    &:not(:empty) {
+        background-color: #f9f6f4;
+        padding-top: 4rem;
+    }
 
     .wp-block-separator {
         border-color: rgba(39, 39, 39, 0.12);

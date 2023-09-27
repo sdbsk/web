@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection CommaExpressionJS */
+
 declare(strict_types=1);
 
 function wrap_block_content(WP_Block $block, string $content): string
@@ -42,7 +44,7 @@ return [
                     $thumbnail = get_the_post_thumbnail($post, 'medium_large');
 
                     if (false === empty($thumbnail)) {
-                        $output .= '<a href="' . $permalink . '" style="display:block;" class="image">' . $thumbnail . '</a>';
+                        $output .= '<a href="' . $permalink . '" class="image">' . $thumbnail . '</a>';
                     }
 
                     foreach (wp_get_post_categories($post->ID) as $categoryId) {
@@ -70,17 +72,17 @@ return [
                 'default' => 0,
                 'type' => 'integer',
             ],
-            'color' => [
-                'default' => '',
+            'backgroundColor' => [
+                'default' => 'light-brown',
                 'type' => 'string',
             ],
         ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            $template = function (string $thumbnail, string $title, string $permalink, string $excerpt, string $bgColor): string {
-                $output = '<div class="card-body" style="background-color: ' . $bgColor . '">';
+            $template = function (string $thumbnail, string $title, string $permalink, string $excerpt, string $backgroundColor): string {
+                $output = '<div class="basic-card has-background has-' . $backgroundColor . '-background-color">';
 
                 if (false === empty($thumbnail)) {
-                    $output .= '<a class="image" href="' . $permalink . '" style="display:block;">' . $thumbnail . '</a>';
+                    $output .= '<a class="image" href="' . $permalink . '">' . $thumbnail . '</a>';
                 }
 
                 $output .= '<div class="content"><div class="text"><a href="' . $permalink . '"><h3>' . $title . '</h3></a>';
@@ -100,7 +102,7 @@ return [
                         $page->post_title,
                         get_permalink($page),
                         get_the_excerpt($page),
-                        $attributes['color'] ?? '#F9F6F4',
+                        $attributes['backgroundColor'],
                     ));
                 }
             }
@@ -110,29 +112,11 @@ return [
                 'Cieľová stránka nie je nastavená.',
                 '#',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco',
-                '#F9F6F4',
+                $attributes['backgroundColor'],
             ));
         },
     ],
     'newsletter-form' => [
-        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            return "<div class='newsletter-form'>
-                        <script>
-                        (function (w, d, s, o, f, js, fjs) {
-                            w['ecm-widget'] = o;
-                            w[o] = w[o] || function () {
-                                (w[o].q = w[o].q || []).push(arguments)
-                            };
-                            js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
-                            js.id = '1-43c2cd496486bcc27217c3e790fb4088';
-                            js.dataset.a = 'sdbsk';
-                            js.src = f;
-                            js.async = 1;
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(window, document, 'script', 'ecmwidget', 'https://d70shl7vidtft.cloudfront.net/widget.js'));
-                    </script>
-
-                    <div id='f-1-43c2cd496486bcc27217c3e790fb4088'></div></div>";
-        },
+        'render_callback' => fn(array $attributes, string $content, WP_Block $block): string => wrap_block_content($block, '<script>(function(w,d,s,o,f,js,fjs){w["ecm-widget"]=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments);};js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id="1-43c2cd496486bcc27217c3e790fb4088";js.dataset.a="sdbsk";js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,"script","ecmwidget","https://d70shl7vidtft.cloudfront.net/widget.js"));</script><div id="f-1-43c2cd496486bcc27217c3e790fb4088"></div>'),
     ],
 ];
