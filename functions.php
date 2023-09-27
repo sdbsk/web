@@ -77,6 +77,16 @@ add_filter('allowed_block_types_all', function (): array {
     ];
 }, 10, 2);
 
+add_filter('wp_list_categories', function (string $output): string {
+    $pageForPosts = get_post((int)get_option('page_for_posts'));
+
+    if ($pageForPosts instanceof WP_Post) {
+        return '<li class="cat-item' . (is_home() ? ' current-cat' : '') . '"><a href="' . get_permalink($pageForPosts) . '">Všetko</a></li>' . $output;
+    }
+
+    return $output;
+});
+
 function placeholder_image_path(int $width, int $height): string
 {
     return 'https://placehold.co/' . $width . 'x' . $height . '/F8DAD3/272727';
