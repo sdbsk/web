@@ -30,10 +30,16 @@ return [
             return wrap_block_content($block, $output);
         },
     ],
-    'latest-default-category-posts' => [
+    'latest-posts' => [
+        'attributes' => [
+            'count' => [
+                'default' => 3,
+                'type' => 'integer',
+            ],
+        ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
             $output = '';
-            $posts = get_posts(['category' => (int)get_option('default_category'), 'numberposts' => 3]);
+            $posts = get_posts(['numberposts' => $attributes['count']]);
 
             if (count($posts) > 0) {
                 $output .= '<div class="row">';

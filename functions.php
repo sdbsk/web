@@ -70,7 +70,7 @@ add_filter('allowed_block_types_all', function (): array {
         'core/site-logo',
         'core/spacer',
         'core/template-part',
-        'saleziani/latest-default-category-posts',
+        'saleziani/latest-posts',
         'saleziani/link-to-page',
         'saleziani/navigation',
         'saleziani/newsletter-form',
