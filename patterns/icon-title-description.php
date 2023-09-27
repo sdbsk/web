@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-three-icon-heading-description"} -->
 <div class="wp-block-group wp-pattern-saleziani-three-icon-heading-description">
-    <!-- wp:group {"className":"row"} -->
-    <div class="wp-block-group row">
-        <!-- wp:group {"className":"col-12 col-md-4"} -->
-        <div class="wp-block-group col-12 col-md-4">
+    <!-- wp:group {"className":"row row-cols-1 row-cols-md-3"} -->
+    <div class="wp-block-group row row-cols-1 row-cols-md-3">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"className":"box"} -->
             <div class="box wp-block-group">
                 <!-- wp:image -->
@@ -35,8 +35,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-4"} -->
-        <div class="wp-block-group col-12 col-md-4">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"className":"box"} -->
             <div class="box wp-block-group">
                 <!-- wp:image -->
@@ -57,8 +57,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-4"} -->
-        <div class="wp-block-group col-12 col-md-4">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"className":"box"} -->
             <div class="box wp-block-group">
                 <!-- wp:image -->

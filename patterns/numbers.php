@@ -14,10 +14,10 @@ declare(strict_types=1);
     <!-- wp:heading -->
     <h2 class="wp-block-heading">Saleziáni v číslach</h2>
     <!-- /wp:heading -->
-    <!-- wp:group {"className":"row"} -->
-    <div class="wp-block-group row">
-        <!-- wp:group {"className":"col-12 col-md-3 col-xs-6"} -->
-        <div class="wp-block-group col-12 col-md-3 col-xs-6">
+    <!-- wp:group {"className":"row row-cols-1 row-cols-sm-2 row-cols-md-4"} -->
+    <div class="wp-block-group row row-cols-1 row-cols-sm-2 row-cols-md-4">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:heading {"level":3,"textColor":"potato"} -->
             <h3 class="wp-block-heading has-potato-color has-text-color">200</h3>
             <!-- /wp:heading -->
@@ -26,8 +26,8 @@ declare(strict_types=1);
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-3 col-xs-6"} -->
-        <div class="wp-block-group col-12 col-md-3 col-xs-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:heading {"level":3,"textColor":"pineapple"} -->
             <h3 class="wp-block-heading has-pineapple-color has-text-color">24 165</h3>
             <!-- /wp:heading -->
@@ -36,8 +36,8 @@ declare(strict_types=1);
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-3 col-xs-6"} -->
-        <div class="wp-block-group col-12 col-md-3 col-xs-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:heading {"level":3,"textColor":"lime"} -->
             <h3 class="wp-block-heading has-lime-color has-text-color">1 050</h3>
             <!-- /wp:heading -->
@@ -46,8 +46,8 @@ declare(strict_types=1);
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-3 col-xs-6"} -->
-        <div class="wp-block-group col-12 col-md-3 col-xs-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:heading {"level":3,"textColor":"blueberry"} -->
             <h3 class="wp-block-heading has-blueberry-color has-text-color">17</h3>
             <!-- /wp:heading -->

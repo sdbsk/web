@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-three-cards"} -->
 <div class="wp-block-group wp-pattern-saleziani-three-cards">
-    <!-- wp:group {"className":"row g-4"} -->
-    <div class="wp-block-group row g-4">
-        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+    <!-- wp:group {"className":"row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"} -->
+    <div class="wp-block-group row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"backgroundColor":"light-blue","className":"basic-card"} -->
             <div class="wp-block-group basic-card has-light-blue-background-color has-background">
                 <!-- wp:image -->
@@ -40,8 +40,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"backgroundColor":"light-blue","className":"basic-card"} -->
             <div class="wp-block-group basic-card has-light-blue-background-color has-background">
                 <!-- wp:image -->
@@ -67,8 +67,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-md-4 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-md-4 col-sm-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:group {"backgroundColor":"light-blue","className":"basic-card"} -->
             <div class="wp-block-group basic-card has-light-blue-background-color has-background">
                 <!-- wp:image -->
