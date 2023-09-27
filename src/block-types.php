@@ -97,7 +97,6 @@ return [
                 $page = get_post($attributes['page']);
 
                 if ($page instanceof WP_Post) {
-
                     return wrap_block_content($block, $template(
                         get_the_post_thumbnail($page, 'medium_large'),
                         $page->post_title,
