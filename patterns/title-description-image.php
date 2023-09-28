@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-heading-description-image"} -->
 <div class="wp-block-group wp-pattern-saleziani-heading-description-image">
-    <!-- wp:group {"className":"row"} -->
-    <div class="wp-block-group row">
-        <!-- wp:group {"className":"col-12 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-sm-6">
+    <!-- wp:group {"className":"row row-cols-1 row-cols-2"} -->
+    <div class="wp-block-group row row-cols-1 row-cols-2">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:heading {"level":3} -->
             <h3 class="wp-block-heading">Lorem ipsum dolor sit amet</h3>
             <!-- /wp:heading -->
@@ -23,8 +23,8 @@ declare(strict_types=1);
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"col-12 col-sm-6"} -->
-        <div class="wp-block-group col-12 col-sm-6">
+        <!-- wp:group {"className":"col"} -->
+        <div class="wp-block-group col">
             <!-- wp:image -->
             <figure class="wp-block-image">
                 <img src="<?php echo placeholder_image_path(375, 185) ?>"/>
