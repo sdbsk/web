@@ -16,8 +16,7 @@
         padding-left: 0;
 
         .cat-item {
-            display: inline-block;
-
+            display: flex;
             a {
                 border: 1px solid rgba(39, 39, 39, 0.20);
                 border-radius: 0.9375rem;
@@ -26,8 +25,14 @@
                 font-weight: 400;
                 line-height: 1rem;
                 margin-right: 0.5rem;
+                margin-bottom: 0.5rem;
                 padding: 0.38rem 0.75rem;
                 text-decoration: none;
+                &:hover{
+                    background-color: #cf3942;
+                    border-color: #cf3942;
+                    color: #ffffff;
+                }
             }
 
             &.current-cat {
