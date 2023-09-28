@@ -77,6 +77,8 @@ add_filter('allowed_block_types_all', function (): array {
     ];
 }, 10, 2);
 
+
+
 add_filter('wp_list_categories', function (string $output): string {
     $pageForPosts = get_post((int)get_option('page_for_posts'));
 
