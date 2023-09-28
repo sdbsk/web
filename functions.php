@@ -50,6 +50,10 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
     }
 });
 
+add_action('save_post_post', function ($postId): void {
+    wp_set_post_categories($postId, (int)get_option('default_category'), true);
+});
+
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('style', home_url() . $manifest[$assets . 'style.css']);
 });
@@ -77,15 +81,9 @@ add_filter('allowed_block_types_all', function (): array {
     ];
 }, 10, 2);
 
-add_filter('wp_list_categories', function (string $output): string {
-    $pageForPosts = get_post((int)get_option('page_for_posts'));
+add_filter('term_links-category', fn(array $links): array => array_values(array_filter($links, fn(string $link): bool => false === str_contains($link, '>Aktuality<'))));
 
-    if ($pageForPosts instanceof WP_Post) {
-        return '<li class="cat-item' . (is_home() ? ' current-cat' : '') . '"><a href="' . get_permalink($pageForPosts) . '">Všetko</a></li>' . $output;
-    }
-
-    return $output;
-});
+add_filter('wp_list_categories', fn(string $output): string => str_replace('>Aktuality<', '>Všetko<', $output));
 
 function placeholder_image_path(int $width, int $height): string
 {
