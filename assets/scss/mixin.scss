@@ -1,3 +1,5 @@
+@import "bootstrap-override";
+
 @mixin layout() {
     font-family: 'Fira Sans', sans-serif;
     *, :after, :before {
@@ -8,9 +10,25 @@
         @media(max-width: 50rem) {
             margin-bottom: 3rem;
         }
+
         &.has-background {
             padding-top: 6rem;
             padding-bottom: 6rem;
+        }
+    }
+    .entry-content {
+        > .wp-block-group.has-background {
+            padding-left: $grid-gutter-width/2;
+            padding-right: $grid-gutter-width/2;
+            margin-right: -$grid-gutter-width/2;
+            margin-left: -$grid-gutter-width/2;
+
+            &.alignwide {
+                @media (max-width: 101.875rem) {
+                    margin-left: -$grid-gutter-width/2 !important;
+                    margin-right: -$grid-gutter-width/2 !important;
+                }
+            }
         }
     }
 }
