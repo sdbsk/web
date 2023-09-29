@@ -1,14 +1,10 @@
 @import '../mixin';
 
-.wp-pattern-saleziani-three-icon-heading-description {
+.wp-pattern-saleziani-three-icon-heading-description,
+.wp-pattern-saleziani-three-icon-heading-description-list {
     .box {
-        border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
-        padding: 1.5rem;
-
         .wp-block-image {
-            height: 2.5rem;
             margin-bottom: 0.75rem;
-            width: 2.5rem;
 
             img {
                 width: 100%;
@@ -35,6 +31,29 @@
             &:last-child {
                 margin: 0;
             }
+        }
+    }
+}
+
+.wp-pattern-saleziani-three-icon-heading-description {
+    .box {
+        padding: 1.5rem 1.5rem 1.5rem 0;
+
+        .wp-block-image {
+            height: 2.5rem;
+            width: 2.5rem;
+        }
+    }
+}
+
+.wp-pattern-saleziani-three-icon-heading-description-list {
+    .box {
+        border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
+        padding: 1.5rem;
+
+        .wp-block-image {
+            height: 4rem;
+            width: 4rem;
         }
     }
 }

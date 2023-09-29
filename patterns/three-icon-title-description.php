@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-three-icon-heading-description"} -->
 <div class="wp-block-group wp-pattern-saleziani-three-icon-heading-description">
-    <!-- wp:group {"className":"row row-cols-1 row-cols-md-3"} -->
-    <div class="wp-block-group row row-cols-1 row-cols-md-3">
+    <!-- wp:group {"className":"row g-4 row-cols-1 row-cols-md-3"} -->
+    <div class="wp-block-group row g-4 row-cols-1 row-cols-md-3">
         <!-- wp:group {"className":"col"} -->
         <div class="wp-block-group col">
             <!-- wp:group {"className":"box"} -->
@@ -26,10 +26,7 @@ declare(strict_types=1);
                 <h3 class="wp-block-heading has-blackberry-color has-text-color">Lorem ipsum</h3>
                 <!-- /wp:heading -->
                 <!-- wp:paragraph -->
-                <p>Nam vel tristique massa, ac malesuada urna. Morbi ultrices ullamcorper leo quis maximus. Nam aliquam bibendum risus a porttitor. Etiam elit libero.</p>
-                <!-- /wp:paragraph -->
-                <!-- wp:paragraph -->
-                <p><a href="#">Dozvedieť viac</a></p>
+                <p >Nam vel tristique massa, ac malesuada urna. Morbi ultrices ullamcorper leo quis maximus. Nam aliquam bibendum risus a porttitor. Etiam elit libero.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -48,10 +45,7 @@ declare(strict_types=1);
                 <h3 class="wp-block-heading has-blackberry-color has-text-color">Dolor sit amet</h3>
                 <!-- /wp:heading -->
                 <!-- wp:paragraph -->
-                <p>Integer a turpis fermentum lorem ornare dictum. Nam porta nisl eget neque auctor, non facilisis dolor placerat. Cras in posuere purus, id faucibus urna.</p>
-                <!-- /wp:paragraph -->
-                <!-- wp:paragraph -->
-                <p><a href="#">Dozvedieť viac</a></p>
+                <p >Integer a turpis fermentum lorem ornare dictum. Nam porta nisl eget neque auctor, non facilisis dolor placerat. Cras in posuere purus, id faucibus urna.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
@@ -71,9 +65,6 @@ declare(strict_types=1);
                 <!-- /wp:heading -->
                 <!-- wp:paragraph -->
                 <p>In blandit mi tempor, laoreet turpis eu, volutpat ante. Suspendisse fringilla cursus semper. Ut quis iaculis nisl.</p>
-                <!-- /wp:paragraph -->
-                <!-- wp:paragraph -->
-                <p><a href="#">Dozvedieť viac</a></p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
