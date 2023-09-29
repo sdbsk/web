@@ -1,7 +1,7 @@
-.wp-template-error-404 {
-    padding: 0 0 10rem 0;
+@import '../mixin';
 
-    > div {
+.wp-template-error-404 {
+    .error-content {
         margin-bottom: 6rem;
 
         .wp-block-heading {
@@ -9,6 +9,11 @@
             font-weight: 700;
             line-height: 12rem;
             margin-bottom: 6rem;
+            @media (max-width: 50rem) {
+                font-size: 5rem;
+                line-height: 6rem;
+                margin-bottom: 3rem;
+            }
         }
 
         p {
