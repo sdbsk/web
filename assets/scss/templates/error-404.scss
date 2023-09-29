@@ -3,17 +3,24 @@
 .wp-template-error-404 {
     .error-content {
         margin-bottom: 6rem;
+        text-align: center;
 
-        .wp-block-heading {
+        h1.wp-block-heading {
             font-size: 10rem;
             font-weight: 700;
             line-height: 12rem;
-            margin-bottom: 6rem;
+            margin-bottom: 1rem;
             @media (max-width: 50rem) {
                 font-size: 5rem;
                 line-height: 6rem;
                 margin-bottom: 3rem;
             }
+        }
+
+        h2.wp-block-heading {
+            font-size: 1.7rem;
+            margin-bottom: 5rem;
+            //color: #272727;
         }
 
         p {
@@ -31,6 +38,17 @@
 
             a {
                 @include link-with-icon;
+                font-size: .9375rem;
+                padding-bottom: 0;
+                color: rgba(39, 39, 39, 0.80);
+
+                &:after {
+                    content: unset;
+                }
+
+                &:before {
+                    background-color: rgba(39, 39, 39, 0.80);
+                }
             }
         }
     }
