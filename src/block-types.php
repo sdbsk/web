@@ -52,13 +52,14 @@ return [
                     if (false === empty($thumbnail)) {
                         $output .= '<a href="' . $permalink . '" class="image">' . $thumbnail . '</a>';
                     }
-
+                    $output .= '<div class="category-list">';
                     foreach (wp_get_post_categories($post->ID) as $categoryId) {
                         $category = get_category($categoryId);
                         if ($category->parent > 0) {
                             $output .= '<a href="' . get_category_link($category) . '" class="category">' . $category->name . '</a>';
                         }
                     }
+                    $output .= '</div>';
 
                     $output .= '<a href="' . $permalink . '" class="title"><h3>' . $post->post_title . '</h3></a>';
                     $output .= '<div class="description">' . get_the_excerpt($post) . '</div></div>';

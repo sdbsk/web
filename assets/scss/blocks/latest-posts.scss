@@ -21,14 +21,22 @@
             }
         }
 
-        .category {
-            font-size: 0.9375rem;
-            font-weight: 500;
-            line-height: 1.125rem;
-            display: block;
-            margin-bottom: 1rem;
-            text-decoration: none;
-            color: #cf3942;
+        .category-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-bottom: .75rem;
+
+            .category {
+                font-size: 0.9375rem;
+                font-weight: 500;
+                line-height: 1.125rem;
+                display: inline-block;
+                margin-right: .5rem;
+                margin-bottom: .25rem;
+                text-decoration: none;
+                color: #cf3942;
+            }
         }
 
         .title {
