@@ -46,9 +46,9 @@
     }
 
     &.one-color {
+        border-radius: 1rem;
         margin-left: unset;
         margin-right: unset;
-        border-radius: 1rem;
         padding: 0 1rem;
         @media(max-width: 50rem) {
             padding: 0 1rem;
@@ -59,7 +59,6 @@
             @media(max-width: 50rem) {
                 padding: 2rem 0;
             }
-
         }
     }
 }

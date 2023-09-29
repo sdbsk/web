@@ -24,14 +24,3 @@
         }
     }
 }
-
-.single {
-    .wp-block-image {
-        img {
-            border-radius: 0.25rem;
-            @media (max-width: 76.875rem) {
-                border-radius: 0;
-            }
-        }
-    }
-}

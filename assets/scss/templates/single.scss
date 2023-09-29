@@ -1,0 +1,28 @@
+.wp-template-single {
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 3.5rem;
+        margin: 7rem auto 4rem;
+        max-width: 48rem;
+    }
+
+    &.wp-block-post-content {
+        > * {
+            margin-bottom: revert;
+        }
+
+        > p, ul, ol {
+            max-width: 48rem !important;
+        }
+
+        .wp-block-image {
+            img {
+                border-radius: 0.25rem;
+                @media (max-width: 76.875rem) {
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}

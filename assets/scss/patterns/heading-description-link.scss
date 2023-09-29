@@ -22,11 +22,13 @@
             @include link-with-icon;
         }
     }
-    &.two-columns{
+
+    &.two-columns {
         h2 {
             margin-bottom: 1rem;
         }
-        p{
+
+        p {
             color: #272727;
             font-size: 1.0625rem;
             line-height: 1.5rem;

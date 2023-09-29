@@ -1,13 +1,14 @@
-.wp-pattern-page-copyright{
-    background-color: #F9F6F4;
+.wp-pattern-copyright {
+    background-color: #f9f6f4;
     padding: 1rem 1rem 2rem 1rem;
+
     p {
-        display: flex;
         align-items: center;
-        justify-content: center;
         color: rgba(39, 39, 39, 0.80);
+        display: flex;
         font-size: 0.875rem;
         font-weight: 400;
+        justify-content: center;
         line-height: 1.125rem;
         margin: 0;
     }

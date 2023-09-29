@@ -9,13 +9,13 @@
         justify-content: space-between;
 
         .wp-block-image {
+            border-radius: .95rem;
             margin-bottom: 3rem;
             width: 100%;
-            border-radius: .95rem;
 
             img {
-                width: 100%;
                 border-radius: .95rem;
+                width: 100%;
             }
         }
 

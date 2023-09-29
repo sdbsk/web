@@ -8,8 +8,8 @@ header {
                     width: 100%;
 
                     .wp-block-navigation-item {
-                        width: 100%;
                         margin: 0;
+                        width: 100%;
 
                         .wp-block-site-logo {
                             margin-bottom: 1rem;
@@ -27,12 +27,12 @@ header {
                         }
 
                         &.btn-support {
-                            position: unset;
-                            margin-top: 2rem;
                             background-color: #5795d6 !important;
-                            right: unset;
                             border-radius: 0.5rem;
+                            margin-top: 2rem;
                             padding: 0.5rem;
+                            position: unset;
+                            right: unset;
                         }
                     }
                 }

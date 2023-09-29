@@ -31,8 +31,9 @@
             a {
                 @include link-with-icon;
             }
-            &:last-child{
-                margin: 0 ;
+
+            &:last-child {
+                margin: 0;
             }
         }
     }
