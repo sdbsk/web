@@ -1,15 +1,15 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-heading-description-image {
-    border-bottom: 1px solid #d9d9d9;
     padding: 3rem 0;
+    border-bottom: 1px solid #d9d9d9;
 
     .wp-block-heading {
-        color: #272727;
         font-size: 1.5rem;
         font-weight: 700;
         line-height: 1.625rem;
         margin: 0 0 1rem;
+        color: #272727;
     }
 
     p {
@@ -30,9 +30,9 @@
         margin-bottom: 0;
 
         img {
-            border-radius: 0.25rem;
-            margin-bottom: 0;
             width: 100%;
+            margin-bottom: 0;
+            border-radius: 0.25rem;
         }
     }
 
