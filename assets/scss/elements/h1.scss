@@ -1,23 +1,13 @@
 h1 {
-    color: #272727;
     font-family: Merriweather, sans-serif;
     font-size: 4rem;
     font-weight: 400;
     line-height: 4.4875rem;
     margin: 7rem 0 1rem;
+    color: #272727;
     @media(max-width: 62rem) {
-        margin: 4rem 0 1rem;
         font-size: 2.8rem;
         line-height: 3rem;
-    }
-}
-
-.single {
-    h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        line-height: 3.5rem;
-        margin: 7rem 0 4rem;
-        max-width: 48rem;
+        margin: 4rem 0 1rem;
     }
 }

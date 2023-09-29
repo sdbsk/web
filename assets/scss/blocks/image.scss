@@ -3,9 +3,9 @@
 .entry-content {
     > .wp-block-image {
         @media (max-width: 76.875rem) {
-            margin-left: -$grid-gutter-width/2 !important;
-            margin-right: -$grid-gutter-width/2 !important;
             max-width: unset;
+            margin-right: -$grid-gutter-width/2 !important;
+            margin-left: -$grid-gutter-width/2 !important;
         }
 
         img {
@@ -13,26 +13,15 @@
         }
 
         &.alignfull {
-            margin-left: -$grid-gutter-width/2 !important;
             margin-right: -$grid-gutter-width/2 !important;
+            margin-left: -$grid-gutter-width/2 !important;
         }
 
         &.alignwide {
             @media (max-width: 101.875rem) {
-                margin-left: -$grid-gutter-width/2 !important;
-                margin-right: -$grid-gutter-width/2 !important;
                 max-width: unset;
-            }
-        }
-    }
-}
-
-.single {
-    .wp-block-image {
-        img {
-            border-radius: 0.25rem;
-            @media (max-width: 76.875rem) {
-                border-radius: 0;
+                margin-right: -$grid-gutter-width/2 !important;
+                margin-left: -$grid-gutter-width/2 !important;
             }
         }
     }

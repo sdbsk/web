@@ -15,8 +15,8 @@ header {
                     }
 
                     .wp-block-navigation-item__content {
-                        text-align: center;
                         width: 100%;
+                        text-align: center;
 
                         .wp-block-navigation-item__label {
                             font-size: 1.4rem;
@@ -27,11 +27,11 @@ header {
 
                     &.btn-support {
                         position: unset;
-                        margin-top: 2rem;
-                        background-color: #5795d6 !important;
                         right: unset;
-                        border-radius: 0.5rem;
+                        margin-top: 2rem;
                         padding: 0.5rem;
+                        border-radius: 0.5rem;
+                        background-color: #5795d6 !important;
                     }
                 }
             }
@@ -53,16 +53,16 @@ header {
             }
 
             &.btn-support {
-                background-color: #5795d6;
-                border-radius: 0.94rem;
-                color: #ffffff;
                 font-size: 0.9375rem;
                 font-weight: 500;
                 line-height: 1.375rem;
-                margin: 0;
-                padding: 0.25rem 0.75rem;
                 position: absolute;
                 right: 0;
+                margin: 0;
+                padding: 0.25rem 0.75rem;
+                color: #ffffff;
+                border-radius: 0.94rem;
+                background-color: #5795d6;
             }
 
             &:last-child {
@@ -85,7 +85,6 @@ header {
     .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
         display: none;
     }
-
     .wp-block-navigation__responsive-container-open:not(.always-shown) {
         display: flex;
     }
@@ -93,13 +92,12 @@ header {
 
 @media (min-width: 50rem) {
     .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
-        background-color: inherit;
-        display: block;
         position: relative;
-        width: 100%;
         z-index: auto;
+        display: block;
+        width: 100%;
+        background-color: inherit;
     }
-
     .wp-block-navigation__responsive-container-open:not(.always-shown) {
         display: none;
     }
