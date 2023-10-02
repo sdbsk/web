@@ -330,7 +330,7 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
     }
 });
 
-add_action('save_post_post', function ($postId): void {
+add_action('save_post_post', function (int $postId): void {
     wp_set_post_categories($postId, (int)get_option('default_category'), true);
 });
 
