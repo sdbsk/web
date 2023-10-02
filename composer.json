@@ -34,6 +34,9 @@
     ],
     "require": {
         "php": "~8.2",
+        "ext-dom": "*",
+        "ext-fileinfo": "*",
+        "ext-pdo": "*",
         "composer/installers": "^2.2",
         "vlucas/phpdotenv": "^5.5",
         "oscarotero/env": "^2.1",
@@ -42,11 +45,13 @@
         "roots/wordpress": "^6.3",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.1",
-        "wpackagist-plugin/w3-total-cache": "^2.4"
+        "wpackagist-plugin/w3-total-cache": "^2.5",
+        "symfony/html-sanitizer": "^6.3"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
         "deployer/deployer": "^7.3",
-        "symfony/var-dumper": "^6.3"
+        "symfony/var-dumper": "^6.3",
+        "wpackagist-plugin/debug-bar": "^1.1"
     }
 }
