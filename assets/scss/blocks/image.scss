@@ -1,7 +1,8 @@
 @import "../bootstrap-override";
 
-.entry-content {
+.wp-block-post-content {
     > .wp-block-image {
+        min-height: 25rem;
         @media (max-width: 76.875rem) {
             max-width: unset;
             margin-right: -$grid-gutter-width/2 !important;
@@ -10,6 +11,8 @@
 
         img {
             width: 100%;
+            min-height: 25rem;
+            object-fit: cover;
         }
 
         &.alignfull {

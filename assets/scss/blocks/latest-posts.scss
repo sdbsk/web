@@ -8,15 +8,21 @@
         height: 100%;
         padding: 1.5rem;
         border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
+        @media(max-width: 35.9375rem) {
+            padding: 1.5rem 0;
+            border-left: unset;
+        }
 
         .image {
             display: block;
+            overflow: hidden;
             margin-bottom: 2rem;
             border-radius: 0.25rem;
 
             .wp-post-image {
                 width: 100%;
                 height: auto;
+                transition: transform 0.3s ease;
                 border-radius: 0.25rem;
             }
         }
@@ -63,6 +69,14 @@
         .link {
             @include link-with-icon;
             width: fit-content;
+        }
+
+        &:hover {
+            .image {
+                .wp-post-image {
+                    transform: scale(1.03);
+                }
+            }
         }
     }
 }
