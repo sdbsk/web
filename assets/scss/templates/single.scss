@@ -8,12 +8,13 @@
     }
 
     &.wp-block-post-content {
-        > * {
-            margin-bottom: revert;
+        img {
+            max-width: 100%;
         }
 
         > p, ul, ol {
             max-width: 48rem !important;
+            margin-bottom: revert;
         }
 
         .wp-block-group {
