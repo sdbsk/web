@@ -1,9 +1,12 @@
 {
     "config": {
-        "optimize-autoloader": true,
         "allow-plugins": {
             "composer/installers": true,
             "roots/wordpress-core-installer": true
+        },
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.2"
         }
     },
     "extra": {
@@ -38,19 +41,19 @@
         "ext-fileinfo": "*",
         "ext-pdo": "*",
         "composer/installers": "^2.2",
-        "vlucas/phpdotenv": "^5.5",
         "oscarotero/env": "^2.1",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
         "roots/wordpress": "^6.3",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.1",
-        "wpackagist-plugin/w3-total-cache": "^2.5",
-        "symfony/html-sanitizer": "^6.3"
+        "symfony/html-sanitizer": "^6.3",
+        "vlucas/phpdotenv": "^5.5",
+        "wpackagist-plugin/w3-total-cache": "^2.5"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "deployer/deployer": "^7.3",
+        "roave/security-advisories": "dev-latest",
         "symfony/var-dumper": "^6.3",
         "wpackagist-plugin/debug-bar": "^1.1"
     }
