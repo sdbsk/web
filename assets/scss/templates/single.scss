@@ -5,6 +5,9 @@
         line-height: 3.5rem;
         max-width: 48rem;
         margin: 7rem auto 4rem;
+        @media(max-width: 47.9375rem) {
+            margin: 4rem auto 2.5rem;
+        }
     }
 
     &.wp-block-post-content {

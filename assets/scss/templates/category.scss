@@ -6,6 +6,9 @@
         font-weight: 700;
         line-height: 3.5rem;
         margin: 7rem 0 2rem;
+        @media(max-width: 47.9375rem) {
+            margin: 4rem 0 2rem;
+        }
     }
 
     .wp-block-categories-list {
@@ -54,6 +57,10 @@
             margin-bottom: 3rem;
             padding: 1.5rem 0 1.5rem 1.38rem;
             border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
+            @media(max-width: 47.9375rem) {
+                padding: 0;
+                border-left: unset;
+            }
 
             .taxonomy-category {
                 &:not(:empty) {
@@ -105,6 +112,11 @@
     }
 
     .wp-block-query-pagination {
+        margin-bottom: 6rem;
+        @media(max-width: 47.9375rem) {
+            margin-bottom: 3rem;
+        }
+
         .wp-block-query-pagination-numbers {
             margin-right: 0;
             margin-bottom: 0;
