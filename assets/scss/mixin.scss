@@ -1,4 +1,4 @@
-@import "bootstrap-override";
+@import 'bootstrap-override';
 
 @mixin layout() {
     font-family: 'Fira Sans', sans-serif;
@@ -16,8 +16,6 @@
                 padding-top: 6rem;
                 padding-bottom: 6rem;
             }
-
-
         }
 
         > .wp-block-group.has-background {
@@ -47,7 +45,6 @@
             }
         }
     }
-
 }
 
 @mixin link-with-icon() {
@@ -101,7 +98,6 @@
     color: #272727;
     border-top: 0.0625rem solid #e5e5e5;
     border-bottom: 0.0625rem solid #e5e5e5;
-
     &:after {
         display: inline-block;
         min-width: 1.25rem;
@@ -110,7 +106,6 @@
         content: '';
         background-image: url('../images/arrow-right-blue.svg');
     }
-
     &:hover {
         padding: 1rem 0.6rem 1rem 0.75rem;
     }
