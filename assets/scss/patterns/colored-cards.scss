@@ -4,17 +4,19 @@
     .colored-card {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         height: 100%;
         border-radius: 1.05rem;
 
         .wp-block-image {
-            width: 100%;
-            margin-bottom: 3rem;
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 0;
             border-radius: .95rem;
 
             img {
                 width: 100%;
+                height: auto;
+                transition: transform 0.3s ease;
                 border-radius: .95rem;
             }
         }
@@ -22,12 +24,13 @@
         .content {
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 0;
             justify-content: space-between;
-            height: 100%;
-            padding: 0 6rem 3rem;
+            padding: 3rem 6rem 3rem;
             color: #ffffff;
             @media(max-width: 62rem) {
-                padding: 0 3rem 2rem;
+                padding: 2rem 3rem 2rem;
             }
 
             .content-top {
@@ -63,6 +66,16 @@
                     &:after {
                         background-image: url('../../images/arrow-right-white.svg');
                     }
+                }
+            }
+
+
+        }
+
+        &:hover {
+            .wp-block-image {
+                img {
+                    transform: scale(1.03);
                 }
             }
         }

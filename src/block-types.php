@@ -12,7 +12,7 @@ function wrap_block_content(WP_Block $block, string $content): string
 return [
     'navigation' => [
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            $output = '<ul>';
+            $output = '<div class="row row-cols-1 row-cols-sm-2">';
             $post = get_post();
             $ancestors = get_post_ancestors($post);
             $children = get_children([
@@ -22,10 +22,10 @@ return [
             ]);
 
             foreach ($children as $child) {
-                $output .= '<li><a href="' . get_permalink($child) . '">' . $child->post_title . '</a></li>';
+                $output .= '<div class="col"><a href="' . get_permalink($child) . '" class="navigation-item">' . $child->post_title . '</a></div>';
             }
 
-            $output .= '</ul>';
+            $output .= '</div>';
 
             return wrap_block_content($block, $output);
         },
