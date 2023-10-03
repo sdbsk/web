@@ -1,34 +1,11 @@
+@import '../mixin';
+
 .wp-pattern-saleziani-link-list {
     p {
         margin: 0;
 
         a {
-            font-size: 1.0625rem;
-            font-weight: 500;
-            line-height: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: -0.0625rem;
-            padding: 1rem 0.75rem;
-            transition: padding 0.3s ease;
-            text-decoration: none;
-            color: #272727;
-            border-top: 0.0625rem solid #e5e5e5;
-            border-bottom: 0.0625rem solid #e5e5e5;
-
-            &:after {
-                display: inline-block;
-                width: 1.25rem;
-                height: 1.25rem;
-                margin-left: 0.75rem;
-                content: '';
-                background-image: url('../../images/arrow-right-blue.svg');
-            }
-
-            &:hover {
-                padding: 1rem 0.6rem 1rem 0.75rem;
-            }
+            @include navigation-with-arrow;
         }
     }
 }

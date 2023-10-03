@@ -1,3 +1,7 @@
+@import '../mixin';
+
 .wp-block-saleziani-navigation {
-    border: 1px solid darkblue;
+    .navigation-item {
+        @include navigation-with-arrow;
+    }
 }

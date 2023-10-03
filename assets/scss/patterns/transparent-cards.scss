@@ -19,6 +19,7 @@
             img {
                 width: 16rem;
                 height: 16rem;
+                transition: transform 0.3s ease;
                 border-radius: 50%;
             }
         }
@@ -54,6 +55,14 @@
             .content-bottom {
                 a {
                     @include link-with-icon;
+                }
+            }
+        }
+
+        &:hover {
+            .wp-block-image {
+                img {
+                    transform: scale(1.03);
                 }
             }
         }
