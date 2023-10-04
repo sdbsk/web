@@ -33,3 +33,13 @@
         background-color: #e5e5e5;
     }
 }
+
+.post-type-post .block-editor-block-alignment-control__menu-group button:first-of-type .components-menu-item__info {
+    overflow: hidden;
+    height: 0.8125rem;
+
+    &:before {
+        display: inline-block;
+        content: 'Maximálna šírka 45rem';
+    }
+}
