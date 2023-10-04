@@ -18,6 +18,10 @@
         > p, ul, ol {
             max-width: 48rem !important;
             margin-bottom: revert;
+
+            &:last-of-type {
+                margin-bottom: 6rem;
+            }
         }
 
         .wp-block-image {
@@ -27,6 +31,10 @@
                     border-radius: 0;
                 }
             }
+        }
+
+        > .wp-block-group {
+            max-width: 48rem;
         }
     }
 }
