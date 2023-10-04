@@ -15,11 +15,14 @@
     &.wp-block-post-content {
         > *:not(.alignwide):not(.alignfull) {
             max-width: $width !important;
-            margin-bottom: revert;
 
             &:last-of-type {
                 margin-bottom: 6rem;
             }
+        }
+
+        > ol, > p, > ul {
+            margin-bottom: revert;
         }
 
         img {
