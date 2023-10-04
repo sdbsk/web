@@ -5,16 +5,8 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    .addEntry('editor', './assets/editor.js')
-    .addEntry('style', './assets/style.js')
-    .copyFiles({
-        from: 'assets/blocks',
-        to: 'blocks/[path][name]' + (Encore.isProduction() ? '.[hash:8]' : '') + '.[ext]'
-    })
-    .copyFiles({
-        from: 'assets/plugins',
-        to: 'plugins/[path][name]' + (Encore.isProduction() ? '.[hash:8]' : '') + '.[ext]'
-    })
+    .addEntry('admin', './assets/admin/app.js')
+    .addEntry('public', './assets/public/app.js')
     .cleanupOutputBeforeBuild()
     .enableSassLoader()
     .enableSingleRuntimeChunk()
@@ -22,7 +14,6 @@ Encore
     .enableVersioning(Encore.isProduction())
     .setOutputPath('web/app/themes/saleziani/assets/')
     .setPublicPath('/app/themes/saleziani/assets')
-    .splitEntryChunks()
-;
+    .splitEntryChunks();
 
 module.exports = Encore.getWebpackConfig();

@@ -9,6 +9,14 @@ $template = wp_get_theme()->get_template();
 $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
+add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
+    $args = ['in_footer' => true];
+    $dependencies = ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'];
+
+    wp_enqueue_script('runtime', home_url() . $manifest[$assets . 'runtime.js'], $dependencies, false, $args);
+    wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], $dependencies, false, $args);
+});
+
 // todo: remove after import: ext-dom, ext-fileinfo, ext-pdo, symfony/html-sanitizer, LEGACY_ env variables and following hook
 add_action('admin_menu', function (): void {
     add_menu_page('Import článkov', 'Importovať články', 'import', 'post-import', function (): void {
@@ -317,21 +325,7 @@ add_action('init', function () use ($template): void {
 });
 
 add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
-    wp_enqueue_style('editor', home_url() . $manifest[$assets . 'editor.css']);
-
-    foreach ($manifest as $filename) {
-        if (preg_match('~/assets/blocks/([a-z\-]+)\..+~', $filename, $matches)) {
-            wp_enqueue_script($matches[1] . '-block', get_template_directory_uri() . $matches[0], ['wp-blocks', 'wp-components', 'wp-element', 'wp-server-side-render'], false, ['in_footer' => true]);
-        }
-
-        if (preg_match('~/assets/filters/([a-z\-]+)\..+~', $filename, $matches)) {
-            wp_enqueue_script($matches[1] . '-plugin', get_template_directory_uri() . $matches[0], ['wp-hooks'], false, ['in_footer' => true]);
-        }
-
-        if (preg_match('~/assets/plugins/([a-z\-]+)\..+~', $filename, $matches)) {
-            wp_enqueue_script($matches[1] . '-plugin', get_template_directory_uri() . $matches[0], ['wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-plugins'], false, ['in_footer' => true]);
-        }
-    }
+    wp_enqueue_style('admin', home_url() . $manifest[$assets . 'admin.css']);
 });
 
 add_action('save_post_post', function (int $postId): void {
@@ -339,7 +333,7 @@ add_action('save_post_post', function (int $postId): void {
 });
 
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
-    wp_enqueue_style('style', home_url() . $manifest[$assets . 'style.css']);
+    wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
 });
 
 add_filter('allowed_block_types_all', function (): array {
