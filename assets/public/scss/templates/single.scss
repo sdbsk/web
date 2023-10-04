@@ -15,7 +15,9 @@
             max-width: 100%;
         }
 
-        > p, ul, ol {
+        > p,
+        > ul,
+        > ol {
             max-width: 48rem !important;
             margin-bottom: revert;
 
