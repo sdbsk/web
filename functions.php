@@ -324,6 +324,10 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
             wp_enqueue_script($matches[1] . '-block', get_template_directory_uri() . $matches[0], ['wp-blocks', 'wp-components', 'wp-element', 'wp-server-side-render'], false, ['in_footer' => true]);
         }
 
+        if (preg_match('~/assets/filters/([a-z\-]+)\..+~', $filename, $matches)) {
+            wp_enqueue_script($matches[1] . '-plugin', get_template_directory_uri() . $matches[0], ['wp-hooks'], false, ['in_footer' => true]);
+        }
+
         if (preg_match('~/assets/plugins/([a-z\-]+)\..+~', $filename, $matches)) {
             wp_enqueue_script($matches[1] . '-plugin', get_template_directory_uri() . $matches[0], ['wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-plugins'], false, ['in_footer' => true]);
         }
