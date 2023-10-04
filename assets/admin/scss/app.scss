@@ -1,15 +1,17 @@
-@import 'bootstrap-override';
+@import '../../public/scss/bootstrap-override';
+
 @import 'bootstrap/scss/bootstrap-grid';
-@import 'fonts/all';
-@import 'mixin';
+
+@import '../../public/scss/fonts/all';
+@import '../../public/scss/mixin';
 
 .editor-styles-wrapper {
     @include layout;
-    @import 'blocks/all';
-    @import 'elements/all';
-    @import 'parts/all';
-    @import 'patterns/all';
-    @import 'templates/all';
+    @import '../../public/scss/blocks/all';
+    @import '../../public/scss/elements/all';
+    @import '../../public/scss/parts/all';
+    @import '../../public/scss/patterns/all';
+    @import '../../public/scss/templates/all';
 
     .wp-block {
         * {
