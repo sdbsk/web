@@ -1,6 +1,6 @@
 import onMount from '../util/on-mount';
 
-if ('post-php' === window.adminpage) {
+if (['post-new-php', 'post-php'].includes(window.adminpage)) {
     const template = 'post' === window.pagenow ? 'single' : 'page';
 
     onMount('.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper').then((title) => {
