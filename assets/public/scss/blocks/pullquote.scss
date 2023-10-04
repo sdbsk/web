@@ -1,7 +1,10 @@
 .wp-block-pullquote {
+    margin: inherit;
+    padding: 0;
+
     blockquote {
         margin: 0;
-        padding: 1.5rem;
+        padding: 1.63rem 1.5rem;
         text-align: left;
         border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
 
