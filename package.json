@@ -24,8 +24,5 @@
     "scripts": {
         "dev": "encore dev --watch",
         "prod": "encore production --progress"
-    },
-    "dependencies": {
-        "bootstrap": "^5.3.1"
     }
 }

@@ -10,11 +10,7 @@ $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
 add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
-    $args = ['in_footer' => true];
-    $dependencies = ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'];
-
-    wp_enqueue_script('runtime', home_url() . $manifest[$assets . 'runtime.js'], $dependencies, false, $args);
-    wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], $dependencies, false, $args);
+    wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
 
 // todo: remove after import: ext-dom, ext-fileinfo, ext-pdo, symfony/html-sanitizer, LEGACY_ env variables and following hook

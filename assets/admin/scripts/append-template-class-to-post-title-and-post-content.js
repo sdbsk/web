@@ -1,17 +1,13 @@
+import onMount from '../util/on-mount';
+
 if ('post-php' === window.adminpage) {
-    window.addEventListener('load', () => {
-        const template = 'post' === window.pagenow ? 'single' : 'page';
+    const template = 'post' === window.pagenow ? 'single' : 'page';
 
-        const title = document.querySelector('.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper');
+    onMount('.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper').then((title) => {
+        title.classList.add('wp-template-' + template);
+    });
 
-        if (title instanceof Element) {
-            title.classList.add('wp-template-' + template);
-        }
-
-        const postContent = document.querySelector('.editor-styles-wrapper .wp-block-post-content');
-
-        if (postContent instanceof Element) {
-            postContent.classList.add('wp-template-' + template);
-        }
+    onMount('.editor-styles-wrapper .wp-block-post-content').then((content) => {
+        content.classList.add('wp-template-' + template);
     });
 }

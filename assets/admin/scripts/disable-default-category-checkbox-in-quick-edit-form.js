@@ -1,8 +1,6 @@
 if ('edit-post' === window.pagenow) {
-    document.addEventListener('DOMContentLoaded', () => {
-        const input = document.querySelector('.inline-edit-wrapper .category-checklist input');
+    const input = document.querySelector('.category-checklist > li > label > input');
 
-        input.disabled = true;
-        input.style.cursor = 'not-allowed';
-    });
+    input.disabled = true;
+    input.style.cursor = 'not-allowed';
 }

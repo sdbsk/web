@@ -1,14 +1,8 @@
-if ('post-php' === window.adminpage) {
-    const input = document.querySelector('[aria-label=Kategórie] input');
+import onMount from '../util/on-mount';
 
-    if (input instanceof Element) {
+if ('post-php' === window.adminpage) {
+    onMount('.editor-post-taxonomies__hierarchical-terms-list > .editor-post-taxonomies__hierarchical-terms-choice input').then((input) => {
         input.disabled = true;
         input.style.cursor = 'not-allowed';
-    } else {
-        if (Number.isInteger(timeoutId)) {
-            clearTimeout(timeoutId);
-        }
-
-        timeoutId = setTimeout(() => execute(), 32);
-    }
+    });
 }

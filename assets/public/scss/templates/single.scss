@@ -15,9 +15,7 @@
             max-width: 100%;
         }
 
-        > p,
-        > ul,
-        > ol {
+        > p, > ul, > ol, > .wp-block-freeform, > .wp-block-group {
             max-width: 48rem !important;
             margin-bottom: revert;
 
@@ -33,10 +31,6 @@
                     border-radius: 0;
                 }
             }
-        }
-
-        > .wp-block-group {
-            max-width: 48rem;
         }
     }
 }
