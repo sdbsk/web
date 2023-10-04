@@ -1,9 +1,11 @@
 .wp-template-single {
+    $width: 48rem;
+
     h1 {
         font-size: 2.5rem;
         font-weight: 700;
         line-height: 3.5rem;
-        max-width: 48rem;
+        max-width: $width;
         margin: 7rem auto 4rem;
         @media(max-width: 47.9375rem) {
             margin: 4rem auto 2.5rem;
@@ -11,8 +13,8 @@
     }
 
     &.wp-block-post-content {
-        > *:not(.wp-block-image) {
-            max-width: 48rem !important;
+        > *:not(.alignwide):not(.alignfull) {
+            max-width: $width !important;
             margin-bottom: revert;
 
             &:last-of-type {
@@ -20,17 +22,11 @@
             }
         }
 
-        .wp-block-image {
-            &:not(.alignwide):not(.alignfull) {
-                max-width: 48rem;
-            }
-
-            img {
-                max-width: 100%;
-                border-radius: 0.25rem;
-                @media (max-width: 76.875rem) {
-                    border-radius: 0;
-                }
+        img {
+            max-width: 100%;
+            border-radius: 0.25rem;
+            @media (max-width: 76.875rem) {
+                border-radius: 0;
             }
         }
     }
