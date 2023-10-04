@@ -19,6 +19,7 @@ return [
                 'order' => 'ASC',
                 'orderby' => 'menu_order',
                 'post_parent' => empty($ancestors) ? $post->ID : end($ancestors),
+                'post_type' => 'page',
             ]);
 
             foreach ($children as $child) {
