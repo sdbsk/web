@@ -5,9 +5,9 @@
 
 .wp-site-blocks {
     @include layout;
-    @import 'blocks/all';
     @import 'elements/all';
     @import 'parts/all';
     @import 'patterns/all';
+    @import 'blocks/all';
     @import 'templates/all';
 }
