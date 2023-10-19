@@ -9,10 +9,10 @@ declare(strict_types=1);
  */
 ?>
 
-<!-- wp:group {"align":"full","backgroundColor":"apricot","className":"wp-pattern-saleziani-call-to-action"} -->
-<div class="alignfull has-apricot-background-color has-background wp-block-group wp-pattern-saleziani-call-to-action">
-    <!-- wp:group {"backgroundColor":"white"} -->
-    <div class="wp-block-group has-white-background-color has-background">
+<!-- wp:group {"backgroundColor":"light-blue","className":"wp-pattern-saleziani-call-to-action"} -->
+<div class="has-light-blue-background-color has-background wp-block-group wp-pattern-saleziani-call-to-action">
+    <!-- wp:group -->
+    <div class="wp-block-group">
         <!-- wp:heading -->
         <h2 class="wp-block-heading">Vaša podpora je dôležitá</h2>
         <!-- /wp:heading -->
@@ -30,5 +30,10 @@ declare(strict_types=1);
         <!-- /wp:buttons -->
     </div>
     <!-- /wp:group -->
+    <!-- wp:image -->
+    <figure class="wp-block-image">
+        <img src="<?php echo placeholder_image_path(800, 800) ?>" alt=""/>
+    </figure>
+    <!-- /wp:image -->
 </div>
 <!-- /wp:group -->

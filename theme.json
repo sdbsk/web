@@ -54,7 +54,7 @@
                     "slug": "pumpkin"
                 },
                 {
-                    "color": "#e1ecf8",
+                    "color": "#c7e7f1",
                     "name": "Svetlo Modrá",
                     "slug": "light-blue"
                 },
@@ -93,5 +93,4 @@
             "lineHeight": true
         }
     }
-
 }

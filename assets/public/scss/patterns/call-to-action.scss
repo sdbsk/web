@@ -44,21 +44,4 @@
             color: #272727;
         }
     }
-
-    &.one-color {
-        margin-right: unset;
-        margin-left: unset;
-        padding: 0 1rem;
-        border-radius: 1rem;
-        @media(max-width: 50rem) {
-            padding: 0 1rem;
-        }
-
-        .wp-block-group {
-            padding: 3rem 0;
-            @media(max-width: 50rem) {
-                padding: 2rem 0;
-            }
-        }
-    }
 }
