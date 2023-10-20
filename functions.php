@@ -10,6 +10,7 @@ $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
 add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
+    wp_enqueue_style('admin', home_url() . $manifest[$assets . 'admin.css']);
     wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
 
@@ -25,6 +26,7 @@ add_action('admin_menu', function (): void {
             );
         } catch (Throwable) {
             echo 'Legacy database connection could not be established.';
+
             return;
         }
 
@@ -38,6 +40,7 @@ add_action('admin_menu', function (): void {
 
         if (false === $author) {
             echo 'No user found by email gondova@saleziani.sk, create it first.';
+
             return;
         }
 
@@ -320,16 +323,13 @@ add_action('init', function () use ($template): void {
     unregister_block_pattern_category('text');
 });
 
-add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
-    wp_enqueue_style('admin', home_url() . $manifest[$assets . 'admin.css']);
-});
-
 add_action('save_post_post', function (int $postId): void {
     wp_set_post_categories($postId, (int)get_option('default_category'), true);
 });
 
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
+    wp_enqueue_script('public', home_url() . $manifest[$assets . 'public.js'], [], false, ['in_footer' => true]);
 });
 
 add_filter('allowed_block_types_all', function (): array {

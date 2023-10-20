@@ -1,0 +1,15 @@
+.wp-pattern-saleziani-accordion {
+    .accordion-item {
+        .accordion-button {
+            > p {
+                margin-bottom: 0;
+            }
+        }
+
+        .accordion-body {
+            > p {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
