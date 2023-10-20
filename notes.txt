@@ -19,5 +19,3 @@ Nastylovat accordion pattern
 Nieje mozne ho vlozit priamo, vklada sa cez block "Tlacidla" a v nom je blok "Tlacidlo"
 Nastylovat na "cerveno"
 Tlacidlu je mozne prepinat vzhlad "Vyplnit" a "Oramovanie", nastylujme oba varianty
-
-filtrovanie najnovsich clankov podla tagov
