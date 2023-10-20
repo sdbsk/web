@@ -37,10 +37,14 @@ return [
                 'default' => 3,
                 'type' => 'integer',
             ],
+            'tag' => [
+                'default' => 0,
+                'type' => 'integer',
+            ],
         ],
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
             $output = '';
-            $posts = get_posts(['numberposts' => $attributes['count']]);
+            $posts = get_posts(['numberposts' => $attributes['count'], 'tag_id' => $attributes['tag']]);
 
             if (count($posts) > 0) {
                 $output .= '<div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3">';

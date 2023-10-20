@@ -62,7 +62,7 @@
             pages.pop();
         }
 
-        fetch(window.location.origin + '/wp-json/wp/v2/pages?_fields=id,title&order=asc&per_page=100&page=' + page).then(response => response.json().then(json => {
+        fetch(window.location.origin + '/wp-json/wp/v2/pages/?_fields=id,title&order=asc&per_page=100&page=' + page).then(response => response.json().then(json => {
             json.forEach(page => pages.push({label: page.title.rendered, value: page.id}));
 
             if (response.headers.get('x-wp-totalpages') > page) {
