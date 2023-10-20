@@ -1,0 +1,23 @@
+### ACTION BLOCK
+Nastylovat call to action block
+    html markup by mal byt na to pripraveny
+    potrebne zmenit CSS
+    pomocou CSS aj rotovat obrazok
+    pomocou CSS nastavit aj farbu buttonu - ta sa nebude nastavovat v CMS, bude urcena farbou pozadia - v css nastylujeme .has-lightblue-background button {background-color: white, color: black}
+
+### NEWSLETTER FORM BLOCK
+Newsletter formular nebudeme vkladat do footra, pretoze potrebujeme mat moznost pridat ho do obsahu a potom ho uz nechceme mat vo footri.
+Newsletter formular bloku treba upravit CSS tak, aby zvladal dva varianty (voli sa v nastaveniach bloku):
+    - Dva stĺpce s pozadím (pätička)   - obalene triedou "single-column-no-background"
+    - Jeden stĺpec bez pozadia (obsah) - obalene triedou "two-columns-with-background"
+Podobne do sablon nebudeme naspod automaticky vkladat ani CallToAction blok, pretoze existuju stranky, ktore ho nemaju.
+
+### ACCORDION PATTERN
+Nastylovat accordion pattern
+
+### BUTTON BLOCK
+Nieje mozne ho vlozit priamo, vklada sa cez block "Tlacidla" a v nom je blok "Tlacidlo"
+Nastylovat na "cerveno"
+Tlacidlu je mozne prepinat vzhlad "Vyplnit" a "Oramovanie", nastylujme oba varianty
+
+filtrovanie najnovsich clankov podla tagov
