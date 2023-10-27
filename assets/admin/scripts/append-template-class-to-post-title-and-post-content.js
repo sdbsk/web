@@ -1,9 +1,9 @@
+const cssClassPrefix = 'wp-template-';
+const defaultTemplate = 'post' === window.pagenow ? 'narrow' : 'page';
 const selectors = [
     '.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper',
     '.editor-styles-wrapper .wp-block-post-content'
 ];
-const cssClassPrefix = 'wp-template-';
-const defaultTemplate = 'post' === window.pagenow ? 'narrow' : 'page';
 
 wp.data.subscribe(() => {
     let template = wp.data.select('core/editor').getEditedPostAttribute('template');
