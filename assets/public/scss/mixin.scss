@@ -35,8 +35,8 @@
 }
 
 @mixin link-with-icon() {
-    color: #5795d6;
-    font-size: 1.0625rem;
+    color: #cf3942;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1.5rem;
     text-decoration: none;
@@ -47,11 +47,11 @@
     position: relative;
     width: fit-content;
     &:after {
-        background-image: url('../images/arrow-right-blue.svg');
+        background-image: url('../images/arrow-right-red.svg');
         content: '';
         display: inline-block;
         height: 1.25rem;
-        margin-left: 0.25rem;
+        margin-left: 0.5rem;
         width: 1.25rem;
     }
     &:before {
@@ -59,13 +59,13 @@
         left: 0;
         right: 0;
         height: 0.125rem;
-        background-color: #5795d6;
+        background-color: #cf3942;
         position: absolute;
         bottom: 0;
     }
     &[target='_blank'] {
         &:after {
-            background-image: url('../images/external-link-blue.svg');
+            background-image: url('../images/external-link-red.svg');
         }
     }
 }
