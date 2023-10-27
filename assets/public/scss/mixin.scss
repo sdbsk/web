@@ -32,19 +32,6 @@
             }
         }
     }
-    .container-fluid.wp-block-group {
-        > .wp-pattern-saleziani-page-background {
-            ~ .wp-block-post-content {
-                > * {
-                    &:last-of-type {
-                        &.has-background {
-                            margin-bottom: 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 @mixin link-with-icon() {

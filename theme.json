@@ -3,80 +3,20 @@
     "version": 2,
     "customTemplates": [
         {
-            "name": "news",
+            "name": "narrow",
             "postTypes": [
                 "page"
             ],
-            "title": "Aktuality"
+            "title": "Úzka šablóna"
         }
     ],
     "settings": {
         "color": {
             "palette": [
                 {
-                    "color": "#f8dad3",
-                    "name": "Apricot",
-                    "slug": "apricot"
-                },
-                {
-                    "color": "#272727",
-                    "name": "Blackberry",
-                    "slug": "blackberry"
-                },
-                {
-                    "color": "#5795d6",
-                    "name": "Blueberry",
-                    "slug": "blueberry"
-                },
-                {
-                    "color": "#69bcaa",
-                    "name": "Lime",
-                    "slug": "lime"
-                },
-                {
-                    "color": "#cbe8e1",
-                    "name": "Mint",
-                    "slug": "mint"
-                },
-                {
-                    "color": "#eec351",
-                    "name": "Pineapple",
-                    "slug": "pineapple"
-                },
-                {
-                    "color": "#cf3942",
-                    "name": "Potato",
-                    "slug": "potato"
-                },
-                {
-                    "color": "#ee8d0f",
-                    "name": "Pumpkin",
-                    "slug": "pumpkin"
-                },
-                {
-                    "color": "#c7e7f1",
-                    "name": "Svetlo Modrá",
-                    "slug": "light-blue"
-                },
-                {
-                    "color": "#e5f3f0",
-                    "name": "Svetlo Zelená",
-                    "slug": "light-green"
-                },
-                {
-                    "color": "#f9f6f4",
-                    "name": "Svetlo Hnedá",
-                    "slug": "light-brown"
-                },
-                {
-                    "color": "#fbece9",
-                    "name": "Svetlo Oranžová",
-                    "slug": "light-orange"
-                },
-                {
-                    "color": "#fcf4e0",
-                    "name": "Svetlo Žltá",
-                    "slug": "light-yellow"
+                    "color": "#000000",
+                    "name": "#000000",
+                    "slug": "000000"
                 }
             ]
         },
