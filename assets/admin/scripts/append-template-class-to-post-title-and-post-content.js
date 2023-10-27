@@ -1,7 +1,7 @@
 import onMount from '../util/on-mount';
 
 if (['post-new-php', 'post-php'].includes(window.adminpage)) {
-    const template = 'post' === window.pagenow ? 'single' : 'page';
+    const template = 'post' === window.pagenow ? 'narrow' : 'page';
 
     onMount('.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper').then((title) => {
         title.classList.add('wp-template-' + template);
