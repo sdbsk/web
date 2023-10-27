@@ -1,6 +1,8 @@
-if ('edit-post' === window.pagenow) {
-    const input = document.querySelector('.category-checklist > li > label > input');
+import onMount from '../util/on-mount';
 
-    input.disabled = true;
-    input.style.cursor = 'not-allowed';
+if ('edit-post' === window.pagenow) {
+    onMount('.category-checklist > li > label > input').then((input) => {
+        input.disabled = true;
+        input.style.cursor = 'not-allowed';
+    });
 }
