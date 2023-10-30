@@ -1,29 +1,26 @@
 .wp-block-pullquote {
-    margin: inherit;
-    padding: 0;
+  margin: inherit;
+  padding: 0;
 
-    blockquote {
-        margin: 0;
-        padding: 1.63rem 1.5rem;
-        text-align: left;
-        border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
+  blockquote {
+    margin: 0;
+    padding: 1rem 0 1rem 2rem;
+    text-align: left;
+    border-left: 0.0625rem solid rgba(39, 39, 39, 0.2);
 
-        p {
-            font-family: Merriweather, sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            font-style: italic;
-            line-height: 2.375rem;
-            margin-bottom: 1rem;
-            color: #cf3942;
-        }
-
-        cite {
-            font-family: Merriweather, sans-serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            line-height: 2.375rem;
-            color: #272727;
-        }
+    p {
+      font-family: "Playfair Display", sans-serif;
+      font-size: 2rem;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 2.75rem;
+      margin-bottom: 1rem;
+      color: #cf3942;
     }
+
+    cite {
+      color: #272727;
+      @include body-xl;
+    }
+  }
 }

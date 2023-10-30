@@ -36,7 +36,8 @@ declare(strict_types=1);
                         <a class="wp-block-button__link has-cf-3942-background-color has-background wp-element-button"
                            href="#">
                             Podporiť teraz
-                        </a></div>
+                        </a>
+                    </div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->

@@ -1,59 +1,40 @@
 @import '../mixin';
 
-.wp-pattern-saleziani-three-icon-heading-description,
-.wp-pattern-saleziani-three-icon-heading-description-list {
-    .box {
-        .wp-block-image {
-            margin-bottom: 0.75rem;
-
-            img {
-                width: 100%;
-            }
-        }
-
-        .wp-block-heading {
-            font-size: 1.3125rem;
-            font-weight: 700;
-            line-height: 1.8125rem;
-            margin: 0 0 0.5rem;
-        }
-
-        p {
-            font-size: 1.0625rem;
-            line-height: 1.5rem;
-            margin: 0 0 0.5rem 0;
-            color: rgba(39, 39, 39, 0.80);
-
-            a {
-                @include link-with-icon;
-            }
-
-            &:last-child {
-                margin: 0;
-            }
-        }
-    }
-}
-
 .wp-pattern-saleziani-three-icon-heading-description {
-    .box {
-        padding: 1.5rem 1.5rem 1.5rem 0;
+  .box {
+    padding-right: 2rem;
 
-        .wp-block-image {
-            width: 2.5rem;
-            height: 2.5rem;
-        }
+    .wp-block-image {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 1rem;
+
+      img {
+        width: 100%;
+      }
     }
-}
 
-.wp-pattern-saleziani-three-icon-heading-description-list {
-    .box {
-        padding: 1.5rem;
-        border-left: 0.125rem solid rgba(39, 39, 39, 0.06);
-
-        .wp-block-image {
-            width: 4rem;
-            height: 4rem;
-        }
+    .wp-block-heading {
+      font-size: 1.3125rem;
+      font-weight: 700;
+      line-height: 1.8125rem;
+      margin: 0 0 1rem;
+      color: #272727;
     }
+
+    p {
+      font-size: 1.0625rem;
+      line-height: 1.5rem;
+      margin: 0 0 1rem 0;
+      color: rgba(39, 39, 39, 0.80);
+
+      a {
+        @include link-with-icon;
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
 }

@@ -1,9 +1,7 @@
 
 h2 {
-    font-size: 3rem;
-    font-weight: 400;
-    line-height: 3.75rem;
-    margin: 0 0 3rem 0;
-    color: #cf3942;
+  @include display-reg-xl;
+  margin: 0 0 3rem 0;
+  color: #cf3942;
 }
 
