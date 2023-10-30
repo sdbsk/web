@@ -1,6 +1,9 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-heading-description-link {
+    width: 100%;
+    max-width: 48.125rem;
+
     h2 {
         margin-bottom: 1rem;
     }
