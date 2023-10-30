@@ -3,29 +3,12 @@
 .wp-block-post-content {
     > .wp-block-image {
         min-height: 25rem;
-        @media (max-width: 76.875rem) {
-            max-width: unset;
-            margin-right: -$grid-gutter-width/2 !important;
-            margin-left: -$grid-gutter-width/2 !important;
-        }
 
         img {
             width: 100%;
             min-height: 25rem;
+            border-radius: 0.5rem;
             object-fit: cover;
-        }
-
-        &.alignfull {
-            margin-right: -$grid-gutter-width/2 !important;
-            margin-left: -$grid-gutter-width/2 !important;
-        }
-
-        &.alignwide {
-            @media (max-width: 101.875rem) {
-                max-width: unset;
-                margin-right: -$grid-gutter-width/2 !important;
-                margin-left: -$grid-gutter-width/2 !important;
-            }
         }
     }
 }
