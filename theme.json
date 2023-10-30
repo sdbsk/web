@@ -37,6 +37,26 @@
           "color": "#50B6B1",
           "name": "#50B6B1",
           "slug": "#50b6b1"
+        },
+        {
+          "color": "#fff2ce",
+          "name": "#fff2ce",
+          "slug": "#fff2ce"
+        },
+        {
+          "color": "#d7eeed",
+          "name": "#d7eeed",
+          "slug": "d7eeed"
+        },
+        {
+          "color": "#fbe9e5",
+          "name": "#fbe9e5",
+          "slug": "fbe9e5"
+        },
+        {
+          "color": "#e8f4f9",
+          "name": "#e8f4f9",
+          "slug": "e8f4f9"
         }
       ]
     },

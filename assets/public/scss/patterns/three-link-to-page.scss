@@ -1,98 +1,86 @@
 @import '../mixin';
 
-.wp-pattern-saleziani-three-link-to-page,
-.wp-pattern-saleziani-three-cards {
-    .wp-block-saleziani-link-to-page {
-        overflow: hidden;
-        height: 100%;
-        border-radius: 0.5rem;
+.wp-pattern-saleziani-three-link-to-page {
+  .wp-block-saleziani-link-to-page {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 0.5rem;
 
-        .basic-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            background: #f9f6f4;
+    .basic-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: #f9f6f4;
 
-            .wp-block-image {
-                overflow: hidden;
-                height: 100%;
-                margin-bottom: 0;
+      .image {
+        display: flex;
+        border-radius: 0.5rem 0.5rem 0 0;
 
-                img {
-                    width: 100%;
-                    transition: transform 0.3s ease;
-                }
-            }
-
-            .image {
-                display: flex;
-                border-radius: 0.5rem 0.5rem 0 0;
-
-                > img {
-                    width: 100%;
-                    height: auto;
-                    min-height: 11.5625rem;
-                    margin: 0;
-                    transition: transform 0.3s ease;
-                }
-            }
-
-            .content {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-                padding: 1.5rem 2rem 2rem;
-
-                .text {
-                    a, h3 {
-                        display: block;
-                        margin: 0 0 1.5rem;
-                        text-decoration: unset;
-
-                        > h3, a {
-                            font-size: 1.5rem;
-                            font-weight: 400;
-                            line-height: 1.875rem;
-                            margin: 0;
-                            text-decoration: unset;
-                            color: #272727;
-                        }
-                    }
-
-                    p {
-                        font-size: 0.9375rem;
-                        font-weight: 400;
-                        line-height: 1.3125rem;
-                        margin-bottom: 1.5rem;
-                        color: rgba(39, 39, 39, 0.80);
-                    }
-                }
-
-                * {
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-
-            .link, p a {
-                @include link-with-icon;
-            }
-
-            &:hover {
-                .wp-block-image {
-                    img {
-                        transform: scale(1.03);
-                    }
-                }
-
-                .image {
-                    > img {
-                        transform: scale(1.03);
-                    }
-                }
-            }
+        > img {
+          width: 100%;
+          height: auto;
+          min-height: 11.5625rem;
+          margin: 0;
+          transition: transform 0.3s ease;
         }
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+        padding: 1.5rem 2rem 2rem;
+
+        .text {
+          a, h3 {
+            display: block;
+            margin: 0 0 1.5rem;
+            text-decoration: unset;
+
+            > h3, a {
+              font-size: 1.5rem;
+              font-weight: 400;
+              line-height: 1.875rem;
+              margin: 0;
+              text-decoration: unset;
+              color: #272727;
+            }
+          }
+
+          p {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.3125rem;
+            margin-bottom: 1.5rem;
+            color: rgba(39, 39, 39, 0.80);
+          }
+        }
+
+        * {
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .link, p a {
+        @include link-with-icon;
+      }
+
+      &:hover {
+        .wp-block-image {
+          img {
+            transform: scale(1.03);
+          }
+        }
+
+        .image {
+          > img {
+            transform: scale(1.03);
+          }
+        }
+      }
     }
+  }
 }
