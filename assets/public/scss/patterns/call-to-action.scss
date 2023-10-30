@@ -4,7 +4,12 @@
 
   .content {
     padding: 6rem 2rem 6rem 6rem;
-
+    @include media-breakpoint-down(md) {
+      padding: 4rem 2rem 2rem 2rem;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 4rem 2rem 0 2rem;
+    }
 
     p {
       @include body-m;
@@ -37,21 +42,34 @@
   }
 
   .wp-block-image {
-    //position: relative;
+    position: relative;
     height: 100%;
     margin-bottom: 0;
     border-radius: 0.5rem;
+    @include media-breakpoint-down(sm) {
+      left: 2rem;
+      overflow: hidden;
+      height: unset;
+      max-height: unset;
+    }
 
     img {
-      //position: absolute;
-      //top: 0;
-      //left: 0;
-      width: 120% !important;
+      position: absolute;
+      top: 0;
+      left: 0;
       max-width: unset;
       height: 120% !important;
       transform: rotate(-12deg);
+      transform-origin: 50% 0;
       border-radius: 0.5rem;
       object-fit: cover;
+      @include media-breakpoint-down(sm) {
+        position: relative;
+        left: 0;
+        width: 120% !important;
+        height: 25rem !important;
+        transform-origin: 90% 0;
+      }
     }
   }
 }

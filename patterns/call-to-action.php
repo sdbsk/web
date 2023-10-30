@@ -14,8 +14,8 @@ declare(strict_types=1);
 <div class="wp-block-group wp-pattern-saleziani-call-to-action has-c-7-e-7-f-1-background-color has-background">
     <!-- wp:group {"className":"row"} -->
     <div class="wp-block-group row">
-        <!-- wp:group {"className":"col-md-8"} -->
-        <div class="wp-block-group col-md-8">
+        <!-- wp:group {"className":"col-sm-7 col-md-8"} -->
+        <div class="wp-block-group col-sm-7 col-md-8">
             <!-- wp:group {"className":"content"} -->
             <div class="wp-block-group content">
                 <!-- wp:heading {"textColor":"272727"} -->
@@ -41,23 +41,22 @@ declare(strict_types=1);
                 </div>
                 <!-- /wp:buttons -->
             </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:group -->
 
+        <!-- wp:group {"className":"col-sm-5 col-md-4"} -->
+        <div class="wp-block-group col-sm-5 col-md-4">
+            <!-- wp:image -->
+            <figure class="wp-block-image">
+                <img src="<?php echo placeholder_image_path(500, 500) ?>" alt=""/>
+            </figure>
+            <!-- /wp:image -->
         </div>
         <!-- /wp:group -->
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:group {"className":"col-md-4"} -->
-    <div class="wp-block-group col-md-4">
-        <!-- wp:image -->
-        <figure class="wp-block-image">
-            <img src="<?php echo placeholder_image_path(500, 500) ?>" alt=""/>
-        </figure>
-        <!-- /wp:image -->
-    </div>
-    <!-- /wp:group -->
-</div>
-<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 
