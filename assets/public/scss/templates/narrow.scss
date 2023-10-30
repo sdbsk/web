@@ -1,28 +1,28 @@
 .wp-template-narrow {
-    max-width: 48rem;
-    margin: 0 auto;
+  max-width: 48.125rem;
+  margin: 0 auto;
 
-    h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        line-height: 3.5rem;
-        margin: 7rem auto 4rem;
-        @media(max-width: 47.9375rem) {
-            margin: 4rem auto 2.5rem;
-        }
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.5rem;
+    margin: 7rem auto 4rem;
+    @media(max-width: 47.9375rem) {
+      margin: 4rem auto 2.5rem;
+    }
+  }
+
+  &.wp-block-post-content {
+    > ol, > p, > ul {
+      margin-bottom: revert;
     }
 
-    &.wp-block-post-content {
-        > ol, > p, > ul {
-            margin-bottom: revert;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 0.25rem;
-            @media (max-width: 76.875rem) {
-                border-radius: 0;
-            }
-        }
+    img {
+      max-width: 100%;
+      border-radius: 0.25rem;
+      @media (max-width: 76.875rem) {
+        border-radius: 0;
+      }
     }
+  }
 }

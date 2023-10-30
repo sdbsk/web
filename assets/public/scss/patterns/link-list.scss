@@ -1,17 +1,17 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-link-list {
-    .row {
-        .col {
-            margin-bottom: -0.0625rem;
-        }
+  .row {
+    .wp-block-group {
+      margin-bottom: -0.0625rem;
     }
+  }
 
-    p {
-        margin: 0;
+  p {
+    margin: 0;
 
-        a {
-            @include navigation-with-arrow;
-        }
+    a {
+      @include navigation-with-arrow;
     }
+  }
 }
