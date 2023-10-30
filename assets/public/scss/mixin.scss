@@ -1,98 +1,100 @@
 @import 'bootstrap-override';
+@import 'typography';
 
 @mixin layout() {
-    font-family: 'Fira Sans', sans-serif;
-    *, :after, :before {
-        box-sizing: border-box;
-    }
-    .wp-block-post-content {
-        > * {
-            margin-bottom: 6rem;
-            @media(max-width: 50rem) {
-                margin-bottom: 3rem;
-            }
+  font-family: 'Fira Sans', sans-serif;
 
-            &.has-background {
-                padding-top: 6rem;
-                padding-bottom: 6rem;
-            }
+  *, :after, :before {
+    box-sizing: border-box;
+  }
+  .wp-block-post-content {
+    > * {
+      margin-bottom: 6rem;
+      @media(max-width: 50rem) {
+        margin-bottom: 3rem;
+      }
+
+      //&.has-background {
+      //  padding-top: 6rem;
+      //  padding-bottom: 6rem;
+      //}
+      //}
+
+      //> .wp-block-group.has-background {
+      //  padding-left: $grid-gutter-width/2;
+      //  padding-right: $grid-gutter-width/2;
+      //  margin-right: -$grid-gutter-width/2;
+      //  margin-left: -$grid-gutter-width/2;
+
+      &.alignwide {
+        @media (max-width: 101.875rem) {
+          margin-left: -$grid-gutter-width/2 !important;
+          margin-right: -$grid-gutter-width/2 !important;
         }
-
-        > .wp-block-group.has-background {
-            padding-left: $grid-gutter-width/2;
-            padding-right: $grid-gutter-width/2;
-            margin-right: -$grid-gutter-width/2;
-            margin-left: -$grid-gutter-width/2;
-
-            &.alignwide {
-                @media (max-width: 101.875rem) {
-                    margin-left: -$grid-gutter-width/2 !important;
-                    margin-right: -$grid-gutter-width/2 !important;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 @mixin link-with-icon() {
-    color: #cf3942;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    position: relative;
-    width: fit-content;
+  color: #cf3942;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  position: relative;
+  width: fit-content;
+  &:after {
+    background-image: url('../images/arrow-right-red.svg');
+    content: '';
+    display: inline-block;
+    height: 1.25rem;
+    margin-left: 0.5rem;
+    width: 1.25rem;
+  }
+  &:before {
+    content: '';
+    left: 0;
+    right: 0;
+    height: 0.125rem;
+    background-color: #cf3942;
+    position: absolute;
+    bottom: 0;
+  }
+  &[target='_blank'] {
     &:after {
-        background-image: url('../images/arrow-right-red.svg');
-        content: '';
-        display: inline-block;
-        height: 1.25rem;
-        margin-left: 0.5rem;
-        width: 1.25rem;
+      background-image: url('../images/external-link-red.svg');
     }
-    &:before {
-        content: '';
-        left: 0;
-        right: 0;
-        height: 0.125rem;
-        background-color: #cf3942;
-        position: absolute;
-        bottom: 0;
-    }
-    &[target='_blank'] {
-        &:after {
-            background-image: url('../images/external-link-red.svg');
-        }
-    }
+  }
 }
 
 @mixin navigation-with-arrow {
-    font-size: 1.0625rem;
-    font-weight: 500;
-    line-height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    padding: 1rem 0.75rem;
-    transition: padding 0.3s ease;
-    text-decoration: none;
-    color: #272727;
-    border-top: 0.0625rem solid #e5e5e5;
-    border-bottom: 0.0625rem solid #e5e5e5;
-    &:after {
-        display: inline-block;
-        min-width: 1.25rem;
-        height: 1.25rem;
-        margin-left: 0.75rem;
-        content: '';
-        background-image: url('../images/arrow-right-blue.svg');
-    }
-    &:hover {
-        padding: 1rem 0.6rem 1rem 0.75rem;
-    }
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  transition: padding 0.3s ease;
+  text-decoration: none;
+  color: #272727;
+  border-top: 0.0625rem solid #e5e5e5;
+  border-bottom: 0.0625rem solid #e5e5e5;
+  &:after {
+    display: inline-block;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.75rem;
+    content: '';
+    background-image: url('../images/arrow-right-blue.svg');
+  }
+  &:hover {
+    padding: 1rem 0.6rem 1rem 0.75rem;
+  }
 }

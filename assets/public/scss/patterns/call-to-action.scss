@@ -1,47 +1,57 @@
 .wp-pattern-saleziani-call-to-action {
-    margin-right: -$grid-gutter-width/2;
-    margin-left: -$grid-gutter-width/2;
-    padding: 3rem 0;
-    @media(max-width: 50rem) {
-        padding: 3rem 1rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+
+  .content {
+    padding: 6rem 2rem 6rem 6rem;
+
+
+    p {
+      @include body-m;
+      margin-bottom: 1.5rem;
     }
 
-    .wp-block-group {
-        max-width: 48rem;
-        margin: 0 auto;
-        padding: 3rem 4rem;
-        color: #272727;
-        border-radius: 1rem;
-        @media(max-width: 50rem) {
-            padding: 2rem;
-        }
+    .wp-block-button {
+      width: 100%;
 
-        p {
-            line-height: 1.5rem;
-            margin: 1.5rem 0;
-            text-align: center;
-        }
-
-        .wp-block-button {
-            width: 100%;
-
-            .wp-element-button {
-                font-weight: 500;
-                line-height: 1.5rem;
-                display: block;
-                max-width: max-content;
-                margin: 0 auto;
-                padding: 0.75rem 2rem;
-                background-color: #5795d6;
-            }
-        }
-
-        .wp-block-heading {
-            font-size: 2rem;
-            line-height: 2.8125rem;
-            margin: 0;
-            text-align: center;
-            color: #272727;
-        }
+      .wp-element-button {
+        font-size: 1.0625rem;
+        font-weight: 500;
+        font-style: normal;
+        line-height: 1.5rem;
+        display: block;
+        max-width: max-content;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.25rem;
+      }
     }
+
+    .wp-block-heading {
+      @include display-reg-l;
+      margin-bottom: 1.5rem;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .wp-block-image {
+    //position: relative;
+    height: 100%;
+    margin-bottom: 0;
+    border-radius: 0.5rem;
+
+    img {
+      //position: absolute;
+      //top: 0;
+      //left: 0;
+      width: 120% !important;
+      max-width: unset;
+      height: 120% !important;
+      transform: rotate(-12deg);
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+  }
 }

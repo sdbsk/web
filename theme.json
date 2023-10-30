@@ -1,32 +1,47 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/theme.json",
-    "version": 2,
-    "customTemplates": [
-        {
-            "name": "narrow",
-            "postTypes": [
-                "page"
-            ],
-            "title": "Úzka šablóna"
-        }
-    ],
-    "settings": {
-        "color": {
-            "palette": [
-                {
-                    "color": "#000000",
-                    "name": "#000000",
-                    "slug": "000000"
-                }
-            ]
-        },
-        "spacing": {
-            "units": [
-                "rem"
-            ]
-        },
-        "typography": {
-            "lineHeight": true
-        }
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "customTemplates": [
+    {
+      "name": "narrow",
+      "postTypes": [
+        "page"
+      ],
+      "title": "Úzka šablóna"
     }
+  ],
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "color": "#272727",
+          "name": "#272727",
+          "slug": "272727"
+        },
+        {
+          "color": "#C7E7F1",
+          "name": "#C7E7F1",
+          "slug": "c7e7f1"
+        },
+        {
+          "color": "#CF3942",
+          "name": "#CF3942",
+          "slug": "cf3942"
+        },
+        {
+          "color": "#F9CA3E",
+          "name": "#F9CA3E",
+          "slug": "f9ca3e"
+        }
+      ]
+    },
+    "spacing": {
+      "units": [
+        "rem"
+      ]
+    },
+    "typography": {
+      "lineHeight": true
+    }
+  }
 }
