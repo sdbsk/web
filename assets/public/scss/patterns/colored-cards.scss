@@ -41,6 +41,10 @@
             .content-top {
                 margin-bottom: 1rem;
 
+                > * {
+                    color: #ffffff !important;
+                }
+
                 .wp-block-heading {
                     font-size: 2rem;
                     font-weight: 400;
@@ -79,6 +83,28 @@
             .wp-block-image {
                 img {
                     transform: scale(1.03);
+                }
+            }
+        }
+
+        &.has-f-9-ca-3-e-background-color {
+            .content {
+                .content-top {
+                    > * {
+                        color: #272727 !important;
+                    }
+                }
+
+                .content-bottom a {
+                    color: #272727;
+
+                    &:before {
+                        background-color: #272727;
+                    }
+
+                    &:after {
+                        background-image: url('../../images/arrow-right-black.svg');
+                    }
                 }
             }
         }

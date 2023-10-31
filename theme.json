@@ -1,73 +1,73 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 2,
-  "customTemplates": [
-    {
-      "name": "narrow",
-      "postTypes": [
-        "page"
-      ],
-      "title": "Úzka šablóna"
-    }
-  ],
-  "settings": {
-    "color": {
-      "palette": [
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "customTemplates": [
         {
-          "color": "#272727",
-          "name": "#272727",
-          "slug": "272727"
-        },
-        {
-          "color": "#C7E7F1",
-          "name": "#C7E7F1",
-          "slug": "c7e7f1"
-        },
-        {
-          "color": "#CF3942",
-          "name": "#CF3942",
-          "slug": "cf3942"
-        },
-        {
-          "color": "#F9CA3E",
-          "name": "#F9CA3E",
-          "slug": "f9ca3e"
-        },
-        {
-          "color": "#50B6B1",
-          "name": "#50B6B1",
-          "slug": "#50b6b1"
-        },
-        {
-          "color": "#fff2ce",
-          "name": "#fff2ce",
-          "slug": "#fff2ce"
-        },
-        {
-          "color": "#d7eeed",
-          "name": "#d7eeed",
-          "slug": "d7eeed"
-        },
-        {
-          "color": "#fbe9e5",
-          "name": "#fbe9e5",
-          "slug": "fbe9e5"
-        },
-        {
-          "color": "#e8f4f9",
-          "name": "#e8f4f9",
-          "slug": "e8f4f9"
+            "name": "narrow",
+            "postTypes": [
+                "page"
+            ],
+            "title": "Úzka šablóna"
+        }
+    ],
+    "settings": {
+        "color": {
+            "palette": [
+                {
+                    "color": "#272727",
+                    "name": "#272727",
+                    "slug": "272727"
                 },
-          {
-              "color": "#CF3942",
-              "name": "#CF3942",
-              "slug": "CF3942"
-          },
-          {
-              "color": "#50B6B1",
-              "name": "#50B6B1",
-              "slug": "50B6B1"
-          }
+                {
+                    "color": "#C7E7F1",
+                    "name": "#C7E7F1",
+                    "slug": "c7e7f1"
+                },
+                {
+                    "color": "#CF3942",
+                    "name": "#CF3942",
+                    "slug": "cf3942"
+                },
+                {
+                    "color": "#FACB3E",
+                    "name": "#FACB3E",
+                    "slug": "FACB3E"
+                },
+                {
+                    "color": "#50B6B1",
+                    "name": "#50B6B1",
+                    "slug": "#50b6b1"
+                },
+                {
+                    "color": "#fff2ce",
+                    "name": "#fff2ce",
+                    "slug": "#fff2ce"
+                },
+                {
+                    "color": "#d7eeed",
+                    "name": "#d7eeed",
+                    "slug": "d7eeed"
+                },
+                {
+                    "color": "#fbe9e5",
+                    "name": "#fbe9e5",
+                    "slug": "fbe9e5"
+                },
+                {
+                    "color": "#e8f4f9",
+                    "name": "#e8f4f9",
+                    "slug": "e8f4f9"
+                },
+                {
+                    "color": "#CF3942",
+                    "name": "#CF3942",
+                    "slug": "CF3942"
+                },
+                {
+                    "color": "#50B6B1",
+                    "name": "#50B6B1",
+                    "slug": "50B6B1"
+                }
             ]
         },
         "spacing": {
