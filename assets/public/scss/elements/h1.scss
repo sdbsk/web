@@ -1,12 +1,10 @@
 h1 {
-    font-size: 4rem;
-    font-weight: 400;
-    line-height: 5rem;
-    margin: 6rem 0 1rem;
-    color: #cf3942;
-    @media(max-width: 62rem) {
-        font-size: 3.4rem;
-        line-height: 3.9rem;
-        margin: 4rem 0 1rem;
-    }
+  @include display-reg-xxl;
+  margin: 6rem 0 1rem;
+  color: #cf3942;
+  @media(max-width: 62rem) {
+    font-size: 3.4rem;
+    line-height: 3.9rem;
+    margin: 4rem 0 1rem;
+  }
 }
