@@ -1,29 +1,28 @@
 .wp-pattern-saleziani-numbers {
-    margin-right: auto;
-    margin-left: auto;
-    padding: 4rem 0;
-    text-align: center;
-
     h2 {
         font-size: 2rem;
-        line-height: 2.625rem;
-        margin-bottom: 4rem;
-        color: #272727;
+        line-height: 2.5rem;
+        margin-bottom: 3rem;
+        color: #cf3942;
     }
 
-    h3 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        line-height: 4.5rem;
-        margin: 0 auto;
-        padding-top: 1rem;
-        white-space: nowrap;
-        border-top: 0.1875rem solid;
-    }
+    .wp-block-group .col {
+        padding: 2rem 1.88rem 2.5rem 1.94rem;
+        border-left: 0.0625rem solid rgba(39, 39, 39, 0.20);
 
-    p {
-        font-size: 1.3125rem;
-        line-height: 1.75rem;
-        margin: 0;
+        h3 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 3.5rem;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        p {
+            font-size: 1.125rem;
+            font-weight: 500;
+            line-height: 1.5rem;
+            margin: 0;
+        }
     }
 }

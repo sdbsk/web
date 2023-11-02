@@ -31,7 +31,7 @@
                 {
                     "color": "#FACB3E",
                     "name": "#FACB3E",
-                    "slug": "FACB3E"
+                    "slug": "facb3e"
                 },
                 {
                     "color": "#50B6B1",
@@ -59,14 +59,9 @@
                     "slug": "e8f4f9"
                 },
                 {
-                    "color": "#CF3942",
-                    "name": "#CF3942",
-                    "slug": "CF3942"
-                },
-                {
-                    "color": "#50B6B1",
-                    "name": "#50B6B1",
-                    "slug": "50B6B1"
+                    "color": "#966A4E",
+                    "name": "#966A4E",
+                    "slug": "966a4e"
                 }
             ]
         },
