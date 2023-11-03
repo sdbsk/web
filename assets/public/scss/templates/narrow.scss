@@ -1,14 +1,21 @@
 .wp-template-narrow {
-  max-width: 48.125rem;
-  margin: 0 auto;
+  > * {
+    max-width: 48.125rem;
+    margin-right: auto;
+    margin-left: auto;
+
+    &:first-child {
+      &.wp-block-image {
+        max-width: 73.125rem;
+      }
+    }
+  }
 
   h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 3.5rem;
-    margin: 7rem auto 4rem;
+    @include display-reg-xl;
+    margin: 4rem auto;
     @media(max-width: 47.9375rem) {
-      margin: 4rem auto 2.5rem;
+      margin: 2.5rem auto;
     }
   }
 
