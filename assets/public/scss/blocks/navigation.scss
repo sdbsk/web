@@ -1,13 +1,21 @@
 @import '../mixin';
 
 .wp-block-saleziani-navigation {
-    .row {
-        .col {
-            margin-bottom: -0.0625rem;
-        }
+  .row {
+    .col {
+      margin-bottom: -0.0625rem;
     }
+  }
 
-    .navigation-item {
-        @include navigation-with-arrow;
+  .navigation-item {
+    @include body-m;
+    font-weight: 500;
+    margin-right: 1.5rem;
+    text-decoration: none;
+    color: #272727;
+
+    &.current {
+      color: #CF3942;
     }
+  }
 }

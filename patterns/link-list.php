@@ -11,45 +11,32 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-link-list"} -->
 <div class="wp-block-group wp-pattern-saleziani-link-list">
-    <!-- wp:group {"className":"row"} -->
-    <div class="wp-block-group row">
-        <!-- wp:group {"className":"col-md-10 col-lg-9"} -->
-        <div class="wp-block-group col-md-10 col-lg-9">
-            <!-- wp:paragraph -->
-            <p>
-                <a href="#">Lorem ipsum</a>
-            </p>
-            <!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:group -->
-        <!-- wp:group {"className":"col-md-10 col-lg-9"} -->
-        <div class="wp-block-group col-md-10 col-lg-9">
-            <!-- wp:paragraph -->
-            <p>
-                <a href="#">Dolor sit amet</a>
-            </p>
-            <!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:group -->
-        <!-- wp:group {"className":"col-md-10 col-lg-9"} -->
-        <div class="wp-block-group col-md-10 col-lg-9">
-            <!-- wp:paragraph -->
-            <p>
-                <a href="#">Consectetur adipiscing elit</a>
-            </p>
-            <!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:group -->
-        <!-- wp:group {"className":"col-md-10 col-lg-9"} -->
-        <div class="wp-block-group col-md-10 col-lg-9">
-            <!-- wp:paragraph -->
-            <p>
-                <a href="#">Nam vel tristique massa</a>
-            </p>
-            <!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:group -->
-    </div>
-    <!-- /wp:group -->
+    <!-- wp:heading {"level":3} -->
+    <h3 class="wp-block-heading">Ďalšie informácie</h3>
+    <!-- /wp:heading -->
+    <!-- wp:paragraph -->
+    <p>
+        <a href="#">Naše hodnoty</a>
+    </p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph -->
+    <p>
+        <a href="#">Naše poslanie</a>
+    </p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph -->
+    <p>
+        <a href="#">Naša spiritualita</a>
+    </p>
+    <!-- /wp:paragraph -->
+
+    <!-- wp:paragraph -->
+    <p>
+        <a href="#">Spolupráca s laikmi</a>
+    </p>
+    <!-- /wp:paragraph -->
+
 </div>
 <!-- /wp:group -->

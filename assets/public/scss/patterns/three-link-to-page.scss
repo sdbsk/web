@@ -10,10 +10,11 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-            background: #fdf9f8;
+      background: #fdf9f8;
 
       .image {
         display: flex;
+        overflow: hidden;
         border-radius: 0.5rem 0.5rem 0 0;
 
         > img {

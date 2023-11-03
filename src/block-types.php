@@ -12,21 +12,23 @@ function wrap_block_content(WP_Block $block, string $content): string
 return [
     'navigation' => [
         'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            $output = '<div class="row row-cols-1 row-cols-sm-2">';
+            $output = '';
             $post = get_post();
             $ancestors = get_post_ancestors($post);
+            $parentPostID = empty($ancestors) ? $post->ID : end($ancestors);
+            $parentPost = $parentPostID === $post->ID ? $post : get_post($parentPostID);
+            $currentUrl = get_permalink($post);
             $children = get_children([
                 'order' => 'ASC',
                 'orderby' => 'menu_order',
-                'post_parent' => empty($ancestors) ? $post->ID : end($ancestors),
+                'post_parent' => $parentPostID,
                 'post_type' => 'page',
             ]);
 
-            foreach ($children as $child) {
-                $output .= '<div class="col"><a href="' . get_permalink($child) . '" class="navigation-item">' . $child->post_title . '</a></div>';
+            foreach ([$parentPost, ...$children] as $item) {
+                $itemUrl = get_permalink($item);
+                $output .= $currentUrl === $itemUrl ? '<span class="navigation-item current">' . $item->post_title . '</span>' : '<a href="' . $itemUrl . '" class="navigation-item">' . $item->post_title . '</a>';
             }
-
-            $output .= '</div>';
 
             return wrap_block_content($block, $output);
         },

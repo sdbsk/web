@@ -1,4 +1,19 @@
 .wp-template-page {
   max-width: 73.125rem;
   margin: 0 auto;
+
+  > p,
+  > ul,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > .wp-pattern-saleziani-content-heading-text,
+  > .wp-pattern-saleziani-heading-description-link,
+  > .wp-pattern-saleziani-link-list,
+  > .wp-block-pullquote {
+    max-width: 48.125rem;
+  }
+
 }

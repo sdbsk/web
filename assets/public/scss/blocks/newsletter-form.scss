@@ -1,117 +1,134 @@
 .wp-block-saleziani-newsletter-form {
-    min-height: 13.5rem;
+  min-height: unset;
+  margin-bottom: 6rem;
 
-    .ec-v-form-holder {
-        width: unset !important;
-        max-width: 37.5rem;
-        background-color: transparent !important;
+  .ec-v-form-holder {
+    width: unset !important;
+    background-color: transparent !important;
 
-        form {
-            min-height: unset !important;
+    form {
+      min-height: unset !important;
 
-            .ec-v-form-step {
-                height: auto !important;
+      .ec-v-form-step {
+        height: auto !important;
 
-                .ec-v-form-column {
-                    padding: 0 0.9375rem;
+        .ec-v-form-column {
 
-                    > div {
-                        padding: 0 !important;
-                    }
+          > div {
+            padding: 0 !important;
+          }
 
-                    .ec-v-form-text {
-                        padding-bottom: 1rem !important;
+          .ec-v-form-text {
+            float: left;
+            width: 50%;
+            padding-right: 6rem !important;
+            padding-bottom: 1rem !important;
 
-                        p {
-                            font-family: Merriweather, serif;
-                            font-size: 18px !important;
-                            font-weight: 700;
-                            line-height: 25px;
-                            margin: 0 !important;
-                            color: #272727 !important;
-                        }
-                    }
+            p {
+              font-size: 2rem !important;
+              font-weight: 400;
+              line-height: 2.5rem;
+              margin: 0 !important;
+              text-align: left !important;
+              color: #272727 !important;
 
-                    .ec-v-form-input {
-                        padding-bottom: 1rem !important;
-
-                        .ec-v-forms-label {
-                            display: none;
-                        }
-
-                        input {
-                            font-size: 1rem;
-                            font-weight: 400;
-                            font-style: normal;
-                            line-height: 1.1875rem;
-                            padding: 0.875rem 1.5rem 0.9375rem 1.5rem;
-                            color: rgba(39, 39, 39, 0.60);
-                            border: 1px solid rgba(39, 39, 39, 0.12);
-                            border-radius: 0.25rem;
-                            background: #ffffff;
-                        }
-
-                        input[type=checkbox] {
-                            + label {
-                                top: .25rem;
-                                height: 1.125rem;
-                                margin-bottom: 0;
-
-                                &:before {
-                                    width: 1.125rem;
-                                    height: 1.125rem;
-                                    border: 0.125rem solid #7b7a79;
-                                    border-radius: 0.125rem;
-                                    background-color: transparent;
-                                }
-
-                                &:after {
-                                    top: .1875rem;
-                                    left: .375rem;
-                                    width: .375rem;
-                                    height: .625rem;
-                                    border-color: #7b7a79;
-                                }
-                            }
-                        }
-
-                        .ec-forms-chck-lbl-text {
-                            p {
-                                margin-left: 0;
-
-                                span,
-                                a {
-                                    font-size: 1rem;
-                                    font-weight: 400;
-                                    line-height: 1.1875rem;
-                                    color: rgba(39, 39, 39, 0.80);
-                                }
-
-                                a {
-                                    color: #5795d6 !important;
-                                }
-                            }
-                        }
-
-                        .ec-v-form-error {
-                            margin-top: 0.3125rem;
-                        }
-                    }
-
-                    .ec-v-form-submit {
-                        button {
-                            font-size: 1.0625rem;
-                            font-weight: 500;
-                            line-height: 1.5rem;
-                            margin: 0;
-                            padding: 0.5rem 1.5rem;
-                            color: #ffffff !important;
-                            border-radius: 0.25rem;
-                            background-color: #5795d6 !important;
-                        }
-                    }
-                }
             }
+          }
+
+          .ec-v-form-input {
+            float: right;
+            width: 50%;
+            padding-bottom: 1rem !important;
+
+            .ec-v-forms-label {
+              display: none;
+            }
+
+            input {
+              @include body-m;
+              padding: 0.88rem 1.5rem 0.81rem 1.5rem;
+              color: rgba(39, 39, 39, 0.60);
+              border: 1px solid rgba(39, 39, 39, 0.20);
+              border-radius: 0.25rem;
+              background: #ffffff;
+            }
+
+            input[type=checkbox] {
+              + label {
+                @include body-s;
+                top: .25rem;
+                height: 1.125rem;
+                margin-bottom: 0;
+                color: #272727;
+
+                &:before {
+                  width: 1.125rem;
+                  height: 1.125rem;
+                  border: 0.125rem solid #7b7a79;
+                  border-radius: 0.125rem;
+                  background-color: transparent;
+                }
+
+                &:after {
+                  top: .1875rem;
+                  left: .375rem;
+                  width: .375rem;
+                  height: .625rem;
+                  border-color: #7b7a79;
+                }
+              }
+            }
+
+            .ec-forms-chck-lbl-text {
+              p {
+                margin-left: 0;
+
+                span,
+                a {
+                  font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.1875rem;
+                  color: rgba(39, 39, 39, 0.80);
+                }
+
+                a {
+                  color: #CF3942 !important;
+                }
+              }
+            }
+
+            .ec-v-form-error {
+              margin-top: 0.3125rem;
+            }
+          }
+
+          .ec-v-form-submit {
+            float: right;
+            width: 50%;
+            text-align: left !important;
+
+            button {
+              @include label-m;
+              display: flex;
+              align-items: center;
+              margin: 0;
+              padding: 0.5rem 1.5rem;
+              color: #ffffff !important;
+              border-radius: 0.25rem;
+              background-color: #CF3942 !important;
+
+              &:after {
+                display: inline-block;
+                width: 1.25rem;
+                height: 1.25rem;
+                margin-left: 0.5rem;
+                content: '';
+                background-image: url('../../images/arrow-right-white.svg');
+              }
+            }
+          }
         }
+      }
     }
+  }
 }
