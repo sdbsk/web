@@ -1,7 +1,8 @@
+@import '../mixin';
+
 .wp-pattern-saleziani-numbers {
     h2 {
-        font-size: 2rem;
-        line-height: 2.5rem;
+        @include display-reg-l;
         margin-bottom: 3rem;
         color: #cf3942;
     }
