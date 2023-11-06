@@ -3,17 +3,16 @@
     max-width: 48.125rem;
     margin-right: auto;
     margin-left: auto;
+  }
 
-    &:first-child {
-      &.wp-block-image {
-        max-width: 73.125rem;
-      }
-    }
+  :nth-child(1 of .wp-block-image) {
+    max-width: 73.125rem;
   }
 
   h1 {
     @include display-reg-xl;
     margin: 4rem auto;
+    
     @media(max-width: 47.9375rem) {
       margin: 2.5rem auto;
     }
@@ -22,14 +21,6 @@
   &.wp-block-post-content {
     > ol, > p, > ul {
       margin-bottom: revert;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 0.25rem;
-      @media (max-width: 76.875rem) {
-        border-radius: 0;
-      }
     }
   }
 }

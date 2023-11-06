@@ -86,12 +86,8 @@
         }
 
         .wp-block-post-terms__separator {
-          display: inline-block;
-          width: 0.125rem;
-          height: 1.0625rem;
-          margin-right: 0.5rem;
-          margin-left: 0.5rem;
-          background-color: rgba(39, 39, 39, .20);
+          @include dark-dot;
+          background-color: rgba(39, 39, 39, .25);
         }
       }
 
