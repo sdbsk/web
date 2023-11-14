@@ -28,10 +28,7 @@ declare(strict_types=1);
                         <h3 class="wp-block-heading has-white-color has-text-color">Nadpis</h3>
                         <!-- /wp:heading -->
                         <!-- wp:paragraph {"textColor":"white"} -->
-                        <p class="has-white-color has-text-color">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit,
-                            sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
+                        <p class="has-white-color has-text-color">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         <!-- /wp:paragraph -->
                     </div>
                     <!-- /wp:group -->

@@ -21,6 +21,8 @@
   @import '../../public/scss/patterns/all';
   @import '../../public/scss/templates/all';
 
+  @import 'blocks/all';
+
   .wp-block {
     * {
       // Override inline style white-space: pre-wrap from @wordpress/rich-text.

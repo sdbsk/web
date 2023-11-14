@@ -351,7 +351,10 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/latest-posts',
         'saleziani/link-to-page',
         'saleziani/navigation',
-        'saleziani/newsletter-form',
+        'saleziani/our-project-columns',
+        'saleziani/our-project-column',
+        'test/parent',
+        'test/child',
     ];
 }, 10, 2);
 

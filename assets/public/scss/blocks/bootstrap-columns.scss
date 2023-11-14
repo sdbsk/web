@@ -1,0 +1,6 @@
+.bootstrap-columns-container {
+  max-width: var(--wp--style--global--content-size) !important;
+  .row {
+      --bs-gutter-y: 1.875rem;
+  }
+}

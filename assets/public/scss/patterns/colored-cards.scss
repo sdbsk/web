@@ -1,7 +1,7 @@
 @import '../mixin';
 
-.wp-pattern-saleziani-colored-cards {
-    .colored-card {
+.bootstrap-our-project-columns {
+    .bootstrap-column-inner {
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -32,7 +32,7 @@
             flex-shrink: 0;
             justify-content: space-between;
             padding: 2rem 6rem 3rem;
-            color: #ffffff;
+            color: #ffffff !important;
             border-radius: 0 0 .5rem .5rem;
             @media(max-width: 62rem) {
                 padding: 2rem 3rem 2rem;
@@ -84,7 +84,7 @@
             }
         }
 
-        &.has-f-9-ca-3-e-background-color {
+        &.has-yellow-background-color {
             .content {
                 .content-top {
                     > * {

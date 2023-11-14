@@ -13,6 +13,7 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
     .setOutputPath('web/app/themes/saleziani/assets/')
-    .setPublicPath('/app/themes/saleziani/assets');
+    .setPublicPath('/app/themes/saleziani/assets')
+    .enableReactPreset();
 
 module.exports = Encore.getWebpackConfig();
