@@ -29,27 +29,18 @@
   align-items: center;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  position: relative;
-  width: fit-content;
-  &:after {
-    background-image: url('../images/arrow-right-red.svg');
-    content: '';
-    display: inline-block;
-    height: 1.25rem;
-    margin-left: 0.5rem;
-    width: 1.25rem;
-  }
+  flex-direction: row-reverse;
+
   &:before {
-    content: '';
-    left: 0;
-    right: 0;
-    height: 0.125rem;
-    background-color: #cf3942;
-    position: absolute;
-    bottom: 0;
+      background-image: url('../images/arrow-right-red.svg');
+      content: '';
+      display: inline-block;
+      height: 1.25rem;
+      margin-left: 0.5rem;
+      width: 1.25rem;
   }
   &[target='_blank'] {
-    &:after {
+    &:before {
       background-image: url('../images/external-link-red.svg');
     }
   }

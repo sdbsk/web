@@ -1,10 +1,11 @@
 import registerColumnsBlock from "../scripts/registerColumnsBlock";
 
 registerColumnsBlock(
-    'our-project', {
-        parentTitle: 'Naše projekty',
+    'project', {
+        parentTitle: 'Projekty',
         childTitle: 'Projekt',
-        defaultBackgroundColor: 'blue',
+        defaultBackgroundColor: 'light-brown',
+        minColumnCount: 2,
         maxColumnCount: 2,
         template: [
             ['core/image'],
@@ -16,13 +17,12 @@ registerColumnsBlock(
                 }, [
                     ['core/heading', {level: 3, placeholder: 'Meno projektu', lock: {move: true, remove: true}}],
                     ['core/paragraph', {
-                        level: 3,
                         lock: {move: true, remove: true},
                         placeholder: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
                     }],
                 ]],
                 ['core/group', {className: 'content-bottom', metadata: {name: 'Obsah dolu'}}, [
-                    ['core/paragraph', {level: 3, content: '<a href="#">Čítať viac</a>'}],
+                    ['core/paragraph', {content: '<a href="#">Čítať viac</a>'}],
                 ]]
             ]]
         ]

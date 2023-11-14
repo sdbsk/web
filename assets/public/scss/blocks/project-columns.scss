@@ -1,6 +1,6 @@
 @import '../mixin';
 
-.bootstrap-our-project-columns {
+.bootstrap-project-columns {
     .bootstrap-column-inner {
         display: flex;
         flex-direction: column;
@@ -84,6 +84,7 @@
             }
         }
 
+        &.has-light-brown-background-color,
         &.has-yellow-background-color {
             .content {
                 .content-top {

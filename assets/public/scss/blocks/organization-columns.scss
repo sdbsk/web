@@ -1,0 +1,68 @@
+@import '../mixin';
+
+.bootstrap-organization-columns {
+    .bootstrap-column-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 0.5rem;
+        background-color: #f9f6f4;
+        position: relative;
+
+        .wp-block-image {
+            overflow: hidden;
+            margin-bottom: 0;
+            border-radius: 0.5rem 0.5rem 0 0;
+
+            img {
+                width: 100%;
+                transition: transform 0.3s ease;
+                border-radius: 0.5rem 0.5rem 0 0;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+            padding: 1.5rem 2rem 2rem;
+
+            .text {
+
+                h3 {
+                    margin-top: 0;
+                    margin-bottom: 1.5rem;
+                    @include display-reg-m;
+                    color: #272727;
+                }
+
+                p {
+                    @include body-s;
+                    margin-bottom: 1.5rem;
+                    color: rgba(39, 39, 39, 0.80);
+                }
+            }
+
+            p.link {
+                a {
+                    @include link-with-icon;
+                }
+            }
+
+            * {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &:hover {
+            .wp-block-image {
+                img {
+                    transform: scale(1.03);
+                }
+            }
+        }
+    }
+}

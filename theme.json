@@ -70,6 +70,11 @@
                     "color": "#c7e7f1",
                     "name": "Svetlomodrá",
                     "slug": "light-blue"
+                },
+                {
+                    "color": "#fdf9f8",
+                    "name": "Svetlohnedá",
+                    "slug": "light-brown"
                 }
             ]
         },
@@ -100,11 +105,6 @@
                 }
             },
             "core/heading": {
-                "color": {
-                    "background": false
-                }
-            },
-            "core/group": {
                 "color": {
                     "background": false
                 }
