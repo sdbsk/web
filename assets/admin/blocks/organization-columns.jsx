@@ -18,7 +18,7 @@ registerColumnsBlock(
                         placeholder: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
                     }],
                 ]],
-                ['core/paragraph', {className: 'link', content: '<a href="#" class="stretched-link">sssČítať viac</a>'}]
+                ['core/paragraph', {className: 'link', content: '<a href="#" class="stretched-link">Čítať viac</a>'}]
             ]]
         ]
     });
