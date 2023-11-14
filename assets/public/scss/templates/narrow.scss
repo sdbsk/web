@@ -9,18 +9,27 @@
     max-width: 73.125rem;
   }
 
-  h1 {
-    @include display-reg-xl;
-    margin: 4rem auto;
-    
-    @media(max-width: 47.9375rem) {
-      margin: 2.5rem auto;
-    }
-  }
 
   &.wp-block-post-content {
+    > * {
+      margin-bottom: 4rem;
+    }
+
     > ol, > p, > ul {
       margin-bottom: revert;
+    }
+  }
+}
+
+.wp-template-narrow-header {
+  margin: 4rem 0;
+
+  h1 {
+    @include display-reg-xl;
+    margin: 4rem auto 1rem;
+
+    @media(max-width: 47.9375rem) {
+      margin: 2.5rem auto 1rem;
     }
   }
 }

@@ -9,12 +9,7 @@
   }
   .wp-block-post-content {
     > * {
-      //margin-top: 8rem;
       margin-bottom: 8rem;
-
-      //&:first-child {
-      //  margin-top: 0;
-      //}
 
       @media(max-width: 50rem) {
         margin-bottom: 4rem;
