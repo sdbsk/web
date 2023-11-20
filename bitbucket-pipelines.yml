@@ -6,27 +6,29 @@
 image: php:8.1-alpine
 
 pipelines:
-  default:
-#    - parallel:
-      - step:
-          name: 'Build'
-          caches:
-              - composer
-              - node
-          script:
-              - apk add git nodejs npm
-              - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-              - COMPOSER_ALLOW_SUPERUSER=1 composer install
-              - npm i && npm run prod
-              - echo "Build ${BITBUCKET_BUILD_NUMBER}"
-              - git fetch origin "+refs/heads/*:refs/remotes/origin/*"
-              - git branch --all
-              - git checkout -b release
-              - git branch -u origin/release
-              - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .gitignore2 && mv .gitignore2 .gitignore
-              - git add --all
-              - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
-              - git push origin release --force
+    default:
+        #    - parallel:
+        -   step:
+                clone:
+                    depth: full
+                name: 'Build'
+                caches:
+                    - composer
+                    - node
+                script:
+                    - apk add git nodejs npm
+                    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+                    - COMPOSER_ALLOW_SUPERUSER=1 composer install
+                    - npm i && npm run prod
+                    - echo "Build ${BITBUCKET_BUILD_NUMBER}"
+                    - git fetch --all
+                    - git branch --all
+                    - git checkout -b release
+                    - git branch -u origin/release
+                    - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .gitignore2 && mv .gitignore2 .gitignore
+                    - git add --all
+                    - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
+                    - git push origin release --force
 #      - step:
 #          name: 'Lint'
 #          script:
