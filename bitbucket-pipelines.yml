@@ -13,7 +13,7 @@ pipelines:
           caches:
               - composer
           script:
-              - apt-get update && apt-get install -y unzip openssh-client rsync git-all
+              - apt-get update && apt-get install -y unzip openssh-client rsync git
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
               - COMPOSER_ALLOW_SUPERUSER=1 composer install
               - composer global require deployer/deployer
