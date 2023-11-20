@@ -13,14 +13,14 @@ pipelines:
                         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
                         - COMPOSER_ALLOW_SUPERUSER=1 composer install
             -   step:
-                    image: node:20-bullseye-slim
+                    image: node:20-alpine
                     clone:
                         depth: full
                     name: 'Build & release assets'
                     caches:
                         - node
                     script:
-                        - apt update && apt install -y git
+                        - apk add git
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
                         - git fetch --all
