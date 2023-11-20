@@ -13,11 +13,12 @@ pipelines:
           caches:
               - composer
           script:
-              - apk add git
+              - apk add git nodejs npm
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
               - COMPOSER_ALLOW_SUPERUSER=1 composer install
-              - composer global require deployer/deployer
-              - composer global require deployer/recipes --dev
+              - npm i && npm run prod
+#              - composer global require deployer/deployer
+#              - composer global require deployer/recipes --dev
 #              - /root/.composer/vendor/bin/dep deploy -vvv test
 #      - step:
 #          name: 'Lint'
