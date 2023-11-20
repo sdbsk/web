@@ -7,18 +7,17 @@ pipelines:
                     caches:
                         - composer
                     artifacts:
-                        - vendor/google/material-symbols/svg/300/outlined/**
+                        - vendor/**
                     script:
                         - apk add git
                         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
                         - COMPOSER_ALLOW_SUPERUSER=1 composer install
             -   step:
-                    image: node:20-alpine
+                    image: node:20-bullseye-slim
                     clone:
                         depth: full
                     name: 'Build & release assets'
                     caches:
-                        - composer
                         - node
                     script:
                         - apk add git
