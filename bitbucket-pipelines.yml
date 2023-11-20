@@ -15,7 +15,7 @@ pipelines:
           script:
               - apt-get update && apt-get install -y unzip openssh-client rsync
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-              - composer install
+              - COMPOSER_ALLOW_SUPERUSER=1 composer install
               - composer global require deployer/deployer
               - composer global require deployer/recipes --dev
               - /root/.composer/vendor/bin/dep deploy -vvv test
