@@ -17,12 +17,14 @@ pipelines:
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
               - COMPOSER_ALLOW_SUPERUSER=1 composer install
               - npm i && npm run prod
-              - git remote -v
-              - git checkout -b release origin/release
+              - echo "Build ${BITBUCKET_BUILD_NUMBER}"
+              - git fetch --all
+              - git checkout -b release
+              - git branch -u origin/release
+              - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .gitignore2 && mv .gitignore2 .gitignore
+              - git add --all
+              - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
               - git push origin release --force
-#              - composer global require deployer/deployer
-#              - composer global require deployer/recipes --dev
-#              - /root/.composer/vendor/bin/dep deploy -vvv test
 #      - step:
 #          name: 'Lint'
 #          script:
