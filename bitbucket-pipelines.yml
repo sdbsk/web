@@ -12,6 +12,7 @@ pipelines:
           name: 'Build'
           caches:
               - composer
+              - node
           script:
               - apk add git nodejs npm
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -19,6 +20,7 @@ pipelines:
               - npm i && npm run prod
               - echo "Build ${BITBUCKET_BUILD_NUMBER}"
               - git fetch --all
+              - git branch --all
               - git checkout -b release
               - git branch -u origin/release
               - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .gitignore2 && mv .gitignore2 .gitignore
