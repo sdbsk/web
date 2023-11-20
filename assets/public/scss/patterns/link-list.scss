@@ -1,43 +1,42 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-link-list {
-  .wp-block-heading {
-    @include display-reg-l;
-    margin-bottom: 3rem;
-    color: #272727;
+    .wp-block-heading {
+        @include display-reg-l;
+        margin-bottom: 3rem;
+        color: $dark;
 
-  }
-
-  p {
-    margin: 0 0 -0.0625rem 0;
-
-    a {
-      @include display-reg-m;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-      padding: 1.25rem 0.75rem 1.25rem 0;
-      transition: padding 0.3s ease;
-      text-decoration: none;
-      color: #cf3942;
-      border-top: 0.0625rem solid #e5e5e5;
-      border-bottom: 0.0625rem solid #e5e5e5;
-
-      &:after {
-        display: inline-block;
-        min-width: 2rem;
-        height: 2rem;
-        margin-left: 0.75rem;
-        content: '';
-        background-image: url('../../images/arrow-right-red.svg');
-        background-size: cover;
-      }
-
-      &:hover {
-        padding: 1.25rem 0.55rem 1.25rem 0;
-      }
-    ;
     }
-  }
+
+    p {
+        margin: 0 0 -0.0625rem 0;
+
+        a {
+            @include display-reg-m;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 1.25rem 0.75rem 1.25rem 0;
+            transition: padding 0.3s ease;
+            text-decoration: none;
+            color: $red;
+            border-top: 0.0625rem solid #e5e5e5;
+            border-bottom: 0.0625rem solid #e5e5e5;
+
+            &:after {
+                display: inline-block;
+                min-width: 2rem;
+                height: 2rem;
+                margin-left: 0.75rem;
+                content: '';
+                @include svgBackground('../images/arrow-right.svg', $red, cover);
+            }
+
+            &:hover {
+                padding: 1.25rem 0.55rem 1.25rem 0;
+            }
+        ;
+        }
+    }
 }

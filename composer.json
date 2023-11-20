@@ -1,60 +1,73 @@
 {
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true,
-      "roots/wordpress-core-installer": true
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
+        },
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.2"
+        }
     },
-    "optimize-autoloader": true,
-    "platform": {
-      "php": "8.2"
-    }
-  },
-  "extra": {
-    "installer-paths": {
-      "web/app/mu-plugins/{$name}/": [
-        "type:wordpress-muplugin"
-      ],
-      "web/app/plugins/{$name}/": [
-        "type:wordpress-plugin"
-      ],
-      "web/app/themes/{$name}/": [
-        "type:wordpress-theme"
-      ]
+    "extra": {
+        "installer-paths": {
+            "web/app/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "web/app/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "web/app/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-install-dir": "web/wp"
     },
-    "wordpress-install-dir": "web/wp"
-  },
-  "minimum-stability": "stable",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://wpackagist.org",
-      "only": [
-        "wpackagist-plugin/*",
-        "wpackagist-theme/*"
-      ]
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "google/material-symbols",
+                "version": "1.0.0",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/marella/material-symbols.git",
+                    "reference": "main"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": "~8.2",
+        "ext-dom": "*",
+        "ext-fileinfo": "*",
+        "ext-pdo": "*",
+        "composer/installers": "^2.2",
+        "oscarotero/env": "^2.1",
+        "roots/bedrock-autoloader": "^1.0",
+        "roots/bedrock-disallow-indexing": "^2.0",
+        "roots/wordpress": "^6.3",
+        "roots/wp-config": "^1.0",
+        "roots/wp-password-bcrypt": "^1.1",
+        "symfony/html-sanitizer": "^6.3",
+        "vlucas/phpdotenv": "^5.5",
+        "wpackagist-plugin/w3-total-cache": "^2.5"
+    },
+    "require-dev": {
+        "deployer/deployer": "^7.3",
+        "roave/security-advisories": "dev-latest",
+        "symfony/var-dumper": "^6.3",
+        "wpackagist-plugin/debug-bar": "^1.1",
+        "google/material-symbols": "1.0.0"
     }
-  ],
-  "require": {
-    "php": "~8.2",
-    "ext-dom": "*",
-    "ext-fileinfo": "*",
-    "ext-pdo": "*",
-    "composer/installers": "^2.2",
-    "oscarotero/env": "^2.1",
-    "roots/bedrock-autoloader": "^1.0",
-    "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "^6.3",
-    "roots/wp-config": "^1.0",
-    "roots/wp-password-bcrypt": "^1.1",
-    "symfony/html-sanitizer": "^6.3",
-    "vlucas/phpdotenv": "^5.5",
-    "wpackagist-plugin/w3-total-cache": "^2.5"
-  },
-  "require-dev": {
-    "deployer/deployer": "^7.3",
-    "roave/security-advisories": "dev-latest",
-    "symfony/var-dumper": "^6.3",
-    "wpackagist-plugin/debug-bar": "^1.1"
-  }
 }

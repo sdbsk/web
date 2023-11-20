@@ -1,13 +1,13 @@
 ul {
   padding-left: 1.5rem;
-  color: #272727;
+  color: $dark;
 
   li {
     @include body-m;
 
     a {
       text-decoration: none;
-      color: #cf3942;
+      color: $red;
     }
 
     strong {

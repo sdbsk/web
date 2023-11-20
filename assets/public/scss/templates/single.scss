@@ -12,7 +12,7 @@
         @include body-m;
         font-weight: 500;
         text-decoration: none;
-        color: #272727;
+        color: $dark;
       }
 
       .wp-block-post-terms__separator {
@@ -29,7 +29,7 @@
       > {
         @include body-m;
         text-decoration: none;
-        color: #272727;
+        color: $dark;
       }
     }
   }

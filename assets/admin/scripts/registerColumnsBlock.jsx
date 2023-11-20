@@ -13,15 +13,26 @@ function innerColumnClassName(propsClassName) {
     return ((propsClassName ?? '').match(/(has-[^ ]+)/) ?? []).join(' ');
 }
 
-export default (name, {parentTitle, childTitle, template, minColumnCount = 2, maxColumnCount = 4, defaultBackgroundColor}) => {
+export default (name, {
+    parentTitle,
+    childTitle,
+    template,
+    minColumnCount = 2,
+    maxColumnCount = 4,
+    defaultBackgroundColor,
+    supports = {
+        color: true
+    }
+}) => {
     const parentBlockName = `saleziani/${name}-columns`;
     const childBlockName = `saleziani/${name}-column`;
     const childBlockTemplate = [childBlockName];
     const styleAttributes = {};
 
-    const columnCounts = [...Array(maxColumnCount - minColumnCount + 1).keys()].map(index => ({label: index + minColumnCount, value: index + minColumnCount}));
-
-    console.log(columnCounts);
+    const columnCounts = [...Array(maxColumnCount - minColumnCount + 1).keys()].map(index => ({
+        label: index + minColumnCount,
+        value: index + minColumnCount
+    }));
 
     if (defaultBackgroundColor) {
         styleAttributes['backgroundColor'] = {
@@ -36,9 +47,7 @@ export default (name, {parentTitle, childTitle, template, minColumnCount = 2, ma
         icon: column,
         title: childTitle,
         parent: [parentBlockName],
-        supports: {
-            color: true
-        },
+        supports: supports,
         attributes: {
             ...styleAttributes,
             widthClass: {

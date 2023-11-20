@@ -4,7 +4,7 @@
   h2 {
     @include display-reg-l;
     margin-bottom: 3rem;
-    color: #cf3942;
+    color: $red;
   }
 
   .number-box {

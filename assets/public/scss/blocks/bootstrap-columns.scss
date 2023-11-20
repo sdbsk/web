@@ -3,4 +3,8 @@
   .row {
       --bs-gutter-y: 1.875rem;
   }
+
+    .bootstrap-column-inner {
+        position: relative;
+    }
 }

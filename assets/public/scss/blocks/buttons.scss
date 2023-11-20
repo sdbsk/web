@@ -1,24 +1,23 @@
 .wp-block-buttons {
-  .wp-block-button {
-    .wp-element-button {
-      font-weight: 500;
-      display: flex;
-      @include body-m;
-      align-items: center;
-      padding: 0.75rem 2rem;
-      border-radius: 0.25rem;
-      background: #CF3942;
-      gap: 0.5rem;
+    .wp-block-button {
+        .wp-element-button {
+            font-weight: 500;
+            @include body-m;
+            vertical-align: middle;
+            padding: 0.75rem 2rem;
+            border-radius: 0.25rem;
+            background: $red;
+            gap: 0.5rem;
 
-      &:after {
-        display: inline-block;
-        min-width: 1.25rem;
-        height: 1.25rem;
-        margin-left: 0.5rem;
-        content: '';
-        background-image: url('../../images/arrow-right-white.svg');
-        background-size: cover;
-      }
+            &:after {
+                display: inline-block;
+                vertical-align: middle;
+                min-width: 1.25rem;
+                height: 1.25rem;
+                margin-left: 0.5rem;
+                content: '';
+                @include svgBackground('../images/arrow-right.svg', $white);
+            }
+        }
     }
-  }
 }

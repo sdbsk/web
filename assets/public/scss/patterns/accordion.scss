@@ -28,9 +28,8 @@
                 &:after {
                     width: 2rem;
                     height: 2rem;
-                    background-image: url('../../images/expand-down-red.svg');
-                    background-position: center center;
-                    background-size: cover;
+                    background-image: none;
+                    @include svgBackground('../images/expand-down.svg', $red, cover, center center);
                 }
             }
         }

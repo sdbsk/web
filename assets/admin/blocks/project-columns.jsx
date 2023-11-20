@@ -4,7 +4,7 @@ registerColumnsBlock(
     'project', {
         parentTitle: 'Projekty',
         childTitle: 'Projekt',
-        defaultBackgroundColor: 'light-brown',
+        defaultBackgroundColor: 'yellow',
         minColumnCount: 2,
         maxColumnCount: 2,
         template: [
