@@ -1,29 +1,63 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-numbers {
-  h2 {
-    @include display-reg-l;
-    margin-bottom: 3rem;
-    color: $red;
-  }
-
-  .number-box {
-    padding: 2rem 1.88rem 2.5rem 1.94rem;
-    border-left: 0.0625rem solid rgba(39, 39, 39, 0.20);
-
-    h3 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 3.5rem;
-      margin: 0;
-      white-space: nowrap;
+    h2 {
+        @include display-reg-l;
+        margin-bottom: 3rem;
+        color: $red;
     }
 
-    p {
-      font-size: 1.125rem;
-      font-weight: 500;
-      line-height: 1.5rem;
-      margin: 0;
+    .col {
+        &:nth-of-type(1) {
+            .number-box {
+                h3, p {
+                    color: $red;
+                }
+            }
+        }
+
+        &:nth-of-type(2) {
+            .number-box {
+                h3, p {
+                    color: $brown;
+                }
+            }
+        }
+
+        &:nth-of-type(3) {
+            .number-box {
+                h3, p {
+                    color: $yellow;
+                }
+            }
+        }
+
+        &:nth-of-type(4) {
+            .number-box {
+                h3, p {
+                    color: $green;
+                }
+            }
+        }
+
+        .number-box {
+            padding: 2rem 1.88rem 2.5rem 1.94rem;
+            border-left: 0.0625rem solid rgba(39, 39, 39, 0.20);
+
+            h3 {
+                font-size: 3.5rem;
+                font-weight: 700;
+                line-height: 3.5rem;
+                margin: 0;
+                white-space: nowrap;
+            }
+
+            p {
+                font-size: 1.125rem;
+                font-weight: 500;
+                line-height: 1.5rem;
+                margin: 0;
+            }
+        }
     }
-  }
 }
