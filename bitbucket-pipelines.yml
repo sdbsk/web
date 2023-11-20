@@ -23,7 +23,7 @@ pipelines:
                         - apk add git
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
-                        - git fetch --all
+                        - git fetch --all || sleep 3 && git fetch --all
                         - git branch --all
                         - git checkout -b release
                         - git branch -u origin/release
