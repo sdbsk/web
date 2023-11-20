@@ -341,31 +341,40 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
 
 add_filter('allowed_block_types_all', function (): array {
     return [
-        'core/button',
-        'core/buttons',
-        'core/group',
-        'core/heading',
-        'core/image',
-        'core/list',
-        'core/list-item',
-        'core/navigation-link',
-        'core/paragraph',
-        'core/pullquote',
-        'core/separator',
-        'core/site-logo',
-        'core/spacer',
-        'core/template-part',
+        // large margin blocks
         'saleziani/newsletter-form',
         'saleziani/latest-posts',
-        'saleziani/link-to-page',
         'saleziani/navigation',
         'saleziani/project-columns',
-        'saleziani/project-column',
         'saleziani/organization-columns',
+        'saleziani/icon-columns',
+        'saleziani/page-columns',
+        'core/group',
+        'core/buttons',
+
+        // asi na vyhodenie z whitelistu
+        'core/separator',
+        'core/spacer',
+
+        // small margin blocks (typograficke)
+        'core/image',
+        'core/heading',
+        'core/paragraph',
+        'core/list',
+        'core/button',
+        'core/pullquote',
+
+        // no margin blocks
+        'core/template-part',
+        'core/navigation-link',
+        'saleziani/link-to-page',
+        'core/site-logo',
+        'core/list-item',
+        'saleziani/project-column',
         'saleziani/organization-column',
         'saleziani/icon',
-        'saleziani/icon-columns',
         'saleziani/icon-column',
+        'saleziani/page-column',
     ];
 }, 10, 2);
 

@@ -25,6 +25,7 @@ registerBlockType('saleziani/icon', {
             type: 'string'
         }
     },
+    parent: ['saleziani/icon-columns'],
     supports: {
         color: {
             background: false,
