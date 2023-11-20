@@ -7,7 +7,7 @@ pipelines:
                     caches:
                         - composer
                     artifacts:
-                        - vendor/**
+                        - vendor/google/material-symbols/svg/300/outlined/**
                     script:
                         - apk add git
                         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -20,7 +20,7 @@ pipelines:
                     caches:
                         - node
                     script:
-                        - apk add git
+                        - apt update && apt install -y git
                         - npm i && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
                         - git fetch --all
