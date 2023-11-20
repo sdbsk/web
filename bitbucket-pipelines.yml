@@ -9,6 +9,7 @@ pipelines:
                     artifacts:
                         - vendor/google/material-symbols/svg/300/outlined/**
                     script:
+                        - apk add git
                         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
                         - COMPOSER_ALLOW_SUPERUSER=1 composer install
             -   step:
@@ -20,6 +21,7 @@ pipelines:
                         - composer
                         - node
                     script:
+                        - apk add git
                         - npm i && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
                         - git fetch --all
@@ -31,25 +33,10 @@ pipelines:
                         - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
                         - git push origin release --force
 #        release:
-
-#      - step:
-#          name: 'Lint'
-#          script:
-#            - echo "Your linting goes here..."
-#      - step:
-#          name: 'Security scan'
-#          script:
-#            - echo "Your security scan goes here..."
-#
-#    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
-#    - step:
-#        name: 'Deployment to Staging'
-#        deployment: staging
-#        script:
-#          - echo "Your deployment to staging script goes here..."
-#    - step:
-#        name: 'Deployment to Production'
-#        deployment: production
-#        trigger: 'manual'
-#        script:
-#          - echo "Your deployment to production script goes here..."
+#            -   step:
+#                    image: php:8.1-alpine
+#                    name: 'Install php dependencies'
+#                    caches:
+#                        - composer
+#                    scripts:
+#                        - apk add git
