@@ -9,9 +9,9 @@ pipelines:
   default:
 #    - parallel:
       - step:
-          name: 'Build'
+          name: 'Deploy to stage'
           caches:
-              - Deploy
+              - composer
           script:
               - apt-get update && apt-get install -y unzip openssh-client rsync
               - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
