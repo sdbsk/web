@@ -15,7 +15,7 @@ pipelines:
                         - php8.1 /usr/local/bin/composer install
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
-                        - git remote set-url origin "https://${$BB_AUTH_STRING}@bitbucket.org/${$BITBUCKET_REPO_FULL_NAME}"
+                        - git remote set-url origin "https://${BB_AUTH_STRING}@bitbucket.org/${BITBUCKET_REPO_FULL_NAME}"
                         - git fetch --all
                         - git branch --all
                         - git checkout -b dev-release
