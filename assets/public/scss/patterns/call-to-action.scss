@@ -1,81 +1,127 @@
 .wp-pattern-saleziani-call-to-action {
-  overflow: hidden;
-  border-radius: 0.5rem;
-
-  .content {
-    padding: 6rem 2rem 6rem 6rem;
-    @include media-breakpoint-down(md) {
-      padding: 4rem 2rem 2rem 2rem;
-    }
-    @include media-breakpoint-down(sm) {
-      padding: 4rem 2rem 0 2rem;
-    }
-
-    p {
-      @include body-m;
-      margin-bottom: 1.5rem;
-    }
-
-    .wp-block-button {
-      width: 100%;
-
-      .wp-element-button {
-        font-size: 1.0625rem;
-        font-weight: 500;
-        font-style: normal;
-        line-height: 1.5rem;
-        display: block;
-        max-width: max-content;
-        padding: 0.5rem 1.5rem;
-        border-radius: 0.25rem;
-      }
-
-      .svg-wrap {
-        max-width: 250px;
-        height: 20px;
-        margin: 0 auto; /* center the wrap */
-      }
-    }
-
-    .wp-block-heading {
-      @include display-reg-l;
-      margin-bottom: 1.5rem;
-    }
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .wp-block-image {
-    position: relative;
-    height: 100%;
-    margin-bottom: 0;
+    overflow: hidden;
     border-radius: 0.5rem;
-    @include media-breakpoint-down(sm) {
-      left: 2rem;
-      overflow: hidden;
-      height: unset;
-      max-height: unset;
+
+    .content {
+        padding: 6rem 2rem 6rem 6rem;
+        @include media-breakpoint-down(md) {
+            padding: 4rem 2rem 2rem 2rem;
+        }
+        @include media-breakpoint-down(sm) {
+            padding: 4rem 2rem 0 2rem;
+        }
+
+        p {
+            @include body-m;
+            margin-bottom: 1.5rem;
+        }
+
+        .wp-block-button {
+            width: 100%;
+
+            .wp-element-button {
+                font-size: 1.0625rem;
+                font-weight: 500;
+                font-style: normal;
+                line-height: 1.5rem;
+                display: block;
+                max-width: max-content;
+                padding: 0.5rem 1.5rem;
+                border-radius: 0.25rem;
+
+                &:after {
+                    display: none;
+                }
+            }
+
+            .svg-wrap {
+                max-width: 250px;
+                height: 20px;
+                margin: 0 auto; /* center the wrap */
+            }
+        }
+
+        .wp-block-heading {
+            @include display-reg-l;
+            margin-bottom: 1.5rem;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
     }
 
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      max-width: unset;
-      height: 120% !important;
-      transform: rotate(-12deg);
-      transform-origin: 50% 0;
-      border-radius: 0.5rem;
-      object-fit: cover;
-      @include media-breakpoint-down(sm) {
+    .wp-block-image {
         position: relative;
-        left: 0;
-        width: 120% !important;
-        height: 25rem !important;
-        transform-origin: 90% 0;
-      }
+        height: 100%;
+        margin-bottom: 0;
+        border-radius: 0.5rem;
+        @include media-breakpoint-down(sm) {
+            left: 2rem;
+            overflow: hidden;
+            height: unset;
+            max-height: unset;
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: unset;
+            height: 120% !important;
+            transform: rotate(-12deg);
+            transform-origin: 50% 0;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            @include media-breakpoint-down(sm) {
+                position: relative;
+                left: 0;
+                width: 120% !important;
+                height: 25rem !important;
+                transform-origin: 90% 0;
+            }
+        }
     }
-  }
+
+    &.has-yellow-background-color,
+    &.has-light-green-background-color,
+    &.has-light-yellow-background-color,
+    &.has-light-red-background-color,
+    &.has-very-light-red-background-color {
+        .wp-block-heading, p {
+            color: $dark;
+        }
+    }
+
+    &.has-green-background-color,
+    &.has-dark-background-color,
+    &.has-brown-background-color,
+    &.has-blue-background-color {
+        .wp-block-heading, p {
+            color: $white;
+        }
+    }
+
+    &.has-light-blue-background-color {
+        .wp-block-heading, p {
+            color: $dark;
+        }
+
+        .wp-block-buttons .wp-block-button .wp-element-button {
+            color: $dark;
+            background-color: $white;
+        }
+    }
+
+    &.has-red-background-color,
+    {
+        .wp-block-heading, p {
+            color: $white;
+        }
+
+        .wp-block-buttons .wp-block-button .wp-element-button {
+            color: $dark;
+            background-color: $white;
+        }
+    }
 }
