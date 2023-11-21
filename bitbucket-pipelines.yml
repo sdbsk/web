@@ -1,6 +1,6 @@
 pipelines:
     branches:
-        main:
+        develop:
             -   step:
                     name: 'Build assets & and push release'
                     runs-on:
@@ -15,17 +15,17 @@ pipelines:
                         - php8.1 /usr/local/bin/composer install
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
-                        - git remote set-url origin git@bitbucket.org:bratiask/saleziani.git
+                        - git remote set-url origin "https://${$BB_AUTH_STRING}@bitbucket.org/${$BITBUCKET_REPO_FULL_NAME}"
                         - git fetch --all
                         - git branch --all
-                        - git checkout -b release
-                        - git branch -u origin/release
+                        - git checkout -b dev-release
+                        - git branch -u origin/dev-release
                         - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .temp && mv .temp .gitignore
                         - sed '/^\/web\/\.htaccess$/d' .gitignore > .temp && mv .temp .gitignore
                         - git add --all
-                        - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
-                        - git push origin release --force
-        release:
+                        - git commit -m "Development Release ${BITBUCKET_BUILD_NUMBER}"
+                        - git push origin dev-release --force
+        dev-release:
             -   step:
                     name: 'Deploy to staging'
                     runs-on:
