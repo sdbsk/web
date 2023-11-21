@@ -15,6 +15,7 @@ pipelines:
                         - php8.1 /usr/local/bin/composer install
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
+                        - git remote set-url origin git@bitbucket.org:bratiask/saleziani.git
                         - git fetch --all
                         - git branch --all
                         - git checkout -b release
