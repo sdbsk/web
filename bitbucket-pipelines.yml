@@ -2,44 +2,38 @@ pipelines:
     branches:
         main:
             -   step:
-                    image: php:8.1-alpine
-                    name: 'Install php dependencies'
-                    caches:
-                        - composer
-                    artifacts:
-                        - vendor/google/material-symbols/svg/300/outlined/**
-                        - /usr/local/bin/composer
-                        - /usr/local/bin/git
-                    script:
-                        - apk add git
-                        - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-                        - COMPOSER_ALLOW_SUPERUSER=1 composer install
-            -   step:
-                    image: node:20-alpine
+                    name: 'Build assets & and push release'
+                    runs-on:
+                        - 'self.hosted'
+                        - 'linux.shell'
                     clone:
                         depth: full
-                    name: 'Build & release assets'
                     caches:
+                        - composer
                         - node
                     script:
-                        - apk add git
+                        - php8.1 /usr/local/bin/composer install
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
                         - git fetch --all
                         - git branch --all
                         - git checkout -b release
                         - git branch -u origin/release
-                        - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .gitignore2 && mv .gitignore2 .gitignore
+                        - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .temp && mv .temp .gitignore
+                        - sed '/^\/web\/\.htaccess$/d' .gitignore > .temp && mv .temp .gitignore
                         - git add --all
                         - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
                         - git push origin release --force
         release:
             -   step:
-                    image: php:8.1-alpine
-                    name: 'Deploy to stage'
-                    deployment: stage
-                    caches:
-                        - composer
+                    name: 'Deploy to staging'
+                    runs-on:
+                        - 'self.hosted'
+                        - 'linux.shell'
+                    deployment: staging
                     script:
-                        - COMPOSER_ALLOW_SUPERUSER=1 composer install
-                        - vendor/bin/dep deploy stage
+                        - php8.1 /usr/local/bin/composer install
+                        - eval $(ssh-agent -s)
+                        - ssh-add ~/.ssh/id_ed25519
+                        - php8.1 vendor/bin/dep deploy staging
+                        - eval $(ssh-agent -k)
