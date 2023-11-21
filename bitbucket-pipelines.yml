@@ -1,6 +1,6 @@
 pipelines:
     branches:
-        main2:
+        main:
             -   step:
                     image: php:8.1-alpine
                     name: 'Install php dependencies'
@@ -8,6 +8,8 @@ pipelines:
                         - composer
                     artifacts:
                         - vendor/google/material-symbols/svg/300/outlined/**
+                        - /usr/local/bin/composer
+                        - /usr/local/bin/git
                     script:
                         - apk add git
                         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -23,7 +25,7 @@ pipelines:
                         - apk add git
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
-                        - git fetch --all || sleep 3 && git fetch --all
+                        - git fetch --all
                         - git branch --all
                         - git checkout -b release
                         - git branch -u origin/release
@@ -31,11 +33,13 @@ pipelines:
                         - git add --all
                         - git commit -m "Release ${BITBUCKET_BUILD_NUMBER}"
                         - git push origin release --force
-#        release:
-#            -   step:
-#                    image: php:8.1-alpine
-#                    name: 'Install php dependencies'
-#                    caches:
-#                        - composer
-#                    scripts:
-#                        - apk add git
+        release:
+            -   step:
+                    image: php:8.1-alpine
+                    name: 'Deploy to stage'
+                    deployment: stage
+                    caches:
+                        - composer
+                    script:
+                        - COMPOSER_ALLOW_SUPERUSER=1 composer install
+                        - vendor/bin/dep deploy stage
