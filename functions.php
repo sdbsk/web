@@ -18,6 +18,7 @@ add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
 add_action('admin_menu', function (): void {
     add_menu_page('Import článkov', 'Importovať články', 'import', 'post-import', function (): void {
         set_time_limit(3600);
+        ini_set('memory_limit', '512M');
 
         try {
             $legacyDb = new PDO('mysql:host=' . getenv('LEGACY_DATABASE_HOST') . ';dbname=' . getenv('LEGACY_DATABASE_NAME'),
