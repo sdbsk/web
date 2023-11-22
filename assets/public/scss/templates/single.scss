@@ -19,7 +19,7 @@
         @include dark-dot;
       }
 
-      &:after {
+      &:not(:empty):after {
         @include dark-dot;
         content: '';
       }
