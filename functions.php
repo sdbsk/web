@@ -14,8 +14,6 @@ add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
 
-
-
 // todo: remove after import: ext-dom, ext-fileinfo, ext-pdo, symfony/html-sanitizer, LEGACY_ env variables and following hook
 add_action('admin_menu', function (): void {
     add_menu_page('Import článkov', 'Importovať články', 'import', 'post-import', function (): void {
@@ -50,16 +48,18 @@ add_action('admin_menu', function (): void {
 
         foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
             $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
-            $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
+            if (isset($metadata['file'])) {
+                $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
 
-            unlink($filename);
+                unlink($filename);
 
-            foreach ($metadata['sizes'] as $size) {
-                unlink(dirname($filename) . '/' . $size['file']);
+                foreach ($metadata['sizes'] as $size) {
+                    unlink(dirname($filename) . '/' . $size['file']);
+                }
+
+                delete_post_meta($attachment['id'], '_wp_attached_file');
+                delete_post_meta($attachment['id'], '_wp_attachment_metadata');
             }
-
-            delete_post_meta($attachment['id'], '_wp_attached_file');
-            delete_post_meta($attachment['id'], '_wp_attachment_metadata');
         }
 
         $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
@@ -74,21 +74,21 @@ add_action('admin_menu', function (): void {
 
         $dom = new DOMDocument();
         $elementAttributes = [];
-        $imgSrcValues = [];
+        $assets = [];
 
-        $imageUrl = function (string $filename) use ($wpHome): string {
+        $mediaUrl = function (string $filename) use ($wpHome): string {
             return $wpHome . '/app/uploads/' . (new DateTimeImmutable())->setTimestamp(filemtime($filename))->format('Y/m/') . basename($filename);
         };
 
         $parser = function (DOMNode $node) use (
             &$elementAttributes,
-            &$imgSrcValues,
+            &$assets,
             &$parser,
-            $imageUrl,
+            $mediaUrl,
             $legacyAssetsDir,
             $wpHome,
         ): array {
-            $imgReplacements = [];
+            $autoReplacements = [];
 
             if (false === in_array($node->nodeName, ['#document', '#text', 'body', 'html'], true)) {
                 if (false === isset($elementAttributes[$node->nodeName])) {
@@ -101,16 +101,39 @@ add_action('admin_menu', function (): void {
                             $elementAttributes[$node->nodeName][] = $attribute->nodeName;
                         }
 
-                        if ('img' === $node->nodeName) {
-                            $imgSrc = $node->attributes->getNamedItem('src')->nodeValue;
+                        if ('a' === $node->nodeName) {
+                            $href = strtr($node->attributes->getNamedItem('href')->nodeValue, [
+                                '%20' => ' ',
+                            ]);
 
-                            if (str_starts_with($imgSrc, 'images/')) {
-                                $imgSrcValues[] = $imgSrc;
-                                $filename = $legacyAssetsDir . $imgSrc;
+                            if (str_starts_with($href, 'images/')) {
+                                $assets[] = $href;
+                                $filename = $legacyAssetsDir . $href;
 
-                                $imgReplacements[] = [
-                                    $imgSrc,
-                                    is_file($filename) ? $imageUrl($filename) : 'image-does-not-exists.jpg',
+                                $autoReplacements[] = [
+                                    $href,
+                                    is_file($filename) ? $mediaUrl($filename) : 'media-does-not-exists.jpg',
+                                ];
+                            }
+                        }
+
+                        if ('source' === $node->nodeName || 'img' === $node->nodeName) {
+                            $src = strtr($node->attributes->getNamedItem('src')->nodeValue, [
+                                'Ã¡' => 'á',
+                                'Ã³' => 'ó',
+                                'Ã½' => 'ý',
+                                'Ä' => 'č',
+                                'Ä¾' => 'ľ',
+                                'Å' => 'ň',
+                            ]);
+
+                            if (str_starts_with($src, 'images/')) {
+                                $assets[] = $src;
+                                $filename = $legacyAssetsDir . $src;
+
+                                $autoReplacements[] = [
+                                    $src,
+                                    is_file($filename) ? $mediaUrl($filename) : 'media-does-not-exists.jpg',
                                 ];
                             }
                         }
@@ -119,17 +142,17 @@ add_action('admin_menu', function (): void {
             }
 
             foreach ($node->childNodes as $child) {
-                $imgReplacements = array_merge($imgReplacements, $parser($child));
+                $autoReplacements = array_merge($autoReplacements, $parser($child));
             }
 
-            return $imgReplacements;
+            return $autoReplacements;
         };
 
         $lf = "\r\n";
 
         /** @noinspection HttpUrlsUsage */
         /** @noinspection HtmlDeprecatedAttribute */
-        $replacements = [
+        $manualReplacements = [
             '*' => [
                 ['http://saleziani.sk', 'https://saleziani.sk'],
                 ['http://www.saleziani.sk', 'https://saleziani.sk'],
@@ -150,36 +173,20 @@ add_action('admin_menu', function (): void {
                 ['<a href="http://www.bazilika.sk/">www.bazilika.sk</a><a href="http://www.bazilika.sk/"> </a>', '<a href="http://www.bazilika.sk/">www.bazilika.sk</a>'],
                 ['<a href="http://agape.bazilika.sk/"><a href="http://www.agape.bazilika.sk">www.agape.bazilika.sk</a></a>', '<a href="http://www.agape.bazilika.sk">www.agape.bazilika.sk</a>'],
             ],
-            761 => [
-                ['2013_07_31_trnavka6ň.jpg', '2013_07_31_trnavka6.jpg'],
-            ],
-            799 => [
-                ['images/mp3/Festa_hymna2007.mp3', 'app/uploads/2013/09/festa-hymna-2007.mp3'],
-                ['images/mp3/Festa_hymna2007.ogg', 'app/uploads/2013/09/festa-hymna-2007.ogg'],
-            ],
             1464 => [
                 ['<p style="text-align: center;"><img src="images/sdb/spravyOBR/2015/03/2015_03_7návykov3.jpg" alt="" width="710" height="438" /></p>' . $lf, ''],
             ],
             1830 => [
                 ['2016/07/2016_06_02_denD', '2016/06/2016_06_02_denD'],
             ],
-            2227 => [
-                ['2017_09_21_výstupTZ.jpg', '2017_09_21_vystupTZ.jpg'],
+            1909 => [
+                ['images/doc/narodnaput.pdf', 'images/narodnaput.pdf'],
             ],
             2693 => [
                 ['2019_03_05_40_4_U__kópia.jpg', '2019_03_05_40_4_U.jpg'],
             ],
             2708 => [
                 ['2019_03_21_ans_Mozambik2ľľľ.jpg', '2019_03_21_ans_Mozambik22.jpg'],
-            ],
-            2902 => [
-                ['2019_10_22_Mariansky_vystup_na_Choč', '2019_10_22_Mariansky_vystup_na_Choc'],
-            ],
-            3459 => [
-                ['2021_07_23_tábor', '2021_07_23_tabor'],
-            ],
-            3534 => [
-                ['2021_09_17_trojročie', '2021_09_17_trojrocie'],
             ],
         ];
 
@@ -201,22 +208,22 @@ add_action('admin_menu', function (): void {
 
             $postContent = $content['introtext'];
 
-            if (isset($replacements[$content['id']])) {
-                foreach ($replacements[$content['id']] as $replacement) {
+            if (isset($manualReplacements[$content['id']])) {
+                foreach ($manualReplacements[$content['id']] as $replacement) {
                     $postContent = str_replace($replacement[0], $replacement[1], $postContent);
                 }
             }
 
-            foreach ($replacements['*'] as $replacement) {
+            foreach ($manualReplacements['*'] as $replacement) {
                 $postContent = str_replace($replacement[0], $replacement[1], $postContent);
             }
 
             $postContent = $htmlSanitizer->sanitize($postContent);
 
             @$dom->loadHTML($postContent);
-            $imgReplacements = $parser($dom);
+            $autoReplacements = $parser($dom);
 
-            foreach ($imgReplacements as $replacement) {
+            foreach ($autoReplacements as $replacement) {
                 $postContent = str_replace($replacement[0], $replacement[1], $postContent);
             }
 
@@ -236,8 +243,8 @@ add_action('admin_menu', function (): void {
             ob_flush();
         }
 
-        foreach (array_unique($imgSrcValues) as $imgSrcValue) {
-            $source = $legacyAssetsDir . $imgSrcValue;
+        foreach (array_unique($assets) as $asset) {
+            $source = $legacyAssetsDir . $asset;
 
             echo $source . ' ';
 
@@ -256,7 +263,6 @@ add_action('admin_menu', function (): void {
                 ], $filename);
 
                 wp_update_attachment_metadata($attachmentId, @wp_generate_attachment_metadata($attachmentId, $filename));
-
                 echo ' --> ' . $filename . ' [OK]<br>';
             } else {
                 echo '[NOT_FOUND]<br>';
@@ -265,23 +271,6 @@ add_action('admin_menu', function (): void {
             flush();
             ob_flush();
         }
-
-        copy($legacyAssetsDir . 'images/mp3/Festa_hymna2007.mp3', wp_upload_dir('2013/09')['path'] . '/festa-hymna-2007.mp3');
-        copy($legacyAssetsDir . 'images/mp3/Festa_hymna2007.ogg', wp_upload_dir('2013/09')['path'] . '/festa-hymna-2007.ogg');
-
-        wp_insert_attachment([
-            'post_author' => $author->ID,
-            'post_date' => '2013-09-11 12:18:09',
-            'post_mime_type' => 'audio/mpeg',
-            'post_title' => 'Festa hymna 2007 mp3',
-        ], wp_upload_dir('2013/09')['path'] . '/festa-hymna-2007.mp3');
-
-        wp_insert_attachment([
-            'post_author' => $author->ID,
-            'post_date' => '2013-09-11 12:18:09',
-            'post_mime_type' => 'audio/ogg',
-            'post_title' => 'Festa hymna 2007 ogg',
-        ], wp_upload_dir('2013/09')['path'] . '/festa-hymna-2007.ogg');
 
         echo '<br><strong>Use <a href="https://httpd.apache.org/docs/2.4/rewrite/rewritemap.html">RewriteMap</a> to following redirects</strong><br><textarea cols="190" rows="32" readonly="readonly">';
 
@@ -345,6 +334,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/newsletter-form',
         'saleziani/latest-posts',
         'saleziani/navigation',
+
         'saleziani/project-columns',
         'saleziani/organization-columns',
         'saleziani/icon-columns',
@@ -405,10 +395,9 @@ add_action('after_setup_theme', function () {
 //    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 //    remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 
-
     // Remove the REST API lines from the HTML Header
-    remove_action('wp_head', 'rest_output_link_wp_head', 10);
-    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
 
     // Remove the REST API endpoint.
     remove_action('rest_api_init', 'wp_oembed_register_route');
@@ -417,15 +406,13 @@ add_action('after_setup_theme', function () {
     add_filter('embed_oembed_discover', '__return_false');
 
     // Don't filter oEmbed results.
-    remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+    remove_filter('oembed_dataparse', 'wp_filter_oembed_result');
 
     // Remove oEmbed discovery links.
     remove_action('wp_head', 'wp_oembed_add_discovery_links');
 
     // Remove oEmbed-specific JavaScript from the front-end and back-end.
     remove_action('wp_head', 'wp_oembed_add_host_js');
-
-
 
     // Filters for WP-API version 1.x
     add_filter('json_enabled', '__return_false');
@@ -434,7 +421,6 @@ add_action('after_setup_theme', function () {
     // Filters for WP-API version 2.x
     add_filter('rest_enabled', '__return_false');
     add_filter('rest_jsonp_enabled', '__return_false');
-
 
     remove_action('wp_head', 'feed_links_extra', 3);
     remove_action('wp_head', 'feed_links', 2);
