@@ -369,6 +369,8 @@ add_filter('allowed_block_types_all', function (): array {
     ];
 }, 10, 2);
 
+add_filter('excerpt_more', fn(): string => '…');
+
 add_filter('term_links-category', fn(array $links): array => array_values(array_filter($links, fn(string $link): bool => false === str_contains($link, '>Aktuality<'))));
 
 add_filter('wp_list_categories', fn(string $output): string => str_replace('>Aktuality<', '>Všetko<', $output));
