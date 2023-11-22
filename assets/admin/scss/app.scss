@@ -15,54 +15,71 @@
 @import '../../public/scss/mixin';
 
 .editor-styles-wrapper {
-  @include layout;
-  @import '../../public/scss/blocks/all';
-  @import '../../public/scss/elements/all';
-  @import '../../public/scss/parts/all';
-  @import '../../public/scss/patterns/all';
-  @import '../../public/scss/templates/all';
+    @include layout;
+    @import '../../public/scss/blocks/all';
+    @import '../../public/scss/elements/all';
+    @import '../../public/scss/parts/all';
+    @import '../../public/scss/patterns/all';
+    @import '../../public/scss/templates/all';
+    @import 'blocks/all';
 
-  @import 'blocks/all';
+    .wp-block {
+        * {
+            // Override inline style white-space: pre-wrap from @wordpress/rich-text.
+            white-space: normal !important;
+        }
 
-  .wp-block {
-    * {
-      // Override inline style white-space: pre-wrap from @wordpress/rich-text.
-      white-space: normal !important;
+        a {
+            pointer-events: none;
+        }
     }
 
-    a {
-      pointer-events: none;
+    .wp-block-saleziani-newsletter-form {
+        max-width: 37.5rem;
+        margin: 0 auto;
+        padding: 6rem 0;
+        text-align: center;
+        color: $dark;
+        background-color: #e5e5e5;
     }
-  }
 
-  .wp-block-saleziani-newsletter-form {
-    max-width: 37.5rem;
-    margin: 0 auto;
-    padding: 6rem 0;
-    text-align: center;
-    color: $dark;
-    background-color: #e5e5e5;
-  }
-
-  .wp-pattern-saleziani-call-to-action {
-    .wp-block-image {
-      img {
-        height: unset !important;
-      }
+    .wp-pattern-saleziani-call-to-action {
+        .wp-block-image {
+            img {
+                height: unset !important;
+            }
+        }
     }
-  }
 }
 
 .post-type-post .block-editor-block-alignment-control__menu-group button:first-of-type .components-menu-item__info {
-  overflow: hidden;
-  height: 0.8125rem;
+    overflow: hidden;
+    height: 0.8125rem;
 
-  &:before {
-    display: inline-block;
-    content: 'Maximálna šírka 45rem';
-  }
+    &:before {
+        display: inline-block;
+        content: 'Maximálna šírka 45rem';
+    }
 }
 
 .rich-text:focus *[data-rich-text-format-boundary] {
     background-color: transparent !important;
+}
+
+.editor-post-taxonomies__hierarchical-terms-list > .editor-post-taxonomies__hierarchical-terms-choice > .components-checkbox-control {
+    cursor: not-allowed;
+
+    input[type='checkbox'] {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+}
+
+.category-checklist > li > label {
+    pointer-events: none;
+
+    > input[type='checkbox'] {
+        pointer-events: none;
+        opacity: 0.7;
+    }
 }
