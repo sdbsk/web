@@ -8,17 +8,6 @@
   :nth-child(1 of .wp-block-image) {
     max-width: 73.125rem;
   }
-
-
-  &.wp-block-post-content {
-    > * {
-      margin-bottom: 4rem;
-    }
-
-    > ol, > p, > ul {
-      margin-bottom: revert;
-    }
-  }
 }
 
 .wp-template-narrow-header {
