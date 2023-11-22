@@ -18,7 +18,7 @@ set('shared_dirs', ['web/app/uploads']);
 set('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
-task('deploy:language_install', function (): void {
+task('deploy:install_languages', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language core install en_US sk_SK');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language plugin install --all en_US sk_SK');
 });
