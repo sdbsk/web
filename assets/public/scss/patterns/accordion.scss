@@ -20,6 +20,10 @@
                 background-color: initial;
                 box-shadow: none;
 
+                &:hover {
+                    cursor: pointer;
+                }
+
                 .wp-block-heading {
                     @include display-reg-m;
                     margin: 0;
