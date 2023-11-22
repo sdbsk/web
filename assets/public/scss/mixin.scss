@@ -60,8 +60,6 @@
             .wp-block-saleziani-latest-posts, [data-type="saleziani/latest-posts"],
             .bootstrap-columns-container {
                 @include block-layout(8rem);
-
-
             }
 
             .wp-pattern-saleziani-section-heading {
@@ -70,6 +68,10 @@
 
             p {
                 @include block-layout(1rem);
+            }
+
+            p .wp-block-group {
+
             }
         }
 
