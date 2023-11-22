@@ -183,12 +183,6 @@ add_action('admin_menu', function (): void {
             1909 => [
                 ['images/doc/narodnaput.pdf', 'images/narodnaput.pdf'],
             ],
-            2693 => [
-                ['2019_03_05_40_4_U__kópia.jpg', '2019_03_05_40_4_U.jpg'],
-            ],
-            2708 => [
-                ['2019_03_21_ans_Mozambik2ľľľ.jpg', '2019_03_21_ans_Mozambik22.jpg'],
-            ],
         ];
 
         $htmlSanitizer = new HtmlSanitizer((new HtmlSanitizerConfig())
