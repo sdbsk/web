@@ -427,3 +427,34 @@ remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
 remove_action('wp_head', 'rel_canonical');
+
+add_action('wp_dashboard_setup', function () {
+    remove_action('welcome_panel', 'wp_welcome_panel');
+    remove_meta_box('dashboard_primary', 'dashboard', 'side');
+    remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
+    remove_meta_box('health_check_status', 'dashboard', 'normal');
+    remove_meta_box('dashboard_site_health', 'dashboard', 'normal');
+});
+
+add_action( 'wp_before_admin_bar_render', function () {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('wp-logo');          // Remove the Wordpress logo
+    $wp_admin_bar->remove_menu('about');            // Remove the about Wordpress link
+    $wp_admin_bar->remove_menu('wporg');            // Remove the Wordpress.org link
+    $wp_admin_bar->remove_menu('documentation');    // Remove the Wordpress documentation link
+    $wp_admin_bar->remove_menu('support-forums');   // Remove the support forums link
+    $wp_admin_bar->remove_menu('feedback');         // Remove the feedback link
+//    $wp_admin_bar->remove_menu('site-name');        // Remove the site name menu
+    $wp_admin_bar->remove_menu('updates');          // Remove the updates link
+    $wp_admin_bar->remove_menu('comments');         // Remove the comments link
+    $wp_admin_bar->remove_menu('site-editor');         // Remove the comments link
+    $wp_admin_bar->remove_menu('w3tc');             // If you use w3 total cache remove the performance link
+
+
+});
+
+add_action( 'admin_init', function () {
+    remove_menu_page( 'edit-comments.php' );
+    remove_menu_page( 'plugins.php' );
+    remove_menu_page( 'w3tc_dashboard' );
+});
