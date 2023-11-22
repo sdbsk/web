@@ -1,5 +1,9 @@
 <?php
 
+/** @noinspection ALL */
+
+declare(strict_types=1);
+
 namespace Deployer;
 
 require 'recipe/common.php';
@@ -15,6 +19,8 @@ set('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
 task('deploy:flush_rewrite', function (): void {
+    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language core install en_US sk_SK');
+    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language plugin install --all en_US sk_SK');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
 });
 
