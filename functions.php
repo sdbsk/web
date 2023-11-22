@@ -394,8 +394,8 @@ add_action('after_setup_theme', function () {
 //    remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
 
     // Remove the REST API lines from the HTML Header
-    remove_action('wp_head', 'rest_output_link_wp_head', 10);
-    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
 
     // Remove the REST API endpoint.
     remove_action('rest_api_init', 'wp_oembed_register_route');
@@ -404,7 +404,7 @@ add_action('after_setup_theme', function () {
     add_filter('embed_oembed_discover', '__return_false');
 
     // Don't filter oEmbed results.
-    remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+    remove_filter('oembed_dataparse', 'wp_filter_oembed_result');
 
     // Remove oEmbed discovery links.
     remove_action('wp_head', 'wp_oembed_add_discovery_links');
