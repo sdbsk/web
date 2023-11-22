@@ -62,19 +62,14 @@
                     "slug": "light-red"
                 },
                 {
-                    "color": "#e8f4f9",
-                    "name": "Svetlomodrá",
-                    "slug": "light-blue"
-                },
-                {
                     "color": "#c7e7f1",
                     "name": "Svetlomodrá",
                     "slug": "light-blue"
                 },
                 {
                     "color": "#fdf9f8",
-                    "name": "Svetlohnedá",
-                    "slug": "light-brown"
+                    "name": "Slabá svetločervená",
+                    "slug": "very-light-red"
                 }
             ]
         },

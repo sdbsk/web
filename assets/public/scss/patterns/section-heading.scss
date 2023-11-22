@@ -1,6 +1,6 @@
 @import '../mixin';
 
-.wp-pattern-saleziani-heading-description-link {
+.wp-pattern-saleziani-section-heading {
     width: 100%;
     max-width: 48.125rem;
 
@@ -11,7 +11,7 @@
     p {
         @include body-l;
         margin-bottom: 1rem;
-        color: #272727;
+        color: $dark;
 
         &:last-child {
             margin-bottom: 0;

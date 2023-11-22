@@ -33,22 +33,22 @@
         margin-bottom: 0.5rem;
         padding: 0.38rem 0.75rem;
         text-decoration: none;
-        color: #272727;
+        color: $dark;
         border: 1px solid rgba(39, 39, 39, 0.20);
         border-radius: 0.9375rem;
 
         &:hover {
-          color: #ffffff;
-          border-color: #cf3942;
-          background-color: #cf3942;
+          color: $white;
+          border-color: $red;
+          background-color: $red;
         }
       }
 
       &.current-cat {
         a {
-          color: #ffffff;
-          border-color: #cf3942;
-          background-color: #cf3942;
+          color: $white;
+          border-color: $red;
+          background-color: $red;
         }
       }
     }
@@ -82,7 +82,7 @@
           font-weight: 500;
           line-height: 1.0625rem;
           text-decoration: none;
-          color: #272727;
+          color: $dark;
 
         }
 
@@ -98,7 +98,7 @@
 
         a {
           text-decoration: none;
-          color: #272727;
+          color: $dark;
         }
       }
 
@@ -169,7 +169,7 @@
       margin-bottom: 0;
       padding: 0.5rem 1rem;
       text-decoration: none;
-      color: #272727;
+      color: $dark;
     }
 
     span.dots {
@@ -177,7 +177,7 @@
       font-weight: 500;
       line-height: 1.5rem;
       padding: 0.5rem 1rem;
-      color: #272727;
+      color: $dark;
     }
 
     span.current {
@@ -187,7 +187,7 @@
       padding: 0.5rem 1rem;
       color: #fff;
       border-radius: 0.5rem;
-      background-color: #cf3942;
+      background-color: $red;
     }
   }
 }

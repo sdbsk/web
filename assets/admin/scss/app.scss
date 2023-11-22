@@ -1,3 +1,4 @@
+@import '../../public/scss/colors';
 @import '../../public/scss/bootstrap-override';
 
 @import 'bootstrap/scss/functions';
@@ -39,7 +40,7 @@
     margin: 0 auto;
     padding: 6rem 0;
     text-align: center;
-    color: #272727;
+    color: $dark;
     background-color: #e5e5e5;
   }
 
@@ -60,4 +61,8 @@
     display: inline-block;
     content: 'Maximálna šírka 45rem';
   }
+}
+
+.rich-text:focus *[data-rich-text-format-boundary] {
+    background-color: transparent !important;
 }

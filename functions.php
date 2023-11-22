@@ -14,6 +14,8 @@ add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
 
+
+
 // todo: remove after import: ext-dom, ext-fileinfo, ext-pdo, symfony/html-sanitizer, LEGACY_ env variables and following hook
 add_action('admin_menu', function (): void {
     add_menu_page('Import článkov', 'Importovať články', 'import', 'post-import', function (): void {
@@ -294,9 +296,8 @@ add_action('admin_menu', function (): void {
 });
 
 add_action('init', function () use ($template): void {
-    register_block_pattern_category($template, [
-        'label' => 'Saleziáni',
-    ]);
+
+    require_once 'src/icon-controller.php';
 
     foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
         register_block_type($template . '/' . $type, $args);
@@ -311,6 +312,10 @@ add_action('init', function () use ($template): void {
             register_post_meta($type, $key, $args);
         }
     }
+
+    register_block_pattern_category($template, [
+        'label' => 'Saleziáni',
+    ]);
 
     unregister_block_pattern('core/query-standard-posts');
     unregister_block_pattern('core/query-medium-posts');
@@ -330,31 +335,46 @@ add_action('save_post_post', function (int $postId): void {
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
     wp_enqueue_script('public', home_url() . $manifest[$assets . 'public.js'], [], false, ['in_footer' => true]);
+
+    wp_deregister_script('wp-interactivity');
 });
 
 add_filter('allowed_block_types_all', function (): array {
     return [
-        'core/button',
-        'core/buttons',
-        'core/group',
-        'core/heading',
-        'core/image',
-        'core/list',
-        'core/list-item',
-        'core/navigation-link',
-        'core/paragraph',
-        'core/pullquote',
-        'core/separator',
-        'core/site-logo',
-        'core/spacer',
-        'core/template-part',
+        // large margin blocks
+        'saleziani/newsletter-form',
         'saleziani/latest-posts',
-        'saleziani/link-to-page',
         'saleziani/navigation',
         'saleziani/project-columns',
-        'saleziani/project-column',
         'saleziani/organization-columns',
+        'saleziani/icon-columns',
+        'saleziani/page-columns',
+        'core/group',
+        'core/buttons',
+
+        // asi na vyhodenie z whitelistu
+        'core/separator',
+        'core/spacer',
+
+        // small margin blocks (typograficke)
+        'core/image',
+        'core/heading',
+        'core/paragraph',
+        'core/list',
+        'core/button',
+        'core/pullquote',
+
+        // no margin blocks
+        'core/template-part',
+        'core/navigation-link',
+        'saleziani/link-to-page',
+        'core/site-logo',
+        'core/list-item',
+        'saleziani/project-column',
         'saleziani/organization-column',
+        'saleziani/icon',
+        'saleziani/icon-column',
+        'saleziani/page-column',
     ];
 }, 10, 2);
 
@@ -366,3 +386,61 @@ function placeholder_image_path(int $width, int $height): string
 {
     return 'https://placehold.co/' . $width . 'x' . $height . '/F8DAD3/272727';
 }
+
+add_filter('xmlrpc_enabled', '__return_false');
+
+// Disable all xml-rpc endpoints
+add_filter('xmlrpc_methods', function () {
+    return [];
+}, PHP_INT_MAX);
+
+// remove some meta tags from WordPress
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'wp_shortlink_wp_head');
+
+add_action('after_setup_theme', function () {
+
+//    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+//    remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+
+
+    // Remove the REST API lines from the HTML Header
+    remove_action('wp_head', 'rest_output_link_wp_head', 10);
+    remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+
+    // Remove the REST API endpoint.
+    remove_action('rest_api_init', 'wp_oembed_register_route');
+
+    // Turn off oEmbed auto discovery.
+    add_filter('embed_oembed_discover', '__return_false');
+
+    // Don't filter oEmbed results.
+    remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+
+    // Remove oEmbed discovery links.
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+
+    // Remove oEmbed-specific JavaScript from the front-end and back-end.
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+
+
+
+    // Filters for WP-API version 1.x
+    add_filter('json_enabled', '__return_false');
+    add_filter('json_jsonp_enabled', '__return_false');
+
+    // Filters for WP-API version 2.x
+    add_filter('rest_enabled', '__return_false');
+    add_filter('rest_jsonp_enabled', '__return_false');
+
+
+    remove_action('wp_head', 'feed_links_extra', 3);
+    remove_action('wp_head', 'feed_links', 2);
+});
+
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+remove_action('wp_head', 'rel_canonical');

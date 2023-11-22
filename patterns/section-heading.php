@@ -3,14 +3,14 @@
 declare(strict_types=1);
 
 /**
- * Title: Nadpis, popis a odkaz
- * Slug: saleziani/heading-description-link
+ * Title: Úvod sekcie
+ * Slug: saleziani/section-heading
  * Categories: saleziani
  */
 ?>
 
-<!-- wp:group {"className":"wp-pattern-saleziani-heading-description-link"} -->
-<div class="wp-block-group wp-pattern-saleziani-heading-description-link">
+<!-- wp:group {"className":"wp-pattern-saleziani-section-heading"} -->
+<div class="wp-block-group wp-pattern-saleziani-section-heading">
     <!-- wp:heading {"className":"mb-3"} -->
     <h2 class="wp-block-heading mb-3">Nadpis</h2>
     <!-- /wp:heading -->

@@ -32,7 +32,7 @@
             flex-shrink: 0;
             justify-content: space-between;
             padding: 2rem 6rem 3rem;
-            color: #ffffff !important;
+            color: $white !important;
             border-radius: 0 0 .5rem .5rem;
             @media(max-width: 62rem) {
                 padding: 2rem 3rem 2rem;
@@ -42,7 +42,7 @@
                 margin-bottom: 1rem;
 
                 > * {
-                    color: #ffffff !important;
+                    color: $white !important;
                 }
 
                 .wp-block-heading {
@@ -63,14 +63,14 @@
             .content-bottom {
                 a {
                     @include link-with-icon;
-                    color: #ffffff;
+                    color: $white;
 
                     &:before {
-                        background-color: #ffffff;
+                        background-color: $white;
                     }
 
                     &:after {
-                        background-image: url('../../images/arrow-right-white.svg');
+                        @include svgBackground('../images/arrow-right.svg', $white);
                     }
                 }
             }
@@ -89,19 +89,19 @@
             .content {
                 .content-top {
                     > * {
-                        color: #272727 !important;
+                        color: $dark !important;
                     }
                 }
 
                 .content-bottom a {
-                    color: #272727;
+                    color: $dark;
 
                     &:before {
-                        background-color: #272727;
+                        background-color: $dark;
                     }
 
                     &:after {
-                        background-image: url('../../images/arrow-right-black.svg');
+                        @include svgBackground('../images/arrow-right.svg', $dark);
                     }
                 }
             }

@@ -14,11 +14,11 @@
       font-style: normal;
       line-height: 2.75rem;
       margin-bottom: 1rem;
-      color: #cf3942;
+      color: $red;
     }
 
     cite {
-      color: #272727;
+      color: $dark;
       @include body-xl;
     }
   }

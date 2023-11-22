@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Title: Obsahový blok s nadpisom a textom
+ * Title: NEPOUZIVAT - Obsahový blok s nadpisom a textom
  * Slug: saleziani/content-heading-text
  * Categories: saleziani
  */
