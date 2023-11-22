@@ -62,7 +62,8 @@
         "symfony/html-sanitizer": "^6.3",
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/w3-total-cache": "^2.5",
-        "google/material-symbols": "1.0.0"
+        "google/material-symbols": "1.0.0",
+        "wpackagist-plugin/convert-to-blocks": "^1.2"
     },
     "require-dev": {
         "deployer/deployer": "^7.3",

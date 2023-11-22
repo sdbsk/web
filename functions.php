@@ -18,6 +18,7 @@ add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
 add_action('admin_menu', function (): void {
     add_menu_page('Import článkov', 'Importovať články', 'import', 'post-import', function (): void {
         set_time_limit(3600);
+        ini_set('memory_limit', '1024M');
 
         try {
             $legacyDb = new PDO('mysql:host=' . getenv('LEGACY_DATABASE_HOST') . ';dbname=' . getenv('LEGACY_DATABASE_NAME'),
@@ -181,12 +182,6 @@ add_action('admin_menu', function (): void {
             ],
             1909 => [
                 ['images/doc/narodnaput.pdf', 'images/narodnaput.pdf'],
-            ],
-            2693 => [
-                ['2019_03_05_40_4_U__kópia.jpg', '2019_03_05_40_4_U.jpg'],
-            ],
-            2708 => [
-                ['2019_03_21_ans_Mozambik2ľľľ.jpg', '2019_03_21_ans_Mozambik22.jpg'],
             ],
         ];
 
@@ -367,6 +362,8 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/page-column',
     ];
 }, 10, 2);
+
+add_filter('excerpt_more', fn(): string => '…');
 
 add_filter('term_links-category', fn(array $links): array => array_values(array_filter($links, fn(string $link): bool => false === str_contains($link, '>Aktuality<'))));
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74fa506c0d2b7302431675a63ca0dd01",
+    "content-hash": "662dae65d4c97e20efc450467b0cb334",
     "packages": [
         {
             "name": "composer/installers",
@@ -150,16 +150,6 @@
                 }
             ],
             "time": "2022-08-20T06:45:11+00:00"
-        },
-        {
-            "name": "google/material-symbols",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/marella/material-symbols.git",
-                "reference": "main"
-            },
-            "type": "library"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1547,6 +1537,24 @@
             "time": "2023-11-12T22:43:29+00:00"
         },
         {
+            "name": "wpackagist-plugin/convert-to-blocks",
+            "version": "1.2.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/convert-to-blocks/",
+                "reference": "tags/1.2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/convert-to-blocks.1.2.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/convert-to-blocks/"
+        },
+        {
             "name": "wpackagist-plugin/w3-total-cache",
             "version": "2.6.0",
             "source": {
@@ -1608,6 +1616,16 @@
                 }
             ],
             "time": "2023-11-07T10:27:12+00:00"
+        },
+        {
+            "name": "google/material-symbols",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marella/material-symbols.git",
+                "reference": "main"
+            },
+            "type": "library"
         },
         {
             "name": "roave/security-advisories",
