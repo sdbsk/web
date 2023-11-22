@@ -1,5 +1,9 @@
 @import '../bootstrap-override';
 
+figure {
+    margin-bottom: 0;
+}
+
 .wp-block-post-content {
   > .wp-block-image {
     min-height: 25rem;

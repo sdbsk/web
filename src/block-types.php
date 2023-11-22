@@ -68,7 +68,7 @@ return [
                     }
                     $output .= '</div>';
 
-                    $output .= '<a href="' . $permalink . '" class="title"><h3>' . $post->post_title . '</h3></a>';
+                    $output .= '<h3 class="title"><a href="' . $permalink . '">' . $post->post_title . '</a></h3>';
                     $output .= '<div class="description">' . get_the_excerpt($post) . '</div></div>';
                     $output .= '<a href="' . $permalink . '" class="link">Čítať viac</a>';
                     $output .= '</div></div>';

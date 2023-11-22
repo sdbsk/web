@@ -1,6 +1,52 @@
 @import 'bootstrap-override';
 @import 'typography';
 
+@mixin show-layout() {
+    .page-template-page-debug & {
+        position: relative;
+        //box-sizing: content-box;
+        //background-color: rgba(255, 0, 0, 0.07);
+
+        &:after {
+            position: absolute;
+            display: block;
+            content: '';
+            background-color: rgb(213, 213, 255);
+            left: -40px;
+            width: 20px;
+            z-index: 1000;
+            @content;
+        }
+
+        &:before {
+            position: absolute;
+            display: block;
+            content: '';
+            background-color: rgb(255, 202, 202);
+            left: -40px;
+            width: 20px;
+            top: 0;
+            bottom: 0;
+        }
+    }
+}
+
+@mixin block-layout($margin-bottom) {
+    margin-bottom: $margin-bottom;
+
+    @include show-layout() {
+        height: $margin-bottom;
+    }
+
+    @media(max-width: 50rem) {
+        margin-bottom: $margin-bottom / 2;
+
+        @include show-layout() {
+            height: $margin-bottom / 2;
+        }
+    }
+}
+
 @mixin layout() {
     font-family: 'Fira Sans', sans-serif;
 
@@ -8,13 +54,26 @@
         box-sizing: border-box;
     }
     .wp-block-post-content {
-        > * {
-            margin-bottom: 8rem;
+        > {
+            .wp-block-group,
+            .wp-block-image,
+            .wp-block-saleziani-latest-posts, [data-type="saleziani/latest-posts"],
+            .bootstrap-columns-container {
+                @include block-layout(8rem);
+            }
 
-            @media(max-width: 50rem) {
-                margin-bottom: 4rem;
+            .wp-pattern-saleziani-section-heading {
+                @include block-layout(3rem);
             }
         }
+
+        //> * {
+        //    margin-bottom: 8rem;
+        //
+        //    @media(max-width: 50rem) {
+        //        margin-bottom: 4rem;
+        //    }
+        //}
     }
 }
 

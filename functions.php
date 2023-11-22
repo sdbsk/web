@@ -345,6 +345,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/newsletter-form',
         'saleziani/latest-posts',
         'saleziani/navigation',
+
         'saleziani/project-columns',
         'saleziani/organization-columns',
         'saleziani/icon-columns',
