@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5f3cc7e8553c468b33c1fe7554541e3",
+    "content-hash": "74fa506c0d2b7302431675a63ca0dd01",
     "packages": [
         {
             "name": "composer/installers",
@@ -150,6 +150,16 @@
                 }
             ],
             "time": "2022-08-20T06:45:11+00:00"
+        },
+        {
+            "name": "google/material-symbols",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marella/material-symbols.git",
+                "reference": "main"
+            },
+            "type": "library"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1598,16 +1608,6 @@
                 }
             ],
             "time": "2023-11-07T10:27:12+00:00"
-        },
-        {
-            "name": "google/material-symbols",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/marella/material-symbols.git",
-                "reference": "main"
-            },
-            "type": "library"
         },
         {
             "name": "roave/security-advisories",
