@@ -5,7 +5,7 @@ declare(strict_types=1);
 add_filter('query_vars', fn(array $vars): array => ['icon', ...$vars]);
 add_rewrite_rule('^assets/icon/([a-z0-9_]+\.svg)$', 'index.php?name=icon&icon=$matches[1]', 'top');
 add_action('parse_request', function (WP $wp): void {
-    if ('icon' === $wp->query_vars['name']) {
+    if ('icon' === ($wp->query_vars['name'] ?? null)) {
         $icon = $wp->query_vars['icon'] ?? null;
 
         if (null === $icon) {
