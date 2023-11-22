@@ -121,9 +121,10 @@ add_action('admin_menu', function (): void {
                             $src = strtr($node->attributes->getNamedItem('src')->nodeValue, [
                                 'Ã¡' => 'á',
                                 'Ã³' => 'ó',
+                                'Ã½' => 'ý',
                                 'Ä' => 'č',
                                 'Ä¾' => 'ľ',
-                                'Ã½' => 'ý',
+                                'Å' => 'ň',
                             ]);
 
                             if (str_starts_with($src, 'images/')) {
@@ -172,14 +173,14 @@ add_action('admin_menu', function (): void {
                 ['<a href="http://www.bazilika.sk/">www.bazilika.sk</a><a href="http://www.bazilika.sk/"> </a>', '<a href="http://www.bazilika.sk/">www.bazilika.sk</a>'],
                 ['<a href="http://agape.bazilika.sk/"><a href="http://www.agape.bazilika.sk">www.agape.bazilika.sk</a></a>', '<a href="http://www.agape.bazilika.sk">www.agape.bazilika.sk</a>'],
             ],
-            761 => [
-                ['2013_07_31_trnavka6ň.jpg', '2013_07_31_trnavka6.jpg'],
-            ],
             1464 => [
                 ['<p style="text-align: center;"><img src="images/sdb/spravyOBR/2015/03/2015_03_7návykov3.jpg" alt="" width="710" height="438" /></p>' . $lf, ''],
             ],
             1830 => [
                 ['2016/07/2016_06_02_denD', '2016/06/2016_06_02_denD'],
+            ],
+            1909 => [
+                ['images/doc/narodnaput.pdf', 'images/narodnaput.pdf'],
             ],
             2693 => [
                 ['2019_03_05_40_4_U__kópia.jpg', '2019_03_05_40_4_U.jpg'],
@@ -262,7 +263,7 @@ add_action('admin_menu', function (): void {
                 ], $filename);
 
                 wp_update_attachment_metadata($attachmentId, @wp_generate_attachment_metadata($attachmentId, $filename));
-//                echo ' --> ' . $filename . ' [OK]<br>';
+                echo ' --> ' . $filename . ' [OK]<br>';
             } else {
                 echo '[NOT_FOUND]<br>';
             }
