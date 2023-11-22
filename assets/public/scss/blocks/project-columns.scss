@@ -106,5 +106,31 @@
                 }
             }
         }
+
+        &.has-very-light-red-background-color,
+        &.has-light-blue-background-color,
+        &.has-light-red-background-color,
+        &.has-light-yellow-background-color,
+        &.has-light-green-background-color {
+            .content {
+                .content-top {
+                    > * {
+                        color: $dark !important;
+                    }
+                }
+
+                .content-bottom a {
+                    color: $red;
+
+                    &:before {
+                        background-color: $red;
+                    }
+
+                    &:after {
+                        @include svgBackground('../images/arrow-right.svg', $red);
+                    }
+                }
+            }
+        }
     }
 }
