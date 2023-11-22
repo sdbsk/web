@@ -18,15 +18,19 @@ set('shared_dirs', ['web/app/uploads']);
 set('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
-task('deploy:flush_rewrite', function (): void {
+task('deploy:language_install', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language core install en_US sk_SK');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language plugin install --all en_US sk_SK');
+});
+
+task('deploy:flush_rewrite', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
 });
 
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
+    'deploy:install_languages',
     'deploy:flush_rewrite',
     'deploy:publish',
 ]);
