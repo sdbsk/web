@@ -15,19 +15,36 @@ return [
             $output = '';
             $post = get_post();
             $ancestors = get_post_ancestors($post);
-            $parentPostID = empty($ancestors) ? $post->ID : end($ancestors);
-            $parentPost = $parentPostID === $post->ID ? $post : get_post($parentPostID);
-            $currentUrl = get_permalink($post);
             $children = get_children([
                 'order' => 'ASC',
                 'orderby' => 'menu_order',
-                'post_parent' => $parentPostID,
+                'post_parent' => $post->ID,
                 'post_type' => 'page',
             ]);
 
-            foreach ([$parentPost, ...$children] as $item) {
-                $itemUrl = get_permalink($item);
-                $output .= $currentUrl === $itemUrl ? '<span class="navigation-item current">' . $item->post_title . '</span>' : '<a href="' . $itemUrl . '" class="navigation-item">' . $item->post_title . '</a>';
+            if (empty($ancestors) && empty($children)) {
+                return '';
+            }
+
+            $parentPostID = empty($ancestors) ? $post->ID : end($ancestors);
+
+            if ($parentPostID !== $post->ID) {
+                $children = get_children([
+                    'order' => 'ASC',
+                    'orderby' => 'menu_order',
+                    'post_parent' => $parentPostID,
+                    'post_type' => 'page',
+                ]);
+            }
+
+            $parentUrl = get_permalink(get_post($parentPostID));
+            $currentUrl = get_permalink($post);
+            $homeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M267.231-219.231h106.616v-236.576h212.306v236.576h106.616v-343.961L480-723.539 267.231-563.256v344.025Zm-47.96 47.96v-415.998L480-783.691l260.729 196.653v415.767H538.193v-236.576H421.807v236.576H219.271ZM480-471.385Z"/></svg>';
+            $output .= $currentUrl === $parentUrl ? '<span class="navigation-item current">' . $homeIcon . '</span>' : '<a href="' . $parentUrl . '" class="navigation-item">' . $homeIcon . '</a>';
+
+            foreach ($children as $child) {
+                $childUrl = get_permalink($child);
+                $output .= $currentUrl === $childUrl ? '<span class="navigation-item current">' . $child->post_title . '</span>' : '<a href="' . $childUrl . '" class="navigation-item">' . $child->post_title . '</a>';
             }
 
             return wrap_block_content($block, $output);
@@ -141,12 +158,12 @@ return [
                 <h3>' . $attributes['title'] . '</h3>
                 <form method="post" action="https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088">
                     <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
-                    
+
                     <label class="input-checkbox">
                         <input type="checkbox" name="gdpr" required="required">
                         <span class="label">Súhlasím so spracúvaním osobných údajov</span>
                     </label>
-                    
+
                     <button type="submit" name="submit">Registrovať</button>
                 </form>
 '),
