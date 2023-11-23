@@ -4,6 +4,9 @@
 .wp-template-category {
   max-width: 75rem;
   margin: 0 auto 8rem;
+  @media(max-width: 47.9375rem) {
+    margin: 0 auto 4rem;
+  }
 
   .wp-block-query-title {
     font-size: 2.5rem;
@@ -60,6 +63,9 @@
 
     .wp-block-post {
       margin-bottom: 4rem;
+      @media(max-width: 47.9375rem) {
+        margin-bottom: 2rem;
+      }
 
       &:last-child {
         margin-bottom: 0;
@@ -105,17 +111,21 @@
 
       .wp-block-post-excerpt {
         p {
-          font-size: 1.0625rem;
-          font-weight: 400;
-          line-height: 1.5rem;
+          @include body-m;
           margin-bottom: 0.5rem;
           color: rgba(39, 39, 39, 0.80);
+          @media(max-width: 47.9375rem) {
+            @include body-s;
+          }
         }
       }
 
       .wp-block-read-more {
         @include link-with-icon;
         font-size: 1.0625rem;
+        @media(max-width: 47.9375rem) {
+          font-size: 0.9375rem;
+        }
       }
 
       .wp-block-post-featured-image {
@@ -123,6 +133,9 @@
         overflow: hidden;
         padding-bottom: 50%;
         border-radius: 0.25rem;
+        @media(max-width: 47.9375rem) {
+          margin-bottom: 1rem;
+        }
 
         a {
           position: absolute;

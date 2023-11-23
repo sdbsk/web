@@ -121,6 +121,7 @@
     border-bottom: 0.0625rem solid #e5e5e5;
     @media(max-width: 48rem) {
       flex-direction: column;
+      padding: 3rem $grid-gutter-width/2;
     }
 
     h3 {

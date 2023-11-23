@@ -51,9 +51,9 @@
         @include show-layout($top, $bottom);
     }
 
-    @media(max-width: 50rem) {
+    @media(max-width: 48rem) {
         @if ($bottom == '') {
-            margin-bottom: $bottom;
+            margin-bottom: $bottom / 2;
         }
 
         @if ($top != '') {
