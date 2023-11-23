@@ -310,6 +310,12 @@ add_action('init', function () use ($template): void {
     unregister_block_pattern('core/social-links-shared-background-color');
     unregister_block_pattern_category('featured');
     unregister_block_pattern_category('text');
+
+    register_post_meta('page', 'page_perex', array(
+        'show_in_rest' => true,
+        'single' => true,
+        'type' => 'string',
+    ));
 });
 
 add_action('save_post_post', function (int $postId): void {
@@ -320,11 +326,14 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
     wp_enqueue_script('public', home_url() . $manifest[$assets . 'public.js'], [], false, ['in_footer' => true]);
 
-    wp_deregister_script('wp-interactivity');
+//    wp_deregister_script('wp-interactivity');
 });
 
 add_filter('allowed_block_types_all', function (): array {
     return [
+        'core/query',
+        'saleziani/posts',
+
         // large margin blocks
         'saleziani/newsletter-form',
         'saleziani/latest-posts',
@@ -336,6 +345,8 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/page-columns',
         'core/group',
         'core/buttons',
+        'saleziani/page-perex-meta',
+        'saleziani/page-perex-meta',
 
         // asi na vyhodenie z whitelistu
         'core/separator',

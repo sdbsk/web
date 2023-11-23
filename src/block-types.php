@@ -4,9 +4,49 @@
 
 declare(strict_types=1);
 
-function wrap_block_content(WP_Block $block, string $content): string
+$stack = new class() {
+    private $topPages = [];
+    private $pageUrls = [];
+    private $pages = [];
+
+    function topParentPageId(?WP_Post $page = null): int
+    {
+        $page = $page ?? $this->getPage();
+
+        if (!isset($this->topPages[$page->ID])) {
+            $ancestors = get_post_ancestors($page);
+            $this->topPages[$page->ID] = empty($ancestors) ? $page->ID : end($ancestors);
+        }
+
+        return $this->topPages[$page->ID];
+    }
+
+    function getPage(?int $pageId = null): WP_Post
+    {
+        if (null === $pageId || !isset($this->pages[$pageId])) {
+            global $post;
+
+            $page = null === $pageId ? ($post ?? get_post()) : get_post($pageId);
+            $pageId = $page->ID;
+            $this->pages[$pageId] = $page;
+        }
+
+        return $this->pages[$pageId];
+    }
+
+    function getPageUrl(WP_Post $page): string
+    {
+        if (!isset($this->pageUrls[$page->ID])) {
+            $this->pageUrls[$page->ID] = get_permalink($page);
+        }
+
+        return $this->pageUrls[$page->ID];
+    }
+};
+
+function wrap_block_content(WP_Block $block, string $content, string $element = 'div'): string
 {
-    return '<div class="wp-block-' . str_replace('/', '-', $block->name) . '">' . $content . '</div>';
+    return "<$element class=\"wp-block-" . str_replace('/', '-', $block->name) . '">' . $content . "</$element>";
 }
 
 return [
@@ -108,36 +148,26 @@ return [
         },
     ],
     'navigation' => [
-        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+        'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
             $output = '';
-            $page = get_post();
-            $ancestors = get_post_ancestors($page);
+            $page = $stack->getPage();
+            $topPageId = $stack->topParentPageId($page);
+
             $children = get_children([
                 'order' => 'ASC',
                 'orderby' => 'menu_order',
-                'post_parent' => $page->ID,
+                'post_parent' => $topPageId,
                 'post_type' => 'page',
             ]);
 
-            if (empty($ancestors) && empty($children)) {
+            if ($topPageId === $page->ID && empty($children)) {
                 return '';
             }
 
-            $parentPageID = empty($ancestors) ? $page->ID : end($ancestors);
+            $parentUrl = $stack->getPageUrl($stack->getPage($topPageId));
+            $currentUrl = $stack->getPageUrl($page);
 
-            if ($parentPageID !== $page->ID) {
-                $children = get_children([
-                    'order' => 'ASC',
-                    'orderby' => 'menu_order',
-                    'post_parent' => $parentPageID,
-                    'post_type' => 'page',
-                ]);
-            }
-
-            $parentUrl = get_permalink(get_post($parentPageID));
-            $currentUrl = get_permalink($page);
-            $homeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M267.231-219.231h106.616v-236.576h212.306v236.576h106.616v-343.961L480-723.539 267.231-563.256v344.025Zm-47.96 47.96v-415.998L480-783.691l260.729 196.653v415.767H538.193v-236.576H421.807v236.576H219.271ZM480-471.385Z"/></svg>';
-            $output .= $currentUrl === $parentUrl ? '<span class="navigation-item current">' . $homeIcon . '</span>' : '<a href="' . $parentUrl . '" class="navigation-item">' . $homeIcon . '</a>';
+            $output .= $currentUrl === $parentUrl ? '<span class="navigation-item current">Úvod</span>' : '<a href="' . $parentUrl . '" class="navigation-item">Úvod</a>';
 
             foreach ($children as $child) {
                 $childUrl = get_permalink($child);
@@ -169,11 +199,11 @@ return [
 '),
     ],
     'top-level-page-title' => [
-        'render_callback' => function (): string {
-            $page = get_post();
-            $ancestors = get_post_ancestors($page);
-
-            return '<h1 class="wp-block-post-title">' . get_the_title(empty($ancestors) ? $page : end($ancestors)) . '</h1>';
-        },
+        'render_callback' => fn() => '<h1 class="wp-block-post-title">' . get_the_title($stack->topParentPageId()) . '</h1>',
     ],
+    'top-level-page-perex' => [
+        'render_callback' => fn(array $attributes, string $content, WP_Block $block) => wrap_block_content($block, get_post_meta(
+            $stack->getPage($stack->topParentPageId())->ID
+            , 'page_perex', true), 'p'),
+    ]
 ];

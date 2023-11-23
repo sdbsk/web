@@ -6,6 +6,8 @@ import './blocks/newsletter-form';
 import './blocks/organization-columns';
 import './blocks/page-columns';
 import './blocks/project-columns';
+import './blocks/posts';
+import './blocks/page-perex-meta';
 
 import './scripts/append-template-class-to-post-title-and-post-content';
 

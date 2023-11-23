@@ -11,9 +11,6 @@ declare(strict_types=1);
 
 <!-- wp:group {"className":"wp-pattern-saleziani-numbers"} -->
 <div class="wp-block-group wp-pattern-saleziani-numbers">
-    <!-- wp:heading -->
-    <h2 class="wp-block-heading">Saleziáni v číslach</h2>
-    <!-- /wp:heading -->
     <!-- wp:group {"className":"row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4"} -->
     <div class="wp-block-group row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center">
         <!-- wp:group {"className":"col"} -->

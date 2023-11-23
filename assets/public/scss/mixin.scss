@@ -72,6 +72,11 @@
     *, :after, :before {
         box-sizing: border-box;
     }
+
+    .wp-block-saleziani-navigation {
+        @include block-layout($top: 3rem, $bottom: 3rem);
+    }
+
     .wp-block-post-content {
         > {
             .wp-block-group,
@@ -89,11 +94,11 @@
                 }
             }
 
-            .wp-pattern-saleziani-section-heading,
-            .wp-block-saleziani-navigation {
+            .wp-pattern-saleziani-section-heading {
                 @include block-layout($bottom: 3rem);
             }
 
+            .wp-pattern-saleziani-numbers,
             .wp-block-buttons {
                 @include block-layout($top: 3rem, $bottom: 3rem);
             }
@@ -145,14 +150,6 @@
                 }
             }
         }
-
-        //> * {
-        //    margin-bottom: 8rem;
-        //
-        //    @media(max-width: 50rem) {
-        //        margin-bottom: 4rem;
-        //    }
-        //}
     }
 }
 
