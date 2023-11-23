@@ -1,4 +1,6 @@
 .wp-block-saleziani-top-level-page-perex {
+    display: none;
+
     @include body-l;
     margin-bottom: 3rem;
     color: $dark;
