@@ -10,46 +10,6 @@ function wrap_block_content(WP_Block $block, string $content): string
 }
 
 return [
-    'navigation' => [
-        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
-            $output = '';
-            $post = get_post();
-            $ancestors = get_post_ancestors($post);
-            $children = get_children([
-                'order' => 'ASC',
-                'orderby' => 'menu_order',
-                'post_parent' => $post->ID,
-                'post_type' => 'page',
-            ]);
-
-            if (empty($ancestors) && empty($children)) {
-                return '';
-            }
-
-            $parentPostID = empty($ancestors) ? $post->ID : end($ancestors);
-
-            if ($parentPostID !== $post->ID) {
-                $children = get_children([
-                    'order' => 'ASC',
-                    'orderby' => 'menu_order',
-                    'post_parent' => $parentPostID,
-                    'post_type' => 'page',
-                ]);
-            }
-
-            $parentUrl = get_permalink(get_post($parentPostID));
-            $currentUrl = get_permalink($post);
-            $homeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M267.231-219.231h106.616v-236.576h212.306v236.576h106.616v-343.961L480-723.539 267.231-563.256v344.025Zm-47.96 47.96v-415.998L480-783.691l260.729 196.653v415.767H538.193v-236.576H421.807v236.576H219.271ZM480-471.385Z"/></svg>';
-            $output .= $currentUrl === $parentUrl ? '<span class="navigation-item current">' . $homeIcon . '</span>' : '<a href="' . $parentUrl . '" class="navigation-item">' . $homeIcon . '</a>';
-
-            foreach ($children as $child) {
-                $childUrl = get_permalink($child);
-                $output .= $currentUrl === $childUrl ? '<span class="navigation-item current">' . $child->post_title . '</span>' : '<a href="' . $childUrl . '" class="navigation-item">' . $child->post_title . '</a>';
-            }
-
-            return wrap_block_content($block, $output);
-        },
-    ],
     'latest-posts' => [
         'attributes' => [
             'count' => [
@@ -147,6 +107,46 @@ return [
             ));
         },
     ],
+    'navigation' => [
+        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+            $output = '';
+            $page = get_post();
+            $ancestors = get_post_ancestors($page);
+            $children = get_children([
+                'order' => 'ASC',
+                'orderby' => 'menu_order',
+                'post_parent' => $page->ID,
+                'post_type' => 'page',
+            ]);
+
+            if (empty($ancestors) && empty($children)) {
+                return '';
+            }
+
+            $parentPageID = empty($ancestors) ? $page->ID : end($ancestors);
+
+            if ($parentPageID !== $page->ID) {
+                $children = get_children([
+                    'order' => 'ASC',
+                    'orderby' => 'menu_order',
+                    'post_parent' => $parentPageID,
+                    'post_type' => 'page',
+                ]);
+            }
+
+            $parentUrl = get_permalink(get_post($parentPageID));
+            $currentUrl = get_permalink($page);
+            $homeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M267.231-219.231h106.616v-236.576h212.306v236.576h106.616v-343.961L480-723.539 267.231-563.256v344.025Zm-47.96 47.96v-415.998L480-783.691l260.729 196.653v415.767H538.193v-236.576H421.807v236.576H219.271ZM480-471.385Z"/></svg>';
+            $output .= $currentUrl === $parentUrl ? '<span class="navigation-item current">' . $homeIcon . '</span>' : '<a href="' . $parentUrl . '" class="navigation-item">' . $homeIcon . '</a>';
+
+            foreach ($children as $child) {
+                $childUrl = get_permalink($child);
+                $output .= $currentUrl === $childUrl ? '<span class="navigation-item current">' . $child->post_title . '</span>' : '<a href="' . $childUrl . '" class="navigation-item">' . $child->post_title . '</a>';
+            }
+
+            return wrap_block_content($block, $output);
+        },
+    ],
     'newsletter-form' => [
         'attributes' => [
             'title' => [
@@ -167,5 +167,13 @@ return [
                     <button type="submit" name="submit">Registrovať</button>
                 </form>
 '),
+    ],
+    'top-level-page-title' => [
+        'render_callback' => function (): string {
+            $page = get_post();
+            $ancestors = get_post_ancestors($page);
+
+            return '<h1 class="wp-block-post-title">' . get_the_title(empty($ancestors) ? $page : end($ancestors)) . '</h1>';
+        },
     ],
 ];
