@@ -5,6 +5,9 @@
   margin-right: auto;
   margin-left: auto;
   padding-right: 6rem;
+  @media(max-width: 31rem) {
+    padding-right: 0;
+  }
 
   h3 {
     @include display-reg-l;
@@ -113,16 +116,33 @@
     margin-left: auto;
     padding: 6rem $grid-gutter-width/2;
     border-bottom: 0.0625rem solid #e5e5e5;
+    @media(max-width: 48rem) {
+      flex-direction: column;
+    }
 
     h3 {
       width: 50%;
       padding-right: $grid-gutter-width/2;
+      @media(max-width: 48rem) {
+        width: 100%;
+        padding-right: 6rem;
+      }
+      @media(max-width: 31rem) {
+        padding-right: 0;
+      }
     }
 
     form {
       width: 50%;
       padding-right: 6rem;
       padding-left: $grid-gutter-width/2;
+      @media(max-width: 48rem) {
+        width: 100%;
+        padding-left: 0;
+      }
+      @media(max-width: 31rem) {
+        padding-right: 0;
+      }
     }
   }
 }
