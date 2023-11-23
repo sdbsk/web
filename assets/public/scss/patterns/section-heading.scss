@@ -1,24 +1,27 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-section-heading {
-    width: 100%;
-    max-width: 48.125rem;
+  width: 100%;
+  max-width: 48.125rem;
 
-    h2 {
-        margin-bottom: 1rem;
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    @include body-l;
+    margin-bottom: 1rem;
+    color: $dark;
+    @media(max-width: 48rem) {
+      @include body-m;
     }
 
-    p {
-        @include body-l;
-        margin-bottom: 1rem;
-        color: $dark;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        a {
-            @include link-with-icon;
-        }
+    &:last-child {
+      margin-bottom: 0;
     }
+
+    a {
+      @include link-with-icon;
+    }
+  }
 }

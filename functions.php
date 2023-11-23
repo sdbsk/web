@@ -357,6 +357,7 @@ add_filter('allowed_block_types_all', function (): array {
         'core/list-item',
         'saleziani/project-column',
         'saleziani/organization-column',
+        'saleziani/newsletter-form',
         'saleziani/icon',
         'saleziani/icon-column',
         'saleziani/page-column',
@@ -436,7 +437,7 @@ add_action('wp_dashboard_setup', function () {
     remove_meta_box('dashboard_site_health', 'dashboard', 'normal');
 });
 
-add_action( 'wp_before_admin_bar_render', function () {
+add_action('wp_before_admin_bar_render', function () {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');          // Remove the Wordpress logo
     $wp_admin_bar->remove_menu('about');            // Remove the about Wordpress link
@@ -453,8 +454,8 @@ add_action( 'wp_before_admin_bar_render', function () {
 
 });
 
-add_action( 'admin_init', function () {
-    remove_menu_page( 'edit-comments.php' );
-    remove_menu_page( 'plugins.php' );
-    remove_menu_page( 'w3tc_dashboard' );
+add_action('admin_init', function () {
+    remove_menu_page('edit-comments.php');
+    remove_menu_page('plugins.php');
+    remove_menu_page('w3tc_dashboard');
 });

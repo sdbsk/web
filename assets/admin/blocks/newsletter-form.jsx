@@ -3,8 +3,6 @@ const {registerBlockType} = window.wp.blocks;
 const {InspectorControls, useBlockProps} = window.wp.blockEditor;
 const {PanelBody, TextControl} = window.wp.components;
 
-console.log(ServerSideRender);
-
 registerBlockType('saleziani/newsletter-form', {
     attributes: {
         title: {
@@ -32,7 +30,7 @@ registerBlockType('saleziani/newsletter-form', {
                     />
                 </PanelBody>
             </InspectorControls>
-            <ServerSideRender attributes={attributes} block={name} key={'preview'} />
+            <ServerSideRender attributes={attributes} block={name} key={'preview'}/>
         </div>
     }
 });

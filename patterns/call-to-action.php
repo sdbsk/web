@@ -10,19 +10,19 @@ declare(strict_types=1);
 ?>
 
 
-<!-- wp:group {"backgroundColor":"c7e7f1","className":"wp-pattern-saleziani-call-to-action"} -->
-<div class="wp-block-group wp-pattern-saleziani-call-to-action has-c-7-e-7-f-1-background-color has-background">
+<!-- wp:group {"backgroundColor":"light-blue","className":"wp-pattern-saleziani-call-to-action","metadata":{"name":"Výzva k akcii"}} -->
+<div class="wp-block-group wp-pattern-saleziani-call-to-action has-light-blue-background-color has-background">
     <!-- wp:group {"className":"row"} -->
     <div class="wp-block-group row">
         <!-- wp:group {"className":"col-sm-7 col-md-8"} -->
         <div class="wp-block-group col-sm-7 col-md-8">
             <!-- wp:group {"className":"content"} -->
             <div class="wp-block-group content">
-                <!-- wp:heading {"textColor":"272727"} -->
-                <h2 class="wp-block-heading has-272727-color has-text-color">Vaša podpora je dôležitá</h2>
+                <!-- wp:heading {"textColor":"dark"} -->
+                <h2 class="wp-block-heading has-dark-color has-text-color">Vaša podpora je dôležitá</h2>
                 <!-- /wp:heading -->
-                <!-- wp:paragraph {"textColor":"272727"} -->
-                <p class="has-272727-color has-text-color">Saleziánske dielo je sieť saleziánskych komunitných centier,
+                <!-- wp:paragraph {"textColor":"dark"} -->
+                <p class="has-dark-color has-text-color">Saleziánske dielo je sieť saleziánskych komunitných centier,
                     v ktorých tisíce ľudí denne trávia
                     zmysluplný
                     čas. Každý je vítaný. Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj

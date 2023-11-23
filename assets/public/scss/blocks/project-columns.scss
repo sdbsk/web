@@ -1,104 +1,104 @@
 @import '../mixin';
 
 .bootstrap-project-columns {
-    .bootstrap-column-inner {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        border-radius: .5rem;
+  .bootstrap-column-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: .5rem;
 
-        .wp-block-image {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
+    .wp-block-image {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 0;
+      border-radius: .5rem .5rem 0 0;
+
+      > div {
+        width: 100% !important;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-shrink: 0;
+      justify-content: space-between;
+      padding: 2rem 6rem 3rem;
+      color: $white !important;
+      border-radius: 0 0 .5rem .5rem;
+      @media(max-width: 48rem) {
+        padding: 2rem;
+      }
+
+      .content-top {
+        margin-bottom: 1rem;
+
+        > * {
+          color: $white !important;
+        }
+
+        .wp-block-heading {
+          @include display-reg-l;
+          margin: 0 0 2rem;
+        }
+
+        p {
+          @include body-m;
+          margin-bottom: 2rem;
+
+          &:last-child {
             margin-bottom: 0;
-            border-radius: .5rem .5rem 0 0;
+          }
+        }
+      }
 
-            > div {
-                width: 100% !important;
-            }
+      .content-bottom {
+        a {
+          @include link-with-icon;
+          color: $white;
 
-            img {
-                width: 100%;
-                height: auto;
-                transition: transform 0.3s ease;
-            }
+          &:before {
+            background-color: $white;
+          }
+
+          &:after {
+            @include svgBackground('../images/arrow-right.svg', $white);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .wp-block-image {
+        img {
+          transform: scale(1.03);
+        }
+      }
+    }
+
+    &.has-light-brown-background-color,
+    &.has-yellow-background-color {
+      .content {
+        .content-top {
+          > * {
+            color: $dark !important;
+          }
         }
 
-        .content {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            flex-shrink: 0;
-            justify-content: space-between;
-            padding: 2rem 6rem 3rem;
-            color: $white !important;
-            border-radius: 0 0 .5rem .5rem;
-            @media(max-width: 62rem) {
-                padding: 2rem 3rem 2rem;
-            }
+        .content-bottom a {
+          color: $dark;
 
-            .content-top {
-                margin-bottom: 1rem;
-
-                > * {
-                    color: $white !important;
-                }
-
-                .wp-block-heading {
-                    @include display-reg-l;
-                    margin: 0 0 2rem;
-                }
-
-                p {
-                    @include body-m;
-                    margin-bottom: 2rem;
-
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-
-            .content-bottom {
-                a {
-                    @include link-with-icon;
-                    color: $white;
-
-                    &:before {
-                        background-color: $white;
-                    }
-
-                    &:after {
-                        @include svgBackground('../images/arrow-right.svg', $white);
-                    }
-                }
-            }
-        }
-
-        &:hover {
-            .wp-block-image {
-                img {
-                    transform: scale(1.03);
-                }
-            }
-        }
-
-        &.has-light-brown-background-color,
-        &.has-yellow-background-color {
-            .content {
-                .content-top {
-                    > * {
-                        color: $dark !important;
-                    }
-                }
-
-                .content-bottom a {
-                    color: $dark;
-
-                    &:before {
-                        background-color: $dark;
-                    }
+          &:before {
+            background-color: $dark;
+          }
 
                     &:after {
                         @include svgBackground('../images/arrow-right.svg', $dark);
