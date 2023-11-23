@@ -1,3 +1,9 @@
-.wp-block-saleziani-page-perex {
+.wp-block-saleziani-top-level-page-perex {
+    @include body-l;
     margin-bottom: 3rem;
+    color: $dark;
+
+    @media(max-width: 48rem) {
+        @include body-m;
+    }
 }
