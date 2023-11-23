@@ -1,5 +1,7 @@
 .wp-block-saleziani-top-level-page-perex {
-    display: none;
+    &:empty {
+        display: none;
+    }
 
     @include body-l;
     margin-bottom: 3rem;
