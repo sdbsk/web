@@ -139,11 +139,11 @@ return [
         ],
         'render_callback' => fn(array $attributes, string $content, WP_Block $block): string => wrap_block_content($block, '
                 <h3>' . $attributes['title'] . '</h3>
-                <form method="post" action="https://martinlikavcan.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088">
+                <form method="post" action="https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088">
                     <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
                     
                     <label class="input-checkbox">
-                        <input type="checkbox" name="custom_fields[gdpr]" required="required">
+                        <input type="checkbox" name="gdpr" required="required">
                         <span class="label">Súhlasím so spracúvaním osobných údajov</span>
                     </label>
                     
