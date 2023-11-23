@@ -35,7 +35,7 @@
       color: $white !important;
       border-radius: 0 0 .5rem .5rem;
       @media(max-width: 48rem) {
-        padding: 2rem;
+        padding: 2.5rem 2.5rem 2rem;
       }
 
       .content-top {
@@ -61,6 +61,10 @@
       }
 
       .content-bottom {
+        p {
+          margin-bottom: 0;
+        }
+
         a {
           @include link-with-icon;
           color: $white;
@@ -100,37 +104,37 @@
             background-color: $dark;
           }
 
-                    &:after {
-                        @include svgBackground('../images/arrow-right.svg', $dark);
-                    }
-                }
-            }
+          &:after {
+            @include svgBackground('../images/arrow-right.svg', $dark);
+          }
         }
-
-        &.has-very-light-red-background-color,
-        &.has-light-blue-background-color,
-        &.has-light-red-background-color,
-        &.has-light-yellow-background-color,
-        &.has-light-green-background-color {
-            .content {
-                .content-top {
-                    > * {
-                        color: $dark !important;
-                    }
-                }
-
-                .content-bottom a {
-                    color: $red;
-
-                    &:before {
-                        background-color: $red;
-                    }
-
-                    &:after {
-                        @include svgBackground('../images/arrow-right.svg', $red);
-                    }
-                }
-            }
-        }
+      }
     }
+
+    &.has-very-light-red-background-color,
+    &.has-light-blue-background-color,
+    &.has-light-red-background-color,
+    &.has-light-yellow-background-color,
+    &.has-light-green-background-color {
+      .content {
+        .content-top {
+          > * {
+            color: $dark !important;
+          }
+        }
+
+        .content-bottom a {
+          color: $red;
+
+          &:before {
+            background-color: $red;
+          }
+
+          &:after {
+            @include svgBackground('../images/arrow-right.svg', $red);
+          }
+        }
+      }
+    }
+  }
 }

@@ -13,6 +13,9 @@
     @include display-reg-l;
     margin-bottom: 1.875rem;
     color: $dark;
+    @media(max-width: 48rem) {
+      @include display-reg-m;
+    }
   }
 
   form {
