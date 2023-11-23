@@ -417,7 +417,6 @@ add_action('after_setup_theme', function () {
     add_filter('json_jsonp_enabled', '__return_false');
 
     // Filters for WP-API version 2.x
-    add_filter('rest_enabled', '__return_false');
     add_filter('rest_jsonp_enabled', '__return_false');
 
     remove_action('wp_head', 'feed_links_extra', 3);
