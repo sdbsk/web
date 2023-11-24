@@ -75,6 +75,11 @@
                     margin-bottom: 1.5rem;
                     @include display-reg-m;
                     color: $dark;
+
+                    a {
+                        color: inherit;
+                    }
+
                     @media(max-width: 47.9375rem) {
                         margin-bottom: 0.75rem;
                     }
@@ -91,6 +96,10 @@
                 a {
                     @include link-with-icon;
                 }
+            }
+
+            .wp-block-read-more {
+                @include link-with-icon;
             }
 
             * {
