@@ -2,7 +2,7 @@ import registerColumnsBlock from "../scripts/registerColumnsBlock";
 
 registerColumnsBlock(
     'project', {
-        parentTitle: 'Projekty',
+        parentTitle: 'Kartičky projektov',
         childTitle: 'Projekt',
         defaultBackgroundColor: 'yellow',
         minColumnCount: 2,

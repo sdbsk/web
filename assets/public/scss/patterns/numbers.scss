@@ -1,44 +1,44 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-numbers {
-  h2 {
-    @include display-reg-l;
-    margin-bottom: 3rem;
-    color: $red;
-  }
-
-  .col {
-    &:nth-of-type(1) {
-      .number-box {
-        h3, p {
-          color: $red;
-        }
-      }
+    h2 {
+        @include display-reg-l;
+        margin-bottom: 3rem;
+        color: $red;
     }
 
-    &:nth-of-type(2) {
-      .number-box {
-        h3, p {
-          color: $brown;
+    .col {
+        &:nth-of-type(1) {
+            .number-box {
+                h3, p {
+                    color: $red;
+                }
+            }
         }
-      }
-    }
 
-    &:nth-of-type(3) {
-      .number-box {
-        h3, p {
-          color: $yellow;
+        &:nth-of-type(2) {
+            .number-box {
+                h3, p {
+                    color: $brown;
+                }
+            }
         }
-      }
-    }
 
-    &:nth-of-type(4) {
-      .number-box {
-        h3, p {
-          color: $green;
+        &:nth-of-type(3) {
+            .number-box {
+                h3, p {
+                    color: $yellow;
+                }
+            }
         }
-      }
-    }
+
+        &:nth-of-type(4) {
+            .number-box {
+                h3, p {
+                    color: $green;
+                }
+            }
+        }
 
     .number-box {
       padding: 2rem 1.88rem 2.5rem 1.94rem;
@@ -59,12 +59,29 @@
         }
       }
 
-      p {
-        font-size: 1.125rem;
-        font-weight: 500;
-        line-height: 1.5rem;
-        margin: 0;
-      }
+            p {
+                font-size: 1.125rem;
+                font-weight: 500;
+                line-height: 1.5rem;
+                margin: 0;
+            }
+        }
     }
-  }
+}
+
+.wp-template-narrow {
+    .wp-pattern-saleziani-numbers {
+        .number-box {
+            padding: 1.5rem 1.25rem 1.5rem 1.25rem;
+
+            h3 {
+                font-size: 2.5rem;
+                line-height: 2.5rem;
+            }
+
+            p {
+                font-size: 1.0625rem;
+            }
+        }
+    }
 }

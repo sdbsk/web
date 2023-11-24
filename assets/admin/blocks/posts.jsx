@@ -1,22 +1,20 @@
+import {postList} from '@wordpress/icons'
+
 const {registerBlockVariation, unregisterBlockVariation} = window.wp.blocks;
 
-const MY_VARIATION_NAME = 'saleziani/posts';
-
-setTimeout(() => {
-    unregisterBlockVariation('core/query', 'posts-list');
-}, 1000);
+const VARIATION_NAME = 'saleziani/posts';
 
 registerBlockVariation('core/query', {
-        name: MY_VARIATION_NAME,
-        title: 'Post Listsss',
-        description: 'Displays a list of books',
+        name: VARIATION_NAME,
+        title: 'Zoznam článkov',
+        description: 'Zobrazí zoznam článkov',
         isActive: ({namespace, query}) => {
             return (
-                namespace === MY_VARIATION_NAME
+                namespace === VARIATION_NAME
                 && query.postType === 'post'
             );
         },
-        icon: 'email',
+        icon: postList,
         isDefault: true,
         innerBlocks: [
             [
@@ -33,18 +31,17 @@ registerBlockVariation('core/query', {
                             ['core/post-terms', {term: "category", separator: ""}],
                             ['core/post-title', {isLink: true}],
                             ['core/post-excerpt', {moreText: "Čítať viac", lock: {move: true, remove: true}}],
-                            // ['core/read-more', {content: "Čítať viac"}]
                         ]],
                     ],
                     ],
                 ],
             ],
             ['core/query-pagination'],
-            // [ 'core/query-no-results' ],
         ],
         allowedControls: [ /*'inherit', 'order', 'search', */'taxQuery'],
         attributes: {
-            namespace: MY_VARIATION_NAME,
+            namespace: VARIATION_NAME,
+            className: 'wp-block-saleziani-posts',
             query: {
                 perPage: 6,
                 pages: 0,

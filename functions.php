@@ -301,22 +301,26 @@ add_action('init', function () use ($template): void {
         'label' => 'Saleziáni',
     ]);
 
-    unregister_block_pattern('core/query-standard-posts');
-    unregister_block_pattern('core/query-medium-posts');
-    unregister_block_pattern('core/query-small-posts');
-    unregister_block_pattern('core/query-grid-posts');
-    unregister_block_pattern('core/query-large-title-posts');
-    unregister_block_pattern('core/query-offset-posts');
-    unregister_block_pattern('core/social-links-shared-background-color');
-    unregister_block_pattern_category('featured');
-    unregister_block_pattern_category('text');
-
     register_post_meta('page', 'page_perex', [
         'show_in_rest' => true,
         'single' => true,
         'type' => 'string',
     ]);
 });
+
+add_action( 'after_setup_theme', function() {
+    remove_theme_support( 'core-block-patterns' );
+    add_filter( 'should_load_remote_block_patterns', '__return_false' );
+} );
+
+add_filter( 'block_categories_all' , function( $categories ) {
+    $categories[] = array(
+        'slug'  => 'meta',
+        'title' => 'Meta'
+    );
+
+    return $categories;
+} );
 
 add_action('save_post_post', function (int $postId): void {
     wp_set_post_categories($postId, (int)get_option('default_category'), true);
@@ -335,21 +339,16 @@ add_filter('allowed_block_types_all', function (): array {
 
         // large margin blocks
         'saleziani/newsletter-form',
-        'saleziani/latest-posts',
-        'saleziani/navigation',
+//        'saleziani/navigation',
 
         'saleziani/project-columns',
         'saleziani/organization-columns',
         'saleziani/icon-columns',
-        'saleziani/page-columns',
         'core/group',
         'core/buttons',
         'saleziani/page-perex-meta',
-        'saleziani/page-perex-meta',
+        'saleziani/post-columns',
 
-        // asi na vyhodenie z whitelistu
-        'core/separator',
-        'core/spacer',
 
         // small margin blocks (typograficke)
         'core/image',
@@ -364,7 +363,6 @@ add_filter('allowed_block_types_all', function (): array {
         // no margin blocks
         'core/template-part',
         'core/navigation-link',
-        'saleziani/link-to-page',
         'core/site-logo',
         'core/list-item',
         'saleziani/project-column',
@@ -372,7 +370,6 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/newsletter-form',
         'saleziani/icon',
         'saleziani/icon-column',
-        'saleziani/page-column',
     ];
 }, 10, 2);
 

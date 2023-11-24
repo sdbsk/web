@@ -81,7 +81,7 @@
     > {
       .wp-block-group,
       .wp-block-image,
-      .wp-block-saleziani-latest-posts, [data-type="saleziani/latest-posts"],
+      .wp-block-saleziani-post-columns,
       .bootstrap-columns-container {
         @include block-layout($bottom: 8rem);
       }
@@ -124,7 +124,7 @@
       > {
         .wp-block-group,
         .wp-block-image,
-        .wp-block-saleziani-latest-posts, [data-type="saleziani/latest-posts"],
+        .wp-block-saleziani-post-columns,
         .bootstrap-columns-container {
           @include block-layout($bottom: 4rem);
         }
