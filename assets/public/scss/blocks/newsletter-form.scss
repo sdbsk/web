@@ -37,11 +37,14 @@
     }
 
     .input-checkbox {
+      position: relative;
       display: block;
       margin-bottom: 1rem;
 
       input {
-        display: none;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
 
         + .label {
           position: relative;
