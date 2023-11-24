@@ -1,4 +1,4 @@
-import {column, columns} from '@wordpress/icons'
+import {column, columns, people} from '@wordpress/icons'
 
 const {registerBlockType} = window.wp.blocks;
 const {InspectorControls, InnerBlocks, useBlockProps, useInnerBlocksProps} = window.wp.blockEditor;

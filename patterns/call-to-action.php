@@ -9,7 +9,6 @@ declare(strict_types=1);
  */
 ?>
 
-
 <!-- wp:group {"backgroundColor":"light-blue","className":"wp-pattern-saleziani-call-to-action","metadata":{"name":"Výzva k akcii"}} -->
 <div class="wp-block-group wp-pattern-saleziani-call-to-action has-light-blue-background-color has-background">
     <!-- wp:group {"className":"row"} -->
