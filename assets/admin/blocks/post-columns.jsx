@@ -41,7 +41,7 @@ registerBlockVariation('core/query', {
         allowedControls: ['postType', 'taxQuery'],
         attributes: {
             namespace: VARIATION_NAME,
-            className: 'wp-block-saleziani-latest-posts',
+            className: 'wp-block-saleziani-post-columns',
             query: {
                 perPage: 6,
                 pages: 0,

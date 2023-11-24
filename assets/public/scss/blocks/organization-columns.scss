@@ -1,6 +1,6 @@
 @import '../mixin';
 
-.wp-block-saleziani-latest-posts,
+.wp-block-saleziani-post-columns,
 .bootstrap-organization-columns {
     .row {
         --bs-gutter-y: 1.875rem;
@@ -25,6 +25,7 @@
 
     ul {
         max-width: unset;
+        padding-left: 0;
     }
 
     .wp-block-post-excerpt__more-text {
