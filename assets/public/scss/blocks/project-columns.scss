@@ -78,9 +78,6 @@
 
           &:before {
             background-color: $white;
-          }
-
-          &:after {
             @include svgBackground('../images/arrow-right.svg', $white);
           }
         }
@@ -109,9 +106,6 @@
 
           &:before {
             background-color: $dark;
-          }
-
-          &:after {
             @include svgBackground('../images/arrow-right.svg', $dark);
           }
         }

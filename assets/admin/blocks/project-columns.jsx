@@ -22,7 +22,7 @@ registerColumnsBlock(
                     }],
                 ]],
                 ['core/group', {className: 'content-bottom', metadata: {name: 'Obsah dolu'}}, [
-                    ['core/paragraph', {content: '<a href="#">Čítať viac</a>'}],
+                    ['core/paragraph', {content: '<a href="#" class="stretched-link">Čítať viac</a>'}],
                 ]]
             ]]
         ]
