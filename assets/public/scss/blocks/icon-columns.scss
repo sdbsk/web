@@ -27,9 +27,6 @@
       @include body-m;
       margin: 0 0 1rem 0;
       color: rgba(39, 39, 39, 0.80);
-      @media(max-width: 47.9375rem) {
-        @include body-s;
-      }
 
       a {
         @include link-with-icon;
