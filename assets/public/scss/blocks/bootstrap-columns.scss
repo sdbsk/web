@@ -2,6 +2,12 @@
   max-width: var(--wp--style--global--content-size) !important;
   .row {
       --bs-gutter-y: 1.875rem;
+
+      @include media-breakpoint-down(md) {
+          > [class*='col-'] {
+              max-width: 30rem;
+          }
+      }
   }
 
     .bootstrap-column-inner {

@@ -6,6 +6,7 @@ const {useBlockProps, RichText} = window.wp.blockEditor;
 
 registerBlockType('saleziani/page-perex-meta', {
     title: 'Perex stránky',
+    category: 'meta',
     edit: () => {
         const blockProps = useBlockProps();
         const postType = useSelect(

@@ -2,8 +2,8 @@ import registerColumnsBlock from "../scripts/registerColumnsBlock";
 
 registerColumnsBlock(
     'icon', {
-        parentTitle: 'Stĺpce s ikonkami',
-        childTitle: 'Stĺpec',
+        parentTitle: 'Kartičky s ikonkami',
+        childTitle: 'Kartička',
         // defaultBackgroundColor: 'light-brown',
         minColumnCount: 2,
         maxColumnCount: 4,

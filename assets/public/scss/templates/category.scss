@@ -1,6 +1,6 @@
 @import '../mixin';
 
-.wp-block-query,
+.wp-block-saleziani-posts,
 .wp-template-category {
   max-width: 75rem;
   margin: 0 auto 8rem;
@@ -9,11 +9,10 @@
   }
 
   .wp-block-query-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 3.5rem;
+    @include display-reg-xl;
     margin: 7rem 0 2rem;
     @media(max-width: 47.9375rem) {
+      @include display-reg-l;
       margin: 4rem 0 2rem;
     }
   }
@@ -114,9 +113,6 @@
           @include body-m;
           margin-bottom: 0.5rem;
           color: rgba(39, 39, 39, 0.80);
-          @media(max-width: 47.9375rem) {
-            @include body-s;
-          }
         }
       }
 

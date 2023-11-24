@@ -4,7 +4,9 @@
   max-width: 48.125rem;
   margin-right: auto;
   margin-left: auto;
+  padding-top: 6rem;
   padding-right: 6rem;
+  padding-bottom: 6rem;
   @media(max-width: 31rem) {
     padding-right: 0;
   }
@@ -13,7 +15,7 @@
     @include display-reg-l;
     margin-bottom: 1.875rem;
     color: $dark;
-    @media(max-width: 48rem) {
+    @media(max-width: 47.9375rem) {
       @include display-reg-m;
     }
   }
@@ -35,11 +37,14 @@
     }
 
     .input-checkbox {
+      position: relative;
       display: block;
       margin-bottom: 1rem;
 
       input {
-        display: none;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
 
         + .label {
           position: relative;
@@ -109,44 +114,3 @@
 
 }
 
-.footer-newsletter {
-  background-color: #f9f6f4;
-
-  .wp-block-saleziani-newsletter-form {
-    flex-direction: row;
-    max-width: 75rem;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 6rem $grid-gutter-width/2;
-    border-bottom: 0.0625rem solid #e5e5e5;
-    @media(max-width: 48rem) {
-      flex-direction: column;
-      padding: 3rem $grid-gutter-width/2;
-    }
-
-    h3 {
-      width: 50%;
-      padding-right: $grid-gutter-width/2;
-      @media(max-width: 48rem) {
-        width: 100%;
-        padding-right: 6rem;
-      }
-      @media(max-width: 31rem) {
-        padding-right: 0;
-      }
-    }
-
-    form {
-      width: 50%;
-      padding-right: 6rem;
-      padding-left: $grid-gutter-width/2;
-      @media(max-width: 48rem) {
-        width: 100%;
-        padding-left: 0;
-      }
-      @media(max-width: 31rem) {
-        padding-right: 0;
-      }
-    }
-  }
-}

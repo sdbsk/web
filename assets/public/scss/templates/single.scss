@@ -1,7 +1,13 @@
 .wp-template-single {
+  h1 {
+    @include display-reg-xl;
+    margin-bottom: 1rem;
+  }
+
   .article-info {
     display: flex;
     flex-direction: row;
+    margin-bottom: 4rem;
 
     .wp-block-post-terms {
       display: flex;
