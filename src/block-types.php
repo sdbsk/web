@@ -5,23 +5,21 @@
 declare(strict_types=1);
 
 $stack = new class() {
-    private $topPages = [];
-    private $pageUrls = [];
-    private $pages = [];
+    private array $ancestors = [];
+    private array $pages = [];
+    private array $topLevelPages = [];
+    private array $urls = [];
 
-    function topParentPageId(?WP_Post $page = null): int
+    function ancestors(WP_Post $page): array
     {
-        $page = $page ?? $this->getPage();
-
-        if (!isset($this->topPages[$page->ID])) {
-            $ancestors = get_post_ancestors($page);
-            $this->topPages[$page->ID] = empty($ancestors) ? $page->ID : end($ancestors);
+        if (!isset($this->ancestors[$page->ID])) {
+            $this->ancestors[$page->ID] = get_post_ancestors($page);
         }
 
-        return $this->topPages[$page->ID];
+        return $this->ancestors[$page->ID];
     }
 
-    function getPage(?int $pageId = null): WP_Post
+    function page(?int $pageId = null): WP_Post
     {
         if (null === $pageId || !isset($this->pages[$pageId])) {
             global $post;
@@ -34,13 +32,25 @@ $stack = new class() {
         return $this->pages[$pageId];
     }
 
-    function getPageUrl(WP_Post $page): string
+    function topLevelPageId(?WP_Post $page = null): int
     {
-        if (!isset($this->pageUrls[$page->ID])) {
-            $this->pageUrls[$page->ID] = get_permalink($page);
+        $page = $page ?? $this->page();
+
+        if (!isset($this->topLevelPages[$page->ID])) {
+            $ancestors = $this->ancestors($page);
+            $this->topLevelPages[$page->ID] = empty($ancestors) ? $page->ID : end($ancestors);
         }
 
-        return $this->pageUrls[$page->ID];
+        return $this->topLevelPages[$page->ID];
+    }
+
+    function url(WP_Post $page): string
+    {
+        if (!isset($this->urls[$page->ID])) {
+            $this->urls[$page->ID] = get_permalink($page);
+        }
+
+        return $this->urls[$page->ID];
     }
 };
 
@@ -61,7 +71,7 @@ return [
                 'type' => 'integer',
             ],
         ],
-        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+        'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
             $output = '';
             $posts = get_posts(['numberposts' => $attributes['count'], 'tag_id' => $attributes['tag']]);
 
@@ -70,7 +80,7 @@ return [
 
                 foreach ($posts as $post) {
                     $output .= '<div class="col"><div class="box"><div>';
-                    $permalink = get_permalink($post);
+                    $permalink = $stack->url($post);
                     $thumbnail = get_the_post_thumbnail($post, 'medium_large');
 
                     if (false === empty($thumbnail)) {
@@ -108,7 +118,7 @@ return [
                 'type' => 'string',
             ],
         ],
-        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+        'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
             $template = function (string $thumbnail, string $title, string $permalink, string $excerpt, string $backgroundColor): string {
                 $output = '<div class="basic-card has-background has-' . $backgroundColor . '-background-color">';
 
@@ -131,7 +141,7 @@ return [
                     return wrap_block_content($block, $template(
                         get_the_post_thumbnail($page, 'medium_large'),
                         $page->post_title,
-                        get_permalink($page),
+                        $stack->url($page),
                         get_the_excerpt($page),
                         $attributes['backgroundColor'],
                     ));
@@ -150,28 +160,29 @@ return [
     'navigation' => [
         'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
             $output = '';
-            $page = $stack->getPage();
-            $topPageId = $stack->topParentPageId($page);
+            $page = $stack->page();
+            $topLevelPageId = $stack->topLevelPageId($page);
 
             $children = get_children([
                 'order' => 'ASC',
                 'orderby' => 'menu_order',
-                'post_parent' => $topPageId,
+                'post_parent' => $topLevelPageId,
                 'post_type' => 'page',
             ]);
 
-            if ($topPageId === $page->ID && empty($children)) {
+            if ($topLevelPageId === $page->ID && empty($children)) {
                 return '';
             }
 
-            $parentUrl = $stack->getPageUrl($stack->getPage($topPageId));
-            $currentUrl = $stack->getPageUrl($page);
+            $topLevelPageUrl = $stack->url($stack->page($topLevelPageId));
+            $currentUrl = $stack->url($page);
 
-            $output .= $currentUrl === $parentUrl ? '<span class="navigation-item current">Úvod</span>' : '<a href="' . $parentUrl . '" class="navigation-item">Úvod</a>';
+            $output .= $currentUrl === $topLevelPageUrl ? '<span class="navigation-item current">Úvod</span>' : '<a href="' . $topLevelPageUrl . '" class="navigation-item">Úvod</a>';
 
             foreach ($children as $child) {
-                $childUrl = get_permalink($child);
-                $output .= $currentUrl === $childUrl ? '<span class="navigation-item current">' . $child->post_title . '</span>' : '<a href="' . $childUrl . '" class="navigation-item">' . $child->post_title . '</a>';
+                $output .= $page->ID === $child->ID || in_array($child->ID, $stack->ancestors($page), true) ?
+                    '<span class="navigation-item current">' . $child->post_title . '</span>' :
+                    '<a href="' . $stack->url($child) . '" class="navigation-item">' . $child->post_title . '</a>';
             }
 
             return wrap_block_content($block, $output);
@@ -188,22 +199,22 @@ return [
                 <h3>' . $attributes['title'] . '</h3>
                 <form method="post" action="https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088">
                     <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
-
                     <label class="input-checkbox">
                         <input type="checkbox" name="gdpr" required="required">
                         <span class="label">Súhlasím so spracúvaním osobných údajov</span>
                     </label>
-
                     <button type="submit" name="submit">Registrovať</button>
                 </form>
 '),
     ],
     'top-level-page-title' => [
-        'render_callback' => fn() => '<h1 class="wp-block-post-title">' . get_the_title($stack->topParentPageId()) . '</h1>',
+        'render_callback' => fn() => '<h1 class="wp-block-post-title">' . get_the_title($stack->topLevelPageId()) . '</h1>',
     ],
     'top-level-page-perex' => [
-        'render_callback' => fn(array $attributes, string $content, WP_Block $block) => wrap_block_content($block, get_post_meta(
-            $stack->getPage($stack->topParentPageId())->ID
-            , 'page_perex', true), 'p'),
-    ]
+        'render_callback' => fn(array $attributes, string $content, WP_Block $block) => wrap_block_content(
+            $block,
+            get_post_meta($stack->page($stack->topLevelPageId())->ID, 'page_perex', true),
+            'p',
+        ),
+    ],
 ];
