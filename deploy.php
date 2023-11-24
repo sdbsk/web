@@ -27,11 +27,16 @@ task('deploy:flush_rewrite', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
 });
 
+task('deploy:flush_cache', function (): void {
+    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar w3-total-cache flush all');
+});
+
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
     'deploy:install_languages',
     'deploy:flush_rewrite',
+    'deploy:flush_cache',
     'deploy:publish',
 ]);
 
