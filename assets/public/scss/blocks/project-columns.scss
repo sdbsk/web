@@ -34,8 +34,8 @@
       padding: 2rem 6rem 3rem;
       color: $white !important;
       border-radius: 0 0 .5rem .5rem;
-      @media(max-width: 48rem) {
-        padding: 2.5rem 2.5rem 2rem;
+      @media(max-width: 47.9375rem) {
+        padding: 1.7rem 2rem 2rem;
       }
 
       .content-top {
@@ -48,11 +48,18 @@
         .wp-block-heading {
           @include display-reg-l;
           margin: 0 0 2rem;
+          @media(max-width: 47.9375rem) {
+            @include display-reg-m;
+            margin: 0 0 1rem;
+          }
         }
 
         p {
           @include body-m;
           margin-bottom: 2rem;
+          @media(max-width: 47.9375rem) {
+            @include body-s;
+          }
 
           &:last-child {
             margin-bottom: 0;

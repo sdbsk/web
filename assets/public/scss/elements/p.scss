@@ -2,7 +2,7 @@ p {
   @include body-m;
   margin-top: 0;
   color: $dark;
-  @media(max-width: 48rem) {
+  @media(max-width: 47.9375rem) {
     @include body-s;
   }
 

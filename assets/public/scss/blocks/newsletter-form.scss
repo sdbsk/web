@@ -13,7 +13,7 @@
     @include display-reg-l;
     margin-bottom: 1.875rem;
     color: $dark;
-    @media(max-width: 48rem) {
+    @media(max-width: 47.9375rem) {
       @include display-reg-m;
     }
   }
@@ -119,7 +119,7 @@
     margin-left: auto;
     padding: 6rem $grid-gutter-width/2;
     border-bottom: 0.0625rem solid #e5e5e5;
-    @media(max-width: 48rem) {
+    @media(max-width: 47.9375rem) {
       flex-direction: column;
       padding: 3rem $grid-gutter-width/2;
     }
@@ -127,7 +127,7 @@
     h3 {
       width: 50%;
       padding-right: $grid-gutter-width/2;
-      @media(max-width: 48rem) {
+      @media(max-width: 47.9375rem) {
         width: 100%;
         padding-right: 6rem;
       }
@@ -140,7 +140,7 @@
       width: 50%;
       padding-right: 6rem;
       padding-left: $grid-gutter-width/2;
-      @media(max-width: 48rem) {
+      @media(max-width: 47.9375rem) {
         width: 100%;
         padding-left: 0;
       }

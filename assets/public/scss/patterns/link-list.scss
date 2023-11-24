@@ -5,7 +5,7 @@
     @include display-reg-l;
     margin-bottom: 3rem;
     color: $dark;
-    @media(max-width: 48rem) {
+    @media(max-width: 47.9375rem) {
       @include display-reg-m;
       margin-bottom: 2rem;
     }
@@ -27,7 +27,7 @@
       color: $red;
       border-top: 0.0625rem solid #e5e5e5;
       border-bottom: 0.0625rem solid #e5e5e5;
-      @media(max-width: 48rem) {
+      @media(max-width: 47.9375rem) {
         @include display-reg-s;
         padding: 0.75rem 0.5rem 0.75rem 0;
       }
@@ -39,7 +39,7 @@
         margin-left: 0.75rem;
         content: '';
         @include svgBackground('../images/arrow-right.svg', $red, cover);
-        @media(max-width: 48rem) {
+        @media(max-width: 47.9375rem) {
           min-width: 1.25rem;
           height: 1.25rem;
         }
@@ -47,7 +47,7 @@
 
       &:hover {
         padding: 1.25rem 0.55rem 1.25rem 0;
-        @media(max-width: 48rem) {
+        @media(max-width: 47.9375rem) {
           padding: 0.75rem 0.5rem 0.75rem 0;
         }
       }
