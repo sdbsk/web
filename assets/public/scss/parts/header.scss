@@ -55,6 +55,9 @@ header {
 
     .wp-block-navigation-item {
       margin: 0 1rem;
+      @include media-breakpoint-down(lg) {
+        margin: 0 0.5rem;
+      }
 
       .wp-block-navigation-item__content {
         text-decoration: unset;
