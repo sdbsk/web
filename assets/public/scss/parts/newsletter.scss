@@ -8,7 +8,7 @@
     margin-left: auto;
     padding: 6rem $grid-gutter-width/2;
     border-bottom: 0.0625rem solid #e5e5e5;
-    @media(max-width: 47.9375rem) {
+    @include media-breakpoint-down(md) {
       flex-direction: column;
       padding: 3rem $grid-gutter-width/2;
     }
@@ -16,11 +16,11 @@
     h3 {
       width: 50%;
       padding-right: $grid-gutter-width/2;
-      @media(max-width: 47.9375rem) {
+      @include media-breakpoint-down(md) {
         width: 100%;
         padding-right: 6rem;
       }
-      @media(max-width: 31rem) {
+      @include media-breakpoint-down(sm) {
         padding-right: 0;
       }
     }
@@ -29,11 +29,11 @@
       width: 50%;
       padding-right: 6rem;
       padding-left: $grid-gutter-width/2;
-      @media(max-width: 47.9375rem) {
+      @include media-breakpoint-down(md) {
         width: 100%;
         padding-left: 0;
       }
-      @media(max-width: 31rem) {
+      @include media-breakpoint-down(sm) {
         padding-right: 0;
       }
     }

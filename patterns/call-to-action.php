@@ -18,11 +18,11 @@ declare(strict_types=1);
         <div class="wp-block-group col-sm-7 ">
             <!-- wp:group {"className":"content"} -->
             <div class="wp-block-group content">
-                <!-- wp:heading {"textColor":"dark"} -->
-                <h2 class="wp-block-heading has-dark-color has-text-color">Vaša podpora je dôležitá</h2>
+                <!-- wp:heading -->
+                <h2 class="wp-block-heading">Vaša podpora je dôležitá</h2>
                 <!-- /wp:heading -->
-                <!-- wp:paragraph {"textColor":"dark"} -->
-                <p class="has-dark-color has-text-color">Saleziánske dielo je sieť saleziánskych komunitných centier,
+                <!-- wp:paragraph -->
+                <p>Saleziánske dielo je sieť saleziánskych komunitných centier,
                     v ktorých tisíce ľudí denne trávia
                     zmysluplný
                     čas. Každý je vítaný. Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj

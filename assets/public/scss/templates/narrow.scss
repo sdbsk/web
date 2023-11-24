@@ -17,7 +17,7 @@
     @include display-reg-xl;
     margin: 4rem auto 1rem;
 
-    @media(max-width: 47.9375rem) {
+    @include media-breakpoint-down(md) {
       margin: 2.5rem auto 1rem;
     }
   }

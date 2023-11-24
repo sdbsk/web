@@ -2,7 +2,7 @@ h1 {
   @include display-reg-xxl;
   margin: 6rem 0 1rem;
   color: $red;
-  @media(max-width: 47.9375rem) {
+  @include media-breakpoint-down(md) {
     font-size: 2.4rem;
     line-height: 2.8rem;
     margin: 4rem 0 1rem;

@@ -56,14 +56,20 @@ header {
     .wp-block-navigation-item {
       margin: 0 1rem;
 
+      .wp-block-navigation-item__content {
+        text-decoration: unset;
+
+        .wp-block-navigation-item__label {
+          font-size: 1rem;
+          line-height: 1.125rem;
+        }
+      }
+
       &:first-child {
         margin: 0;
       }
 
       &.btn-support {
-        font-size: 0.9375rem;
-        font-weight: 500;
-        line-height: 1.375rem;
         position: absolute;
         right: 0;
         margin: 0;
@@ -71,6 +77,17 @@ header {
         color: $white;
         border-radius: 0.25rem;
         background-color: $red;
+
+        .wp-block-navigation-item__content {
+          line-height: 1.375rem;
+          text-decoration: unset;
+
+          .wp-block-navigation-item__label {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            line-height: 1.375rem;
+          }
+        }
       }
 
       &:last-child {
@@ -78,14 +95,7 @@ header {
       }
     }
 
-    .wp-block-navigation-item__content {
-      text-decoration: unset;
 
-      .wp-block-navigation-item__label {
-        font-size: 1rem;
-        line-height: 1.125rem;
-      }
-    }
   }
 }
 

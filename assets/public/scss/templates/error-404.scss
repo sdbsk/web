@@ -1,56 +1,56 @@
 @import '../mixin';
 
 .wp-template-error-404 {
-    .error-content {
-        margin-bottom: 6rem;
-        text-align: center;
+  .error-content {
+    margin-bottom: 6rem;
+    text-align: center;
 
-        h1.wp-block-heading {
-            font-size: 10rem;
-            font-weight: 700;
-            line-height: 12rem;
-            margin-bottom: 1rem;
-            @media (max-width: 50rem) {
-                font-size: 5rem;
-                line-height: 6rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        h2.wp-block-heading {
-            font-family: Merriweather, sans-serif;
-            font-size: 1.7rem;
-            margin-bottom: 5rem;
-            color: $red;
-        }
-
-        p {
-            font-size: 1.3125rem;
-            line-height: 1.8125rem;
-            color: rgba(39, 39, 39, 0.80);
-
-            &:first-of-type {
-                margin-top: 0;
-            }
-
-            &:last-of-type {
-                margin-bottom: 0;
-            }
-
-            a {
-                @include link-with-icon;
-                font-size: .9375rem;
-                padding-bottom: 0;
-                color: rgba(39, 39, 39, 0.80);
-
-                &:after {
-                    content: unset;
-                }
-
-                &:before {
-                    background-color: rgba(39, 39, 39, 0.80);
-                }
-            }
-        }
+    h1.wp-block-heading {
+      font-size: 10rem;
+      font-weight: 700;
+      line-height: 12rem;
+      margin-bottom: 1rem;
+      @include media-breakpoint-down(md) {
+        font-size: 5rem;
+        line-height: 6rem;
+        margin-bottom: 3rem;
+      }
     }
+
+    h2.wp-block-heading {
+      font-family: Merriweather, sans-serif;
+      font-size: 1.7rem;
+      margin-bottom: 5rem;
+      color: $red;
+    }
+
+    p {
+      font-size: 1.3125rem;
+      line-height: 1.8125rem;
+      color: rgba(39, 39, 39, 0.80);
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      a {
+        @include link-with-icon;
+        font-size: .9375rem;
+        padding-bottom: 0;
+        color: rgba(39, 39, 39, 0.80);
+
+        &:after {
+          content: unset;
+        }
+
+        &:before {
+          background-color: rgba(39, 39, 39, 0.80);
+        }
+      }
+    }
+  }
 }

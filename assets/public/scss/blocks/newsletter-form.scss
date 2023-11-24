@@ -7,7 +7,7 @@
   padding-top: 6rem;
   padding-right: 6rem;
   padding-bottom: 6rem;
-  @media(max-width: 31rem) {
+  @include media-breakpoint-down(sm) {
     padding-right: 0;
   }
 
@@ -15,7 +15,7 @@
     @include display-reg-l;
     margin-bottom: 1.875rem;
     color: $dark;
-    @media(max-width: 47.9375rem) {
+    @include media-breakpoint-down(md) {
       @include display-reg-m;
     }
   }
@@ -34,6 +34,10 @@
       border: 1px solid rgba(39, 39, 39, 0.20);
       border-radius: 0.25rem;
       background: $white;
+
+      &:focus-visible {
+        outline: 0;
+      }
     }
 
     .input-checkbox {

@@ -51,7 +51,7 @@
     @include show-layout($top, $bottom);
   }
 
-  @media(max-width: 47.9375rem) {
+  @include media-breakpoint-down(md) {
     @if ($bottom == '') {
       margin-bottom: $bottom / 2;
     }

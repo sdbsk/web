@@ -27,7 +27,7 @@
       flex-grow: 1;
       justify-content: space-between;
       padding: 1.5rem 2rem 2rem;
-      @media(max-width: 47.9375rem) {
+      @include media-breakpoint-down(md) {
         padding: 1.5rem 1.5rem 1rem;
       }
 
@@ -38,7 +38,7 @@
           margin-bottom: 1.5rem;
           @include display-reg-m;
           color: $dark;
-          @media(max-width: 47.9375rem) {
+          @include media-breakpoint-down(md) {
             margin-bottom: 0.75rem;
           }
         }
