@@ -5,9 +5,17 @@
     margin-left: auto;
   }
 
-  :nth-child(1 of .wp-block-image) {
-    max-width: 73.125rem;
+  &.wp-block-post-content {
+    > * {
+      &:first-child {
+        &.wp-block-image {
+          max-width: 73.125rem;
+        }
+      }
+    }
   }
+
+
 }
 
 .wp-template-narrow-header {

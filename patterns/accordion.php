@@ -24,8 +24,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"accordion-collapse collapse"} -->
-        <div class="accordion-collapse collapse wp-block-group">
+        <!-- wp:group {"className":"accordion-collapse collapse hide"} -->
+        <div class="accordion-collapse collapse wp-block-group hide">
             <!-- wp:group {"className":"accordion-body"} -->
             <div class="accordion-body wp-block-group">
                 <!-- wp:paragraph -->
@@ -50,8 +50,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"accordion-collapse collapse"} -->
-        <div class="accordion-collapse collapse wp-block-group">
+        <!-- wp:group {"className":"accordion-collapse collapse hide"} -->
+        <div class="accordion-collapse collapse wp-block-group hide">
             <!-- wp:group {"className":"accordion-body"} -->
             <div class="accordion-body wp-block-group">
                 <!-- wp:paragraph -->
@@ -76,8 +76,8 @@ declare(strict_types=1);
             <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
-        <!-- wp:group {"className":"accordion-collapse collapse"} -->
-        <div class="accordion-collapse collapse wp-block-group">
+        <!-- wp:group {"className":"accordion-collapse collapse hide"} -->
+        <div class="accordion-collapse collapse wp-block-group hide">
             <!-- wp:group {"className":"accordion-body"} -->
             <div class="accordion-body wp-block-group">
                 <!-- wp:paragraph -->

@@ -1,16 +1,16 @@
 @import '../bootstrap-override';
 
 figure {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .wp-block-post-content {
   > .wp-block-image {
-    min-height: 25rem;
+    min-height: 15rem;
 
     img {
       width: 100%;
-      min-height: 25rem;
+      min-height: 15rem;
       border-radius: 0.5rem;
       object-fit: cover;
     }

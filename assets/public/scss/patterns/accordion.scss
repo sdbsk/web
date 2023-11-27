@@ -1,60 +1,71 @@
 .wp-pattern-saleziani-accordion {
-    border: 0;
+  border: 0;
 
-    .accordion-item {
-        padding: 1.25rem 0;
-        border-right: 0;
-        border-bottom: 1px solid rgba(39, 39, 39, 0.12);
-        border-left: 0;
-        border-radius: 0;
+  .accordion-item {
+    border-right: 0;
+    border-bottom: 1px solid rgba(39, 39, 39, 0.12);
+    border-left: 0;
+    border-radius: 0;
 
-        &:first-of-type {
-            border-top: 1px solid rgba(39, 39, 39, 0.12);
-        }
-
-        .accordion-header {
-            .accordion-button {
-                display: flex;
-                align-items: center;
-                padding: 0;
-                background-color: initial;
-                box-shadow: none;
-
-                &:hover {
-                    cursor: pointer;
-                }
-
-                .wp-block-heading {
-                    @include display-reg-m;
-                    margin: 0;
-                }
-
-                &:after {
-                    width: 2rem;
-                    height: 2rem;
-                    background-image: none;
-                    @include svgBackground('../images/expand-down.svg', $red, cover, center center);
-                }
-            }
-        }
-
-        .accordion-collapse {
-            &.collapse {
-                margin-top: 1.06rem;
-            }
-
-            .accordion-body {
-                @include body-m;
-                padding: 0;
-
-                :not(:last-child) {
-                    margin-bottom: 0.5rem;
-                }
-
-                :last-child {
-                    margin-bottom: 0;
-                }
-            }
-        }
+    &:first-of-type {
+      border-top: 1px solid rgba(39, 39, 39, 0.12);
     }
+
+    .accordion-header {
+      .accordion-button {
+        display: flex;
+        align-items: center;
+        padding: 1.25rem 0;
+        background-color: initial;
+        box-shadow: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .wp-block-heading {
+          @include display-reg-m;
+          margin: 0;
+        }
+
+        &:after {
+          width: 2rem;
+          height: 2rem;
+          background-image: none;
+          @include svgBackground('../images/expand-down.svg', $red, cover, center center);
+        }
+      }
+    }
+
+    .accordion-collapse {
+      transition: max-height .5s ease-in-out;
+
+      &.collapse {
+        display: block !important;
+        overflow: hidden;
+
+      }
+
+      &.hide {
+        max-height: 0 !important;
+      }
+
+      &.show {
+        display: block !important;
+      }
+
+      .accordion-body {
+        padding: 1.25rem 0;
+        @include body-m;
+
+        :not(:last-child) {
+          margin-bottom: 0.5rem;
+        }
+
+        :last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }
