@@ -5,8 +5,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    .addEntry('admin', './assets/admin/app.js')
-    .addEntry('public', './assets/public/app.js')
+    .addEntry('admin', './assets/admin/admin.js')
+    .addEntry('blocks', './assets/blocks/blocks.js')
+    .addEntry('public', './assets/public/public.js')
     .cleanupOutputBeforeBuild()
     .disableSingleRuntimeChunk()
     .enableSassLoader()

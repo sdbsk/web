@@ -1,0 +1,82 @@
+.header-menu {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+
+    @media (max-width: 799px) {
+        align-items: start;
+    }
+
+    .wp-block-site-logo {
+        flex: 0 0 100px;
+        margin: 0 !important;
+        z-index: 10000000;
+    }
+
+    nav {
+        margin: 0 !important;
+        flex-grow: 1;
+    }
+
+    .wp-block-navigation {
+        @media (max-width: 799px) {
+            display: block;
+            text-align: right;
+            padding-top: 1rem;
+
+            .wp-block-navigation__responsive-container-open {
+                display: inline-block;
+            }
+        }
+    }
+
+    .wp-block-navigation__responsive-container {
+        .wp-block-navigation__responsive-container-content {
+            @media (min-width: 800px) {
+                flex-direction: row !important;
+                justify-content: space-between !important;
+            }
+        }
+
+        .wp-block-buttons .wp-block-button .wp-element-button {
+            position: unset;
+            right: unset;
+            padding: 0.19rem 1rem;
+            color: $white !important;
+            border-radius: 0.25rem;
+            background-color: $red !important;
+            font-size: .9375rem;
+            font-weight: 500;
+            line-height: 1.375rem;
+
+            &:after {
+                content: none;
+            }
+        }
+
+        @media (max-width: 799px) {
+            padding-top: 2rem !important;
+
+            .wp-block-navigation__container {
+                margin-top: 6rem;
+                flex-grow: 0;
+            }
+
+            li {
+                align-items: center !important;
+
+                a {
+                    width: unset !important;
+                }
+            }
+        }
+    }
+
+    .wp-block-buttons {
+        @media (max-width: 799px) {
+            width: 100%;
+            margin-top: 3rem;
+            flex-direction: column;
+        }
+    }
+}

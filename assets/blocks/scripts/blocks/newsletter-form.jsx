@@ -3,6 +3,13 @@ const {registerBlockType} = window.wp.blocks;
 const {InspectorControls, useBlockProps} = window.wp.blockEditor;
 const {PanelBody, TextControl} = window.wp.components;
 
+// registerBlockType('saleziani/top-level-page-title', {
+//     title: 'test',
+//     edit: ({attributes, name}) => <div>
+//         <ServerSideRender attributes={attributes} block={name} key={'preview'}/>
+//     </div>
+// });
+
 registerBlockType('saleziani/newsletter-form', {
     attributes: {
         title: {

@@ -1,4 +1,4 @@
-import registerColumnsBlock from "../scripts/registerColumnsBlock";
+import registerColumnsBlock from "../registerColumnsBlock";
 
 registerColumnsBlock(
     'organization', {
