@@ -34,3 +34,10 @@
     @import 'blocks/all';
     @import 'templates/all';
 }
+
+p {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}

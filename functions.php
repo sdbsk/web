@@ -10,8 +10,12 @@ $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
 
 add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
-    wp_enqueue_style('admin', home_url() . $manifest[$assets . 'admin.css']);
-    wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
+    wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], [], false, ['in_footer' => true]);
+});
+
+add_action( 'enqueue_block_assets', function() use ($assets, $manifest): void {
+    wp_enqueue_style('blocks', home_url() . $manifest[$assets . 'blocks.css']);
+    wp_enqueue_script('blocks', home_url() . $manifest[$assets . 'blocks.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
 
 // todo: remove after import: ext-dom, ext-fileinfo, ext-pdo, symfony/html-sanitizer, LEGACY_ env variables and following hook
@@ -349,7 +353,6 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/page-perex-meta',
         'saleziani/post-columns',
 
-
         // small margin blocks (typograficke)
         'core/image',
         'core/heading',
@@ -361,6 +364,7 @@ add_filter('allowed_block_types_all', function (): array {
         'core/columns',
 
         // no margin blocks
+        'core/site-logo',
         'core/template-part',
         'core/navigation-link',
         'core/site-logo',
@@ -462,7 +466,11 @@ add_action('wp_before_admin_bar_render', function () {
 });
 
 add_action('admin_init', function () {
-    remove_menu_page('edit-comments.php');
-    remove_menu_page('plugins.php');
-    remove_menu_page('w3tc_dashboard');
+    global $menu;
+
+    if (is_iterable($menu)) {
+        remove_menu_page('edit-comments.php');
+        remove_menu_page('plugins.php');
+        remove_menu_page('w3tc_dashboard');
+    }
 });
