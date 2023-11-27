@@ -75,6 +75,11 @@
   }
 }
 
+.editor-styles-wrapper .wp-pattern-saleziani-accordion .accordion-item .accordion-collapse.hide {
+  max-height: unset !important;
+}
+
+
 .category-checklist > li > label {
   pointer-events: none;
 
