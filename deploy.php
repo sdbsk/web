@@ -36,8 +36,8 @@ task('deploy', [
     'deploy:vendors',
     'deploy:install_languages',
     'deploy:flush_rewrite',
-    'deploy:flush_cache',
     'deploy:publish',
+    'deploy:flush_cache',
 ]);
 
 after('deploy:failed', 'deploy:unlock');
