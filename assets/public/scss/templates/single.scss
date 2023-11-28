@@ -3,11 +3,16 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 4rem;
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      margin-bottom: 3rem;
+    }
 
     .wp-block-post-terms {
       display: flex;
       align-items: center;
       flex-direction: row;
+      flex-wrap: wrap;
 
       a {
         @include body-m;
@@ -23,6 +28,9 @@
       &:not(:empty):after {
         @include dark-dot;
         content: '';
+        @include media-breakpoint-down(md) {
+          display: none;
+        }
       }
     }
 
