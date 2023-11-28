@@ -1,4 +1,4 @@
-import {postList} from '@wordpress/icons'
+import {postList} from '@wordpress/icons';
 
 const {registerBlockVariation, unregisterBlockVariation} = window.wp.blocks;
 
@@ -25,7 +25,7 @@ registerBlockVariation('core/query', {
                 [
                     ['core/group', {className: 'row'}, [
                         ['core/group', {className: 'col-md-5 col-lg-4 order-md-1'}, [
-                            ['core/post-featured-image', {isLink: true}]]
+                            ['core/post-featured-image', {isLink: true, sizeSlug: 'medium'}]]
                         ],
                         ['core/group', {className: 'col-md-7 col-lg-8'}, [
                             ['core/post-terms', {term: "category", separator: ""}],
