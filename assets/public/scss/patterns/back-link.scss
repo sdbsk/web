@@ -1,0 +1,19 @@
+.wp-pattern-back-link {
+  max-width: 73.125rem;
+  margin-right: auto;
+  margin-left: auto;
+
+  .back-link {
+    @include link-with-icon;
+    flex-direction: row;
+    padding-left: 0;
+    border: unset;
+    background-color: transparent;
+
+    &:before {
+      margin-right: 0.5rem;
+      margin-left: 0;
+      transform: rotate(180deg);
+    }
+  }
+}
