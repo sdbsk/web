@@ -8,6 +8,7 @@
   .back-link {
     @include link-with-icon;
     flex-direction: row;
+    padding-top: 0.5rem;
     padding-left: 0;
     border: unset;
     background-color: transparent;
