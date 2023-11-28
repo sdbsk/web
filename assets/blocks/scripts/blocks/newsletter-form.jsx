@@ -15,6 +15,10 @@ registerBlockType('saleziani/newsletter-form', {
         title: {
             default: 'Chcete sledovať, čo máme nové? Pridajte sa do nášho newslettra.',
             type: 'string'
+        },
+        source: {
+            default: 'web-saleziani-sk',
+            type: 'string'
         }
     },
     category: 'theme',
@@ -34,6 +38,11 @@ registerBlockType('saleziani/newsletter-form', {
                         label="Title"
                         value={attributes.title}
                         onChange={(value) => setAttributes({title: value})}
+                    />
+                    <TextControl
+                        label="Source"
+                        value={attributes.source}
+                        onChange={(value) => setAttributes({source: value})}
                     />
                 </PanelBody>
             </InspectorControls>

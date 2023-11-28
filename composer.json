@@ -63,7 +63,8 @@
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/w3-total-cache": "^2.5",
         "google/material-symbols": "1.0.0",
-        "wpackagist-plugin/convert-to-blocks": "^1.2"
+        "wpackagist-plugin/convert-to-blocks": "^1.2",
+        "nette/utils": "^4.0"
     },
     "require-dev": {
         "deployer/deployer": "^7.3",

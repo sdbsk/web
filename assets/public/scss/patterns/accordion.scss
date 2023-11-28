@@ -38,7 +38,7 @@
     }
 
     .accordion-collapse {
-      transition: max-height .5s ease-in-out;
+      transition: max-height .3s ease-in-out;
 
       &.collapse {
         display: block !important;

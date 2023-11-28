@@ -21,6 +21,10 @@
       line-height: 1.8125rem;
       margin: 0 0 1rem;
       color: $dark;
+      @include media-breakpoint-down(md) {
+        font-size: 1.3rem;
+        line-height: 1.675rem;
+      }
     }
 
     p {

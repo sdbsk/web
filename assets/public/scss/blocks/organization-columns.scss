@@ -74,6 +74,10 @@
           margin-bottom: 1.5rem;
           @include display-reg-m;
           color: $dark;
+          @include media-breakpoint-down(md) {
+            font-size: 1.3rem;
+            line-height: 1.675rem;
+          }
 
           a {
             color: inherit;

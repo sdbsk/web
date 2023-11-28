@@ -52,7 +52,8 @@
           @include display-reg-l;
           margin: 0 0 2rem;
           @include media-breakpoint-down(md) {
-            @include display-reg-m;
+            font-size: 1.3rem;
+            line-height: 1.675rem;
             margin: 0 0 1rem;
           }
         }
@@ -60,6 +61,9 @@
         p {
           @include body-m;
           margin-bottom: 2rem;
+          @include media-breakpoint-down(md) {
+            @include body-s;
+          }
 
           &:last-child {
             margin-bottom: 0;
