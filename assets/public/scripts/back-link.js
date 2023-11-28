@@ -1,3 +1,6 @@
-document.getElementById("js-back-link").addEventListener("click", () => {
-    history.back();
-});
+const backLink = document.getElementById("js-back-link")
+if (backLink) {
+    backLink.addEventListener("click", () => {
+        history.back();
+    });
+}
