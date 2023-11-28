@@ -1,4 +1,4 @@
-import {columns} from '@wordpress/icons'
+import {columns} from '@wordpress/icons';
 
 const {registerBlockVariation, unregisterBlockVariation} = window.wp.blocks;
 
@@ -22,7 +22,7 @@ registerBlockVariation('core/query', {
                 },
                 [
                     ['core/group', {className: 'bootstrap-column-inner'}, [
-                        ['core/post-featured-image'],
+                        ['core/post-featured-image', {sizeSlug: 'medium'}],
                         ['core/group', {className: 'content', metadata: {name: 'Obsah'}, lock: {move: true, remove: true}}, [
                             ['core/group', {className: 'text', metadata: {name: 'Text'}, lock: {move: true, remove: true}}, [
                                 ['core/post-title', {isLink: true, level: 3}],
