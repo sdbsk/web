@@ -32,10 +32,7 @@ declare(strict_types=1);
                 <div class="wp-block-buttons">
                     <!-- wp:button -->
                     <div class="wp-block-button">
-                        <a class="wp-block-button__link wp-element-button"
-                           href="#">
-                            Podporiť teraz
-                        </a>
+                        <a class="wp-block-button__link wp-element-button" href="#">Podporiť teraz</a>
                     </div>
                     <!-- /wp:button -->
                 </div>
