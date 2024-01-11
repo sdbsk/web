@@ -14,7 +14,7 @@ set('application', 'saleziani.sk');
 set('repository', 'git@bitbucket.org:bratiask/saleziani.git');
 set('git_tty', true);
 set('shared_files', ['.env.local']);
-set('shared_dirs', ['web/app/uploads']);
+set('shared_dirs', ['web/app/uploads', 'web/app/w3tc-config']);
 set('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
@@ -28,6 +28,7 @@ task('deploy:flush_rewrite', function (): void {
 });
 
 task('deploy:flush_cache', function (): void {
+    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar cache flush all');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar w3-total-cache flush all');
 });
 
