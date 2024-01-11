@@ -13,7 +13,7 @@ add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_script('admin', home_url() . $manifest[$assets . 'admin.js'], [], false, ['in_footer' => true]);
 });
 
-add_action( 'enqueue_block_assets', function() use ($assets, $manifest): void {
+add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
     wp_enqueue_style('blocks', home_url() . $manifest[$assets . 'blocks.css']);
     wp_enqueue_script('blocks', home_url() . $manifest[$assets . 'blocks.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
@@ -312,19 +312,19 @@ add_action('init', function () use ($template): void {
     ]);
 });
 
-add_action( 'after_setup_theme', function() {
-    remove_theme_support( 'core-block-patterns' );
-    add_filter( 'should_load_remote_block_patterns', '__return_false' );
-} );
+add_action('after_setup_theme', function () {
+    remove_theme_support('core-block-patterns');
+    add_filter('should_load_remote_block_patterns', '__return_false');
+});
 
-add_filter( 'block_categories_all' , function( $categories ) {
-    $categories[] = array(
-        'slug'  => 'meta',
-        'title' => 'Meta'
-    );
+add_filter('block_categories_all', function ($categories) {
+    $categories[] = [
+        'slug' => 'meta',
+        'title' => 'Meta',
+    ];
 
     return $categories;
-} );
+});
 
 add_action('save_post_post', function (int $postId): void {
     wp_set_post_categories($postId, (int)get_option('default_category'), true);
@@ -369,6 +369,8 @@ add_filter('allowed_block_types_all', function (): array {
         'core/navigation-link',
         'core/site-logo',
         'core/list-item',
+        'core/social-link',
+        'core/social-links',
         'saleziani/project-column',
         'saleziani/organization-column',
         'saleziani/newsletter-form',
