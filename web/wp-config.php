@@ -1,6 +1,7 @@
 <?php
 
-
+/** Enable W3 Total Cache */
+define('WP_CACHE', true); // Added by W3 Total Cache
 
 // DO NOT DECLARE STRICT TYPES BECAUSE PLUGINS CAN PUT CODE ABOVE IT AND BREAK THE SITE
 // declare(strict_types=1);
