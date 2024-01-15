@@ -29,11 +29,6 @@ task('deploy:flush', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
 });
 
-task('deploy:opcache_reset', function (): void {
-    $filename = uniqid('web/opcache-reset-') . '.php';
-    run('cd {{ release_path }} && echo "<?php opcache_reset();" > ' . $filename . ' && curl https://stage.saleziani.sk/' . $filename);
-});
-
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
@@ -42,5 +37,4 @@ task('deploy', [
     'deploy:publish',
 ]);
 
-after('deploy:symlink', 'deploy:opcache_reset');
 after('deploy:failed', 'deploy:unlock');
