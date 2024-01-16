@@ -26,6 +26,7 @@ task('deploy:theme', function (): void {
 task('deploy:flush', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar cache flush all');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar w3-total-cache flush all');
+    run('cd {{ release_path }} && bin/wp-cli.phar w3-total-cache fix_environment apache');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
 });
 
