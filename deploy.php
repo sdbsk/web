@@ -31,15 +31,12 @@ task('deploy:flush', function (): void {
 });
 
 task('copy:assets', function (): void {
-    run('cd {{ release_path }}/web/app/themes/saleziani/');
-    run('mkdir assets-new');
-    run('cp -r assets/ assets-new/');
+    run('mkdir {{ release_path }}/web/app/themes/saleziani/assets-new');
+    run('cp -r {{ release_path }}/web/app/themes/saleziani/assets/ {{ release_path }}/web/app/themes/saleziani/assets-new/');
 });
 
 task('merge:assets', function (): void {
-    run('cd {{ release_path }}/web/app/themes/saleziani/');
-    run('cp -r assets-new/ assets/');
-    run('rm -rf assets-new/');
+    run('mv -f {{ release_path }}/web/app/themes/saleziani/assets-new/ {{ release_path }}/web/app/themes/saleziani/assets/');
 });
 
 before('deploy:shared', 'copy:assets');
