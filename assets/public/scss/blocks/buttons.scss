@@ -9,6 +9,8 @@
             background: $red;
             gap: 0.5rem;
 
+            transition: background-color 0.2s ease-in-out, padding-right 0.2s ease-in-out;
+
             &:after {
                 display: inline-block;
                 vertical-align: middle;
@@ -17,6 +19,16 @@
                 margin-left: 0.5rem;
                 content: '';
                 @include svgBackground('../images/arrow-right.svg', $white);
+                transition: margin-left 0.2s ease-in-out;
+            }
+
+            &:hover {
+                background-color: darken($red, 10%);
+                padding-right: 1.85rem;
+
+                &:after {
+                    margin-left: 0.65rem;
+                }
             }
         }
     }

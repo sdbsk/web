@@ -1,16 +1,29 @@
 .bootstrap-columns-container {
-  max-width: var(--wp--style--global--content-size) !important;
-  .row {
-      --bs-gutter-y: 1.875rem;
+    max-width: var(--wp--style--global--content-size) !important;
 
-      @include media-breakpoint-down(md) {
-          > [class*='col-'] {
-              max-width: 30rem;
-          }
-      }
-  }
+    .row {
+        --bs-gutter-y: 1.875rem;
+
+        @include media-breakpoint-down(md) {
+            > [class*='col-'] {
+                max-width: 30rem;
+            }
+        }
+    }
 
     .bootstrap-column-inner {
         position: relative;
+
+        a {
+            &:after {
+                z-index: 1;
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
     }
 }

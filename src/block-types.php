@@ -98,7 +98,7 @@ return [
                 'type' => 'string',
             ],
             'source' => [
-                'default' => 'web-saleziani-sk',
+                'default' => 'saleziani-sk',
                 'type' => 'string',
             ],
         ],

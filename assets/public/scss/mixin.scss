@@ -2,243 +2,261 @@
 @import 'typography';
 
 @mixin show-layout($top, $bottom) {
-  .page-template-page-debug &, .page-template-narrow-debug & {
-    position: relative;
+    .page-template-page-debug &, .page-template-narrow-debug & {
+        position: relative;
 
 
-    @if ($bottom != '') {
-      &:after {
-        position: absolute;
-        display: block;
-        content: '';
-        background-color: rgba(0, 0, 255, 0.3);
-        top: 100%;
-        left: -40px;
-        width: 20px;
-        z-index: 1000;
-        height: $bottom;
-        border-radius: 0 0 10px 10px;
-      }
+        @if ($bottom != '') {
+            &:after {
+                position: absolute;
+                display: block;
+                content: '';
+                background-color: rgba(0, 0, 255, 0.3);
+                top: 100%;
+                left: -40px;
+                width: 20px;
+                z-index: 1000;
+                height: $bottom;
+                border-radius: 0 0 10px 10px;
+            }
+        }
+
+        @if ($top != '') {
+            &:before {
+                position: absolute;
+                display: block;
+                content: '';
+                background-color: rgba(255, 0, 0, 0.3);
+                left: -50px;
+                width: 20px;
+                z-index: 1000;
+                top: -1 * $top;
+                height: $top;
+                border-radius: 10px 10px 0 0;
+            }
+        }
     }
-
-    @if ($top != '') {
-      &:before {
-        position: absolute;
-        display: block;
-        content: '';
-        background-color: rgba(255, 0, 0, 0.3);
-        left: -50px;
-        width: 20px;
-        z-index: 1000;
-        top: -1 * $top;
-        height: $top;
-        border-radius: 10px 10px 0 0;
-      }
-    }
-  }
 }
 
 @mixin block-layout($top: '', $bottom: '') {
-  @if ($bottom != '') {
-    margin-bottom: $bottom;
-  }
-
-  @if ($top != '') {
-    margin-top: $top;
-  }
-
-  @if ($top != '' or $bottom != '') {
-    @include show-layout($top, $bottom);
-  }
-
-  @include media-breakpoint-down(md) {
-    @if ($bottom == '') {
-      margin-bottom: $bottom / 2;
+    @if ($bottom != '') {
+        margin-bottom: $bottom;
     }
 
     @if ($top != '') {
-      margin-top: $top / 2;
+        margin-top: $top;
     }
 
-    @if ($top != '' or $bottom == '') {
-      @include show-layout($top / 2, $bottom / 2);
+    @if ($top != '' or $bottom != '') {
+        @include show-layout($top, $bottom);
     }
-  }
+
+    @include media-breakpoint-down(md) {
+        @if ($bottom == '') {
+            margin-bottom: $bottom / 2;
+        }
+
+        @if ($top != '') {
+            margin-top: $top / 2;
+        }
+
+        @if ($top != '' or $bottom == '') {
+            @include show-layout($top / 2, $bottom / 2);
+        }
+    }
 }
 
 @mixin layout() {
-  font-family: 'Fira Sans', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
 
-  *, :after, :before {
-    box-sizing: border-box;
-  }
+    *, :after, :before {
+        box-sizing: border-box;
+    }
 
-  .wp-block-saleziani-navigation {
-    @include block-layout($top: 3rem, $bottom: 3rem);
-  }
-
-  .wp-block-post-content {
-    > {
-      .wp-block-group,
-      .wp-block-image,
-      .wp-block-saleziani-post-columns,
-      .bootstrap-columns-container {
-        @include block-layout($bottom: 8rem);
-      }
-
-      .wp-block-group {
-        @include block-layout($top: 8rem);
-
-        &:first-of-type {
-          @include block-layout($top: 0);
-        }
-      }
-
-      .wp-pattern-saleziani-section-heading {
-        @include block-layout($bottom: 3rem);
-      }
-
-      .wp-pattern-saleziani-numbers,
-      .wp-block-buttons {
+    .wp-block-saleziani-navigation {
         @include block-layout($top: 3rem, $bottom: 3rem);
-      }
-
-      p {
-        @include block-layout($bottom: 1rem);
-      }
-
-      .wp-block-pullquote {
-        @include block-layout($top: 4rem, $bottom: 4rem);
-      }
-
-      h3 {
-        @include block-layout($top: 4rem, $bottom: 2rem);
-      }
-
-      *:last-child {
-        @include block-layout($bottom: 8rem);
-      }
     }
 
-    &.wp-template-narrow {
-      > {
-        .wp-block-group,
-        .wp-block-image,
-        .wp-block-saleziani-post-columns,
-        .bootstrap-columns-container {
-          @include block-layout($bottom: 4rem);
+    .wp-block-post-content {
+        > {
+            .wp-block-group,
+            .wp-block-image,
+            .wp-block-saleziani-post-columns,
+            .bootstrap-columns-container {
+                @include block-layout($bottom: 8rem);
+            }
+
+            .wp-block-group {
+                @include block-layout($top: 8rem);
+
+                &:first-of-type {
+                    @include block-layout($top: 0);
+                }
+            }
+
+            .wp-pattern-saleziani-section-heading {
+                @include block-layout($bottom: 3rem);
+            }
+
+            .wp-pattern-saleziani-numbers,
+            .wp-block-buttons {
+                @include block-layout($top: 3rem, $bottom: 3rem);
+            }
+
+            p {
+                @include block-layout($bottom: 1rem);
+            }
+
+            .wp-block-pullquote {
+                @include block-layout($top: 4rem, $bottom: 4rem);
+            }
+
+            h3 {
+                @include block-layout($top: 4rem, $bottom: 2rem);
+            }
+
+            *:last-child {
+                @include block-layout($bottom: 8rem);
+            }
         }
 
-        .wp-block-group {
-          @include block-layout($top: 4rem);
+        &.wp-template-narrow {
+            > {
+                .wp-block-group,
+                .wp-block-image,
+                .wp-block-saleziani-post-columns,
+                .bootstrap-columns-container {
+                    @include block-layout($bottom: 4rem);
+                }
 
-          &:first-of-type {
-            @include block-layout($top: 0);
-          }
-        }
+                .wp-block-group {
+                    @include block-layout($top: 4rem);
 
-        .wp-block-buttons {
-          @include block-layout($top: 3rem, $bottom: 3rem);
-        }
+                    &:first-of-type {
+                        @include block-layout($top: 0);
+                    }
+                }
 
-        .wp-pattern-saleziani-section-heading {
-          @include block-layout($bottom: 3rem, $top: 8rem);
-        }
+                .wp-block-buttons {
+                    @include block-layout($top: 3rem, $bottom: 3rem);
+                }
 
-        *:last-child {
-          @include block-layout($bottom: 8rem);
+                .wp-pattern-saleziani-section-heading {
+                    @include block-layout($bottom: 3rem, $top: 8rem);
+                }
+
+                *:last-child {
+                    @include block-layout($bottom: 8rem);
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @mixin svgBackground($svgImage, $color: '', $size: '', $position: top left, $repeat: no-repeat) {
 
-  @if $color != '' {
-    background-color: $color;
-    mask-image: url($svgImage);
+    @if $color != '' {
+        background-color: $color;
+        mask-image: url($svgImage);
 
-    @if $size != '' {
-      mask-size: $size;
+        @if $size != '' {
+            mask-size: $size;
+        }
+
+        @if $position {
+            mask-position: $position
+        }
+
+        @if $repeat {
+            mask-repeat: $repeat
+        }
+
+        // IE10 and IE11 does not support mask-image so we use black background-image instead
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            background-image: url($svgImage);
+            background-color: inherit;
+
+            @if $size != '' {
+                background-size: $size;
+            }
+
+            @if $position {
+                background-position: $position
+            }
+
+            @if $repeat {
+                background-repeat: $repeat
+            }
+        }
+    } @else {
+        background-image: url($svgImage);
+
+        @if $size != '' {
+            background-size: $size;
+        }
+
+        @if $position {
+            background-position: $position
+        }
+
+        @if $repeat {
+            background-repeat: $repeat
+        }
     }
-
-    @if $position {
-      mask-position: $position
-    }
-
-    @if $repeat {
-      mask-repeat: $repeat
-    }
-
-    // IE10 and IE11 does not support mask-image so we use black background-image instead
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      background-image: url($svgImage);
-      background-color: inherit;
-
-      @if $size != '' {
-        background-size: $size;
-      }
-
-      @if $position {
-        background-position: $position
-      }
-
-      @if $repeat {
-        background-repeat: $repeat
-      }
-    }
-  } @else {
-    background-image: url($svgImage);
-
-    @if $size != '' {
-      background-size: $size;
-    }
-
-    @if $position {
-      background-position: $position
-    }
-
-    @if $repeat {
-      background-repeat: $repeat
-    }
-  }
 }
 
 @mixin link-with-icon() {
-  color: $red;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  flex-direction: row-reverse;
+    color: $red;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    flex-direction: row-reverse;
+    transition: color 0.2s ease-in-out;
 
-  &:before {
-    @include svgBackground('../images/arrow-right.svg', $red);
-
-    content: '';
-    display: inline-block;
-    height: 1.25rem;
-    margin-left: 0.5rem;
-    width: 1.25rem;
-  }
-  &[target='_blank'] {
     &:before {
-      mask-image: url('../images/external-link.svg');
+        @include svgBackground('../images/arrow-right.svg', $red);
+
+        transition: margin-left 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        content: '';
+        display: inline-block;
+        height: 1.25rem;
+        margin-left: 0.5rem;
+        width: 1.25rem;
     }
-  }
+
+    &[target='_blank'] {
+        &:before {
+            mask-image: url('../images/external-link.svg');
+        }
+    }
+
+    &:hover {
+        &:before {
+            background-color: darken($red, 10%);
+            margin-left: 0.65rem;
+        }
+
+        &[target='_blank'] {
+            &:before {
+                //margin-left: 0.5rem;
+            }
+        }
+
+        color: darken($red, 10%);
+    }
 }
 
 @mixin dark-dot {
-  display: inline-block;
-  min-width: 0.25rem;
-  height: 0.25rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-  border-radius: 1rem;
-  background-color: $dark;
+    display: inline-block;
+    min-width: 0.25rem;
+    height: 0.25rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 1rem;
+    background-color: $dark;
 }

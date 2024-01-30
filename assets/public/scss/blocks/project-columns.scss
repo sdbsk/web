@@ -1,145 +1,165 @@
 @import '../mixin';
 
 .bootstrap-project-columns {
-  .bootstrap-column-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border-radius: .5rem;
+    .bootstrap-column-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: .5rem;
 
-    .wp-block-image {
-      display: flex;
-      overflow: hidden;
-      width: 100%;
-      margin-bottom: 0;
-      border-radius: .5rem .5rem 0 0;
-
-      > div {
-        width: 100% !important;
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        transition: transform 0.3s ease;
-      }
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      flex-shrink: 0;
-      justify-content: space-between;
-      padding: 2rem 6rem 3rem;
-      color: $white !important;
-      border-radius: 0 0 .5rem .5rem;
-      @include media-breakpoint-down(lg) {
-        padding: 2rem 3rem 3rem;
-      }
-      @include media-breakpoint-down(md) {
-        padding: 1.7rem 2rem 2rem;
-      }
-
-      .content-top {
-        margin-bottom: 1rem;
-
-        > * {
-          color: $white !important;
-        }
-
-        .wp-block-heading {
-          @include display-reg-l;
-          margin: 0 0 2rem;
-          @include media-breakpoint-down(md) {
-            font-size: 1.3rem;
-            line-height: 1.675rem;
-            margin: 0 0 1rem;
-          }
-        }
-
-        p {
-          @include body-m;
-          margin-bottom: 2rem;
-          @include media-breakpoint-down(md) {
-            @include body-s;
-          }
-
-          &:last-child {
+        .wp-block-image {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
             margin-bottom: 0;
-          }
-        }
-      }
+            border-radius: .5rem .5rem 0 0;
 
-      .content-bottom {
-        p {
-          margin-bottom: 0;
+            > div {
+                width: 100% !important;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+                transition: transform 0.3s ease;
+            }
         }
 
-        a {
-          @include link-with-icon;
-          color: $white;
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 0;
+            justify-content: space-between;
+            padding: 2rem 6rem 3rem;
+            color: $white !important;
+            border-radius: 0 0 .5rem .5rem;
+            @include media-breakpoint-down(lg) {
+                padding: 2rem 3rem 3rem;
+            }
+            @include media-breakpoint-down(md) {
+                padding: 1.7rem 2rem 2rem;
+            }
 
-          &:before {
-            background-color: $white;
-            @include svgBackground('../images/arrow-right.svg', $white);
-          }
+            .content-top {
+                margin-bottom: 1rem;
+
+                > * {
+                    color: $white !important;
+                }
+
+                .wp-block-heading {
+                    @include display-reg-l;
+                    margin: 0 0 2rem;
+                    @include media-breakpoint-down(md) {
+                        font-size: 1.3rem;
+                        line-height: 1.675rem;
+                        margin: 0 0 1rem;
+                    }
+                }
+
+                p {
+                    @include body-m;
+                    margin-bottom: 2rem;
+                    @include media-breakpoint-down(md) {
+                        @include body-s;
+                    }
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .content-bottom {
+                p {
+                    margin-bottom: 0;
+                }
+
+                a {
+                    @include link-with-icon;
+                    color: $white;
+
+                    &:before {
+                        background-color: $white;
+                        @include svgBackground('../images/arrow-right.svg', $white);
+                    }
+
+                    &:hover {
+                        color: transparentize($white, 0.3);
+
+                        &:before {
+                            background-color: transparentize($white, 0.3);
+                        }
+                    }
+                }
+            }
         }
-      }
+
+        &:hover {
+            .wp-block-image {
+                img {
+                    transform: scale(1.03);
+                }
+            }
+        }
+
+        &.has-light-brown-background-color,
+        &.has-yellow-background-color {
+            .content {
+                .content-top {
+                    > * {
+                        color: $dark !important;
+                    }
+                }
+
+                .content-bottom a {
+                    color: $dark;
+
+                    &:before {
+                        background-color: $dark;
+                        @include svgBackground('../images/arrow-right.svg', $dark);
+                    }
+
+                    &:hover {
+                        color: transparentize($dark, 0.3);
+
+                        &:before {
+                            background-color: transparentize($dark, 0.3);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.has-very-light-red-background-color,
+        &.has-light-blue-background-color,
+        &.has-light-red-background-color,
+        &.has-light-yellow-background-color,
+        &.has-light-green-background-color {
+            .content {
+                .content-top {
+                    > * {
+                        color: $dark !important;
+                    }
+                }
+
+                .content-bottom a {
+                    color: $red;
+
+                    &:before {
+                        background-color: $red;
+                    }
+
+                    &:hover {
+                        color: darken($red, 10%);
+
+                        &:before {
+                            background-color: darken($red, 10%);
+                        }
+                    }
+                }
+            }
+        }
     }
-
-    &:hover {
-      .wp-block-image {
-        img {
-          transform: scale(1.03);
-        }
-      }
-    }
-
-    &.has-light-brown-background-color,
-    &.has-yellow-background-color {
-      .content {
-        .content-top {
-          > * {
-            color: $dark !important;
-          }
-        }
-
-        .content-bottom a {
-          color: $dark;
-
-          &:before {
-            background-color: $dark;
-            @include svgBackground('../images/arrow-right.svg', $dark);
-          }
-        }
-      }
-    }
-
-    &.has-very-light-red-background-color,
-    &.has-light-blue-background-color,
-    &.has-light-red-background-color,
-    &.has-light-yellow-background-color,
-    &.has-light-green-background-color {
-      .content {
-        .content-top {
-          > * {
-            color: $dark !important;
-          }
-        }
-
-        .content-bottom a {
-          color: $red;
-
-          &:before {
-            background-color: $red;
-          }
-
-          &:after {
-            @include svgBackground('../images/arrow-right.svg', $red);
-          }
-        }
-      }
-    }
-  }
 }

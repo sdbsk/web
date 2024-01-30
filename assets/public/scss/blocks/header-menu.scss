@@ -1,7 +1,23 @@
 .header-menu {
     display: flex;
     align-items: center;
-    padding-top: 1rem;
+    max-width: 75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+
+    .wp-block-site-logo {
+        img {
+            height: 3rem;
+            width: auto;
+        }
+    }
+
+    a {
+        transition: color 0.2s ease-in-out;
+        &:hover {
+            color: darken($red, 10%);
+        }
+    }
 
     @media (max-width: 799px) {
         align-items: start;

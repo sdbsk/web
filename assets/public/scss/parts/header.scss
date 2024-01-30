@@ -3,19 +3,6 @@ header {
     margin-left: auto;
     background-color: #FCEEEA;
 
-    > .header-menu {
-        max-width: 75rem;
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
-
-        .wp-block-site-logo {
-            img {
-                height: 3rem;
-                width: auto;
-            }
-        }
-    }
-
     .wp-block-navigation__responsive-container.is-menu-open.has-modal-open {
         padding: 1rem;
 
@@ -46,12 +33,22 @@ header {
 
                     &.btn-support {
                         position: unset;
-                        right: unset;
-                        margin-top: 2rem;
-                        padding: 0.5rem;
-                        color: $white !important;
-                        border-radius: 0.25rem;
-                        background-color: $red !important;
+
+                        a {
+                            display: block;
+                            right: unset;
+                            margin-top: 2rem;
+                            padding: 0.5rem;
+                            color: $white !important;
+                            border-radius: 0.25rem;
+                            background-color: $red !important;
+
+                            &:hover {
+                                color: $white;
+                                background-color: opacify($red, 0.8) !important;
+                                transition: background-color 0.2s ease-in-out;
+                            }
+                        }
                     }
                 }
             }
@@ -88,14 +85,22 @@ header {
                 position: absolute;
                 right: 0;
                 margin: 0;
-                padding: 0.19rem 1rem;
-                color: $white;
-                border-radius: 0.25rem;
-                background-color: $red;
 
-                .wp-block-navigation-item__content {
+                a {
+                    display: inline-block;
+                    white-space: nowrap;
+                    padding: 0.19rem 1rem;
+                    color: $white;
+                    border-radius: 0.25rem;
+                    background-color: $red;
                     line-height: 1.375rem;
                     text-decoration: unset;
+
+                    &:hover {
+                        color: $white;
+                        background-color: darken($red, 10%) !important;
+                        transition: background-color 0.2s ease-in-out;
+                    }
 
                     .wp-block-navigation-item__label {
                         font-size: 0.9375rem;
