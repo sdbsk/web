@@ -20,9 +20,9 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
 
 // todo: remove after import: ext-dom, ext-fileinfo, ext-pdo, symfony/html-sanitizer, LEGACY_ env variables and following hook
 add_action('admin_menu', function (): void {
-    add_menu_page('Import článkov', 'Importovať články', 'import', 'post-import', function (): void {
+    add_menu_page('Import článkov!', 'Importovať články!', 'import', 'post-import', function (): void {
         set_time_limit(3600);
-        ini_set('memory_limit', '1024M');
+//        ini_set('memory_limit', '1024M');
 
         try {
             $legacyDb = new PDO('mysql:host=' . getenv('LEGACY_DATABASE_HOST') . ';dbname=' . getenv('LEGACY_DATABASE_NAME'),
@@ -48,26 +48,6 @@ add_action('admin_menu', function (): void {
 
             return;
         }
-
-        global $wpdb;
-
-        foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
-            $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
-            if (isset($metadata['file'])) {
-                $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
-
-                unlink($filename);
-
-                foreach ($metadata['sizes'] as $size) {
-                    unlink(dirname($filename) . '/' . $size['file']);
-                }
-
-                delete_post_meta($attachment['id'], '_wp_attached_file');
-                delete_post_meta($attachment['id'], '_wp_attachment_metadata');
-            }
-        }
-
-        $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
 
         $categoryAliases = [];
 
@@ -202,7 +182,7 @@ add_action('admin_menu', function (): void {
 
         $redirects = [];
 
-        foreach ($legacyDb->query('SELECT id, catid, title, alias, introtext, publish_up, modified FROM os9ad_content WHERE catid IN (8, 16) AND state = 1 AND publish_down < \'1970-01-01 00:00:00\' ORDER BY publish_up')->fetchAll(PDO::FETCH_ASSOC) as $content) {
+        foreach ($legacyDb->query('SELECT id, catid, title, alias, introtext, publish_up, modified FROM os9ad_content WHERE catid IN (8, 16) AND state = 1 AND publish_up > \'2023-10-01 00:00:00\' AND publish_down < \'1970-01-01 00:00:00\' ORDER BY publish_up')->fetchAll(PDO::FETCH_ASSOC) as $content) {
             echo $content['id'] . ', ' . $content['publish_up'] . '<br>';
 
             $postContent = $content['introtext'];
@@ -226,15 +206,36 @@ add_action('admin_menu', function (): void {
                 $postContent = str_replace($replacement[0], $replacement[1], $postContent);
             }
 
-            $post = get_post(wp_insert_post([
-                'comment_status' => 'closed',
-                'ping_status' => 'closed',
-                'post_author' => $author->ID,
-                'post_content' => $postContent,
-                'post_date' => $content['publish_up'],
-                'post_status' => 'publish',
-                'post_title' => $content['title'],
-            ]));
+            $existingPost = get_posts([
+                'date_query' => [
+                    'after' => substr($content['publish_up'], 0, 10) . ' 00:00:00',
+                    'before' => substr($content['publish_up'], 0, 10) . ' 23:59:59',
+                ],
+                'title' => $content['title'],
+            ])[0] ?? null;
+
+            $post = get_post(
+                $existingPost instanceof WP_Post ?
+                    wp_update_post([
+                        'ID' => $existingPost->ID,
+                        'comment_status' => 'closed',
+                        'ping_status' => 'closed',
+                        'post_author' => $author->ID,
+                        'post_content' => $postContent,
+                        'post_date' => $content['publish_up'],
+                        'post_status' => 'publish',
+                        'post_title' => $content['title'],
+                    ]) :
+                    wp_insert_post([
+                        'comment_status' => 'closed',
+                        'ping_status' => 'closed',
+                        'post_author' => $author->ID,
+                        'post_content' => $postContent,
+                        'post_date' => $content['publish_up'],
+                        'post_status' => 'publish',
+                        'post_title' => $content['title'],
+                    ]),
+            );
 
             $redirects['/spravy/' . $content['catid'] . '-' . $categoryAliases[$content['catid']] . '/' . $content['id'] . '-' . $content['alias']] = str_replace($wpHome, '', get_permalink($post));
 
@@ -252,17 +253,21 @@ add_action('admin_menu', function (): void {
                 $baseName = basename($source);
                 $filename = wp_upload_dir($dateTime->format('Y/m'))['path'] . '/' . $baseName;
 
-                copy($source, $filename);
+                if (is_file($filename)) {
+                    echo ' --> ' . $filename . ' [SKIPPED]<br>';
+                } else {
+                    copy($source, $filename);
 
-                $attachmentId = wp_insert_attachment([
-                    'post_author' => $author->ID,
-                    'post_date' => $dateTime->format('Y-m-d H:i:s'),
-                    'post_mime_type' => (new finfo(FILEINFO_MIME_TYPE))->buffer(file_get_contents($source)),
-                    'post_title' => $baseName,
-                ], $filename);
+                    $attachmentId = wp_insert_attachment([
+                        'post_author' => $author->ID,
+                        'post_date' => $dateTime->format('Y-m-d H:i:s'),
+                        'post_mime_type' => (new finfo(FILEINFO_MIME_TYPE))->buffer(file_get_contents($source)),
+                        'post_title' => $baseName,
+                    ], $filename);
 
-                wp_update_attachment_metadata($attachmentId, @wp_generate_attachment_metadata($attachmentId, $filename));
-                echo ' --> ' . $filename . ' [OK]<br>';
+                    wp_update_attachment_metadata($attachmentId, @wp_generate_attachment_metadata($attachmentId, $filename));
+                    echo ' --> ' . $filename . ' [OK]<br>';
+                }
             } else {
                 echo '[NOT_FOUND]<br>';
             }
@@ -385,7 +390,7 @@ function wpb_embed_block(): void
     wp_enqueue_script(
         'deny-list-blocks',
         get_template_directory_uri() . '/assets/public.js',
-        array('wp-blocks', 'wp-dom-ready', 'wp-edit-post')
+        ['wp-blocks', 'wp-dom-ready', 'wp-edit-post'],
     );
 }
 
