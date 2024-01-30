@@ -15,6 +15,35 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
     wp_enqueue_script('blocks', home_url() . $manifest[$assets . 'blocks.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
 });
 
+add_action('init', function () use ($template): void {
+
+    require_once 'src/icon-controller.php';
+
+    foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
+        register_block_type($template . '/' . $type, $args);
+    }
+
+    foreach (require __DIR__ . '/src/post-types.php' as $type => $args) {
+        register_post_type($type, $args);
+    }
+
+    foreach (require __DIR__ . '/src/post-metas.php' as $type => $metas) {
+        foreach ($metas as $key => $args) {
+            register_post_meta($type, $key, $args);
+        }
+    }
+
+    register_block_pattern_category($template, [
+        'label' => 'Saleziáni',
+    ]);
+
+    register_post_meta('page', 'page_perex', [
+        'show_in_rest' => true,
+        'single' => true,
+        'type' => 'string',
+    ]);
+});
+
 add_action('after_setup_theme', function () {
     remove_theme_support('core-block-patterns');
     add_filter('should_load_remote_block_patterns', '__return_false');
@@ -189,5 +218,46 @@ add_action('admin_init', function () {
         remove_menu_page('edit-comments.php');
         remove_menu_page('plugins.php');
         remove_menu_page('w3tc_dashboard');
+    }
+
+
+
+    require __DIR__ . '/.htaccess.php';
+});
+
+add_action('wp_head', function() {
+
+    $fallbackImage = get_template_directory_uri() . '/fb-share.jpg';
+
+    if (is_category()) {
+        $category = get_queried_object();
+
+        $tags = [
+            'title' => $category->name,
+            'description' => $category->description,
+            'image' => $fallbackImage,
+            'url' => get_category_link($category),
+        ];
+    } else {
+        global $post;
+
+        $thumbnailImage = get_the_post_thumbnail_url($post->ID, 'large');
+
+        $tags = [
+            'title' => get_the_title(),
+            'description' => get_the_excerpt(),
+            'image' => empty($thumbnailImage) ? $fallbackImage : $thumbnailImage,
+            'url' => get_permalink(),
+        ];
+
+        if (is_single()) {
+            $tags['type'] = 'article';
+        }
+    }
+
+    foreach ($tags as $name => $value) {
+        if (!empty($value)) {
+        echo '<meta property="og:' . $name . '" content="' . esc_attr($value) . '" />';
+        }
     }
 });
