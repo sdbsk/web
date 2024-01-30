@@ -107,6 +107,10 @@
                 @include block-layout($bottom: 1rem);
             }
 
+      .wp-block-embed {
+        @include block-layout($bottom: 1rem);
+      }
+
             .wp-block-pullquote {
                 @include block-layout($top: 4rem, $bottom: 4rem);
             }

@@ -350,6 +350,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/icon-columns',
         'core/group',
         'core/buttons',
+        'core/embed',
         'saleziani/page-perex-meta',
         'saleziani/post-columns',
 
@@ -378,6 +379,17 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/icon-column',
     ];
 }, 10, 2);
+
+function wpb_embed_block(): void
+{
+    wp_enqueue_script(
+        'deny-list-blocks',
+        get_template_directory_uri() . '/assets/public.js',
+        array('wp-blocks', 'wp-dom-ready', 'wp-edit-post')
+    );
+}
+
+add_action('enqueue_block_editor_assets', 'wpb_embed_block');
 
 add_filter('excerpt_more', fn(): string => '…');
 
