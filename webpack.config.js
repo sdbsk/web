@@ -8,7 +8,7 @@ Encore
     .addEntry('admin', './assets/admin/admin.js')
     .addEntry('blocks', './assets/blocks/blocks.js')
     .addEntry('public', './assets/public/public.js')
-    .cleanupOutputBeforeBuild()
+    // .cleanupOutputBeforeBuild()
     .disableSingleRuntimeChunk()
     .enableSassLoader()
     .enablePostCssLoader((options) => {

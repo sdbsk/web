@@ -1,125 +1,137 @@
 header {
-  max-width: 75rem;
-  margin-right: auto;
-  margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FDF9F8;
 
+    > .header-menu {
+        max-width: 75rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
 
-  .wp-block-navigation__responsive-container.is-menu-open.has-modal-open {
-    padding: 1rem;
+        .wp-block-site-logo {
+            img {
+                height: 3rem;
+                width: auto;
+            }
+        }
+    }
 
-    .wp-block-navigation__responsive-container-content {
-      padding-top: 0;
+    .wp-block-navigation__responsive-container.is-menu-open.has-modal-open {
+        padding: 1rem;
 
-      .wp-block-navigation__container {
-        width: 100%;
+        .wp-block-navigation__responsive-container-content {
+            padding-top: 0;
+
+            .wp-block-navigation__container {
+                width: 100%;
+
+                .wp-block-navigation-item {
+                    width: 100%;
+                    margin: 0;
+
+                    .wp-block-site-logo {
+                        margin-bottom: 1rem;
+                    }
+
+                    .wp-block-navigation-item__content {
+                        width: 100%;
+                        text-align: center;
+
+                        .wp-block-navigation-item__label {
+                            font-size: 1.4rem;
+                            line-height: 2.4rem;
+                            text-align: center;
+                        }
+                    }
+
+                    &.btn-support {
+                        position: unset;
+                        right: unset;
+                        margin-top: 2rem;
+                        padding: 0.5rem;
+                        color: $white !important;
+                        border-radius: 0.25rem;
+                        background-color: $red !important;
+                    }
+                }
+            }
+        }
+    }
+
+    nav {
+        padding: 0.75rem 0;
+    }
+
+    .wp-block-navigation {
+        padding-left: 0;
 
         .wp-block-navigation-item {
-          width: 100%;
-          margin: 0;
-
-          .wp-block-site-logo {
-            margin-bottom: 1rem;
-          }
-
-          .wp-block-navigation-item__content {
-            width: 100%;
-            text-align: center;
-
-            .wp-block-navigation-item__label {
-              font-size: 1.4rem;
-              line-height: 2.4rem;
-              text-align: center;
+            margin: 0 1rem;
+            @include media-breakpoint-down(lg) {
+                margin: 0 0.5rem;
             }
-          }
 
-          &.btn-support {
-            position: unset;
-            right: unset;
-            margin-top: 2rem;
-            padding: 0.5rem;
-            color: $white !important;
-            border-radius: 0.25rem;
-            background-color: $red !important;
-          }
+            .wp-block-navigation-item__content {
+                text-decoration: unset;
+
+                .wp-block-navigation-item__label {
+                    font-size: 1rem;
+                    line-height: 1.125rem;
+                }
+            }
+
+            &:first-child {
+                margin: 0;
+            }
+
+            &.btn-support {
+                position: absolute;
+                right: 0;
+                margin: 0;
+                padding: 0.19rem 1rem;
+                color: $white;
+                border-radius: 0.25rem;
+                background-color: $red;
+
+                .wp-block-navigation-item__content {
+                    line-height: 1.375rem;
+                    text-decoration: unset;
+
+                    .wp-block-navigation-item__label {
+                        font-size: 0.9375rem;
+                        font-weight: 500;
+                        line-height: 1.375rem;
+                    }
+                }
+            }
+
+            &:last-child {
+                margin: 0 0 0 1rem;
+            }
         }
-      }
+
+
     }
-  }
-
-  nav {
-    padding: 0.75rem 0;
-  }
-
-  .wp-block-navigation {
-    padding-left: 0;
-
-    .wp-block-navigation-item {
-      margin: 0 1rem;
-      @include media-breakpoint-down(lg) {
-        margin: 0 0.5rem;
-      }
-
-      .wp-block-navigation-item__content {
-        text-decoration: unset;
-
-        .wp-block-navigation-item__label {
-          font-size: 1rem;
-          line-height: 1.125rem;
-        }
-      }
-
-      &:first-child {
-        margin: 0;
-      }
-
-      &.btn-support {
-        position: absolute;
-        right: 0;
-        margin: 0;
-        padding: 0.19rem 1rem;
-        color: $white;
-        border-radius: 0.25rem;
-        background-color: $red;
-
-        .wp-block-navigation-item__content {
-          line-height: 1.375rem;
-          text-decoration: unset;
-
-          .wp-block-navigation-item__label {
-            font-size: 0.9375rem;
-            font-weight: 500;
-            line-height: 1.375rem;
-          }
-        }
-      }
-
-      &:last-child {
-        margin: 0 0 0 1rem;
-      }
-    }
-
-
-  }
 }
 
 @media (min-width: 37.5rem) {
-  .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
-    display: none;
-  }
-  .wp-block-navigation__responsive-container-open:not(.always-shown) {
-    display: flex;
-  }
+    .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+        display: none;
+    }
+    .wp-block-navigation__responsive-container-open:not(.always-shown) {
+        display: flex;
+    }
 }
 
 @media (min-width: 50rem) {
-  .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
-    position: relative;
-    z-index: auto;
-    display: block;
-    width: 100%;
-    background-color: inherit;
-  }
-  .wp-block-navigation__responsive-container-open:not(.always-shown) {
-    display: none;
-  }
+    .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+        position: relative;
+        z-index: auto;
+        display: block;
+        width: 100%;
+        background-color: inherit;
+    }
+    .wp-block-navigation__responsive-container-open:not(.always-shown) {
+        display: none;
+    }
 }
