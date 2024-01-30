@@ -104,7 +104,7 @@ return [
         ],
         'render_callback' => fn(array $attributes, string $content, WP_Block $block): string => wrap_block_content($block, '
                 <h3>' . $attributes['title'] . '</h3>
-                <form method="post" action="https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088?source=web-' . Nette\Utils\Strings::webalize($attributes['source']) . '">
+                <form method="post" action="https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088?source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '">
                     <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
                     <label class="input-checkbox">
                         <input type="checkbox" name="gdpr" required="required">

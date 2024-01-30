@@ -49,9 +49,6 @@
     ],
     "require": {
         "php": "~8.1.0",
-        "ext-dom": "*",
-        "ext-fileinfo": "*",
-        "ext-pdo": "*",
         "composer/installers": "^2.2",
         "oscarotero/env": "^2.1",
         "roots/bedrock-autoloader": "^1.0",
@@ -59,12 +56,10 @@
         "roots/wordpress": "^6.3",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.1",
-        "symfony/html-sanitizer": "^6.3",
         "vlucas/phpdotenv": "^5.5",
         "wpackagist-plugin/w3-total-cache": "^2.6",
         "google/material-symbols": "1.0.0",
-        "wpackagist-plugin/convert-to-blocks": "^1.2",
-        "nette/utils": "^4.0"
+        "wpackagist-plugin/convert-to-blocks": "^1.2"
     },
     "require-dev": {
         "deployer/deployer": "^7.3",
