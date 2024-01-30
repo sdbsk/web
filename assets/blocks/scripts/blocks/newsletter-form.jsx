@@ -33,7 +33,6 @@ registerBlockType('saleziani/newsletter-form', {
                     title={'Settings'}
                     initialOpen={true}
                 >
-
                     <TextControl
                         label="Title"
                         value={attributes.title}
