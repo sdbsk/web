@@ -46,7 +46,7 @@ task('opcache:reset', function (): void {
             run('curl https://stage.saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
             break;
         case 'main':
-            run('curl https://main.saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
+            run('curl https://saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
             break;
     }
 });
