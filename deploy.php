@@ -25,9 +25,9 @@ task('deploy:theme', function (): void {
 
 task('deploy:flush', function (): void {
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar cache flush all');
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar w3-total-cache flush all');
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar w3-total-cache fix_environment apache');
     run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
+    run('cd {{ release_path }} && (php8.1 bin/wp-cli.phar w3-total-cache flush all || true)');
+    run('cd {{ release_path }} && (php8.1 bin/wp-cli.phar w3-total-cache fix_environment apache || true)');
 });
 
 task('copy:assets', function (): void {
@@ -46,7 +46,7 @@ task('opcache:reset', function (): void {
             run('curl https://stage.saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
             break;
         case 'main':
-            run('curl https://main.saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
+            run('curl https://saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
             break;
     }
 });
