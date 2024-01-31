@@ -101,30 +101,43 @@
     }
   }
 
-  .wp-block-post-content {
-    > {
-      .wp-block-group,
-      .wp-block-image,
-      .wp-block-saleziani-post-columns,
-      .bootstrap-columns-container {
-        @include block-layout($bottom: 8rem);
-      }
+    .wp-block-post-content {
+        > {
+            *:first-child {
+                @include block-layout($top: 4rem);
+            }
+
+            .wp-block-heading {
+                @include block-layout($bottom: 2rem, $top: 4rem);
+            }
+
+            .wp-block-group,
+            .wp-block-image:first-of-type,
+            .wp-block-saleziani-post-columns,
+            .bootstrap-columns-container {
+                @include block-layout($bottom: 8rem);
+            }
 
       .wp-block-group {
         @include block-layout($top: 8rem);
 
-        &:first-of-type {
-          @include block-layout($top: 0);
-        }
-      }
+                &:first-of-type {
+                    @include block-layout($top: 4rem);
+                }
+            }
 
       .wp-pattern-saleziani-section-heading {
         @include block-layout($bottom: 3rem);
 
-        &:first-child {
-          @include block-layout($bottom: 4rem);
-        }
-      }
+                &:first-of-type {
+                    @include block-layout($bottom: 4rem, $top: 0);
+                }
+            }
+
+            .wp-pattern-saleziani-accordion,
+            .wp-block-image:not(:first-of-type) {
+                @include block-layout($bottom: 3rem, $top: 3rem);
+            }
 
       .wp-pattern-saleziani-link-list {
         @include block-layout($top: 0);
