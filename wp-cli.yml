@@ -1,5 +1,5 @@
 path: web/wp
 server:
-  docroot: web
+    docroot: web
 apache_modules:
     - mod_rewrite
