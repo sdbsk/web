@@ -19,12 +19,15 @@ if (accordions.length) {
             const expanded = index === expandedIndex;
             const button = item.querySelector('.accordion-button');
 
-            if (!item.querySelector('.accordion-collapse').classList.contains('hide') && expandedIndex === index) {
-                button.classList.toggle('collapsed', false === expanded);
-                item.querySelector('.accordion-collapse').classList.toggle('hide', expanded);
-            } else {
-                button.classList.toggle('collapsed', expanded);
-                item.querySelector('.accordion-collapse').classList.toggle('hide', false === expanded);
+            if (expandedIndex === index) {
+                if (item.querySelector('.accordion-collapse').classList.contains('hide')) {
+                    button.classList.toggle('collapsed', expanded);
+                    item.querySelector('.accordion-collapse').classList.toggle('hide', false === expanded);
+
+                } else {
+                    button.classList.toggle('collapsed', false === expanded);
+                    item.querySelector('.accordion-collapse').classList.toggle('hide', expanded);
+                }
             }
         });
     }
