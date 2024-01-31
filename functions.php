@@ -112,17 +112,6 @@ add_filter('allowed_block_types_all', function (): array {
     ];
 }, 10, 2);
 
-function wpb_embed_block(): void
-{
-    wp_enqueue_script(
-        'deny-list-blocks',
-        get_template_directory_uri() . '/assets/public.js',
-        ['wp-blocks', 'wp-dom-ready', 'wp-edit-post'],
-    );
-}
-
-add_action('enqueue_block_editor_assets', 'wpb_embed_block');
-
 add_filter('excerpt_more', fn(): string => '…');
 
 add_filter('term_links-category', fn(array $links): array => array_values(array_filter($links, fn(string $link): bool => false === str_contains($link, '>Aktuality<'))));
