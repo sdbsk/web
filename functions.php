@@ -224,7 +224,7 @@ add_action('admin_init', function () {
 });
 
 add_action('wp_head', function (): void {
-    $fallbackImage = get_template_directory_uri() . '/fb-share.jpg';
+    $fallbackImage = get_template_directory_uri() . '/assets/images/fb-share.jpg';
 
     if (is_category()) {
         $category = get_queried_object();
