@@ -197,10 +197,10 @@ add_action('wp_dashboard_setup', function () {
 
 add_action('wp_before_admin_bar_render', function () {
     global $wp_admin_bar;
-    $wp_admin_bar->remove_menu('wp-logo');          // Remove the Wordpress logo
-    $wp_admin_bar->remove_menu('about');            // Remove the about Wordpress link
-    $wp_admin_bar->remove_menu('wporg');            // Remove the Wordpress.org link
-    $wp_admin_bar->remove_menu('documentation');    // Remove the Wordpress documentation link
+    $wp_admin_bar->remove_menu('wp-logo');          // Remove the WordPress logo
+    $wp_admin_bar->remove_menu('about');            // Remove the about WordPress link
+    $wp_admin_bar->remove_menu('wporg');            // Remove the WordPress.org link
+    $wp_admin_bar->remove_menu('documentation');    // Remove the WordPress documentation link
     $wp_admin_bar->remove_menu('support-forums');   // Remove the support forums link
     $wp_admin_bar->remove_menu('feedback');         // Remove the feedback link
 //    $wp_admin_bar->remove_menu('site-name');        // Remove the site name menu
@@ -220,13 +220,10 @@ add_action('admin_init', function () {
         remove_menu_page('w3tc_dashboard');
     }
 
-
-
     require __DIR__ . '/.htaccess.php';
 });
 
-add_action('wp_head', function() {
-
+add_action('wp_head', function (): void {
     $fallbackImage = get_template_directory_uri() . '/fb-share.jpg';
 
     if (is_category()) {
@@ -241,23 +238,27 @@ add_action('wp_head', function() {
     } else {
         global $post;
 
-        $thumbnailImage = get_the_post_thumbnail_url($post->ID, 'large');
+        if ($post instanceof WP_Post) {
+            $thumbnailImage = get_the_post_thumbnail_url($post->ID, 'large');
 
-        $tags = [
-            'title' => get_the_title(),
-            'description' => get_the_excerpt(),
-            'image' => empty($thumbnailImage) ? $fallbackImage : $thumbnailImage,
-            'url' => get_permalink(),
-        ];
+            $tags = [
+                'title' => get_the_title(),
+                'description' => get_the_excerpt(),
+                'image' => empty($thumbnailImage) ? $fallbackImage : $thumbnailImage,
+                'url' => get_permalink(),
+            ];
 
-        if (is_single()) {
-            $tags['type'] = 'article';
+            if (is_single()) {
+                $tags['type'] = 'article';
+            }
+        } else {
+            $tags = [];
         }
     }
 
     foreach ($tags as $name => $value) {
         if (!empty($value)) {
-        echo '<meta property="og:' . $name . '" content="' . esc_attr($value) . '" />';
+            echo '<meta property="og:' . $name . '" content="' . esc_attr($value) . '" />';
         }
     }
 });
