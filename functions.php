@@ -74,7 +74,9 @@ add_action( 'save_post_post', function ( int $postId ): void {
 add_action( 'wp_enqueue_scripts', function () use ( $assets, $manifest ): void {
 	wp_enqueue_style( 'public', home_url() . $manifest[ $assets . 'public.css' ] );
 	wp_enqueue_script( 'public', home_url() . $manifest[ $assets . 'public.js' ], [], false, [ 'in_footer' => true ] );
-//    wp_deregister_script('wp-interactivity');
+
+    wp_deregister_script('wp-polyfill');
+    wp_deregister_script('wp-interactivity');
 } );
 
 add_filter( 'allowed_block_types_all', function (): array {
