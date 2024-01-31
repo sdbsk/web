@@ -22,22 +22,25 @@
 //@import "bootstrap/scss/containers";
 //@import "bootstrap/scss/grid";
 
-
 @import 'fonts/all';
 @import 'mixin';
 
 .wp-site-blocks {
-    @include layout;
-    @import 'elements/all';
-    @import 'parts/all';
-    @import 'patterns/all';
-    @import 'blocks/all';
-    @import 'templates/all';
+  @include layout;
+  @import 'elements/all';
+  @import 'parts/all';
+  @import 'patterns/all';
+  @import 'blocks/all';
+  @import 'templates/all';
 }
 
 p {
-    img {
-        //max-width: 100%;
-        //height: auto;
-    }
+  img {
+    //max-width: 100%;
+    //height: auto;
+  }
+}
+
+mark {
+  padding: 0;
 }
