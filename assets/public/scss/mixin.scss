@@ -51,8 +51,22 @@
         @include show-layout($top, $bottom);
     }
 
+    @include media-breakpoint-down(lg) {
+        @if ($bottom != '') {
+            margin-bottom: $bottom / 1.5;
+        }
+
+        @if ($top != '') {
+            margin-top: $top / 1.5;
+        }
+
+        @if ($top != '' or $bottom == '') {
+            @include show-layout($top / 1.5, $bottom / 1.5);
+        }
+    }
+
     @include media-breakpoint-down(md) {
-        @if ($bottom == '') {
+        @if ($bottom != '') {
             margin-bottom: $bottom / 2;
         }
 
@@ -77,6 +91,16 @@
         @include block-layout($top: 3rem, $bottom: 3rem);
     }
 
+    .container-fluid,
+    .wp-block-saleziani-newsletter-form,
+    .footer-newsletter .wp-block-saleziani-newsletter-form,
+    footer .footer-inner {
+        @include media-breakpoint-down(md) {
+            padding-left: 1.6rem !important;
+            padding-right: 1.6rem !important;
+        }
+    }
+
     .wp-block-post-content {
         > {
             .wp-block-group,
@@ -96,6 +120,10 @@
 
             .wp-pattern-saleziani-section-heading {
                 @include block-layout($bottom: 3rem);
+
+                &:first-child {
+                    @include block-layout($bottom: 4rem);
+                }
             }
 
             .wp-pattern-saleziani-numbers,
