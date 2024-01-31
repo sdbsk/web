@@ -38,3 +38,41 @@ pipelines:
                         - ssh-add ~/.ssh/id_ed25519
                         - php8.1 vendor/bin/dep deploy staging
                         - eval $(ssh-agent -k)
+        main:
+            -   step:
+                    name: 'Build assets & and push release'
+                    runs-on:
+                        - 'self.hosted'
+                        - 'linux.shell'
+                    clone:
+                        depth: full
+                    caches:
+                        - composer
+                        - node
+                    script:
+                        - php8.1 /usr/local/bin/composer install
+                        - npm i && npm rebuild node-sass && npm run prod
+                        - echo "Build ${BITBUCKET_BUILD_NUMBER}"
+                        - git remote set-url origin "https://${BB_AUTH_STRING}@bitbucket.org/${BITBUCKET_REPO_FULL_NAME}"
+                        - git fetch --all
+                        - git branch --all
+                        - git checkout -b main-release
+                        - git branch -u origin/main-release
+                        - sed '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore > .temp && mv .temp .gitignore
+                        - sed '/^\/web\/\.htaccess$/d' .gitignore > .temp && mv .temp .gitignore
+                        - git add --all
+                        - git commit -m "Main release ${BITBUCKET_BUILD_NUMBER}"
+                        - git push origin main-release --force
+        main-release:
+            -   step:
+                    name: 'Deploy to main'
+                    runs-on:
+                        - 'self.hosted'
+                        - 'linux.shell'
+                    deployment: staging
+                    script:
+                        - php8.1 /usr/local/bin/composer install
+                        - eval $(ssh-agent -s)
+                        - ssh-add ~/.ssh/id_ed25519
+                        - php8.1 vendor/bin/dep deploy main
+                        - eval $(ssh-agent -k)
