@@ -1,28 +1,29 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-section-heading {
-  width: 100%;
-  max-width: 48.125rem;
+    width: 100%;
+    max-width: 48.125rem;
 
-  h2 {
-    margin-bottom: 1rem;
-  }
-
-  p {
-    @include body-l;
-    margin-bottom: 1rem;
-    color: $dark;
-
-    @include media-breakpoint-down(md) {
-      @include body-m;
+    h2 {
+        margin-bottom: 1rem;
+        @include display-reg-xl;
     }
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+    p {
+        @include body-l;
+        margin-bottom: 1rem;
+        color: $dark;
 
-    a {
-      @include link-with-icon;
+        @include media-breakpoint-down(md) {
+            @include body-m;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            @include link-with-icon;
+        }
     }
-  }
 }

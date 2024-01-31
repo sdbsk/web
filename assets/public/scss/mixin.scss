@@ -101,10 +101,18 @@
         }
     }
 
+    .wp-block-post-title {
+        @include block-layout($bottom: 4rem);
+    }
+
     .wp-block-post-content {
         > {
+            .wp-block-heading {
+                @include block-layout($bottom: 2rem, $top: 4rem);
+            }
+
             .wp-block-group,
-            .wp-block-image,
+            .wp-block-image:first-of-type,
             .wp-block-saleziani-post-columns,
             .bootstrap-columns-container {
                 @include block-layout($bottom: 8rem);
@@ -124,6 +132,11 @@
                 &:first-child {
                     @include block-layout($bottom: 4rem);
                 }
+            }
+
+            .wp-pattern-saleziani-accordion,
+            .wp-block-image:not(:first-of-type) {
+                @include block-layout($bottom: 3rem, $top: 3rem);
             }
 
             .wp-pattern-saleziani-numbers,
