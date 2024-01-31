@@ -40,6 +40,17 @@ task('merge:assets', function (): void {
     run('rm -rf {{ release_path }}/web/app/themes/saleziani/assets-new/');
 });
 
+task('opcache:reset', function (): void {
+    switch (get('branch')) {
+        case 'develop':
+            run('curl https://stage.saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
+            break;
+        case 'main':
+            run('curl https://main.saleziani.sk/reset-opcache-b329c841308d500b5f49daeeb3a872cf.php');
+            break;
+    }
+});
+
 before('deploy:shared', 'copy:assets');
 after('deploy:shared', 'merge:assets');
 
@@ -51,4 +62,5 @@ task('deploy', [
     'deploy:publish',
 ]);
 
+after('deploy:symlink', 'opcache:reset');
 after('deploy:failed', 'deploy:unlock');
