@@ -289,6 +289,6 @@ add_action('wp_head', function (): void {
           })();
         </script>
         <!-- End Matomo Code -->
-        TRACKING;
+TRACKING;
     }
 });
