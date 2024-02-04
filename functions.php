@@ -294,4 +294,9 @@ TRACKING;
 });
 
 add_filter('do_redirect_guess_404_permalink', fn() => false);
+add_filter('wp_sitemaps_add_provider', fn($provider, $name) => 'users' === $name ? false : $provider, 10, 2);
+add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
+    unset($taxonomies['post_tag']);
+    return $taxonomies;
+});
 
