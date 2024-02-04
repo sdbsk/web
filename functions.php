@@ -300,3 +300,22 @@ add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
     return $taxonomies;
 });
 
+function disable_all_feeds() {
+    global $wp_query;
+    $wp_query->is_feed = false;
+    $wp_query->set_404();
+    status_header( 404 );
+    nocache_headers();
+
+    echo 'Not Found';
+    exit;
+}
+
+add_action('do_feed', 'disable_all_feeds', 1);
+add_action('do_feed_rdf', 'disable_all_feeds', 1);
+add_action('do_feed_rss', 'disable_all_feeds', 1);
+add_action('do_feed_rss2', 'disable_all_feeds', 1);
+add_action('do_feed_atom', 'disable_all_feeds', 1);
+add_action('do_feed_rss2_comments', 'disable_all_feeds', 1);
+add_action('do_feed_atom_comments', 'disable_all_feeds', 1);
+
