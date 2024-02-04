@@ -4,7 +4,7 @@
 
 add_filter('mod_rewrite_rules', function($rules) {
     return $rules . <<<HTACCESS
-<FilesMatch (xmlrpc\.php|readme\.html|)>
+<FilesMatch (xmlrpc\.php|readme\.html)>
     Order deny,allow
     Deny from all
 </FilesMatch>
