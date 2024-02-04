@@ -4,6 +4,11 @@
 
 add_filter('mod_rewrite_rules', function($rules) {
     return $rules . <<<HTACCESS
+<FilesMatch (xmlrpc\.php|readme\.html|)>
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
 RedirectMatch 301 ^/animatori$ /spolupraca-s-laikmi
 RedirectMatch 301 ^/asc$ /salezianska-rodina-na-slovensku
 RedirectMatch 301 ^/audio-spomienky-jana-bosca$ https://www.donbosco.sk/tovar/spomienky-jana-bosca
