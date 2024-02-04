@@ -292,3 +292,6 @@ add_action('wp_head', function (): void {
 TRACKING;
     }
 });
+
+add_filter('do_redirect_guess_404_permalink', fn() => false);
+
