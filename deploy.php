@@ -13,7 +13,7 @@ import('hosts.yml');
 set('application', 'saleziani.sk');
 set('repository', 'git@bitbucket.org:bratiask/saleziani.git');
 set('git_tty', true);
-set('shared_files', ['.env.local']);
+set('shared_files', ['.env.local', 'web/.htaccess']);
 set('shared_dirs', ['web/images', 'web/app/uploads', 'web/app/w3tc-config', 'web/app/themes/saleziani/assets']);
 set('writable_dirs', []);
 set('allow_anonymous_stats', false);
