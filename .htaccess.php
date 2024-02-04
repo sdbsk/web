@@ -3904,5 +3904,8 @@ RedirectMatch 301 ^/spravy/16-slovensko4/4261-vo-veku-98-rokov-zomrel-salezian-d
 RedirectMatch 301 ^/spravy/16-slovensko4/4262-kolegium-marie-romero-verime-vo-vzajomne-obohacovanie-jednotlivcov-a-spajanie-kultur$ /kolegium-marie-romero-verime-vo-vzajomne-obohacovanie-jednotlivcov-a-spajanie-kultur
 RedirectMatch 301 ^/spravy/16-slovensko4/4263-informacie-v-den-pohrebu-prof-dr-milana-s-duricu-sdb$ /informacie-v-den-pohrebu-prof-dr-milana-s-duricu-sdb
 RedirectMatch 301 ^/spravy/16-slovensko4/4264-v-bratislave-sa-rozlucili-so-salezianom-knazom-a-profesorom-historie-donom-duricom$ /v-bratislave-sa-rozlucili-so-salezianom-knazom-a-profesorom-historie-donom-milanom-s-duricom
+
+RedirectMatch 301 ^/component/search/$ /
+RedirectMatch 301 ^/spravy/.*$ /kategoria/aktuality
 HTACCESS;
 });
