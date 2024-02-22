@@ -9,6 +9,7 @@ add_filter('mod_rewrite_rules', function($rules) {
     Deny from all
 </FilesMatch>
 
+RedirectMatch 301 ^/msaleziani/kto-sme$ /kto-sme
 RedirectMatch 301 ^/animatori$ /spolupraca-s-laikmi
 RedirectMatch 301 ^/asc$ /salezianska-rodina-na-slovensku
 RedirectMatch 301 ^/audio-spomienky-jana-bosca$ https://www.donbosco.sk/tovar/spomienky-jana-bosca
@@ -37,6 +38,7 @@ RedirectMatch 301 ^/kde-sme/provincialny-dom$ /kde-sme
 RedirectMatch 301 ^/kde-sme/v-europe$ /kde-sme
 RedirectMatch 301 ^/kde-sme/vo-svete$ /kde-sme
 RedirectMatch 301 ^/knihy$ /
+RedirectMatch 301 ^/koadjutori$ /nas-styl-zivota
 RedirectMatch 301 ^/koadjutori/dejiny-koadjutorov$ /nas-styl-zivota
 RedirectMatch 301 ^/koadjutori/kto-je-koadjutor$ /nas-styl-zivota
 RedirectMatch 301 ^/koadjutori/svedectva$ /nas-styl-zivota
