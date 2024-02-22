@@ -54,17 +54,17 @@
         "oscarotero/env": "^2.1",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "^6.3",
+        "roots/wordpress": "^6.4",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.1",
-        "vlucas/phpdotenv": "^5.5",
-        "wpackagist-plugin/w3-total-cache": "^2.6",
+        "vlucas/phpdotenv": "^5.6",
+        "wpackagist-plugin/w3-total-cache": "^2.7",
         "google/material-symbols": "1.0.0"
     },
     "require-dev": {
         "deployer/deployer": "^7.3",
         "roave/security-advisories": "dev-latest",
-        "symfony/var-dumper": "^6.3",
+        "symfony/var-dumper": "^6.4",
         "wpackagist-plugin/debug-bar": "^1.1"
     }
 }

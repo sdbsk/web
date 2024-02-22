@@ -60,6 +60,13 @@ function wrap_block_content(WP_Block $block, string $content, string $element = 
 }
 
 return [
+    'domicil' => [
+        'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
+            $domicil = get_post_meta($stack->page()->ID, 'domicil', true);
+
+            return empty($domicil) ? '' : wrap_block_content($block, $domicil);
+        },
+    ],
     'navigation' => [
         'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
             $output = '';

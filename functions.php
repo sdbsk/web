@@ -20,7 +20,7 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
         'wp-element',
         'wp-hooks',
         'wp-plugins',
-        'wp-server-side-render'
+        'wp-server-side-render',
     ], false, ['in_footer' => true]);
 });
 
@@ -44,12 +44,6 @@ add_action('init', function () use ($template): void {
 
     register_block_pattern_category($template, [
         'label' => 'Saleziáni',
-    ]);
-
-    register_post_meta('page', 'page_perex', [
-        'show_in_rest' => true,
-        'single' => true,
-        'type' => 'string',
     ]);
 });
 
@@ -297,14 +291,16 @@ add_filter('do_redirect_guess_404_permalink', fn() => false);
 add_filter('wp_sitemaps_add_provider', fn($provider, $name) => 'users' === $name ? false : $provider, 10, 2);
 add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
     unset($taxonomies['post_tag']);
+
     return $taxonomies;
 });
 
-function disable_all_feeds() {
+function disable_all_feeds(): void
+{
     global $wp_query;
     $wp_query->is_feed = false;
     $wp_query->set_404();
-    status_header( 404 );
+    status_header(404);
     nocache_headers();
 
     echo 'Not Found';
@@ -318,4 +314,3 @@ add_action('do_feed_rss2', 'disable_all_feeds', 1);
 add_action('do_feed_atom', 'disable_all_feeds', 1);
 add_action('do_feed_rss2_comments', 'disable_all_feeds', 1);
 add_action('do_feed_atom_comments', 'disable_all_feeds', 1);
-

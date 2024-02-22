@@ -9,5 +9,15 @@ return [
             'show_in_rest' => true,
             'single' => true,
         ],
+        'page_perex' => [
+            'show_in_rest' => true,
+            'single' => true,
+        ],
+    ],
+    'post' => [
+        'domicil' => [
+            'show_in_rest' => true,
+            'single' => true,
+        ],
     ],
 ];
