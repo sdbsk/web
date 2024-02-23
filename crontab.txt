@@ -1,0 +1,2 @@
+* * * * * date +\%s > /home/html/multi_175876/saleziani.sk/web/current/web/healthcheck-cron.txt
+* * * * * cd /home/html/multi_175876/saleziani.sk/web/current/ && php8.1 /usr/local/bin/wp cron event run --all > /dev/null 2>&1
