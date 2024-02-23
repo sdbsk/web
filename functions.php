@@ -314,3 +314,13 @@ add_action('do_feed_rss2', 'disable_all_feeds', 1);
 add_action('do_feed_atom', 'disable_all_feeds', 1);
 add_action('do_feed_rss2_comments', 'disable_all_feeds', 1);
 add_action('do_feed_atom_comments', 'disable_all_feeds', 1);
+
+add_action('template_redirect', function (): void {
+    global $post;
+
+    if (is_author() || is_date() || (is_single() && 'future' === $post->post_status)) {
+        global $wp_query;
+        $wp_query->set_404();
+        status_header(404);
+    }
+});
