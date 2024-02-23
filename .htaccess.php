@@ -3927,8 +3927,6 @@ RedirectMatch 301 ^/component/banners/click/3$ https://100.saleziani.sk/
 RedirectMatch 301 ^/component/banners/click/4$ https://100.saleziani.sk/
 RedirectMatch 301 ^/component/content/article/2-nekategorizovane/1334-deviatnik-k-neposkvrnenej-panne-marii-3-den$ /deviatnik-k-sviatku-neposkvrneneho-pocatia-panny-marie-audio
 RedirectMatch 301 ^/component/content/article/2-nekategorizovane/60-savio$ https://savio.sk/
-RedirectMatch 301 ^/component/search/?searchword=direktor&searchphrase=any&ordering=newest&limit=20&limitstart=0$ /
-RedirectMatch 301 ^/component/search/?searchword=nskej&searchphrase=any&ordering=newest&limit=10&start=20$ /
 RedirectMatch 301 ^/cyklus-don-bosco-medzi-nami$ /
 RedirectMatch 301 ^/dmedia/2-nekategorizovane/2358-1-den-deviatnika-obraz-o-bohu$ /deviatnik-k-donovi-boscovi-don-boscovo-srdce
 RedirectMatch 301 ^/dsalezianska-rodina/cdbspodne$ /salezianska-rodina-na-slovensku
@@ -3936,11 +3934,11 @@ RedirectMatch 301 ^/dsalezianska-rodina/fma$ /salezianska-rodina-na-slovensku
 RedirectMatch 301 ^/eventy-v-roku-2014$ /
 RedirectMatch 301 ^/financna-sprava/2012$ /
 RedirectMatch 301 ^/financna-sprava/2015$ /
-RedirectMatch 301 ^/index.php/16-spravy4/slovensko4?start=534$ /
-RedirectMatch 301 ^/index.php/2-nekategorizovane?start=141$ /
+RedirectMatch 301 ^/index.php/16-spravy4/slovensko4.*$ /
+RedirectMatch 301 ^/index.php/2-nekategorizovane.*$ /
 RedirectMatch 301 ^/index.php/rozhovory$ /
 RedirectMatch 301 ^/kapitulny-zapisnik-provinciala$ /
-RedirectMatch 301 ^/kto-sme/zosnuli-spolubratia?pid=57&sid=251:cerny-rafael$ /
+RedirectMatch 301 ^/kto-sme/zosnuli-spolubratia.*$ /
 RedirectMatch 301 ^/logo-plagaty$ /
 RedirectMatch 301 ^/msaleziani$ /
 RedirectMatch 301 ^/msaleziani/prevencia-zneuzivania-a-nahlasovanie$ /ochrana-deti-a-zranitelnych-osob
@@ -3951,13 +3949,13 @@ RedirectMatch 301 ^/rozhovory/3593-spaet-za-papezom-s-barborou-okruhlanskou$ /
 RedirectMatch 301 ^/rozhovory/436-boh-postupne-zneistoval-moju-istotu$ /
 RedirectMatch 301 ^/rozhovory/839-prva-misia-knaza-odchadzam-s-jednosmernou-letenkou-2$ /
 RedirectMatch 301 ^/salezianske-turnaje$ /
-RedirectMatch 301 ^/sobipro?sid=249:caklos-jozef$ /
+RedirectMatch 301 ^/sobipro\?sid=249:caklos-jozef$ /
 RedirectMatch 301 ^/storocnica-stefana-sandtnera/homilia-na-storocnicu$ /
 RedirectMatch 301 ^/storocnica-stefana-sandtnera/odborne-prispevky-o-stefanovi-sandtnerovi/strom-ako-emblem-moderny-basnicka-zbierka-stromy$ /
 RedirectMatch 301 ^/storocnica-stefana-sandtnera/odborne-prispevky-o-stefanovi-sandtnerovi/strom-ako-emblem-moderny-basnicka-zbierka-stromy$ /
 RedirectMatch 301 ^/storocnica-stefana-sandtnera/odborne-prispevky-o-stefanovi-sandtnerovi/synteza-umenia-a-nabozenstva-v-diele-stefana-sandtnera$ /
 
-RedirectMatch 301 ^/component/search/$ /
+RedirectMatch 301 ^/component/search/.*$ /
 RedirectMatch 301 ^/spravy/.*$ /kategoria/aktuality
 HTACCESS;
 });
