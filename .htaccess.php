@@ -20,6 +20,7 @@ RedirectMatch 301 ^/co-robime/farnosti$ /co-ponukame
 RedirectMatch 301 ^/co-robime/pastoracia-romov$ /co-ponukame
 RedirectMatch 301 ^/co-robime/salezianum$ /
 RedirectMatch 301 ^/co-robime/skoly$ /kde-sme
+RedirectMatch 301 ^/msaleziani/kde-sme$ /kde-sme
 RedirectMatch 301 ^/co-robime/strediska-pre-mladych$ /kde-sme
 RedirectMatch 301 ^/don-bosco-a-papezi$ /kto-bol-don-bosco
 RedirectMatch 301 ^/don-bosco-na-slovensku$ /kto-bol-don-bosco
@@ -3957,5 +3958,6 @@ RedirectMatch 301 ^/storocnica-stefana-sandtnera/odborne-prispevky-o-stefanovi-s
 
 RedirectMatch 301 ^/component/search/.*$ /
 RedirectMatch 301 ^/spravy/.*$ /kategoria/aktuality
+RedirectMatch 301 ^/16-spravy4/.*$ /kategoria/aktuality
 HTACCESS;
 });

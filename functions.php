@@ -69,7 +69,8 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
     wp_enqueue_script('public', home_url() . $manifest[$assets . 'public.js'], [], false, ['in_footer' => true]);
 
-//    wp_deregister_script('wp-polyfill');
+    wp_deregister_script('wp-polyfill');
+    wp_deregister_script('regenerator-runtime');
 //    wp_deregister_script('wp-interactivity');
 });
 
