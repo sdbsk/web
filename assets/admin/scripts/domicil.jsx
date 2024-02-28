@@ -11,9 +11,13 @@ let DomicilField = (props) => (
 );
 
 DomicilField = compose([
-    withSelect(select => ({
-        domicil: select('core/editor').getEditedPostAttribute('meta')['domicil']
-    })),
+    withSelect(select => {
+        const meta = select('core/editor').getEditedPostAttribute('meta');
+
+        return ({
+            domicil: meta ? meta.domicil : ''
+        });
+    }),
     withDispatch(dispatch => ({
         onDomicilChange: (value) => {
             dispatch('core/editor').editPost({meta: {domicil: value}});
