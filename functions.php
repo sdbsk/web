@@ -224,8 +224,6 @@ add_action('admin_init', function () {
         remove_menu_page('plugins.php');
         remove_menu_page('w3tc_dashboard');
     }
-
-    require __DIR__ . '/.htaccess.php';
 });
 
 add_action('wp_head', function (): void {
@@ -294,6 +292,8 @@ add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
 
     return $taxonomies;
 });
+
+require __DIR__ . '/.htaccess.php';
 
 function disable_all_feeds(): void
 {
