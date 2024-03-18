@@ -5,7 +5,6 @@ import './scripts/blocks/newsletter-form';
 import './scripts/blocks/organization-columns';
 import './scripts/blocks/project-columns';
 import './scripts/blocks/posts';
-import './scripts/blocks/page-perex-meta';
 import './scripts/blocks/post-columns';
 
 import './scss/all.scss';

@@ -1,8 +1,8 @@
 h3 {
-  @include display-reg-l;
-  //margin-bottom: 3rem;
-  color: $red;
-  @include media-breakpoint-down(md) {
-    @include display-reg-m;
-  }
+    @include display-reg-l;
+    //margin-bottom: 3rem;
+    color: $red;
+    @include media-breakpoint-down(md) {
+        @include display-reg-m;
+    }
 }

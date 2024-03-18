@@ -1,28 +1,25 @@
-const {registerPlugin} = window.wp.plugins;
-const {PluginPostStatusInfo} = window.wp.editPost;
-const {TextControl} = window.wp.components;
-const {withSelect, withDispatch} = window.wp.data;
-const {compose} = window.wp.compose;
+if ('post' === window.pagenow) {
+    const {registerPlugin} = window.wp.plugins;
+    const {PluginPostStatusInfo} = window.wp.editPost;
+    const {TextControl} = window.wp.components;
+    const {withSelect, withDispatch} = window.wp.data;
+    const {compose} = window.wp.compose;
 
-let DomicilField = (props) => (
-    <PluginPostStatusInfo>
+    let DomicilField = (props) => <PluginPostStatusInfo>
         <TextControl label="Domicil" value={props.domicil} onChange={newDomicil => props.onDomicilChange(newDomicil)}/>
-    </PluginPostStatusInfo>
-);
+    </PluginPostStatusInfo>;
 
-DomicilField = compose([
-    withSelect(select => {
-        const meta = select('core/editor').getEditedPostAttribute('meta');
+    DomicilField = compose([
+        withSelect(select => {
+            const meta = select('core/editor').getEditedPostAttribute('meta');
 
-        return ({
-            domicil: meta ? meta.domicil : ''
-        });
-    }),
-    withDispatch(dispatch => ({
-        onDomicilChange: (value) => {
-            dispatch('core/editor').editPost({meta: {domicil: value}});
-        }
-    }))
-])(DomicilField);
+            return ({domicil: meta ? meta.domicil : ''});
+        }), withDispatch(dispatch => ({
+            onDomicilChange: (value) => {
+                dispatch('core/editor').editPost({meta: {domicil: value}});
+            }
+        }))
+    ])(DomicilField);
 
-registerPlugin('domicil', {render: DomicilField});
+    registerPlugin('domicil', {render: DomicilField});
+}

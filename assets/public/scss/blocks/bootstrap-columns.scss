@@ -3,7 +3,6 @@
 
     .row {
         --bs-gutter-y: 1.875rem;
-
         @include media-breakpoint-down(md) {
             > [class*='col-'] {
                 max-width: 30rem;
@@ -16,13 +15,13 @@
 
         a {
             &:after {
-                z-index: 1;
-                content: '';
                 position: absolute;
-                left: 0;
+                z-index: 1;
                 top: 0;
                 right: 0;
                 bottom: 0;
+                left: 0;
+                content: '';
             }
         }
     }

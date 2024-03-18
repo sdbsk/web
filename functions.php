@@ -89,7 +89,6 @@ add_filter('allowed_block_types_all', function (): array {
         'core/group',
         'core/buttons',
         'core/embed',
-        'saleziani/page-perex-meta',
         'saleziani/post-columns',
 
         // small margin blocks (typograficke)

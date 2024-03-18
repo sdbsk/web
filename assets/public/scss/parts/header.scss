@@ -1,7 +1,7 @@
 header {
     margin-right: auto;
     margin-left: auto;
-    background-color: #FCEEEA;
+    background-color: #fceeea;
 
     .wp-block-navigation__responsive-container.is-menu-open.has-modal-open {
         padding: 1rem;
@@ -35,8 +35,8 @@ header {
                         position: unset;
 
                         a {
-                            display: block;
                             right: unset;
+                            display: block;
                             margin-top: 2rem;
                             padding: 0.5rem;
                             color: $white !important;
@@ -44,9 +44,9 @@ header {
                             background-color: $red !important;
 
                             &:hover {
+                                transition: background-color 0.2s ease-in-out;
                                 color: $white;
                                 background-color: opacify($red, 0.8) !important;
-                                transition: background-color 0.2s ease-in-out;
                             }
                         }
                     }
@@ -87,19 +87,19 @@ header {
                 margin: 0;
 
                 a {
+                    line-height: 1.375rem;
                     display: inline-block;
-                    white-space: nowrap;
                     padding: 0.19rem 1rem;
+                    white-space: nowrap;
+                    text-decoration: unset;
                     color: $white;
                     border-radius: 0.25rem;
                     background-color: $red;
-                    line-height: 1.375rem;
-                    text-decoration: unset;
 
                     &:hover {
+                        transition: background-color 0.2s ease-in-out;
                         color: $white;
                         background-color: darken($red, 10%) !important;
-                        transition: background-color 0.2s ease-in-out;
                     }
 
                     .wp-block-navigation-item__label {
@@ -114,8 +114,6 @@ header {
                 margin: 0 0 0 1rem;
             }
         }
-
-
     }
 }
 

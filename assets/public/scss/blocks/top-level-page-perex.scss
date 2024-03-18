@@ -1,0 +1,13 @@
+.wp-block-saleziani-top-level-page-perex {
+    margin-bottom: 3rem;
+    @include body-l;
+    color: $dark;
+
+    &:empty {
+        display: none;
+    }
+
+    @include media-breakpoint-down(md) {
+        @include body-m;
+    }
+}

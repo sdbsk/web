@@ -1,44 +1,44 @@
 @import '../mixin';
 
 .bootstrap-icon-columns {
-  .bootstrap-column-inner {
-    padding-right: 2rem;
+    .bootstrap-column-inner {
+        padding-right: 2rem;
 
-    .wp-block-saleziani-icon {
-      margin-bottom: 1rem;
+        .wp-block-saleziani-icon {
+            margin-bottom: 1rem;
 
-      &,
-      svg {
-        width: 2.5rem;
-        height: 2.5rem;
-        fill: $green;
-      }
+            &,
+            svg {
+                width: 2.5rem;
+                height: 2.5rem;
+                fill: $green;
+            }
+        }
+
+        .wp-block-heading {
+            font-size: 1.3125rem;
+            font-weight: 700;
+            line-height: 1.8125rem;
+            margin: 0 0 1rem;
+            color: $dark;
+            @include media-breakpoint-down(md) {
+                font-size: 1.3rem;
+                line-height: 1.675rem;
+            }
+        }
+
+        p {
+            @include body-m;
+            margin: 0 0 1rem 0;
+            color: rgba(39, 39, 39, 0.80);
+
+            a {
+                @include link-with-icon;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+        }
     }
-
-    .wp-block-heading {
-      font-size: 1.3125rem;
-      font-weight: 700;
-      line-height: 1.8125rem;
-      margin: 0 0 1rem;
-      color: $dark;
-      @include media-breakpoint-down(md) {
-        font-size: 1.3rem;
-        line-height: 1.675rem;
-      }
-    }
-
-    p {
-      @include body-m;
-      margin: 0 0 1rem 0;
-      color: rgba(39, 39, 39, 0.80);
-
-      a {
-        @include link-with-icon;
-      }
-
-      &:last-child {
-        margin: 0;
-      }
-    }
-  }
 }
