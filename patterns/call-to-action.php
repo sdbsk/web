@@ -20,14 +20,6 @@ declare(strict_types=1);
                 <!-- wp:heading -->
                 <h2 class="wp-block-heading">Vaša podpora je dôležitá</h2>
                 <!-- /wp:heading -->
-                <!-- wp:paragraph -->
-                <p>Saleziánske dielo je sieť saleziánskych komunitných centier,
-                    v ktorých tisíce ľudí denne trávia
-                    zmysluplný
-                    čas. Každý je vítaný. Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj
-                    športových,
-                    kultúrnych, sociálnych a duchovných aktivít pre deti, mladých, rodičov aj seniorov.</p>
-                <!-- /wp:paragraph -->
                 <!-- wp:buttons -->
                 <div class="wp-block-buttons">
                     <!-- wp:button -->
@@ -37,6 +29,14 @@ declare(strict_types=1);
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->
+                <!-- wp:paragraph -->
+                <p>Saleziánske dielo je sieť saleziánskych komunitných centier,
+                    v ktorých tisíce ľudí denne trávia
+                    zmysluplný
+                    čas. Každý je vítaný. Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj
+                    športových,
+                    kultúrnych, sociálnych a duchovných aktivít pre deti, mladých, rodičov aj seniorov.</p>
+                <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
         </div>
