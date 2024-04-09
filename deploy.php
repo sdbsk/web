@@ -19,15 +19,15 @@ set('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
 task('deploy:theme', function (): void {
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language core install en_US sk_SK');
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language plugin install --all en_US sk_SK');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar language core install en_US sk_SK');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar language plugin install --all en_US sk_SK');
 });
 
 task('deploy:flush', function (): void {
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar cache flush all');
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
-    run('cd {{ release_path }} && (php8.1 bin/wp-cli.phar w3-total-cache flush all || true)');
-    run('cd {{ release_path }} && (php8.1 bin/wp-cli.phar w3-total-cache fix_environment apache || true)');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar cache flush all');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar rewrite flush --hard');
+    run('cd {{ release_path }} && (php8.3 bin/wp-cli.phar w3-total-cache flush all || true)');
+    run('cd {{ release_path }} && (php8.3 bin/wp-cli.phar w3-total-cache fix_environment apache || true)');
 });
 
 task('copy:assets', function (): void {
@@ -51,11 +51,6 @@ task('opcache:reset', function (): void {
     }
 });
 
-//task('known_hosts:reset', function (): void {
-//    runLocally('ssh-keygen -R [dw024.nameserver.sk]:20001');
-//});
-
-//before('deploy:setup', 'known_hosts:reset');
 before('deploy:shared', 'copy:assets');
 after('deploy:shared', 'merge:assets');
 
