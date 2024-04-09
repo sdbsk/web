@@ -36,7 +36,7 @@ pipelines:
                         - php8.3 /usr/local/bin/composer install
                         - eval $(ssh-agent -s)
                         - ssh-add ~/.ssh/id_ed25519
-                        - php8.3 vendor/bin/dep deploy stage
+                        - php8.3 vendor/bin/dep deploy stage -vvv
                         - eval $(ssh-agent -k)
         main:
             -   step:
@@ -74,5 +74,5 @@ pipelines:
                         - php8.3 /usr/local/bin/composer install
                         - eval $(ssh-agent -s)
                         - ssh-add ~/.ssh/id_ed25519
-                        - php8.3 vendor/bin/dep deploy main
+                        - php8.3 vendor/bin/dep deploy main -vvv
                         - eval $(ssh-agent -k)
