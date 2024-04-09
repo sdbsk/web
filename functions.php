@@ -68,7 +68,7 @@ add_action('save_post_post', function (int $postId): void {
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
     wp_enqueue_script('public', home_url() . $manifest[$assets . 'public.js'], [], false, ['in_footer' => true]);
-    wp_enqueue_script('consent', home_url() . $manifest[$assets . 'consent.js'], [], false, ['in_' => false]);
+    wp_enqueue_script('consent', home_url() . $manifest[$assets . 'consent.js'], [], false, ['in_footer' => true]);
 
     wp_deregister_script('wp-polyfill');
     wp_deregister_script('regenerator-runtime');
@@ -77,7 +77,7 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
 
 add_filter("script_loader_tag", function ($tag, $handle, $src) use ($assets, $manifest) {
     if ("consent" === $handle) {
-        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+//        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
     }
 
     return $tag;
