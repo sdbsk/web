@@ -1,0 +1,67 @@
+@import "vanilla-cookieconsent/dist/cookieconsent.css";
+
+#cc-main {
+    --cc-font-family: 'Fira Sans', sans-serif;
+    --cc-modal-border-radius: .5rem;
+    --cc-btn-border-radius: .4rem;
+    --cc-modal-transition-duration: .25s;
+    --cc-modal-margin: 1rem;
+    --cc-z-index: 2147483647;
+
+    --cc-btn-primary-border-color: #005d80;
+    --cc-btn-primary-bg: #005d80;
+    --cc-btn-secondary-border-color: #c7e7f1;
+    --cc-btn-secondary-bg: #c7e7f1;
+}
+
+.cc-iframe {
+    background-color: $light-yellow;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    @include media-breakpoint-down(sm) {
+        font-size: 0.9rem;
+    }
+
+    @include media-breakpoint-up(md) {
+        font-size: 1.15rem;
+    }
+
+    div {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-25%, -50%);
+        max-width: 400px
+    }
+}
+
+.cc-open-preferences a:after {
+    content: none !important;
+}
+
+.cc-cookies-table {
+    max-width: 48.125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow: auto;
+
+    table {
+        margin: 0;
+        min-width: 30rem;
+    }
+
+    td, th {
+        &:first-of-type {
+            width: 75%;
+        }
+    }
+
+    th {
+        font-weight: normal;
+        font-style: italic;
+    }
+}

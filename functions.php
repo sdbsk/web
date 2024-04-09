@@ -68,11 +68,21 @@ add_action('save_post_post', function (int $postId): void {
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
     wp_enqueue_script('public', home_url() . $manifest[$assets . 'public.js'], [], false, ['in_footer' => true]);
+    wp_enqueue_script('consent', home_url() . $manifest[$assets . 'consent.js'], [], false, ['in_' => false]);
 
     wp_deregister_script('wp-polyfill');
     wp_deregister_script('regenerator-runtime');
 //    wp_deregister_script('wp-interactivity');
 });
+
+add_filter("script_loader_tag", function ($tag, $handle, $src) use ($assets, $manifest) {
+    if ("consent" === $handle) {
+        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+    }
+
+    return $tag;
+}, 10, 3);
+
 
 add_filter('allowed_block_types_all', function (): array {
     return [
@@ -281,8 +291,47 @@ add_action('wp_head', function (): void {
           })();
         </script>
         <!-- End Matomo Code -->
+
+
+        <!-- Meta Pixel Code -->
+        <script type="text/plain" data-category="targeting">
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '920280066494770');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=920280066494770&ev=PageView&noscript=1"/></noscript>
+        <!-- End Meta Pixel Code -->
 TRACKING;
     }
+});
+
+function cookiesAllowed(string $category): bool
+{
+    $allowedCategories = json_decode(stripslashes($_COOKIE['cc_cookie'] ?? 'null'), true)['categories'] ?? [];
+
+    return in_array($category, $allowedCategories);
+}
+
+add_filter('embed_oembed_html', function ($html) {
+    if (str_contains($html, '<iframe') && !cookiesAllowed('targeting')) {
+        $thisContentLabel = str_contains($html, 'youtube') || str_contains($html, 'vimeo') ? 'toto video' : 'tento obsah';
+
+        return '<div class="cc-iframe" data-iframe="' . esc_attr($html) . '">
+                    <div>
+                        Prosím, povoľte marketingové cookies, aby sme vám mohli zobraziť ' . $thisContentLabel . '. <br>
+                        <a href="#" onclick="return showBlockedIframes();">Súhlasím s používaním marketingových cookies</a>
+                    </div>
+                </div>';
+    }
+
+    return $html;
 });
 
 add_filter('do_redirect_guess_404_permalink', fn() => false);
