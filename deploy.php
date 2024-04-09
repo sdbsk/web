@@ -55,7 +55,7 @@ task('known_hosts:reset', function (): void {
     runLocally('ssh-keygen -R [dw024.nameserver.sk]:20001');
 });
 
-before('deploy:update_code', 'known_hosts:reset');
+before('deploy:setup', 'known_hosts:reset');
 before('deploy:shared', 'copy:assets');
 after('deploy:shared', 'merge:assets');
 
