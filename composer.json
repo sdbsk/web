@@ -6,7 +6,7 @@
         },
         "optimize-autoloader": true,
         "platform": {
-            "php": "8.1"
+            "php": "8.3"
         }
     },
     "extra": {
@@ -48,7 +48,7 @@
         }
     ],
     "require": {
-        "php": "~8.1.0",
+        "php": "~8.3.0",
         "ext-zend-opcache": "*",
         "composer/installers": "^2.2",
         "oscarotero/env": "^2.1",
