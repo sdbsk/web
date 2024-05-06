@@ -75,14 +75,13 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
 //    wp_deregister_script('wp-interactivity');
 });
 
-add_filter("script_loader_tag", function ($tag, $handle, $src) use ($assets, $manifest) {
-    if ("consent" === $handle) {
+add_filter('script_loader_tag', function ($tag/*, $handle, $src*/) {
+//    if ('consent' === $handle) {
 //        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
-    }
+//    }
 
     return $tag;
 }, 10, 3);
-
 
 add_filter('allowed_block_types_all', function (): array {
     return [
@@ -196,6 +195,11 @@ add_action('after_setup_theme', function () {
     remove_action('wp_head', 'feed_links_extra', 3);
     remove_action('wp_head', 'feed_links', 2);
 });
+
+add_filter('rest_authentication_errors', fn($errors) => is_wp_error($errors) ? $errors : (is_user_logged_in() ?
+    $errors :
+    new WP_Error('not_found', 'Not found', ['status' => 404])
+));
 
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
