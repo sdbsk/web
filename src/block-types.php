@@ -60,6 +60,26 @@ function wrap_block_content(WP_Block $block, string $content, string $element = 
 }
 
 return [
+    'categories' => [
+        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+            $currentCategory = get_queried_object();
+
+            if ($currentCategory instanceof WP_Term) {
+                $parentCategoryId = $currentCategory->parent ?: $currentCategory->term_id;
+
+                $content .= '<li class="cat-item cat-item-' . $parentCategoryId . ($currentCategory->term_id === $parentCategoryId ? ' current-cat' : '') . '"><a href="' . get_term_link($parentCategoryId) . '">Všetko</a></li>';
+
+                /** @var WP_Term $category */
+                foreach (get_categories(['parent' => $parentCategoryId]) as $category) {
+                    $content .= '<li class="cat-item cat-item-' . $category->term_id . ($currentCategory->term_id === $category->term_id ? ' current-cat' : '') . '"><a href="' . get_term_link($category) . '">' . $category->name . '</a></li>';
+                }
+
+                return wrap_block_content($block, $content, 'ul');
+            }
+
+            return $content;
+        },
+    ],
     'domicil' => [
         'render_callback' => function (array $attributes, string $content, WP_Block $block) use ($stack): string {
             $domicil = get_post_meta($stack->page()->ID, 'domicil', true);
@@ -119,7 +139,28 @@ return [
                     </label>
                     <button type="submit" name="submit">Registrovať</button>
                 </form>
-'),
+        '),
+    ],
+    'post-categories' => [
+        'render_callback' => function (array $attributes, string $content, WP_Block $block): string {
+            $categoryIds = wp_get_post_categories(get_the_ID(), ['exclude' => array_map(fn(WP_Term $t): int => $t->term_id, get_categories(['parent' => 0]))]);
+
+            if (empty($categoryIds)) {
+                return '';
+            }
+
+            $links = [];
+
+            foreach ($categoryIds as $categoryId) {
+                $category = get_category($categoryId);
+
+                if ($category instanceof WP_Term) {
+                    $links[] = '<a href="' . get_category_link($category) . '" rel="tag">' . $category->name . '</a>';
+                }
+            }
+
+            return wrap_block_content($block, implode('<span class="wp-block-post-categories__separator"></span>', $links));
+        },
     ],
     'top-level-page-title' => [
         'render_callback' => fn() => '<h1 class="wp-block-post-title">' . get_the_title($stack->topLevelPageId()) . '</h1>',

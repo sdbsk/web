@@ -6,7 +6,7 @@
             display: inline;
         }
 
-        .wp-block-post-terms {
+        .wp-block-saleziani-post-categories {
             a {
                 @include body-m;
                 font-weight: 500;
@@ -14,7 +14,7 @@
                 color: $dark;
             }
 
-            .wp-block-post-terms__separator {
+            .wp-block-post-categories__separator {
                 @include dark-dot;
                 vertical-align: middle;
             }

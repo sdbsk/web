@@ -61,9 +61,15 @@ add_filter('block_categories_all', function ($categories) {
     return $categories;
 });
 
-add_action('save_post_post', function (int $postId): void {
-    wp_set_post_categories($postId, (int)get_option('default_category'), true);
-});
+add_action('set_object_terms', function (int $postId, array $termIds, array $termTaxonomyIds, string $taxonomy, bool $append): void {
+    if ('category' === $taxonomy && false === $append) {
+        $categoryId = get_default_category_id(get_post($postId)->post_author);
+
+        if (false === in_array($categoryId, $termTaxonomyIds, true)) {
+            wp_set_post_categories($postId, $categoryId, true);
+        }
+    }
+}, 10, 5);
 
 add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
     wp_enqueue_style('public', home_url() . $manifest[$assets . 'public.css']);
@@ -72,16 +78,7 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest): void {
 
     wp_deregister_script('wp-polyfill');
     wp_deregister_script('regenerator-runtime');
-//    wp_deregister_script('wp-interactivity');
 });
-
-add_filter('script_loader_tag', function ($tag/*, $handle, $src*/) {
-//    if ('consent' === $handle) {
-//        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
-//    }
-
-    return $tag;
-}, 10, 3);
 
 add_filter('allowed_block_types_all', function (): array {
     return [
@@ -90,7 +87,6 @@ add_filter('allowed_block_types_all', function (): array {
 
         // large margin blocks
         'saleziani/newsletter-form',
-//        'saleziani/navigation',
 
         'saleziani/project-columns',
         'saleziani/organization-columns',
@@ -139,10 +135,6 @@ add_action('enqueue_block_editor_assets', 'wpb_embed_block');
 
 add_filter('excerpt_more', fn(): string => '…');
 
-add_filter('term_links-category', fn(array $links): array => array_values(array_filter($links, fn(string $link): bool => false === str_contains($link, '>Aktuality<'))));
-
-add_filter('wp_list_categories', fn(string $output): string => str_replace('>Aktuality<', '>Všetko<', $output));
-
 function placeholder_image_path(int $width, int $height): string
 {
     return 'https://placehold.co/' . $width . 'x' . $height . '/F8DAD3/272727';
@@ -151,9 +143,7 @@ function placeholder_image_path(int $width, int $height): string
 add_filter('xmlrpc_enabled', '__return_false');
 
 // Disable all xml-rpc endpoints
-add_filter('xmlrpc_methods', function () {
-    return [];
-}, PHP_INT_MAX);
+add_filter('xmlrpc_methods', fn(): array => [], PHP_INT_MAX);
 
 // remove some meta tags from WordPress
 remove_action('wp_head', 'wp_generator');
@@ -162,10 +152,6 @@ remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'wp_shortlink_wp_head');
 
 add_action('after_setup_theme', function () {
-
-//    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
-//    remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
-
     // Remove the REST API lines from the HTML Header
     remove_action('wp_head', 'rest_output_link_wp_head');
     remove_action('wp_head', 'wp_oembed_add_discovery_links');
@@ -214,29 +200,33 @@ add_action('wp_dashboard_setup', function () {
     remove_meta_box('dashboard_site_health', 'dashboard', 'normal');
 });
 
-add_action('wp_before_admin_bar_render', function () {
+add_action('wp_before_admin_bar_render', function (): void {
     global $wp_admin_bar;
-    $wp_admin_bar->remove_menu('wp-logo');          // Remove the WordPress logo
-    $wp_admin_bar->remove_menu('about');            // Remove the about WordPress link
-    $wp_admin_bar->remove_menu('wporg');            // Remove the WordPress.org link
-    $wp_admin_bar->remove_menu('documentation');    // Remove the WordPress documentation link
-    $wp_admin_bar->remove_menu('support-forums');   // Remove the support forums link
-    $wp_admin_bar->remove_menu('feedback');         // Remove the feedback link
-//    $wp_admin_bar->remove_menu('site-name');        // Remove the site name menu
-    $wp_admin_bar->remove_menu('updates');          // Remove the updates link
-    $wp_admin_bar->remove_menu('comments');         // Remove the comments link
-    $wp_admin_bar->remove_menu('site-editor');         // Remove the comments link
-    $wp_admin_bar->remove_menu('w3tc');             // If you use w3 total cache remove the performance link
 
+    $wp_admin_bar->remove_menu('about');            // Remove the about WordPress link
+    $wp_admin_bar->remove_menu('comments');         // Remove the comments link
+    $wp_admin_bar->remove_menu('documentation');    // Remove the WordPress documentation link
+    $wp_admin_bar->remove_menu('feedback');         // Remove the feedback link
+    $wp_admin_bar->remove_menu('site-editor');      // Remove the comments link
+    $wp_admin_bar->remove_menu('support-forums');   // Remove the support forums link
+    $wp_admin_bar->remove_menu('updates');          // Remove the updates link
+    $wp_admin_bar->remove_menu('w3tc');             // If you use w3 total cache remove the performance link
+    $wp_admin_bar->remove_menu('wp-logo');          // Remove the WordPress logo
+    $wp_admin_bar->remove_menu('wporg');            // Remove the WordPress.org link
 });
 
-add_action('admin_init', function () {
+add_action('admin_init', function (): void {
     global $menu;
 
     if (is_iterable($menu)) {
         remove_menu_page('edit-comments.php');
         remove_menu_page('plugins.php');
+        remove_menu_page('tools.php');
         remove_menu_page('w3tc_dashboard');
+
+        if (false === current_user_can('edit_others_posts')) {
+            remove_menu_page('index.php');
+        }
     }
 });
 
@@ -287,7 +277,7 @@ add_action('wp_head', function (): void {
           _paq.push(['trackPageView']);
           _paq.push(['enableLinkTracking']);
           (function() {
-            var u="//matomo.saleziani.sk/";
+            var u='//matomo.saleziani.sk/';
             _paq.push(['setTrackerUrl', u+'matomo.php']);
             _paq.push(['setSiteId', '1']);
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
@@ -377,3 +367,71 @@ add_action('template_redirect', function (): void {
         status_header(404);
     }
 });
+
+function add_user_custom_settings(WP_User $user): void
+{
+    if (current_user_can('administrator')) {
+        echo '<h2>Vlastné nastavenia</h2><table class="form-table"><tr><th><label for="default_category">' . translate('Default Post Category') . '</label></th><td>';
+
+        wp_dropdown_categories(
+            [
+                'hide_empty' => 0,
+                'hierarchical' => true,
+                'name' => 'default_category',
+                'option_none_value' => '',
+                'orderby' => 'name',
+                'selected' => get_user_meta($user->ID, 'default_category', true),
+                'show_option_none' => '-',
+            ],
+        );
+
+        echo '<p class="description">Ak je nastavené, má vyššiu prioritu ako ' . translate('Settings') . ' -> ' . translate('Writing') . ' -> ' . translate('Default Post Category') . '.</p></td></tr></table>';
+    }
+}
+
+add_action('show_user_profile', 'add_user_custom_settings');
+add_action('edit_user_profile', 'add_user_custom_settings');
+
+function save_user_custom_settings($userId): void
+{
+    if (current_user_can('administrator') && isset($_POST['default_category'])) {
+        update_user_meta($userId, 'default_category', $_POST['default_category']);
+    }
+}
+
+add_action('personal_options_update', 'save_user_custom_settings');
+add_action('edit_user_profile_update', 'save_user_custom_settings');
+
+add_filter('get_terms', function (array $terms, array $taxonomies): array {
+    if (is_user_logged_in() && 'category' === $taxonomies[0] && (is_admin() || wp_is_json_request())) {
+        $currentUser = wp_get_current_user();
+
+        if (in_array('author', $currentUser->roles, true)) {
+            $defaultCategoryId = get_default_category_id($currentUser->ID);
+
+            /** @var WP_Term|int $category */
+            foreach ($terms as $index => $category) {
+                $categoryId = $category instanceof WP_Term ? $category->term_id : $category;
+
+                if (
+                    $defaultCategoryId !== $categoryId &&
+                    false === in_array(
+                        $defaultCategoryId,
+                        get_ancestors($categoryId, 'category'),
+                        true)
+                ) {
+                    unset($terms[$index]);
+                }
+            }
+
+            $terms = array_values($terms);
+        }
+    }
+
+    return $terms;
+}, 10, 2);
+
+function get_default_category_id(int|string $userId): int
+{
+    return (int)get_user_meta((int)$userId, 'default_category', true) ?: ((int)get_option('default_category'));
+}

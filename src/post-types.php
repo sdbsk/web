@@ -36,6 +36,7 @@ return [
         'menu_icon' => 'dashicons-megaphone',
         'menu_position' => 20,
         'rewrite' => ['slug' => 'kampane'],
+        'show_in_menu' => current_user_can('edit_others_posts'),
         'show_in_rest' => true,
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
     ],

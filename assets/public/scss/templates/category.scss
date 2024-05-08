@@ -17,7 +17,7 @@
         }
     }
 
-    .wp-block-categories-list {
+    .wp-block-saleziani-categories {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -76,7 +76,7 @@
                 border-left: unset;
             }
 
-            .taxonomy-category {
+            .wp-block-saleziani-post-categories {
                 display: flex;
                 align-items: center;
 
@@ -92,7 +92,7 @@
                     color: $dark;
                 }
 
-                .wp-block-post-terms__separator {
+                .wp-block-post-categories__separator {
                     @include dark-dot;
                     background-color: rgba(39, 39, 39, .25);
                 }
