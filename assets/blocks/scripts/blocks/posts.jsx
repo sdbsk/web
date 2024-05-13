@@ -28,7 +28,6 @@ registerBlockVariation('core/query', {
                             ['core/post-featured-image', {isLink: true, sizeSlug: 'medium'}]]
                         ],
                         ['core/group', {className: 'col-md-7 col-lg-8'}, [
-                            ['saleziani/post-categories'],
                             ['core/post-title', {isLink: true}],
                             ['core/post-excerpt', {moreText: "Čítať viac", lock: {move: true, remove: true}}],
                         ]],
