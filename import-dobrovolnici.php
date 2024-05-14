@@ -91,8 +91,6 @@ add_action('admin_menu', function (): void {
         $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
 
         $importImage = function (string $source) use ($wpdb, $author, $sourceAssetsDir): ?int {
-            return 1399;
-
             $source = $sourceAssetsDir . $source;
 
             if (is_file($source)) {
