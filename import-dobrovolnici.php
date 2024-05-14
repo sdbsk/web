@@ -11,6 +11,8 @@ use Symfony\Component\HtmlSanitizer\HtmlSanitizerConfig;
 
 add_action('admin_menu', function (): void {
     add_menu_page('Import článkov z dobrovolnici.saleziani.sk', 'Import', 'import', 'dobrovolnici-import', function (): void {
+        echo 'Cleanup disabled.<br>';
+
         $first = $_GET['first'] ?? null;
         $last = $_GET['last'] ?? null;
 
@@ -72,23 +74,23 @@ add_action('admin_menu', function (): void {
 
         global $wpdb;
 
-        foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
-            $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
-            $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
-
-            unlink($filename);
-
-            if (isset($metadata['original_image'])) {
-                unlink(dirname($filename) . '/' . $metadata['original_image']);
-            }
-
-            foreach ($metadata['sizes'] as $size) {
-                unlink(dirname($filename) . '/' . $size['file']);
-            }
-        }
-
-        $wpdb->query($wpdb->prepare('DELETE wp_postmeta FROM wp_posts INNER JOIN wp_postmeta ON wp_postmeta.post_id = wp_posts.ID WHERE wp_posts.post_author = %s', [$author->ID]));
-        $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
+//        foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
+//            $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
+//            $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
+//
+//            unlink($filename);
+//
+//            if (isset($metadata['original_image'])) {
+//                unlink(dirname($filename) . '/' . $metadata['original_image']);
+//            }
+//
+//            foreach ($metadata['sizes'] as $size) {
+//                unlink(dirname($filename) . '/' . $size['file']);
+//            }
+//        }
+//
+//        $wpdb->query($wpdb->prepare('DELETE wp_postmeta FROM wp_posts INNER JOIN wp_postmeta ON wp_postmeta.post_id = wp_posts.ID WHERE wp_posts.post_author = %s', [$author->ID]));
+//        $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
 
         $importImage = function (string $source) use ($wpdb, $author, $sourceAssetsDir): ?int {
             $source = $sourceAssetsDir . $source;
