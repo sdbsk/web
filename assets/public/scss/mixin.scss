@@ -158,6 +158,7 @@
             > {
                 .wp-block-group,
                 .wp-block-image,
+                .wp-block-gallery,
                 .wp-block-saleziani-post-columns,
                 .bootstrap-columns-container {
                     @include block-layout($bottom: 4rem);
