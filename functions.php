@@ -432,6 +432,19 @@ add_filter('get_terms', function (array $terms, array $taxonomies): array {
     return $terms;
 }, 10, 2);
 
+add_action('save_post', function (int $postId): void {
+    if (function_exists('w3tc_flush_post')) {
+        $ancestors = get_post_ancestors($postId);
+        $parentId = empty($ancestors) ? $postId : end($ancestors);
+
+        w3tc_flush_post($parentId);
+
+        foreach (get_pages(['child_of' => $parentId]) as $child) {
+            w3tc_flush_post($child->ID);
+        }
+    }
+});
+
 function get_default_category_id(int|string $userId): int
 {
     return (int)get_user_meta((int)$userId, 'default_category', true) ?: ((int)get_option('default_category'));
