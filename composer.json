@@ -64,6 +64,6 @@
     "require-dev": {
         "deployer/deployer": "^7.4",
         "roave/security-advisories": "dev-latest",
-        "symfony/var-dumper": "^7.0"
+        "symfony/var-dumper": "^7.1"
     }
 }
