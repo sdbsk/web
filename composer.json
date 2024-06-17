@@ -2,7 +2,8 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
-            "roots/wordpress-core-installer": true
+            "roots/wordpress-core-installer": true,
+            "symfony/runtime": true
         },
         "optimize-autoloader": true,
         "platform": {
@@ -35,6 +36,10 @@
             ]
         },
         {
+            "type": "path",
+            "url": "./src/*"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "google/material-symbols",
@@ -59,11 +64,18 @@
         "roots/wp-password-bcrypt": "^1.1",
         "vlucas/phpdotenv": "^5.6",
         "wpackagist-plugin/w3-total-cache": "^2.7",
-        "google/material-symbols": "1.0"
+        "google/material-symbols": "1.0",
+        "saleziani/theme-app": "^1.0",
+        "ext-curl": "*",
+        "symfony/property-access": "^7.1",
+        "symfony/twig-bundle": "^7.1",
+        "symfony/form": "^7.1",
+        "symfony/validator": "^7.1"
     },
     "require-dev": {
         "deployer/deployer": "^7.4",
         "roave/security-advisories": "dev-latest",
-        "symfony/var-dumper": "^7.1"
+        "symfony/var-dumper": "^7.1",
+        "symfony/maker-bundle": "^1.59"
     }
 }

@@ -280,3 +280,21 @@
     border-radius: 1rem;
     background-color: $dark;
 }
+
+@mixin title-size($font-size, $line-height, $margin-bottom) {
+    font-size: $font-size;
+    line-height: $line-height;
+    margin-bottom: $margin-bottom;
+
+    @include media-breakpoint-down(lg) {
+        font-size: $font-size * 0.9;
+        line-height: $line-height * 0.9;
+        margin-bottom: $margin-bottom * 0.9;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: $font-size * 0.8;
+        line-height: $line-height * 0.8;
+        margin-bottom: $margin-bottom * 0.8;
+    }
+}

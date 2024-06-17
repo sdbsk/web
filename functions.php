@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
+use Roots\WPConfig\Config;
+use App\ThemeKernel;
+use Symfony\Component\ErrorHandler\Debug;
+
+if (Config::get('WP_DEBUG')) {
+    Debug::enable();
+}
+
 $template = wp_get_theme()->get_template();
 $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
@@ -25,18 +33,28 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
 });
 
 add_action('init', function () use ($template): void {
+    // Not required. Just here for easier local development.
+    // flush_rewrite_rules();
 
-    require_once 'src/icon-controller.php';
+    if (class_exists(ThemeKernel::class)) {
+        $GLOBALS['kernel'] = new ThemeKernel(WP_ENV, Config::get('WP_DEBUG'));
+        $GLOBALS['kernel']->boot();
 
-    foreach (require __DIR__ . '/src/block-types.php' as $type => $args) {
-        register_block_type($template . '/' . $type, $args);
+        add_rewrite_rule('^a/.*', 'index.php?app_request=true', 'top');
+        add_filter('query_vars', fn($vars) => ['app_request', ...$vars]);
+
+        add_filter('template_include', fn($template) => 'true' === get_query_var('app_request')
+            ? __DIR__ . '/app_request.php'
+            : $template);
     }
 
-    foreach (require __DIR__ . '/src/post-types.php' as $type => $args) {
+    require_once 'src/legacy/icon-controller.php';
+
+    foreach (require __DIR__ . '/src/legacy/post-types.php' as $type => $args) {
         register_post_type($type, $args);
     }
 
-    foreach (require __DIR__ . '/src/post-metas.php' as $type => $metas) {
+    foreach (require __DIR__ . '/src/legacy/post-metas.php' as $type => $metas) {
         foreach ($metas as $key => $args) {
             register_post_meta($type, $key, $args);
         }
@@ -118,6 +136,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/project-column',
         'saleziani/organization-column',
         'saleziani/newsletter-form',
+        'saleziani/darujme-form',
         'saleziani/icon',
         'saleziani/icon-column',
     ];

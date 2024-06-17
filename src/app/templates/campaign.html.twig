@@ -1,0 +1,142 @@
+{#{% form_theme donation_form 'form/layout.twig' %}#}
+
+{% set isCampaignForm = donation_form.isCampaignForm is defined %}
+<div class="modal-content donation-form js-donation-form{% if isEmbedded %} embedded-donation-form{% endif %}">
+    {{ form_start(donation_form, {attr: {novalidate: 'novalidate'}}) }}
+    <div class="modal-header">
+        <h3 class="modal-title">{{ formTitle }}</h3>
+        {% if not isEmbedded %}
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        {% endif %}
+    </div>
+    <div class="modal-body">
+
+        {{ form_errors(donation_form) }}
+        {% set canBeRecurring = donation_form.recurringAmount is defined %}
+        {% set canBeOnetime = donation_form.onetimeAmount is defined %}
+        {% set isRecurring = canBeRecurring and donation_form.onetimeOrRecurring.vars.data == 'recurring' %}
+        {% set isExpensesChecboxChecked = donation_form.expenses.vars.data %}
+
+        {% if isRecurring %}
+            {% set showOtherAmount = donation_form.recurringAmount.vars.data is empty %}
+        {% elseif canBeOnetime %}
+            {% set showOtherAmount = donation_form.onetimeAmount.vars.data is empty %}
+        {% else %}
+            {% set showOtherAmount = false %}
+        {% endif %}
+
+        {% set recurringAmountValue = showOtherAmount ? donation_form.otherAmount.vars.data : (donation_form.recurringAmount.vars.data ?? 0) %}
+        {% set recurringAmountValueTotal = (recurringAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
+        {% set recurringAmount = recurringAmountValueTotal ~ '&nbsp;€' %}
+
+        {% set oneTimeAmountValue = showOtherAmount ? donation_form.otherAmount.vars.data : (donation_form.onetimeAmount.vars.data ?? 0) %}
+        {% set oneTimeAmountValueTotal = (oneTimeAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
+        {% set oneTimeAmount = oneTimeAmountValueTotal ~ '&nbsp;€' %}
+
+        <div class="field-group mb-4{% if not canBeRecurring or not canBeOnetime %} d-none{% endif %}">
+            {{ form_row(donation_form.onetimeOrRecurring) }}
+        </div>
+
+        <div class="field-group mb-4 donation-form-amount">
+            <h6>Suma</h6>
+            {% if canBeRecurring %}
+                <div class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">
+                    {{ form_row(donation_form.recurringAmount) }}
+                </div>
+            {% endif %}
+            {% if canBeOnetime %}
+                <div class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">
+                    {{ form_row(donation_form.onetimeAmount) }}
+                </div>
+            {% endif %}
+            <div class="js-other-sum{% if not showOtherAmount %} d-none {% endif %} pt-2">
+                {{ form_row(donation_form.otherAmount) }}
+            </div>
+        </div>
+        <div class="field-group mb-3">
+            <h6>Osobné údaje</h6>
+            <div class="row form-row dajnato-donor-info">
+                <div class="col-12">
+                    {{ form_row(donation_form.firstName) }}
+                </div>
+                <div class="col-12">
+                    {{ form_row(donation_form.lastName) }}
+                </div>
+                <div class="col-12">
+                    {{ form_row(donation_form.email) }}
+                </div>
+            </div>
+        </div>
+        <div class="field-group mb-4">
+            <h6>Spôsob platby</h6>
+            {% if canBeRecurring %}
+                <div class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">
+                    <div class="dajnato-payment-type">
+                        {{ form_widget(donation_form.recurringPaymentType) }}
+                    </div>
+                    {{ form_errors(donation_form.recurringPaymentType) }}
+                </div>
+            {% endif %}
+            {% if canBeOnetime %}
+                <div class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">
+                    <div class="dajnato-payment-type">
+                        {{ form_widget(donation_form.onetimePaymentType) }}
+                    </div>
+                    {{ form_errors(donation_form.onetimePaymentType) }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="field-group mb-4 pt-3">
+            {#            <hr class="p-0 my-4">#}
+            <div class="mb-3 small">
+                {{ form_widget(donation_form.terms) }}
+            </div>
+
+            <div class="mb-0 small">
+                {{ form_widget(donation_form.gdpr) }}
+            </div>
+
+{#            <div class="mb-0 small">#}
+{#                {{ form_widget(donation_form.info) }}#}
+{#            </div>#}
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <div class="text-center w-100">
+            <hr/>
+            <div class="dajnato-expenses field-group mb-2 py-3 small" data-onetime-amount="{{ oneTimeAmountValue }}" data-recurring-amount="{{ recurringAmountValue }}">
+                {{ form_widget(donation_form.expenses) }}
+            </div>
+
+            {% if not donation_form.vars.valid %}
+                <p class="mb-2 text-danger">
+                    <strong>Formulár sa neodoslal. Prosím, opravte, či doplňte zadané údaje.</strong>
+                </p>
+            {% endif %}
+
+            <button type="submit" class="submit-form-btn"{% if donation_form.vars.disabled %} disabled="disabled"{% endif %}>
+                {% if canBeOnetime %}
+                    <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">Darovať <span class="button-onetime-amount">{{ oneTimeAmount | raw }}</span></span>
+                {% endif %}
+                {% if canBeRecurring %}
+                    <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">Darovať <span class="button-recurring-amount">{{ recurringAmount | raw }}</span> mesačne</span>
+                {% endif %}
+            </button>
+            <p class="small text-muted mb-0 mt-3 donation-conditions">
+                Potvrdením údajov súhlasím s <a href="https://darujme.sk/pravidla-a-podmienky/" target="_blank">pravidlami</a>
+                používania systému <a href="https://darujme.sk/pre-darcov/" target="_blank">DARUJME.sk</a>, cez ktorý
+                {% if canBeOnetime %}
+                    <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">je platba realizovaná.</span>
+                {% endif %}
+                {% if canBeRecurring %}
+                    <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">sú platby realizované.</span>
+                {% endif %}
+
+
+                Zároveň beriem na vedomie, že poskytujem finančný dar bez protihodnoty a teda na platobnú operáciu sa nevzťahujú
+                možnosti reklamácie platby ako pri nákupe služieb a tovarov.
+            </p>
+        </div>
+    </div>
+    {{ form_end(donation_form) }}
+</div>
