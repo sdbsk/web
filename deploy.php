@@ -21,10 +21,10 @@ set('shared_dirs', [
     'web/app/themes/saleziani/assets',
     'src/app/var/log',
 ]);
-set('writable_dirs', [
-    'src/app/var/log',
-    'src/app/var/cache',
-]);
+//set('writable_dirs', [
+//    'src/app/var/log',
+//    'src/app/var/cache',
+//]);
 set('allow_anonymous_stats', false);
 
 task('deploy:theme', function (): void {
