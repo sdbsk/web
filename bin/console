@@ -23,4 +23,4 @@ require __DIR__ . '/../web/wp/wp-blog-header.php';
 //require_once __DIR__ . '/../web/wp/wp-load.php';
 //dd('ss');
 
-return fn(array $context) => new Application(new ThemeKernel($context['APP_ENV'] ?? $context['WP_ENV'], (bool)$context['APP_DEBUG']));
+return fn(array $context) => new Application(new ThemeKernel($context['WP_ENV'] ?? 'production', (bool)$context['APP_DEBUG']));
