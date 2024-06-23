@@ -43,11 +43,6 @@ class ThemeKernel extends Kernel
             return;
         }
 
-        /** @var Wordpress $wordpress */
-        $wordpress = $this->getContainer()->get(Wordpress::class);
-
-        $wordpress->registerBlockTypes();
-
         $initialized = true;
 
 //        foreach ($this->getContainer()->get('router')->getRouteCollection() as $routeName => $route) {
@@ -69,5 +64,12 @@ class ThemeKernel extends Kernel
 //            dd();
 //            echo $response->getContent();
 //        }
+    }
+
+    public function bootWordpressTheme(): void {
+        /** @var Wordpress $wordpress */
+        $wordpress = $this->getContainer()->get(Wordpress::class);
+
+        $wordpress->registerBlockTypes();
     }
 }
