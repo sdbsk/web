@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\BlockType\DarujmeFormBlockType;
 use App\Form\Type\DarujmeDonationType;
+use App\Service\Darujme;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,39 +13,41 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DarujmeController extends AbstractController
 {
+    #[Route('/a/update_campaigns', name: 'darujme_update_campaigns', methods: ['GET'])]
+    public function updateCampaigns(Darujme $darujme): Response
+    {
+        $darujme->execute();
+
+        return new Response('done');
+    }
+
     #[Route('/a/form/{campaign}', name: 'darujme_form', methods: ['POST'])]
     public function index(Request $request, DarujmeFormBlockType $darujmeFormBlockType, string $campaign): Response
     {
-//        try {
-        $campaignDecoded = $darujmeFormBlockType->decodedCampaign($campaign);
+        try {
+            $campaignDecoded = $darujmeFormBlockType->decodedCampaign($campaign);
 
-        $form = $darujmeFormBlockType->form($campaignDecoded);
-        $form->handleRequest($request);
+            $form = $darujmeFormBlockType->form($campaignDecoded);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $data = $form->getData();
 
-            $form = $this->createFormBuilder()->create('donation', DarujmeDonationType::class, [
-                'action' => 'https://api.darujme.sk/v1/donations/post/'
-            ])
-                ->setData($this->darujmeData($campaignDecoded, $data))
-                ->getForm();
+                $form = $this->createFormBuilder()->create('donation', DarujmeDonationType::class, [
+                    'action' => 'https://api.darujme.sk/v1/donations/post/'
+                ])
+                    ->setData($this->darujmeData($campaignDecoded, $data))
+                    ->getForm();
 
-//                $form = $this->formFactory
-//                    ->createNamedBuilder('donation', DarujmeDonationType::class, $this->dajnato->darujmeData($campaign, $data), [
-//                        'action' => 'https://api.darujme.sk/v1/donations/post/'
-//                    ])
-//                    ->getForm();
+                return new Response(preg_replace('/donation\\[([a-zA-Z_]*)]/ms', '$1', $this->renderView('darujmeForm.html.twig', array(
+                    'form' => $form->createView(),
+                ))));
+            }
 
-            return new Response(preg_replace('/donation\\[([a-zA-Z_]*)]/ms', '$1', $this->renderView('darujmeForm.html.twig', array(
-                'form' => $form->createView(),
-            ))));
+            return new Response($darujmeFormBlockType->formContent($form, $campaignDecoded));
+        } catch (Exception) {
+            throw $this->createNotFoundException();
         }
-
-        return new Response($darujmeFormBlockType->formContent($form, $campaignDecoded));
-//        } catch (Exception) {
-//            throw $this->createNotFoundException();
-//        }
     }
 
     private function darujmeData(array $campaign, array $data): array
