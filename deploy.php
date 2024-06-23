@@ -71,9 +71,9 @@ after('deploy:shared', 'merge:assets');
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
+    'migrate:db',
     'deploy:theme',
     'deploy:flush',
-    'migrate:db',
     'deploy:publish',
 ]);
 
