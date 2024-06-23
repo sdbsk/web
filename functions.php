@@ -36,7 +36,7 @@ add_action('init', function () use ($template): void {
     // Not required. Just here for easier local development.
     // flush_rewrite_rules();
 
-    if (class_exists(ThemeKernel::class)) {
+    if (defined('WP_USE_THEMES') && WP_USE_THEMES && class_exists(ThemeKernel::class)) {
         $GLOBALS['kernel'] = new ThemeKernel(WP_ENV, Config::get('WP_DEBUG'));
         $GLOBALS['kernel']->boot();
 
