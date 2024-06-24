@@ -16,3 +16,4 @@
 /web/wp
 /web/.htaccess
 /web/app/debug.log
+/src/app/var

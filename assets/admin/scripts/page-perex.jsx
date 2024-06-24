@@ -1,5 +1,5 @@
 if ('page' === window.pagenow) {
-    const {registerPlugin} = window.wp.plugins;
+    const {registerPlugin, getPlugin} = window.wp.plugins;
     const {PluginPostStatusInfo} = window.wp.editPost;
     const {TextareaControl} = window.wp.components;
     const {withSelect, withDispatch} = window.wp.data;
@@ -24,11 +24,15 @@ if ('page' === window.pagenow) {
     ])(PagePerexField);
 
     wp.data.subscribe(() => {
-        const post = wp.data.select('core/editor').getCurrentPost();
+        const plugin = getPlugin('page-perex');
 
-        if (post && 0 === post.parent && false === pluginRegistered) {
-            registerPlugin('page-perex', {render: PagePerexField});
-            pluginRegistered = true;
+        if (undefined === plugin) {
+            const post = wp.data.select('core/editor').getCurrentPost();
+
+            if (post && 0 === post.parent && false === pluginRegistered) {
+                registerPlugin('page-perex', {render: PagePerexField});
+                pluginRegistered = true;
+            }
         }
     });
 }

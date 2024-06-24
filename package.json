@@ -30,6 +30,7 @@
     "dependencies": {
         "@material-symbols/font-300": "^0.14.0",
         "@orestbida/iframemanager": "^1.2.5",
+        "jquery": "^3.7.1",
         "vanilla-cookieconsent": "^3.0.1"
     }
 }

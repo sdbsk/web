@@ -1,0 +1,254 @@
+.wp-block-saleziani-darujme-form {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 767px) {
+    #donationModal {
+        margin-top: 65px;
+        padding-bottom: 65px;
+    }
+}
+
+.donation-form {
+    padding: 40px;
+    color: #3B3B42;
+    border: 0;
+
+    &.embedded-donation-form {
+        max-width: 48.125rem;
+        border: 1px solid #dedede;
+        padding: 40px;
+        border-radius: 0.5rem;
+
+        @include media-breakpoint-down(sm) {
+            padding: 0;
+            border: none;
+        }
+    }
+
+    .donation-form-amount {
+        .btn {
+            padding-left: 5px;
+            padding-right: 5px;
+
+            @media (max-width: 350px)
+            {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .modal-header {
+        padding: 0;
+        border-bottom: 0;
+
+        .modal-title {
+            margin-top: 0;
+            margin-bottom: 2rem;
+            //@include title-size(22px, 26px, 24px);
+            //font-weight: $font-weight-bold;
+        }
+
+        .btn-close {
+            width: 35px;
+            height: 35px;
+            font-size: 35px;
+            line-height: 0;
+            margin: 0;
+            background-image: unset;
+            color: #3B3B42;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            opacity: 1;
+            font-weight: 100;
+            display: flex;
+            box-sizing: border-box;
+            padding: 10px;
+            &:active,
+            &:focus {
+                box-shadow: unset;
+
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 0;
+
+        h6 {
+            font-weight: $font-weight-bold;
+            @include title-size(16px, 22px, 16px);
+            color: #3B3B42;
+        }
+
+        .btn-group {
+            width: 100%;
+
+            label {
+                padding-top: 13px;
+                padding-bottom: 13px;
+                border-radius: 0;
+                border: 2px solid #C4C5C6;
+                font-weight: $font-weight-bold;
+                color: #3B3B42;
+                @include title-size(18px, 22px, 0);
+            }
+
+            > .btn:not(:first-child) {
+                margin-left: -2px;
+            }
+
+            input {
+                &:active,
+                &:focus {
+                    + label {
+                        box-shadow: unset;
+
+                    }
+                }
+            }
+
+            .btn-check:checked + label,
+            .btn-check:hover + label {
+                border-color: $red;
+                background-color: $red;
+                color: $white;
+                &:hover{
+                    background-color: darken($red, 3%);
+                    border-color: darken($red, 3%);
+                }
+            }
+
+        }
+
+        .form-floating {
+            input[type=text],
+            input[type=email],
+            input[type=number] {
+                border: 2px solid #C4C5C6;
+                //background-color: #f9f6f4;
+                border-radius: 0;
+
+                &:active,
+                &:focus {
+                    box-shadow: unset;
+
+                }
+                &.is-invalid {
+                    border-color: #dc3545;
+                }
+            }
+
+            label {
+                color: gray;
+            }
+        }
+
+        .form-row {
+            margin-left: -8px;
+            margin-right: -8px;
+
+            > * {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+
+    }
+
+    .modal-footer {
+        border: 0;
+        padding: 0;
+        width: 100%;
+
+        .submit-form-btn {
+            width: 100%;
+            font-weight: $font-weight-bold;
+            background-color: $red;
+            color: $white;
+            font-size: 19px;
+            line-height: 19px;
+            padding: 24px;
+            border: 0;
+            margin-bottom: 16px;
+            &:hover{
+                background-color: darken($red, 3%);
+            }
+            &:disabled {
+                opacity: 0.7;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .form-check {
+        margin-bottom: 10px;
+        padding-left: 30px;
+
+        label {
+            padding-left: 13px;
+        }
+    }
+
+    .form-check-input {
+        width: 24px;
+        height: 24px;
+        margin-top: 0;
+        margin-left: -30px;
+        border: 1px solid rgba(0, 0, 0, .25);
+    }
+
+    .donation-conditions {
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        color: $secondary;
+    }
+
+    .small {
+        @include font-size($small-font-size);
+    }
+
+    .dajnato-payment-type {
+        font-weight: 400;
+    }
+
+    a {
+        color: $red;
+        text-decoration: underline;
+    }
+
+    .dajnato-expenses {
+        text-align: left;
+
+        label {
+            font-weight: 500;
+            font-size: 16px;
+            padding-left: 13px;
+
+            .dajnato-expenses-info {
+                font-weight: 400;
+            }
+        }
+    }
+
+    label {
+        display: inline-block;
+    }
+}
+
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.4);
+    .modal-dialog {
+        max-width: 648px;
+        @media (max-width: 664px)
+        {
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+    }
+}
+

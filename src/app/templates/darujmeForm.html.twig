@@ -1,0 +1,16 @@
+<div class="container-fluid" style="max-width: 600px;">
+    <div class="js-darujme-form">
+        <h1 class="mb-5">Prehľad vášho daru</h1>
+        {% set form_content %}
+            {{ form_start(form, {attr: {novalidate: 'novalidate', id: 'darujme-form'}}) }}
+            {{ form_rest(form) }}
+
+            <div class="mt-5">
+                <button type="submit" class="btn btn-primary btn-lg">Odoslať</button>
+            </div>
+            {{ form_end(form) }}
+        {% endset %}
+
+        {{ form_content | raw }}
+    </div>
+</div>

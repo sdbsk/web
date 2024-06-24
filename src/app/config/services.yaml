@@ -1,0 +1,29 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: true
+
+    _instanceof:
+        App\BlockType\BlockTypeInterface:
+            tags: [ 'wordpress-block-type' ]
+
+    App\:
+        resource: ../src/*
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/ThemeKernel.php'
+
+    App\Doctrine\PrefixNamingStrategy:
+        calls:
+            - setPrefix: [ 'app_' ]
+
+    App\Service\DarujmeApi:
+        arguments:
+            $username: '%env(DARUJME_API_USERNAME)%'
+            $password: '%env(DARUJME_API_PASSWORD)%'
+            $key: '%env(DARUJME_API_KEY)%'
+            $secret: '%env(DARUJME_API_SECRET)%'
+            $organisationId: '%env(DARUJME_ORGANISATION_ID)%'
