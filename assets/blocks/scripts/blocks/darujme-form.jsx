@@ -46,7 +46,7 @@ function availablePaymentFrequencies(campaign) {
 }
 
 function CampaignSelector({campaignId, campaigns, onChange}) {
-    const campaignsById = useRef(campaigns.reduce((acc, campaign) => ({
+    const campaignsById = useRef((campaigns ?? []).reduce((acc, campaign) => ({
         ...acc,
         [campaign.darujme_id]: campaignAttributes(campaign)
     }), {}));
@@ -57,7 +57,7 @@ function CampaignSelector({campaignId, campaigns, onChange}) {
         value={campaignId ?? ''}
         options={[
             {label: 'Žiadna zbierka', value: ''},
-            ...campaigns.map((campaign) => ({
+            ...(campaigns ?? []).map((campaign) => ({
                 label: campaign.title,
                 value: campaign.darujme_id
             }))

@@ -33,10 +33,11 @@ add_action('enqueue_block_assets', function () use ($assets, $manifest): void {
 });
 
 add_action('init', function () use ($template): void {
-    // Not required. Just here for easier local development.
-    // flush_rewrite_rules();
-
-    if (defined('WP_USE_THEMES') && WP_USE_THEMES && class_exists(ThemeKernel::class)) {
+    if ((
+            is_admin() ||
+            (defined('WP_USE_THEMES') && WP_USE_THEMES) ||
+            (defined('REST_REQUEST') && REST_REQUEST)
+        ) && class_exists(ThemeKernel::class)) {
         $GLOBALS['kernel'] = new ThemeKernel(WP_ENV, Config::get('WP_DEBUG'));
         $GLOBALS['kernel']->boot();
         $GLOBALS['kernel']->bootWordpressTheme();
