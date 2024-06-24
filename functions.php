@@ -41,6 +41,9 @@ add_action('init', function () use ($template): void {
         $GLOBALS['kernel']->boot();
         $GLOBALS['kernel']->bootWordpressTheme();
 
+        add_rewrite_rule('^a/.*', 'index.php?app_request=true', 'top');
+        add_filter('query_vars', fn($vars) => ['app_request', ...$vars]);
+
         add_filter('template_include', fn($template) => preg_match('/^\/a\/.*/', $_SERVER['REQUEST_URI'])
             ? __DIR__ . '/app_request.php'
             : $template);
