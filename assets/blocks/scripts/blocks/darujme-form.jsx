@@ -202,7 +202,7 @@ registerBlockType('saleziani/darujme-form', {
                 </PanelBody>
             </InspectorControls>
             {ClientRendering ? <ClientRendering/> :
-                <ServerSideRender attributes={attributes} block={name} key={'preview'}/>}
+                <ServerSideRender attributes={attributes} block={name} key={'preview'} httpMethod={'POST'}/>}
         </div>
     }
 });
