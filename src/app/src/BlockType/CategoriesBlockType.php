@@ -21,7 +21,7 @@ class CategoriesBlockType extends AbstractBlockType implements BlockTypeInterfac
                 $content .= '<li class="cat-item cat-item-' . $category->term_id . ($currentCategory->term_id === $category->term_id ? ' current-cat' : '') . '"><a href="' . get_term_link($category) . '">' . $category->name . '</a></li>';
             }
 
-            return wrap_block_content($block, $content, 'ul');
+            return $this->wrapContent($block, $content, 'ul');
         }
 
         return $content;
