@@ -44,8 +44,8 @@ declare( strict_types=1 );
 
         <!-- wp:group {"className":"col-md-6 col-lg-5"} -->
         <div class="wp-block-group col-md-6 col-lg-5">
-            <!-- wp:image {"scale":"cover","sizeSlug":"thumbnail","linkDestination":"none","className":"is-style-default"}  -->
-            <figure class="wp-block-image size-thumbnail is-style-default">
+            <!-- wp:image {"scale":"cover","className":"is-style-default"}  -->
+            <figure class="wp-block-image is-style-default">
                 <img src="<?php echo placeholder_image_path( 500, 500 ) ?>" alt=""/>
             </figure>
             <!-- /wp:image -->
