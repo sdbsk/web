@@ -6,6 +6,7 @@ use App\Entity\DarujmeCampaign;
 use App\Form\Type\DonationType;
 use App\Repository\DarujmeCampaignRepository;
 use Generator;
+use InvalidArgumentException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -22,7 +23,7 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         private readonly DarujmeCampaignRepository $darujmeCampaignRepository,
         private readonly FormFactoryInterface      $formFactory,
         private readonly UrlGeneratorInterface     $urlGenerator,
-        private Environment                        $twig
+        private Environment                        $twig,
     )
     {
         $this->propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
@@ -64,6 +65,14 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
                 'default' => false,
                 'type' => 'boolean',
             ],
+            'form_layout' => [
+                'default' => 'full-form',
+                'type' => 'string',
+            ],
+            'widget_button_label' => [
+                'default' => 'Darovať',
+                'type' => 'string',
+            ],
         ];
 
         foreach ($this->amountKeys() as $amountAttribute => $amountProperty) {
@@ -84,16 +93,9 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
                 'disabled' => $isAdmin,
                 'action' => $this->urlGenerator->generate('darujme_form', [
                     'campaign' => $this->encodedCampaign($campaign),
-                ])
+                ]),
             ])
             ->getForm();
-    }
-
-    private function encodedCampaign(array $campaign): string
-    {
-        $hashedCampaign = base64_encode(json_encode($campaign));
-
-        return $hashedCampaign . '.' . hash_hmac('sha256', $hashedCampaign, 'darujme');
     }
 
     public function decodedCampaign(string $encodedCampaign): array
@@ -103,7 +105,7 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         $campaign = json_decode(base64_decode($hashedCampaign), true);
 
         if ($this->encodedCampaign($campaign) !== $encodedCampaign) {
-            throw new \InvalidArgumentException('Invalid campaign signature');
+            throw new InvalidArgumentException('Invalid campaign signature');
         }
 
         return $campaign;
@@ -118,6 +120,8 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
             'isAdmin' => $isAdmin,
             'canBeOnetime' => $campaign['has_onetime_payment'],
             'canBeRecurring' => $campaign['has_recurring_payment'],
+            'formLayout' => $campaign['form_layout'],
+            'widgetButtonLabel' => $campaign['widget_button_label'],
         ]);
     }
 
@@ -152,6 +156,13 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         return $this->wrapContent($block, $this->formContent($form, $campaign, $isAdmin));
     }
 
+    private function encodedCampaign(array $campaign): string
+    {
+        $hashedCampaign = base64_encode(json_encode($campaign));
+
+        return $hashedCampaign . '.' . hash_hmac('sha256', $hashedCampaign, 'darujme');
+    }
+
     private function formCampaign(array $attributes): array
     {
         $formCampaign = [
@@ -159,6 +170,8 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
             'title' => $attributes['title'],
             'has_onetime_payment' => $attributes['has_onetime_payment'],
             'has_recurring_payment' => $attributes['has_recurring_payment'],
+            'form_layout' => $attributes['form_layout'],
+            'widget_button_label' => $attributes['widget_button_label'],
         ];
 
         foreach (DarujmeCampaign::AMOUNT_TYPES as $amountType) {

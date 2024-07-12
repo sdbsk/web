@@ -15,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -33,7 +32,7 @@ class DonationType extends AbstractType
 
     public function buildForm(
         FormBuilderInterface $builder,
-        array                $options
+        array                $options,
     ): void
     {
         $campaign = $options['campaign'];
@@ -49,13 +48,13 @@ class DonationType extends AbstractType
                     'expanded' => true,
                     'choices' => $this->amountChoices($campaign['onetime_options']),
                     'attr' => [
-                        'class' => 'js-onetimeAmount'
+                        'class' => 'js-onetimeAmount',
                     ],
                     'choice_attr' => fn(
                         $choice,
-                        $key
+                        $key,
                     ) => 'Iná suma' === $key ? ['data-is-other' => 'T', 'disabled' => $disabled] : ['disabled' => $disabled],
-                    'label_html' => true
+                    'label_html' => true,
                 ])
                 ->add('onetimePaymentType', ChoiceType::class, [
                     'label' => false,
@@ -72,9 +71,9 @@ class DonationType extends AbstractType
                     'constraints' => [
                         new NotBlank([
                             'groups' => ['onetime'],
-                            'message' => 'Vyberte spôsob platby'
-                        ])
-                    ]
+                            'message' => 'Vyberte spôsob platby',
+                        ]),
+                    ],
                 ]);
         }
 
@@ -85,13 +84,13 @@ class DonationType extends AbstractType
                     'expanded' => true,
                     'choices' => $this->amountChoices($campaign['recurring_options']),
                     'attr' => [
-                        'class' => 'js-recurringAmount'
+                        'class' => 'js-recurringAmount',
                     ],
                     'choice_attr' => fn(
                         $choice,
-                        $key
+                        $key,
                     ) => 'Iná suma' === $key ? ['data-is-other' => 'T', 'disabled' => $disabled] : ['disabled' => $disabled],
-                    'label_html' => true
+                    'label_html' => true,
                 ])
                 ->add('recurringPaymentType', ChoiceType::class, [
                     'label' => false,
@@ -103,93 +102,49 @@ class DonationType extends AbstractType
                     'constraints' => [
                         new NotBlank([
                             'groups' => ['recurring'],
-                            'message' => 'Vyberte spôsob platby'
-                        ])
-                    ]
+                            'message' => 'Vyberte spôsob platby',
+                        ]),
+                    ],
                 ]);
         }
 
         $builder
-            ->add('onetimeOrRecurring', ChoiceType::class, [
-                'label' => false,
+            ->add('onetimeOrRecurring', ChoiceType::class, ['label' => false,
                 'expanded' => true,
                 'choice_attr' => fn() => ['disabled' => $disabled],
-                'choices' => [
-                    'Každý mesiac' => 'recurring',
-                    'Jednorazovo' => 'onetime',
-                ],
-                'attr' => [
-                    'class' => 'js-onetimeOrRecurring'
-                ]
-            ])
-            ->add('otherAmount', NumberType::class, [
-                'label' => 'Iná suma',
+                'choices' => ['Každý mesiac' => 'recurring',
+                    'Jednorazovo' => 'onetime',],
+                'attr' => ['class' => 'js-onetimeOrRecurring',],])
+            ->add('otherAmount', NumberType::class, ['label' => 'Iná suma',
                 'html5' => true,
                 'required' => false,
-                'attr' => [
-                    'placeholder' => 'Iná suma',
-                    'class' => 'js-otherAmount',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'groups' => ['other_amount'],
-                        'message' => 'Vyberte z predvolených súm alebo zadajte vlastnú sumu',
-                    ])
-                ]
-            ])
-            ->add('firstName', TextType::class, [
-                'label' => 'Meno',
-                'attr' => [
-                    'placeholder' => 'Meno'
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Zadajte meno'])
-                ]
-            ])
-            ->add('lastName', TextType::class, [
-                'label' => 'Priezvisko',
-                'attr' => [
-                    'placeholder' => 'Priezvisko'
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Zadajte priezvisko'])
-                ]
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'Emailová adresa',
-                'attr' => [
-                    'placeholder' => 'Emailová adresa'
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Zadajte emailovú adresu']),
-                    new Email(['message' => 'Zadajte platnú emailovú adresu'])
-                ]
-            ])
-            ->add('terms', CheckboxType::class, [
-                'label' => 'Potvrdzujem, že mám informácie o <a href="https://gdpr.kbs.sk/obsah/sekcia/h/cirkev/p/zavazne-predpisy-rkc" target="_blank">spracovaní osobných údajov</a> organizáciou Saleziáni don Bosca, ktorej poskytujem dar',
+                'attr' => ['placeholder' => 'Iná suma',
+                    'class' => 'js-otherAmount',],
+                'constraints' => [new NotBlank(['groups' => ['other_amount'],
+                    'message' => 'Vyberte z predvolených súm alebo zadajte vlastnú sumu',]),],])
+            ->add('firstName', TextType::class, ['label' => 'Meno',
+                'attr' => ['placeholder' => 'Meno',],
+                'constraints' => [new NotBlank(['message' => 'Zadajte meno']),],])
+            ->add('lastName', TextType::class, ['label' => 'Priezvisko',
+                'attr' => ['placeholder' => 'Priezvisko',],
+                'constraints' => [new NotBlank(['message' => 'Zadajte priezvisko']),],])
+            ->add('email', EmailType::class, ['label' => 'Emailová adresa',
+                'attr' => ['placeholder' => 'Emailová adresa',],
+                'constraints' => [new NotBlank(['message' => 'Zadajte emailovú adresu']),
+                    new Email(['message' => 'Zadajte platnú emailovú adresu']),],])
+            ->add('terms', CheckboxType::class, ['label' => 'Potvrdzujem, že mám informácie o <a href="https://gdpr.kbs.sk/obsah/sekcia/h/cirkev/p/zavazne-predpisy-rkc" target="_blank">spracovaní osobných údajov</a> organizáciou Saleziáni don Bosca, ktorej poskytujem dar',
                 'label_html' => true,
-                'constraints' => [
-                    new IsTrue()
-                ]
-            ])
-            ->add('gdpr', CheckboxType::class, [
-                'label' => 'Potvrdzujem, že mám informácie o spracovaní osobných údajov v systéme <a href="https://darujme.sk/pravidla-ochrany-osobnych-udajov/" target="_blank">DARUJME.sk</a>',
+                'constraints' => [new IsTrue(),],])
+            ->add('gdpr', CheckboxType::class, ['label' => 'Potvrdzujem, že mám informácie o spracovaní osobných údajov v systéme <a href="https://darujme.sk/pravidla-ochrany-osobnych-udajov/" target="_blank">DARUJME.sk</a>',
                 'label_html' => true,
-                'constraints' => [
-                    new IsTrue()
-                ]
-            ])
+                'constraints' => [new IsTrue(),],])
 //            ->add('info', CheckboxType::class, [
 //                'label' => 'Súhlasím so spracúvaním osobných údajov <a href="/suhlas-so-spracuvanim-osobnych-udajov/" target="_blank">na účely informovania o aktivitách</a> Saleziánskeho diela na Trnávke. Emaily posielame len občas a hocikedy sa môžeš odhlásiť.',
 //                'label_html' => true,
 //            ])
-            ->add('expenses', CheckboxType::class, [
-                'label' => 'Pošlem navyše 3,9&nbsp;%<div class="dajnato-expenses-info small">Z každého daru platíme poplatky vo výške 3,9&nbsp;% za platobný systém. Prosím, pomôžte nám ich zaplatiť.</div>',
+            ->add('expenses', CheckboxType::class, ['label' => 'Pošlem navyše 3,9&nbsp;%<div class="dajnato-expenses-info small">Z každého daru platíme poplatky vo výške 3,9&nbsp;% za platobný systém. Prosím, pomôžte nám ich zaplatiť.</div>',
                 'label_html' => true,
-                'attr' => [
-                    'class' => 'js-expenses'
-                ],
-            ]);
+                'attr' => ['class' => 'js-expenses',],]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -197,13 +152,18 @@ class DonationType extends AbstractType
         $resolver
 //            ->setAllowedTypes('campaign', Campaign::class)
             ->setDefaults([
+                'allow_extra_fields' => true,
                 'csrf_protection' => false,
                 'values' => [],
                 'campaign' => [],
                 'disabled' => false,
                 'validation_groups' => function (
-                    FormInterface $form
-                ) {
+                    FormInterface $form,
+                ) use ($resolver) {
+                    if ('continue' === $form->getExtraData()['button']) {
+                        return [];
+                    }
+
                     $data = $form->getData();
 
                     $validationGroup = 'recurring' === $data['onetimeOrRecurring'] ? 'recurring' : 'onetime';
@@ -214,7 +174,7 @@ class DonationType extends AbstractType
 
                     return ['Default', $validationGroup];
                 },
-                'donation_type' => 'campaign'
+                'donation_type' => 'campaign',
             ]);
     }
 
@@ -227,6 +187,7 @@ class DonationType extends AbstractType
                 $key = rtrim($key, '0');
                 $key = rtrim($key, '.');
                 $key = str_replace('.', ',', $key);
+
                 return [...$result, "$key&nbsp;€" => $option];
             }, []), 'Iná suma' => ''];
     }

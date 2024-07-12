@@ -3,6 +3,7 @@ import './scripts/accordion';
 import './scss/app.scss';
 
 import $ from 'jquery';
+
 // import {Modal} from 'bootstrap';
 
 class DajnatoForm {
@@ -10,15 +11,6 @@ class DajnatoForm {
     recurringAmount;
     onetimeAmount;
     expenses;
-
-    updateButtonAmount() {
-        const expensesCoef = this.expenses ? 1.039 : 1;
-
-        this.$form.find('.button-onetime-amount')
-            .html(!this.onetimeAmount ? '' : (Math.round(this.onetimeAmount * expensesCoef) + '&nbsp;€'));
-        this.$form.find('.button-recurring-amount')
-            .html(!this.recurringAmount ? '' : (Math.round(this.recurringAmount * expensesCoef) + '&nbsp;€'));
-    }
 
     constructor($form) {
         this.$form = $form;
@@ -33,12 +25,11 @@ class DajnatoForm {
             .on('submit', 'form', (event) => {
 
                 event.preventDefault();
-                this.$form.find('button[type=submit]').text('Odosielam...').prop('disabled', true);
+                const $button = this.$form.find('button[type=submit]');
+                $button.text('Odosielam...').prop('disabled', true);
 
                 $.ajax({
-                    url: this.$form.attr('action') ?? location.href,
-                    data: this.$form.serialize(),
-                    type: 'POST'
+                    url: this.$form.attr('action') ?? location.href, data: this.$form.serialize() + '&' + this.$form.attr('name') + '[button]=' + $button.attr('name'), type: 'POST'
                 }).done((response, status, jqXHR) => {
                     const $html = $('<div>' + response + '</div>');
 
@@ -78,41 +69,49 @@ class DajnatoForm {
 
                 this.updateButtonAmount();
             })
-            .on('change', '.js-onetimeAmount input, .js-recurringAmount input',
-                (event) => {
-                    const $triggeredInput = $(event.target);
+            .on('change', '.js-onetimeAmount input, .js-recurringAmount input', (event) => {
+                const $triggeredInput = $(event.target);
 
-                    // maintain clicked button at the same position for onetime and recurring payments
+                // maintain clicked button at the same position for onetime and recurring payments
 
-                    if ('T' === $triggeredInput.data('is-other')) {
-                        this.$form.find('.js-onetimeAmount input:last').prop('checked', true);
-                        this.$form.find('.js-recurringAmount input:last').prop('checked', true);
+                if ('T' === $triggeredInput.data('is-other')) {
+                    this.$form.find('.js-onetimeAmount input:last').prop('checked', true);
+                    this.$form.find('.js-recurringAmount input:last').prop('checked', true);
 
-                        this.onetimeAmount = this.recurringAmount = this.$form.find('.js-otherAmount').val();
+                    this.onetimeAmount = this.recurringAmount = this.$form.find('.js-otherAmount').val();
 
-                        this.$form.find('.js-other-sum').removeClass('d-none');
-                    } else {
-                        let index = 0;
-                        this.$form.find('input[name="' + $triggeredInput.attr('name') + '"]').each((i, input) => {
-                            if ($(input).prop('checked')) {
-                                index = i;
-                            }
-                        });
+                    this.$form.find('.js-other-sum').removeClass('d-none');
+                } else {
+                    let index = 0;
+                    this.$form.find('input[name="' + $triggeredInput.attr('name') + '"]').each((i, input) => {
+                        if ($(input).prop('checked')) {
+                            index = i;
+                        }
+                    });
 
-                        const $onetimeCheckbox = this.$form.find('.js-onetimeAmount input:eq(' + index + ')');
-                        const $recurringCheckbox = this.$form.find('.js-recurringAmount input:eq(' + index + ')');
+                    const $onetimeCheckbox = this.$form.find('.js-onetimeAmount input:eq(' + index + ')');
+                    const $recurringCheckbox = this.$form.find('.js-recurringAmount input:eq(' + index + ')');
 
-                        $onetimeCheckbox.prop('checked', true);
-                        $recurringCheckbox.prop('checked', true);
+                    $onetimeCheckbox.prop('checked', true);
+                    $recurringCheckbox.prop('checked', true);
 
-                        this.onetimeAmount = $onetimeCheckbox.val();
-                        this.recurringAmount = $recurringCheckbox.val();
+                    this.onetimeAmount = $onetimeCheckbox.val();
+                    this.recurringAmount = $recurringCheckbox.val();
 
-                        this.$form.find('.js-other-sum').addClass('d-none');
-                    }
+                    this.$form.find('.js-other-sum').addClass('d-none');
+                }
 
-                    this.updateButtonAmount();
-                });
+                this.updateButtonAmount();
+            });
+    }
+
+    updateButtonAmount() {
+        const expensesCoef = this.expenses ? 1.039 : 1;
+
+        this.$form.find('.button-onetime-amount')
+            .html(!this.onetimeAmount ? '' : (Math.round(this.onetimeAmount * expensesCoef) + '&nbsp;€'));
+        this.$form.find('.button-recurring-amount')
+            .html(!this.recurringAmount ? '' : (Math.round(this.recurringAmount * expensesCoef) + '&nbsp;€'));
     }
 }
 
