@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const TerserPlugin = require('terser-webpack-plugin');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
@@ -8,6 +9,7 @@ Encore
     .addEntry('admin', './assets/admin/admin.js')
     .addEntry('blocks', './assets/blocks/blocks.js')
     .addEntry('public', './assets/public/public.js')
+    .addEntry('consent', './assets/public/consent.js')
     // .cleanupOutputBeforeBuild()
     .disableSingleRuntimeChunk()
     .enableSassLoader()
@@ -15,6 +17,17 @@ Encore
         options.postcssOptions = {
             config: 'postcss.config.js',
         };
+    })
+    .configureBabel(null, {
+        includeNodeModules: ['vanilla-cookieconsent']
+    })
+    .configureTerserPlugin((options) => {
+        options.extractComments = false;
+        options.terserOptions = {
+            output: {
+                comments: false
+            }
+        }
     })
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
@@ -31,4 +44,12 @@ Encore
     })
     .enableReactPreset();
 
-module.exports = Encore.getWebpackConfig();
+module.exports = {
+    ...Encore.getWebpackConfig(),
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin(),
+        ],
+    }
+};

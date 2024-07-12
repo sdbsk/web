@@ -13,7 +13,6 @@
         @include body-l;
         margin-bottom: 1rem;
         color: $dark;
-
         @include media-breakpoint-down(md) {
             @include body-m;
         }

@@ -65,13 +65,13 @@ export default (name, {
                 className: `bootstrap-column-inner`
             });
 
-            if (defaultBackgroundColor && blockProps.style) {
-                useEffect(() => {
-                    if (!blockProps.style?.backgroundColor) {
-                        setAttributes({backgroundColor: defaultBackgroundColor})
-                    }
-                }, [blockProps.style]);
-            }
+            // if (defaultBackgroundColor && blockProps.style) {
+            //     useEffect(() => {
+            //         if (!blockProps.style?.backgroundColor) {
+            //             setAttributes({backgroundColor: defaultBackgroundColor})
+            //         }
+            //     }, [blockProps.style]);
+            // }
 
             return (
                 <div className={`${attributes.widthClass}`}>

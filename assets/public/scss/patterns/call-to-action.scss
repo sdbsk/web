@@ -1,13 +1,12 @@
 .wp-pattern-saleziani-call-to-action {
     overflow: hidden;
     border-radius: 0.5rem;
-
     @include media-breakpoint-down(md) {
         > .row {
             > div:last-child {
                 max-width: 34rem;
-                margin-left: auto;
                 margin-top: -2rem;
+                margin-left: auto;
             }
         }
     }
@@ -16,7 +15,6 @@
         @include media-breakpoint-between(md, lg) {
             width: 50%;
         }
-
         @include media-breakpoint-down(md) {
             width: 100%;
         }
@@ -26,7 +24,6 @@
         @include media-breakpoint-between(md, lg) {
             width: 50%;
         }
-
         @include media-breakpoint-down(md) {
             width: 100%;
         }
@@ -46,37 +43,41 @@
             margin-bottom: 1.5rem;
         }
 
-        .wp-block-button {
-            width: 100%;
+        .wp-block-buttons {
+            .wp-block-button {
+                z-index: 1;
+                width: 100%;
 
-            .wp-element-button {
-                font-size: 1.0625rem;
-                font-weight: 500;
-                font-style: normal;
-                line-height: 1.5rem;
-                display: block;
-                max-width: max-content;
-                padding: 0.5rem 1.5rem;
-                border-radius: 0.25rem;
+                .wp-element-button {
+                    font-size: 1.0625rem;
+                    font-weight: 500;
+                    font-style: normal;
+                    line-height: 1.5rem;
+                    display: block;
+                    max-width: max-content;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: 0.25rem;
 
-                &:after {
-                    display: none;
+                    &:after {
+                        display: none;
+                    }
+
+                    &:hover {
+                        padding-right: 1.5rem;
+                    }
                 }
 
-                &:hover {
-                    padding-right: 1.5rem;
+                .svg-wrap {
+                    max-width: 250px;
+                    height: 20px;
+                    margin: 0 auto; /* center the wrap */
                 }
-            }
-
-            .svg-wrap {
-                max-width: 250px;
-                height: 20px;
-                margin: 0 auto; /* center the wrap */
             }
         }
 
         .wp-block-heading {
             @include display-reg-l;
+            margin-top: 0;
             margin-bottom: 1.5rem;
         }
 
@@ -101,15 +102,13 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: unset !important;
             max-width: unset;
-            height: 600px !important;
+            height: 600px;
             transform: rotate(-12deg);
             transform-origin: 50% 0;
             border-radius: 0.5rem;
             object-fit: cover;
             object-position: top left;
-
             @include media-breakpoint-down(md) {
                 position: relative;
                 left: 0;
@@ -145,9 +144,9 @@
         }
 
         .wp-block-buttons .wp-block-button .wp-element-button {
+            transition: color 0.2s ease-in-out;
             color: $dark;
             background-color: $white;
-            transition: color 0.2s ease-in-out;
 
             &:hover {
                 color: darken($red, 10%);
@@ -162,10 +161,9 @@
         }
 
         .wp-block-buttons .wp-block-button .wp-element-button {
+            transition: color 0.2s ease-in-out;
             color: $dark;
             background-color: $white;
-
-            transition: color 0.2s ease-in-out;
 
             &:hover {
                 color: darken($red, 10%);

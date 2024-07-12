@@ -12,7 +12,7 @@ pipelines:
                         - composer
                         - node
                     script:
-                        - php8.1 /usr/local/bin/composer install
+                        - php8.3 /usr/local/bin/composer install
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
                         - git remote set-url origin "https://${BB_AUTH_STRING}@bitbucket.org/${BITBUCKET_REPO_FULL_NAME}"
@@ -33,10 +33,10 @@ pipelines:
                         - 'linux.shell'
                     deployment: stage
                     script:
-                        - php8.1 /usr/local/bin/composer install
+                        - php8.3 /usr/local/bin/composer install
                         - eval $(ssh-agent -s)
                         - ssh-add ~/.ssh/id_ed25519
-                        - php8.1 vendor/bin/dep deploy stage
+                        - php8.3 vendor/bin/dep deploy stage -vvv
                         - eval $(ssh-agent -k)
         main:
             -   step:
@@ -50,7 +50,7 @@ pipelines:
                         - composer
                         - node
                     script:
-                        - php8.1 /usr/local/bin/composer install
+                        - php8.3 /usr/local/bin/composer install
                         - npm i && npm rebuild node-sass && npm run prod
                         - echo "Build ${BITBUCKET_BUILD_NUMBER}"
                         - git remote set-url origin "https://${BB_AUTH_STRING}@bitbucket.org/${BITBUCKET_REPO_FULL_NAME}"
@@ -71,8 +71,8 @@ pipelines:
                         - 'linux.shell'
                     deployment: main
                     script:
-                        - php8.1 /usr/local/bin/composer install
+                        - php8.3 /usr/local/bin/composer install
                         - eval $(ssh-agent -s)
                         - ssh-add ~/.ssh/id_ed25519
-                        - php8.1 vendor/bin/dep deploy main
+                        - php8.3 vendor/bin/dep deploy main -vvv
                         - eval $(ssh-agent -k)

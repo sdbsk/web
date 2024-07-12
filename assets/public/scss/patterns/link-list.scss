@@ -1,70 +1,68 @@
 @import '../mixin';
 
 .wp-pattern-saleziani-link-list {
-  .wp-block-heading {
-    @include display-reg-l;
-    margin-top: 8rem;
-    margin-bottom: 3rem;
-    color: $dark;
-    @include media-breakpoint-down(md) {
-      @include display-reg-m;
-      margin-bottom: 2rem;
-    }
-
-  }
-
-  p {
-    margin: 0 0 -0.0625rem 0;
-
-    &:first-of-type {
-      margin-top: 3rem;
-    }
-
-    a {
-      @include display-reg-m;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-      padding: 1.25rem 0.75rem 1.25rem 0;
-      transition: padding 0.3s ease, color 0.2s ease-in-out;
-      text-decoration: none;
-      color: $red;
-      border-top: 0.0625rem solid #e5e5e5;
-      border-bottom: 0.0625rem solid #e5e5e5;
-      @include media-breakpoint-down(md) {
-        @include display-reg-s;
-        padding: 0.75rem 0.5rem 0.75rem 0;
-      }
-
-      &:after {
-        display: inline-block;
-        min-width: 2rem;
-        height: 2rem;
-        margin-left: 0.75rem;
-        content: '';
-        @include svgBackground('../images/arrow-right.svg', $red, cover);
-        transition: background-color 0.2s ease-in-out;
+    .wp-block-heading {
+        @include display-reg-l;
+        margin-top: 8rem;
+        margin-bottom: 3rem;
+        color: $dark;
         @include media-breakpoint-down(md) {
-          min-width: 1.25rem;
-          height: 1.25rem;
+            @include display-reg-m;
+            margin-bottom: 2rem;
         }
-      }
-
-      &:hover {
-        padding: 1.25rem 0.55rem 1.25rem 0;
-
-        color: darken($red, 20%);
-
-        &:after {
-          background-color: darken($red, 10%) !important;
-        }
-
-        @include media-breakpoint-down(md) {
-          padding: 0.75rem 0.5rem 0.75rem 0;
-        }
-      }
-    ;
     }
-  }
+
+    p {
+        margin: 0 0 -0.0625rem 0;
+
+        &:first-of-type {
+            margin-top: 3rem;
+        }
+
+        a {
+            @include display-reg-m;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 1.25rem 0.75rem 1.25rem 0;
+            transition: padding 0.3s ease, color 0.2s ease-in-out;
+            text-decoration: none;
+            color: $red;
+            border-top: 0.0625rem solid #e5e5e5;
+            border-bottom: 0.0625rem solid #e5e5e5;
+            @include media-breakpoint-down(md) {
+                @include display-reg-s;
+                padding: 0.75rem 0.5rem 0.75rem 0;
+            }
+
+            &:after {
+                display: inline-block;
+                min-width: 2rem;
+                height: 2rem;
+                margin-left: 0.75rem;
+                content: '';
+                @include svgBackground('../images/arrow-right.svg', $red, cover);
+                transition: background-color 0.2s ease-in-out;
+                @include media-breakpoint-down(md) {
+                    min-width: 1.25rem;
+                    height: 1.25rem;
+                }
+            }
+
+            &:hover {
+                padding: 1.25rem 0.55rem 1.25rem 0;
+                color: darken($red, 20%);
+
+                &:after {
+                    background-color: darken($red, 10%) !important;
+                }
+
+                @include media-breakpoint-down(md) {
+                    padding: 0.75rem 0.5rem 0.75rem 0;
+                }
+            }
+        ;
+        }
+    }
 }

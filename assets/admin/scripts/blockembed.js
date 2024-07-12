@@ -1,8 +1,8 @@
-wp.domReady(function () {
+wp.domReady && wp.domReady(function () {
     const allowedEmbedBlocks = [
-        'youtube',
+        'youtube'
     ];
-    wp.blocks.getBlockVariations('core/embed').forEach(function (blockVariation) {
+    wp.blocks && wp.blocks.getBlockVariations('core/embed').forEach(function (blockVariation) {
         if (-1 === allowedEmbedBlocks.indexOf(blockVariation.name)) {
             wp.blocks.unregisterBlockVariation('core/embed', blockVariation.name);
         }

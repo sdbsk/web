@@ -1,6 +1,6 @@
 import {postList} from '@wordpress/icons';
 
-const {registerBlockVariation, unregisterBlockVariation} = window.wp.blocks;
+const {registerBlockVariation} = window.wp.blocks;
 
 const VARIATION_NAME = 'saleziani/posts';
 
@@ -28,7 +28,6 @@ registerBlockVariation('core/query', {
                             ['core/post-featured-image', {isLink: true, sizeSlug: 'medium'}]]
                         ],
                         ['core/group', {className: 'col-md-7 col-lg-8'}, [
-                            ['core/post-terms', {term: "category", separator: ""}],
                             ['core/post-title', {isLink: true}],
                             ['core/post-excerpt', {moreText: "Čítať viac", lock: {move: true, remove: true}}],
                         ]],

@@ -13,21 +13,31 @@ import('hosts.yml');
 set('application', 'saleziani.sk');
 set('repository', 'git@bitbucket.org:bratiask/saleziani.git');
 set('git_tty', true);
-set('shared_files', ['.env.local']);
-set('shared_dirs', ['web/app/uploads', 'web/app/w3tc-config', 'web/app/themes/saleziani/assets']);
-set('writable_dirs', []);
+set('shared_files', ['.env.local', 'web/.htaccess']);
+set('shared_dirs', [
+    'web/images',
+    'web/app/uploads',
+    'web/app/w3tc-config',
+    'web/app/themes/saleziani/assets',
+    'src/app/var/log',
+]);
+//set('writable_dirs', [
+//    'src/app/var/log',
+//    'src/app/var/cache',
+//]);
 set('allow_anonymous_stats', false);
 
 task('deploy:theme', function (): void {
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language core install en_US sk_SK');
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar language plugin install --all en_US sk_SK');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar language core install en_US sk_SK');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar language plugin install --all en_US sk_SK');
 });
 
 task('deploy:flush', function (): void {
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar cache flush all');
-    run('cd {{ release_path }} && php8.1 bin/wp-cli.phar rewrite flush --hard');
-    run('cd {{ release_path }} && (php8.1 bin/wp-cli.phar w3-total-cache flush all || true)');
-    run('cd {{ release_path }} && (php8.1 bin/wp-cli.phar w3-total-cache fix_environment apache || true)');
+    run('cd {{ release_path }} && php8.3 bin/console cache:clear');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar cache flush all');
+    run('cd {{ release_path }} && php8.3 bin/wp-cli.phar rewrite flush --hard');
+    run('cd {{ release_path }} && (php8.3 bin/wp-cli.phar w3-total-cache flush all || true)');
+    run('cd {{ release_path }} && (php8.3 bin/wp-cli.phar w3-total-cache fix_environment apache || true)');
 });
 
 task('copy:assets', function (): void {
@@ -51,12 +61,17 @@ task('opcache:reset', function (): void {
     }
 });
 
+task('migrate:db', function (): void {
+    run('cd {{ release_path }} && php8.3 bin/console do:mi:mi -n');
+});
+
 before('deploy:shared', 'copy:assets');
 after('deploy:shared', 'merge:assets');
 
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
+    'migrate:db',
     'deploy:theme',
     'deploy:flush',
     'deploy:publish',

@@ -1,0 +1,102 @@
+{% extends 'bootstrap_5_horizontal_layout.html.twig' %}
+
+
+{% block floating_input %}
+    {% set label = form.vars.label ? form.vars.label : form.vars.name %}
+    <div class="form-floating mb-3">
+        {{ form_widget(form) }}
+        <label for="{{ form.vars.id }}">{{ label | trans }}</label>
+        {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block radio_btn_group %}
+    {% if form.vars.label %}
+        <div class="mb-2">{{ form.vars.label | trans }}</div>
+    {% endif %}
+    <div class="btn-group {{ form.vars.attr.class }}" role="group">
+        {% for option in form %}
+            <input type="radio" class="btn-check" id="{{ option.vars.id }}" name="{{ form.vars.full_name }}"{% if option.vars.value is defined %} value="{{ option.vars.value }}"{% endif %}{% if option.vars.checked %} checked="checked"{% endif %} autocomplete="off" {% with { attr: option.vars.attr } %}{{ block('attributes') }}{% endwith %}>
+            <label class="btn btn-outline-primary" for="{{ option.vars.id }}">{{ option.vars.label | trans | raw }}</label>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block _donation_periodicity_row %}
+    {{ block('radio_btn_group') }}
+{% endblock %}
+
+{% block _donation_recurringAmount_row %}
+    {{ block('radio_btn_group') }}
+{% endblock %}
+
+{% block _donation_onetimeAmount_row %}
+    {{ block('radio_btn_group') }}
+{% endblock %}
+
+{% block _donation_onetimeOrRecurring_row %}
+    {{ block('radio_btn_group') }}
+{% endblock %}
+
+{% block _donation_otherAmount_row %}
+    {{ block('floating_input') }}
+{% endblock %}
+
+{% block _donation_firstName_row %}
+    {{ block('floating_input') }}
+{% endblock %}
+
+{% block _donation_lastName_row %}
+    {{ block('floating_input') }}
+{% endblock %}
+
+{% block _donation_email_row %}
+    {{ block('floating_input') }}
+{% endblock %}
+
+{% block _donation_paymentType_widget %}
+    {% for option in form %}
+        <div class="form-check js-payment-type js-{{ option.vars.attr['data-type'] }}-payment-type">
+            <input class="form-check-input{% if not form.vars.valid %} is-invalid{% endif %}" type="radio" id="{{ option.vars.id }}" name="{{ form.vars.full_name }}"{% if option.vars.value is defined %} value="{{ option.vars.value }}"{% endif %}{% if option.vars.checked %} checked="checked"{% endif %} autocomplete="off">
+            <label class="form-check-label" for="{{ option.vars.id }}">{{ option.vars.label | trans }}</label>
+        </div>
+    {% endfor %}
+
+    {{ form_errors(form) }}
+{% endblock %}
+
+{% block _donation_modal_periodicity_row %}
+    {{ block('_donation_periodicity_row') }}
+{% endblock %}
+
+{% block _donation_modal_recurringAmount_row %}
+    {{ block('_donation_recurringAmount_row') }}
+{% endblock %}
+
+{% block _donation_modal_onetimeAmount_row %}
+    {{ block('_donation_onetimeAmount_row') }}
+{% endblock %}
+
+{% block _donation_modal_onetimeOrRecurring_row %}
+    {{ block('_donation_onetimeOrRecurring_row') }}
+{% endblock %}
+
+{% block _donation_modal_otherAmount_row %}
+    {{ block('_donation_otherAmount_row') }}
+{% endblock %}
+
+{% block _donation_modal_firstName_row %}
+    {{ block('_donation_firstName_row') }}
+{% endblock %}
+
+{% block _donation_modal_lastName_row %}
+    {{ block('_donation_lastName_row') }}
+{% endblock %}
+
+{% block _donation_modal_email_row %}
+    {{ block('_donation_email_row') }}
+{% endblock %}
+
+{% block _donation_modal_paymentType_widget %}
+    {{ block('_donation_paymentType_widget') }}
+{% endblock %}

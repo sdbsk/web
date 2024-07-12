@@ -13,11 +13,9 @@
         margin-bottom: 0 !important;
         padding-right: calc(var(--bs-gutter-x) * .5) !important;
         padding-left: calc(var(--bs-gutter-x) * .5) !important;
-
         @include media-breakpoint-down(lg) {
             width: 50%;
         }
-
         @include media-breakpoint-down(md) {
             width: 100%;
         }

@@ -1,75 +1,71 @@
 @mixin display-reg-xxl {
-  font-size: 4rem;
-  font-weight: 400;
-  line-height: 5rem;
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 5rem;
 }
 
 @mixin display-reg-xl {
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 3.75rem;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 3.75rem;
 }
 
 @mixin display-reg-l-40 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  line-height: 3.125rem;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 3.125rem;
 }
 
 @mixin display-reg-l {
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 2.5rem;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.5rem;
 }
 
 @mixin display-reg-m {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.875rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.875rem;
 }
 
 @mixin display-reg-s {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.375rem;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.375rem;
 }
 
 @mixin body-xl {
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 2.125rem;
-
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.125rem;
 }
 
 @mixin body-l {
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.75rem;
-
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.75rem;
 }
 
 @mixin body-m {
-  font-size: 1.0625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5rem;
-
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5rem;
 }
 
 @mixin body-s {
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.3125rem;
-
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.3125rem;
 }
 
 // Use in Call to action button
 @mixin label-m {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.5rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5rem;
 }

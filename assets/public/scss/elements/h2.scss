@@ -1,12 +1,12 @@
 
 h2 {
-  @include display-reg-l;
-  //margin-top: 0;
-  //margin-bottom: 3rem;
-  color: $red;
-  @include media-breakpoint-down(md) {
     @include display-reg-l;
-  }
+    //margin-top: 0;
+    //margin-bottom: 3rem;
+    color: $red;
+    @include media-breakpoint-down(md) {
+        @include display-reg-l;
+    }
 }
 
 

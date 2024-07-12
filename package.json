@@ -1,8 +1,8 @@
 {
     "browserslist": [
         "> 0.5%",
-        "last 2 versions",
-        "not dead"
+        "last 5 versions",
+        "ie >= 11"
     ],
     "devDependencies": {
         "@babel/core": "^7.22",
@@ -28,6 +28,9 @@
         "prod": "npm run build:icons && encore production --progress"
     },
     "dependencies": {
-        "@material-symbols/font-300": "^0.14.0"
+        "@material-symbols/font-300": "^0.14.0",
+        "@orestbida/iframemanager": "^1.2.5",
+        "jquery": "^3.7.1",
+        "vanilla-cookieconsent": "^3.0.1"
     }
 }

@@ -5,7 +5,7 @@ const selectors = [
     '.editor-styles-wrapper .wp-block-post-content'
 ];
 
-wp.data.subscribe(() => {
+wp.data && wp.data.subscribe(() => {
     let template = wp.data.select('core/editor').getEditedPostAttribute('template');
 
     if (undefined === template || 0 === template.length) {

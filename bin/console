@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use App\ThemeKernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+
+if (!is_file(dirname(__DIR__) . '/vendor/autoload_runtime.php')) {
+    throw new LogicException('Symfony Runtime is missing. Try running "composer require symfony/runtime".');
+}
+
+require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
+require_once 'config/application.php';
+
+$_SERVER['REQUEST_METHOD'] = 'GET';
+define('WP_USE_THEMES', false);
+require __DIR__ . '/../web/wp/wp-blog-header.php';
+
+
+//$GLOBALS['wp_did_header'] = true;
+//const WP_USE_THEMES = true;
+//require_once __DIR__ . '/../web/wp/wp-load.php';
+//dd('ss');
+
+return fn(array $context) => new Application(new ThemeKernel($context['WP_ENV'] ?? 'production', (bool)$context['APP_DEBUG']));
