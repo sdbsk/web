@@ -2,9 +2,9 @@ import './scripts/back-link';
 import './scripts/accordion';
 import './scss/app.scss';
 
-import $ from 'jquery';
+import {Modal} from 'bootstrap';
 
-// import {Modal} from 'bootstrap';
+import $ from 'jquery';
 
 class DajnatoForm {
     $form;
@@ -120,38 +120,48 @@ $(document).ready(function () {
         const form = new DajnatoForm($(this));
     });
 
-    // const dajnatoCTAModal = new Modal('#dajnato-cta-modal');
-    //
-    // $('body')
-    //     .on('hidden.bs.modal', '#dajnato-cta-modal', function () {
-    //         $('#dajnato-cta-modal form').remove();
-    //     })
-    //     .on('click', '.btn-dajnato-cta', function () {
-    //         const $button = $(this);
-    //         let url = $button.data('form-url');
-    //         const dialog = $('#dajnato-cta-modal .modal-dialog');
-    //         const buttonText = $button.text();
-    //
-    //         if ('BUTTON' === $button.prop('tagName')) {
-    //             $button.text('Čakaj, prosím...').prop('disabled', true);
-    //         }
-    //
-    //         const $formWidget = $button.closest('.form-widget');
-    //
-    //         if ($formWidget.length > 0) {
-    //             url += (url.indexOf('?') === -1 ? '?' : '&') + 'campaign_value=' +
-    //                 $formWidget.find('input[type=radio]:checked').val();
-    //         }
-    //
-    //         $.get(url).then((response) => {
-    //             dialog.html($(response).find('.modal-dialog').html());
-    //             const form = new DajnatoForm($('form[name=donation_modal]'));
-    //             dajnatoCTAModal.show();
-    //
-    //             if ('BUTTON' === $button.prop('tagName')) {
-    //                 $button.text(buttonText).prop('disabled', false);
-    //             }
-    //         });
-    //     });
+    const dajnatoCTAModal = new Modal('#donationFormModal');
+
+    $('body')
+        .on('click', '.js-widget-form-submit', function (event) {
+            event.preventDefault();
+
+            const $form = $(this).closest('.js-donation-form').children('form');
+
+            $.ajax({
+                type: $form.attr('method'), url: $form.attr('action'), data: $form.serialize() + '&' + $form.attr('name') + '[button]=continue', success: function (response) {
+                    const $modalContent = $('#donationFormModalContent');
+                    $modalContent.html(response);
+                    new DajnatoForm($modalContent.find('form'));
+                    dajnatoCTAModal.show();
+                }
+            });
+
+            // const $button = $(this);
+            // let url = $button.data('form-url');
+            // const dialog = $('#donationFormModal .modal-dialog');
+            // const buttonText = $button.text();
+            //
+            // if ('BUTTON' === $button.prop('tagName')) {
+            //     $button.text('Čakaj, prosím...').prop('disabled', true);
+            // }
+            //
+            // const $formWidget = $button.closest('.form-widget');
+            //
+            // if ($formWidget.length > 0) {
+            //     url += (url.indexOf('?') === -1 ? '?' : '&') + 'campaign_value=' +
+            //         $formWidget.find('input[type=radio]:checked').val();
+            // }
+            //
+            // $.get(url).then((response) => {
+            //     dialog.html($(response).find('.modal-dialog').html());
+            //     const form = new DajnatoForm($('form[name=donation_modal]'));
+            //     dajnatoCTAModal.show();
+            //
+            //     if ('BUTTON' === $button.prop('tagName')) {
+            //         $button.text(buttonText).prop('disabled', false);
+            //     }
+            // });
+        });
 });
 

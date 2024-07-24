@@ -55,6 +55,7 @@ class DonationType extends AbstractType
                         $key,
                     ) => 'Iná suma' === $key ? ['data-is-other' => 'T', 'disabled' => $disabled] : ['disabled' => $disabled],
                     'label_html' => true,
+                    'block_prefix' => 'donation_onetimeAmount',
                 ])
                 ->add('onetimePaymentType', ChoiceType::class, [
                     'label' => false,
@@ -74,6 +75,7 @@ class DonationType extends AbstractType
                             'message' => 'Vyberte spôsob platby',
                         ]),
                     ],
+                    'block_prefix' => 'donation_onetimePaymentType',
                 ]);
         }
 
@@ -91,6 +93,7 @@ class DonationType extends AbstractType
                         $key,
                     ) => 'Iná suma' === $key ? ['data-is-other' => 'T', 'disabled' => $disabled] : ['disabled' => $disabled],
                     'label_html' => true,
+                    'block_prefix' => 'donation_recurringAmount',
                 ])
                 ->add('recurringPaymentType', ChoiceType::class, [
                     'label' => false,
@@ -105,6 +108,7 @@ class DonationType extends AbstractType
                             'message' => 'Vyberte spôsob platby',
                         ]),
                     ],
+                    'block_prefix' => 'donation_recurringPaymentType',
                 ]);
         }
 
@@ -114,24 +118,29 @@ class DonationType extends AbstractType
                 'choice_attr' => fn() => ['disabled' => $disabled],
                 'choices' => ['Každý mesiac' => 'recurring',
                     'Jednorazovo' => 'onetime',],
-                'attr' => ['class' => 'js-onetimeOrRecurring',],])
+                'attr' => ['class' => 'js-onetimeOrRecurring',],
+                'block_prefix' => 'donation_onetimeOrRecurring'])
             ->add('otherAmount', NumberType::class, ['label' => 'Iná suma',
                 'html5' => true,
                 'required' => false,
                 'attr' => ['placeholder' => 'Iná suma',
                     'class' => 'js-otherAmount',],
                 'constraints' => [new NotBlank(['groups' => ['other_amount'],
-                    'message' => 'Vyberte z predvolených súm alebo zadajte vlastnú sumu',]),],])
+                    'message' => 'Vyberte z predvolených súm alebo zadajte vlastnú sumu',]),],
+                'block_prefix' => 'donation_otherAmount'])
             ->add('firstName', TextType::class, ['label' => 'Meno',
                 'attr' => ['placeholder' => 'Meno',],
-                'constraints' => [new NotBlank(['message' => 'Zadajte meno']),],])
+                'constraints' => [new NotBlank(['message' => 'Zadajte meno']),],
+                'block_prefix' => 'donation_firstName'])
             ->add('lastName', TextType::class, ['label' => 'Priezvisko',
                 'attr' => ['placeholder' => 'Priezvisko',],
-                'constraints' => [new NotBlank(['message' => 'Zadajte priezvisko']),],])
+                'constraints' => [new NotBlank(['message' => 'Zadajte priezvisko']),],
+                'block_prefix' => 'donation_lastName'])
             ->add('email', EmailType::class, ['label' => 'Emailová adresa',
                 'attr' => ['placeholder' => 'Emailová adresa',],
                 'constraints' => [new NotBlank(['message' => 'Zadajte emailovú adresu']),
-                    new Email(['message' => 'Zadajte platnú emailovú adresu']),],])
+                    new Email(['message' => 'Zadajte platnú emailovú adresu']),],
+                'block_prefix' => 'donation_email'])
             ->add('terms', CheckboxType::class, ['label' => 'Potvrdzujem, že mám informácie o <a href="https://gdpr.kbs.sk/obsah/sekcia/h/cirkev/p/zavazne-predpisy-rkc" target="_blank">spracovaní osobných údajov</a> organizáciou Saleziáni don Bosca, ktorej poskytujem dar',
                 'label_html' => true,
                 'constraints' => [new IsTrue(),],])

@@ -5,7 +5,7 @@
     {{ form_start(donation_form, {attr: {novalidate: 'novalidate'}}) }}
     <div class="modal-header">
         <h3 class="modal-title">{{ formTitle }}</h3>
-        {% if not isEmbedded %}
+        {% if not isEmbedded or 'widget' is same as formLayout and donation_form.vars.submitted %}
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
         {% endif %}
     </div>
@@ -119,11 +119,11 @@
                 </p>
             {% endif %}
             {% if isWidgetFirstStep %}
-                <button type="submit" class="submit-form-btn"{% if donation_form.vars.disabled %} disabled="disabled"{% endif %} name="continue">
+                <button class="submit-form-btn js-widget-form-submit"{% if donation_form.vars.disabled %} disabled="disabled"{% endif %} name="continue">
                     {{ widgetButtonLabel }}
                 </button>
             {% else %}
-                <button type="submit" class="submit-form-btn"{% if donation_form.vars.disabled %} disabled="disabled"{% endif %} name="submit" data-bs-toggle="modal" data-bs-target="#donationFormModal">
+                <button type="submit" class="submit-form-btn"{% if donation_form.vars.disabled %} disabled="disabled"{% endif %} name="submit">
                     {% if canBeOnetime %}
                         <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">Darovať <span class="button-onetime-amount">{{ oneTimeAmount | raw }}</span></span>
                     {% endif %}
@@ -131,8 +131,6 @@
                         <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">Darovať <span class="button-recurring-amount">{{ recurringAmount | raw }}</span> mesačne</span>
                     {% endif %}
                 </button>
-            {% endif %}
-            {% if not isWidgetFirstStep %}
                 <p class="small text-muted mb-0 mt-3 donation-conditions">
                     Potvrdením údajov súhlasím s <a href="https://darujme.sk/pravidla-a-podmienky/" target="_blank">pravidlami</a>
                     používania systému <a href="https://darujme.sk/pre-darcov/" target="_blank">DARUJME.sk</a>, cez ktorý

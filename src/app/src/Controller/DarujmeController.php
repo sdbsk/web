@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\BlockType\DarujmeFormBlockType;
@@ -26,8 +28,10 @@ class DarujmeController extends AbstractController
     {
         try {
             $campaignDecoded = $darujmeFormBlockType->decodedCampaign($campaign);
+            $blockForm = $darujmeFormBlockType->form($campaignDecoded);
+            $blockForm->handleRequest($request);
 
-            $form = $darujmeFormBlockType->form($campaignDecoded);
+            $form = $darujmeFormBlockType->form($campaignDecoded, formName: 'modal')->setData($blockForm->getData());
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid() && 'submit' === $form->getExtraData()['button']) {

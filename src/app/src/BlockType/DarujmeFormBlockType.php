@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BlockType;
 
 use App\Entity\DarujmeCampaign;
@@ -85,14 +87,14 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         return $attributes;
     }
 
-    public function form(array $campaign, bool $isAdmin = false): FormInterface
+    public function form(array $campaign, bool $isAdmin = false, string $formName = ''): FormInterface
     {
         return $this->formFactory
-            ->createNamedBuilder('donation', DonationType::class, options: [
+            ->createNamedBuilder('donation' . ($formName ? '-' . $formName : ''), DonationType::class, options: [
                 'campaign' => $campaign,
                 'disabled' => $isAdmin,
                 'action' => $this->urlGenerator->generate('darujme_form', [
-                    'campaign' => $this->encodedCampaign($campaign),
+                    'campaign' => $this->encodedCampaign([...$campaign, 'form_layout' => 'full-form']),
                 ]),
             ])
             ->getForm();
@@ -140,17 +142,6 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
             'onetimeAmount' => empty($attributes['default_onetime_amount']) ? null : (float)$attributes['default_onetime_amount'],
             'recurringAmount' => empty($attributes['default_recurring_amount']) ? null : (float)$attributes['default_recurring_amount'],
             'onetimeOrRecurring' => $attributes['payment_frequency'],
-//            'onetimeAmount' => null,
-//            'recurringAmount' => empty($attributes['default_recurring_amount']) ? null : (float)$attributes['default_recurring_amount'],
-//            'onetimeOrRecurring' => 'onetime',
-//            'otherAmount' => 1,
-//            'firstName' => 'Filip',
-//            'lastName' => 'Likavčan',
-//            'email' => 'filip@bratia.sk',
-//            'onetimePaymentType' => '3dcf55d1-6383-45b4-b098-dc588187b854',
-//            'terms' => true,
-//            'gdpr' => true,
-//            'expenses' => true,
         ]);
 
         return $this->wrapContent($block, $this->formContent($form, $campaign, $isAdmin));
