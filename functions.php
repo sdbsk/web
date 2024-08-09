@@ -328,15 +328,24 @@ TRACKING;
     }
 });
 
-add_action('wp_footer', function () {
-    echo <<<MODAL
+add_filter( 'the_content', fn($content) => <<<MODAL
 <div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content" id="donationFormModalContent"></div>
+        <div class="modal-content" id="donationFormModalContent"></div>sss
     </div>
 </div>
-MODAL;
-});
+$content
+MODAL, 10, 1 );
+
+//add_action('wp_footer', function () {
+//    echo <<<MODAL
+//<div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
+//    <div class="modal-dialog">
+//        <div class="modal-content" id="donationFormModalContent"></div>
+//    </div>
+//</div>
+//MODAL;
+//});
 
 function cookiesAllowed(string $category): bool
 {
