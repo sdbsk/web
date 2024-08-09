@@ -31,7 +31,10 @@ class DarujmeController extends AbstractController
             $blockForm = $darujmeFormBlockType->form($campaignDecoded);
             $blockForm->handleRequest($request);
 
-            $form = $darujmeFormBlockType->form($campaignDecoded, formName: 'modal')->setData($blockForm->getData());
+            $form = $darujmeFormBlockType->form(
+                $campaignDecoded,
+                formName: ($campaignDecoded['initiated_by_widget'] ?? false) ? 'modal' : ''
+            )->setData($blockForm->getData());
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid() && 'submit' === $form->getExtraData()['button']) {

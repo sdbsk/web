@@ -329,12 +329,12 @@ TRACKING;
 });
 
 add_filter( 'the_content', fn($content) => <<<MODAL
+$content
 <div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content" id="donationFormModalContent"></div>sss
     </div>
 </div>
-$content
 MODAL, 10, 1 );
 
 function cookiesAllowed(string $category): bool
