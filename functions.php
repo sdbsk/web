@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Roots\WPConfig\Config;
 use App\ThemeKernel;
+use Roots\WPConfig\Config;
 use Symfony\Component\ErrorHandler\Debug;
 
 if (Config::get('WP_DEBUG')) {

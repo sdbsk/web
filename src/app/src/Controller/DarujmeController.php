@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\BlockType\DarujmeFormBlockType;
@@ -26,22 +28,24 @@ class DarujmeController extends AbstractController
     {
         try {
             $campaignDecoded = $darujmeFormBlockType->decodedCampaign($campaign);
+            $blockForm = $darujmeFormBlockType->form($campaignDecoded);
+            $blockForm->handleRequest($request);
 
-            $form = $darujmeFormBlockType->form($campaignDecoded);
+            $form = $darujmeFormBlockType->form($campaignDecoded, formName: 'modal')->setData($blockForm->getData());
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid() && 'submit' === $form->getExtraData()['button']) {
                 $data = $form->getData();
 
                 $form = $this->createFormBuilder()->create('donation', DarujmeDonationType::class, [
-                    'action' => 'https://api.darujme.sk/v1/donations/post/'
+                    'action' => 'https://api.darujme.sk/v1/donations/post/',
                 ])
                     ->setData($this->darujmeData($campaignDecoded, $data))
                     ->getForm();
 
-                return new Response(preg_replace('/donation\\[([a-zA-Z_]*)]/ms', '$1', $this->renderView('darujmeForm.html.twig', array(
+                return new Response(preg_replace('/donation\\[([a-zA-Z_]*)]/ms', '$1', $this->renderView('darujmeForm.html.twig', [
                     'form' => $form->createView(),
-                ))));
+                ])));
             }
 
             return new Response($darujmeFormBlockType->formContent($form, $campaignDecoded));
@@ -73,7 +77,7 @@ class DarujmeController extends AbstractController
             'email' => $data['email'],
             'additional_data' => [
                 DarujmeDonationType::EXPENSES_FIELD_ID => $expenses,
-            ]
+            ],
         ];
     }
 }

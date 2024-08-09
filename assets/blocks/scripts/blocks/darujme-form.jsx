@@ -9,13 +9,13 @@ const emptyCampaign = {
     has_onetime_payment: false,
     has_recurring_payment: false,
     default_recurring_amount: '',
-    default_onetime_amount: '',
-}
+    default_onetime_amount: ''
+};
 
 function campaignAttributes(campaign) {
     const result = {
         ...emptyCampaign,
-        campaign_id: campaign?.darujme_id ?? '',
+        campaign_id: campaign?.darujme_id ?? ''
     };
 
     [1, 2, 3, 4].forEach((index) => {
@@ -39,7 +39,7 @@ function availablePaymentFrequencies(campaign) {
         if (campaign[`has_${type}_payment`] && [1, 2, 3, 4].reduce((acc, index) => acc || campaign[`${type}_amount_${index}`], false)) {
             result.push(type);
         }
-    })
+    });
 
     return result;
 
@@ -64,7 +64,7 @@ function CampaignSelector({campaignId, campaigns, onChange}) {
         ]}
         onChange={(value) => onChange(campaignsById.current[value] ?? emptyCampaign)}
         __nextHasNoMarginBottom
-    />
+    />;
 }
 
 function uniqueNonEmpty(items) {
@@ -95,7 +95,7 @@ function CampaignAmountsControl({amounts, enabled, defaultAmount, toggleLabel, a
                 type={'number'}
                 onChange={(value) => onChange(index + 1, value)}/>)}
         </CardBody>
-    </Card>
+    </Card>;
 }
 
 function amounts(campaign, frequency) {
@@ -122,12 +122,12 @@ registerBlockType('saleziani/darujme-form', {
             const currentAvailableFrequencies = availablePaymentFrequencies(newAttributes);
 
             ['onetime', 'recurring'].forEach((frequency) => {
-                const newAmounts = uniqueNonEmpty(amounts(newAttributes, frequency))
+                const newAmounts = uniqueNonEmpty(amounts(newAttributes, frequency));
 
                 if (!newAmounts.includes(newAttributes[`default_${frequency}_amount`])) {
                     campaign[`default_${frequency}_amount`] = newAmounts[0] ?? '';
                 }
-            })
+            });
 
             if (!currentAvailableFrequencies.includes(newAttributes.payment_frequency)) {
                 campaign.payment_frequency = currentAvailableFrequencies[0] ?? 'onetime';
@@ -156,7 +156,7 @@ registerBlockType('saleziani/darujme-form', {
                     initialOpen={true}
                 >
                     <CampaignSelector onChange={setAttributes} campaigns={attributes.campaigns}
-                                      campaignId={attributes.campaign_id}/>
+                        campaignId={attributes.campaign_id}/>
 
                     {attributes.campaign_id && <>
                         <TextControl
@@ -164,6 +164,21 @@ registerBlockType('saleziani/darujme-form', {
                             value={attributes.title}
                             onChange={(value) => setAttributes({title: value})}
                         />
+                        <RadioControl
+                            label="Zobraziť formulár ako"
+                            selected={attributes.form_layout}
+                            options={[
+                                {label: 'Celý formulár', value: 'full-form'},
+                                {label: 'Widget', value: 'widget'}
+                            ]}
+                            onChange={(value) => setAttributes({form_layout: value})}
+                        />
+                        {attributes.form_layout === 'widget' &&
+                            <TextControl
+                                label="Text tlačidla pre widget"
+                                value={attributes.widget_button_label}
+                                onChange={(value) => setAttributes({widget_button_label: value})}
+                            />}
                         {attributes.has_onetime_payment && attributes.has_recurring_payment && availableFrequencies.length > 1 &&
                             <Card>
                                 <CardBody size={'small'}>
@@ -172,7 +187,7 @@ registerBlockType('saleziani/darujme-form', {
                                         selected={attributes.payment_frequency}
                                         options={[
                                             {label: 'Jednorazovo', value: 'onetime'},
-                                            {label: 'Pravidelne', value: 'recurring'},
+                                            {label: 'Pravidelne', value: 'recurring'}
                                         ]}
                                         onChange={(value) => setAttributes({payment_frequency: value})}
                                     />
@@ -203,6 +218,6 @@ registerBlockType('saleziani/darujme-form', {
             </InspectorControls>
             {ClientRendering ? <ClientRendering/> :
                 <ServerSideRender attributes={attributes} block={name} key={'preview'} httpMethod={'POST'}/>}
-        </div>
+        </div>;
     }
 });

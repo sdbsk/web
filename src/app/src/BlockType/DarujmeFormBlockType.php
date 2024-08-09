@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BlockType;
 
 use App\Entity\DarujmeCampaign;
 use App\Form\Type\DonationType;
 use App\Repository\DarujmeCampaignRepository;
 use Generator;
+use InvalidArgumentException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -22,7 +25,7 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         private readonly DarujmeCampaignRepository $darujmeCampaignRepository,
         private readonly FormFactoryInterface      $formFactory,
         private readonly UrlGeneratorInterface     $urlGenerator,
-        private Environment                        $twig
+        private Environment                        $twig,
     )
     {
         $this->propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
@@ -64,6 +67,14 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
                 'default' => false,
                 'type' => 'boolean',
             ],
+            'form_layout' => [
+                'default' => 'full-form',
+                'type' => 'string',
+            ],
+            'widget_button_label' => [
+                'default' => 'Darovať',
+                'type' => 'string',
+            ],
         ];
 
         foreach ($this->amountKeys() as $amountAttribute => $amountProperty) {
@@ -76,24 +87,17 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         return $attributes;
     }
 
-    public function form(array $campaign, bool $isAdmin = false): FormInterface
+    public function form(array $campaign, bool $isAdmin = false, string $formName = ''): FormInterface
     {
         return $this->formFactory
-            ->createNamedBuilder('donation', DonationType::class, options: [
+            ->createNamedBuilder('donation' . ($formName ? '-' . $formName : ''), DonationType::class, options: [
                 'campaign' => $campaign,
                 'disabled' => $isAdmin,
                 'action' => $this->urlGenerator->generate('darujme_form', [
-                    'campaign' => $this->encodedCampaign($campaign),
-                ])
+                    'campaign' => $this->encodedCampaign([...$campaign, 'form_layout' => 'full-form']),
+                ]),
             ])
             ->getForm();
-    }
-
-    private function encodedCampaign(array $campaign): string
-    {
-        $hashedCampaign = base64_encode(json_encode($campaign));
-
-        return $hashedCampaign . '.' . hash_hmac('sha256', $hashedCampaign, 'darujme');
     }
 
     public function decodedCampaign(string $encodedCampaign): array
@@ -103,7 +107,7 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         $campaign = json_decode(base64_decode($hashedCampaign), true);
 
         if ($this->encodedCampaign($campaign) !== $encodedCampaign) {
-            throw new \InvalidArgumentException('Invalid campaign signature');
+            throw new InvalidArgumentException('Invalid campaign signature');
         }
 
         return $campaign;
@@ -118,6 +122,8 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
             'isAdmin' => $isAdmin,
             'canBeOnetime' => $campaign['has_onetime_payment'],
             'canBeRecurring' => $campaign['has_recurring_payment'],
+            'formLayout' => $campaign['form_layout'],
+            'widgetButtonLabel' => $campaign['widget_button_label'],
         ]);
     }
 
@@ -136,20 +142,16 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
             'onetimeAmount' => empty($attributes['default_onetime_amount']) ? null : (float)$attributes['default_onetime_amount'],
             'recurringAmount' => empty($attributes['default_recurring_amount']) ? null : (float)$attributes['default_recurring_amount'],
             'onetimeOrRecurring' => $attributes['payment_frequency'],
-//            'onetimeAmount' => null,
-//            'recurringAmount' => empty($attributes['default_recurring_amount']) ? null : (float)$attributes['default_recurring_amount'],
-//            'onetimeOrRecurring' => 'onetime',
-//            'otherAmount' => 1,
-//            'firstName' => 'Filip',
-//            'lastName' => 'Likavčan',
-//            'email' => 'filip@bratia.sk',
-//            'onetimePaymentType' => '3dcf55d1-6383-45b4-b098-dc588187b854',
-//            'terms' => true,
-//            'gdpr' => true,
-//            'expenses' => true,
         ]);
 
         return $this->wrapContent($block, $this->formContent($form, $campaign, $isAdmin));
+    }
+
+    private function encodedCampaign(array $campaign): string
+    {
+        $hashedCampaign = base64_encode(json_encode($campaign));
+
+        return $hashedCampaign . '.' . hash_hmac('sha256', $hashedCampaign, 'darujme');
     }
 
     private function formCampaign(array $attributes): array
@@ -159,6 +161,8 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
             'title' => $attributes['title'],
             'has_onetime_payment' => $attributes['has_onetime_payment'],
             'has_recurring_payment' => $attributes['has_recurring_payment'],
+            'form_layout' => $attributes['form_layout'],
+            'widget_button_label' => $attributes['widget_button_label'],
         ];
 
         foreach (DarujmeCampaign::AMOUNT_TYPES as $amountType) {
