@@ -340,7 +340,7 @@ add_action('wp_footer', function()
 <div class="wp-site-blocks">
 <div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content" id="donationFormModalContent"></div>sss
+        <div class="modal-content" id="donationFormModalContent"></div>
     </div>
 </div>
 MODAL, $content);
