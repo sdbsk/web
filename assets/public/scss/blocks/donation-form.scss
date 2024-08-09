@@ -250,5 +250,14 @@
             margin-right: 8px;
         }
     }
+
+    .donation-form {
+        &.embedded-donation-form {
+            @include media-breakpoint-down(sm) {
+                padding: 20px;
+                border: none;
+            }
+        }
+    }
 }
 
