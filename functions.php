@@ -328,14 +328,23 @@ TRACKING;
     }
 });
 
-add_filter( 'the_content', fn($content) => <<<MODAL
-$content
+add_action('wp_body_open', function() {
+    ob_start();
+}, 0);
+
+add_action('wp_footer', function()
+{
+    $content = ob_get_clean();
+
+    echo str_replace('<div class="wp-site-blocks">', <<<MODAL
+<div class="wp-site-blocks">
 <div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content" id="donationFormModalContent"></div>sss
     </div>
 </div>
-MODAL, 10, 1 );
+MODAL, $content);
+}, 100);
 
 function cookiesAllowed(string $category): bool
 {
