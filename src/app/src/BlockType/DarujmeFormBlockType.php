@@ -94,7 +94,11 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
                 'campaign' => $campaign,
                 'disabled' => $isAdmin,
                 'action' => $this->urlGenerator->generate('darujme_form', [
-                    'campaign' => $this->encodedCampaign([...$campaign, 'form_layout' => 'full-form']),
+                    'campaign' => $this->encodedCampaign([
+                        ...$campaign,
+                        'form_layout' => 'full-form',
+                        'initiated_by_widget' => ($campaign['initiated_by_widget'] ?? false) || 'widget' === $campaign['form_layout']
+                    ]),
                 ]),
             ])
             ->getForm();
