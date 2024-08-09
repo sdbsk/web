@@ -328,6 +328,16 @@ TRACKING;
     }
 });
 
+add_action('wp_footer', function () {
+    echo <<<MODAL
+<div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" id="donationFormModalContent"></div>
+    </div>
+</div>
+MODAL;
+});
+
 function cookiesAllowed(string $category): bool
 {
     $allowedCategories = json_decode(stripslashes($_COOKIE['cc_cookie'] ?? 'null'), true)['categories'] ?? [];
