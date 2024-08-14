@@ -125,6 +125,8 @@ $(document).ready(function () {
     $('body')
         .on('click', '.js-widget-form-submit', function (event) {
             event.preventDefault();
+            const $button = $(this);
+            $button.text('Odosielam...').prop('disabled', true);
 
             const $form = $(this).closest('.js-donation-form').children('form');
 
@@ -134,6 +136,7 @@ $(document).ready(function () {
                     $modalContent.html(response);
                     new DajnatoForm($modalContent.find('form'));
                     dajnatoCTAModal.show();
+                    setTimeout(() => $button.text('Darovať').prop('disabled', false), 1000);
                 }
             });
 
