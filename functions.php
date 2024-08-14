@@ -328,6 +328,24 @@ TRACKING;
     }
 });
 
+add_action('wp_body_open', function() {
+    ob_start();
+}, 0);
+
+add_action('wp_footer', function()
+{
+    $content = ob_get_clean();
+
+    echo str_replace('<div class="wp-site-blocks">', <<<MODAL
+<div class="wp-site-blocks">
+<div aria-hidden="true" class="modal fade" id="donationFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" id="donationFormModalContent"></div>
+    </div>
+</div>
+MODAL, $content);
+}, 100);
+
 function cookiesAllowed(string $category): bool
 {
     $allowedCategories = json_decode(stripslashes($_COOKIE['cc_cookie'] ?? 'null'), true)['categories'] ?? [];
