@@ -12,6 +12,10 @@ registerBlockType('saleziani/newsletter-form', {
         source: {
             default: 'web-saleziani-sk',
             type: 'string'
+        },
+        url: {
+            default: 'https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088',
+            type: 'string'
         }
     },
     category: 'theme',
@@ -36,9 +40,14 @@ registerBlockType('saleziani/newsletter-form', {
                         value={attributes.source}
                         onChange={(value) => setAttributes({source: value})}
                     />
+                    <TextControl
+                        label="URL"
+                        value={attributes.url}
+                        onChange={(value) => setAttributes({url: value})}
+                    />
                 </PanelBody>
             </InspectorControls>
             <ServerSideRender attributes={attributes} block={name} key={'preview'}/>
-        </div>
+        </div>;
     }
 });
