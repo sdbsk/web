@@ -87,13 +87,13 @@ class TitusZemanSkImportCommand extends Command
             return parent::FAILURE;
         }
 
+        global $wpdb;
+
         $first = (int)$input->getOption('first');
         $last = (int)$input->getOption('last');
 
         if (0 === $first && 0 === $last) {
             $output->writeln('Cleanup ...');
-
-            global $wpdb;
 
             foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
                 $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
