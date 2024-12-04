@@ -87,38 +87,45 @@ class TitusZemanSkImportCommand extends Command
             return parent::FAILURE;
         }
 
-        global $wpdb;
+        $first = (int)$input->getOption('first');
+        $last = (int)$input->getOption('last');
 
-        foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
-            $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
+        if (0 === $first && 0 === $last) {
+            $output->writeln('Cleanup ...');
 
-            if (isset($metadata['file'])) {
-                $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
+            global $wpdb;
 
-                if (is_file($filename)) {
-                    unlink($filename);
-                }
+            foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
+                $metadata = get_post_meta($attachment['id'], '_wp_attachment_metadata', true);
 
-                if (isset($metadata['original_image'])) {
-                    $originalImageFilename = dirname($filename) . '/' . $metadata['original_image'];
+                if (isset($metadata['file'])) {
+                    $filename = wp_upload_dir()['path'] . '/../../' . $metadata['file'];
 
-                    if (is_file($originalImageFilename)) {
-                        unlink($originalImageFilename);
+                    if (is_file($filename)) {
+                        unlink($filename);
                     }
-                }
 
-                foreach ($metadata['sizes'] as $size) {
-                    $sizeFilename = dirname($filename) . '/' . $size['file'];
+                    if (isset($metadata['original_image'])) {
+                        $originalImageFilename = dirname($filename) . '/' . $metadata['original_image'];
 
-                    if (is_file($sizeFilename)) {
-                        unlink($sizeFilename);
+                        if (is_file($originalImageFilename)) {
+                            unlink($originalImageFilename);
+                        }
+                    }
+
+                    foreach ($metadata['sizes'] as $size) {
+                        $sizeFilename = dirname($filename) . '/' . $size['file'];
+
+                        if (is_file($sizeFilename)) {
+                            unlink($sizeFilename);
+                        }
                     }
                 }
             }
-        }
 
-        $wpdb->query($wpdb->prepare('DELETE wp_postmeta FROM wp_posts INNER JOIN wp_postmeta ON wp_postmeta.post_id = wp_posts.ID WHERE wp_posts.post_author = %s', [$author->ID]));
-        $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
+            $wpdb->query($wpdb->prepare('DELETE wp_postmeta FROM wp_posts INNER JOIN wp_postmeta ON wp_postmeta.post_id = wp_posts.ID WHERE wp_posts.post_author = %s', [$author->ID]));
+            $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
+        }
 
         $importAttachment = function (string $source) use ($wpdb, $author, $sourceAssetsDir): ?int {
             $source = $sourceAssetsDir . $source;
@@ -199,9 +206,6 @@ class TitusZemanSkImportCommand extends Command
             ORDER BY
                 post_date
         ')->fetchAll(PDO::FETCH_ASSOC);
-
-        $first = (int)$input->getOption('first');
-        $last = (int)$input->getOption('last');
 
         if ($first > 0 && $last > 0) {
             $sourcePosts = array_slice($sourcePosts, $first - 1, $last - $first + 1);
