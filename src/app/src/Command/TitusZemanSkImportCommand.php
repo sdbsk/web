@@ -310,9 +310,7 @@ class TitusZemanSkImportCommand extends Command
                 'post_date' => $sourcePost['date'],
                 'post_status' => 'publish',
                 'post_title' => $sourcePost['title'],
-                'tax_input' => [
-                    'post_tag' => [$tag->term_id],
-                ],
+                'tags_input' => [$tag->term_id],
                 '_thumbnail_id' => isset($sourcePost['thumbnail']) ? $importAttachment($attachments[$sourcePost['thumbnail']]) : null,
             ]);
 
