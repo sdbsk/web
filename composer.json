@@ -54,28 +54,31 @@
     ],
     "require": {
         "php": "~8.3.0",
+        "ext-fileinfo": "*",
+        "ext-pdo": "*",
         "ext-zend-opcache": "*",
-        "composer/installers": "^2.2",
+        "composer/installers": "^2.3",
         "oscarotero/env": "^2.1",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "^6.5",
+        "roots/wordpress": "^6.7",
         "roots/wp-config": "^1.0",
-        "roots/wp-password-bcrypt": "^1.1",
+        "roots/wp-password-bcrypt": "^1.2",
         "vlucas/phpdotenv": "^5.6",
-        "wpackagist-plugin/w3-total-cache": "^2.7",
+        "wpackagist-plugin/w3-total-cache": "^2.8",
         "google/material-symbols": "1.0",
         "saleziani/theme-app": "^1.0",
         "ext-curl": "*",
-        "symfony/property-access": "^7.1",
-        "symfony/twig-bundle": "^7.1",
-        "symfony/form": "^7.1",
-        "symfony/validator": "^7.1"
+        "symfony/property-access": "^7.2",
+        "symfony/twig-bundle": "^7.2",
+        "symfony/form": "^7.2",
+        "symfony/validator": "^7.2",
+        "symfony/html-sanitizer": "^7.2"
     },
     "require-dev": {
-        "deployer/deployer": "^7.4",
+        "deployer/deployer": "^7.5",
         "roave/security-advisories": "dev-latest",
-        "symfony/var-dumper": "^7.1",
-        "symfony/maker-bundle": "^1.59"
+        "symfony/var-dumper": "^7.2",
+        "symfony/maker-bundle": "^1.61"
     }
 }
