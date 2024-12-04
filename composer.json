@@ -54,8 +54,6 @@
     ],
     "require": {
         "php": "~8.3.0",
-        "ext-fileinfo": "*",
-        "ext-pdo": "*",
         "ext-zend-opcache": "*",
         "composer/installers": "^2.3",
         "oscarotero/env": "^2.1",
@@ -72,8 +70,7 @@
         "symfony/property-access": "^7.2",
         "symfony/twig-bundle": "^7.2",
         "symfony/form": "^7.2",
-        "symfony/validator": "^7.2",
-        "symfony/html-sanitizer": "^7.2"
+        "symfony/validator": "^7.2"
     },
     "require-dev": {
         "deployer/deployer": "^7.5",
