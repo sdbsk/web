@@ -38,12 +38,15 @@ class TitusZemanSkImportCommand extends Command
 
     protected function configure(): void
     {
+        $this->addOption('cleanup-only');
         $this->addOption('first', null, InputOption::VALUE_REQUIRED, '', 0);
         $this->addOption('last', null, InputOption::VALUE_REQUIRED, '', 0);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $cleanupOnly = $input->getOption('cleanup-only');
+
         try {
             $sourceDb = new PDO('mysql:host=' . getenv('TITUSZEMAN_DATABASE_HOST') . ';dbname=' . getenv('TITUSZEMAN_DATABASE_NAME'),
                 getenv('TITUSZEMAN_DATABASE_USERNAME'),
@@ -92,7 +95,7 @@ class TitusZemanSkImportCommand extends Command
         $first = (int)$input->getOption('first');
         $last = (int)$input->getOption('last');
 
-        if (0 === $first && 0 === $last) {
+        if ($cleanupOnly || (0 === $first && 0 === $last)) {
             $output->writeln('Cleanup ...');
 
             foreach ($wpdb->get_results($wpdb->prepare('SELECT id FROM wp_posts WHERE post_author = %s AND post_type = %s', [$author->ID, 'attachment']), ARRAY_A) as $attachment) {
@@ -125,6 +128,10 @@ class TitusZemanSkImportCommand extends Command
 
             $wpdb->query($wpdb->prepare('DELETE wp_postmeta FROM wp_posts INNER JOIN wp_postmeta ON wp_postmeta.post_id = wp_posts.ID WHERE wp_posts.post_author = %s', [$author->ID]));
             $wpdb->query($wpdb->prepare('DELETE FROM wp_posts WHERE post_author = %s', [$author->ID]));
+        }
+
+        if ($cleanupOnly) {
+            return parent::SUCCESS;
         }
 
         $importAttachment = function (string $source) use ($wpdb, $author, $sourceAssetsDir): ?int {
@@ -231,7 +238,7 @@ class TitusZemanSkImportCommand extends Command
             $content = preg_replace_callback('~<a[0-9a-zA-Zá-žÁ-Ž\s=":/.\-_]+>(<img[0-9a-zA-Zá-žÁ-Ž\s=":/.\-_]+/>)</a>~', fn($matches): string => $matches[1], $content);
 
             // Images from <img src>
-            $content = preg_replace_callback('~<img[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]+src="([0-9a-zA-Zá-žÁ-Ž:/.\-_]+)"[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]*>~', function ($matches) use ($importAttachment): string {
+            $content = preg_replace_callback('~<img[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]+src="([0-9a-zA-Zá-žÁ-Ž:/.\-–_]+)"[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]*>~', function ($matches) use ($importAttachment): string {
                 $imageId = $importAttachment(strtr($matches[1], ['http://tituszeman.sk/page/wp-content/uploads/' => '', 'https://tituszeman.sk/page/wp-content/uploads/' => '']));
 
                 if (null === $imageId) {
@@ -261,7 +268,7 @@ class TitusZemanSkImportCommand extends Command
             }, $content);
 
             // Files from <a href>
-            $content = preg_replace_callback('~<a[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]+href="([0-9a-zA-Zá-žÁ-Ž:/.\-_]+)"[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]*>~', function ($matches) use ($importAttachment): string {
+            $content = preg_replace_callback('~<a[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]+href="([0-9a-zA-Zá-žÁ-Ž:/.\-–_]+)"[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]*>~', function ($matches) use ($importAttachment): string {
                 $fileId = $importAttachment(strtr($matches[1], ['http://tituszeman.sk/page/wp-content/uploads/' => '', 'https://tituszeman.sk/page/wp-content/uploads/' => '']));
 
                 if (null === $fileId) {
