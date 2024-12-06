@@ -316,6 +316,12 @@ class TitusZemanSkImportCommand extends Command
                 '</figure><!-- /wp:gallery -->' => '</figure>' . PHP_EOL . '<!-- /wp:gallery -->',
             ]));
 
+            if (isset($sourcePost['thumbnail']) && isset($attachments[$sourcePost['thumbnail']])) {
+                [$thumbnailId] = $importAttachment($attachments[$sourcePost['thumbnail']]);
+            } else {
+                $thumbnailId = null;
+            }
+
             $postId = wp_insert_post([
                 'post_author' => $author->ID,
                 'post_category' => [$category->term_id],
@@ -324,7 +330,7 @@ class TitusZemanSkImportCommand extends Command
                 'post_status' => 'publish',
                 'post_title' => $sourcePost['title'],
                 'tags_input' => [$tag->term_id],
-                '_thumbnail_id' => isset($sourcePost['thumbnail']) ? $importAttachment($attachments[$sourcePost['thumbnail']]) : null,
+                '_thumbnail_id' => $thumbnailId,
             ]);
 
             $messages[] = $sourcePost['guid'] . PHP_EOL . get_post_permalink($postId) . PHP_EOL;
