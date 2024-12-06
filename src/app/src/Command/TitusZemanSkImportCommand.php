@@ -134,22 +134,24 @@ class TitusZemanSkImportCommand extends Command
             return parent::SUCCESS;
         }
 
-        $importAttachment = function (string $source) use ($wpdb, $author, $sourceAssetsDir): ?int {
+        $importAttachment = function (string $source) use ($wpdb, $author, $sourceAssetsDir): array {
             $source = $sourceAssetsDir . $source;
 
             if (is_file($source)) {
                 $dateTime = (new DateTimeImmutable())->setTimestamp(filemtime($source));
                 $baseName = basename($source);
                 $filename = wp_upload_dir($dateTime->format('Y/m'))['path'] . '/' . $baseName;
+                $path = ltrim(str_replace(wp_upload_dir('', false), '', $filename), '/');
+                $url = home_url() . '/app/uploads/' . $path;
 
                 if (is_file($filename)) {
                     $existing = $wpdb->get_results($wpdb->prepare('SELECT post_id FROM wp_postmeta WHERE meta_key = \'%s\' AND meta_value = \'%s\'', [
                         '_wp_attached_file',
-                        ltrim(str_replace(wp_upload_dir('', false), '', $filename), '/'),
+                        $path,
                     ]), ARRAY_A);
 
                     if (isset($existing[0]['post_id'])) {
-                        return (int)$existing[0]['post_id'];
+                        return [(int)$existing[0]['post_id'], $url];
                     }
                 }
 
@@ -164,10 +166,10 @@ class TitusZemanSkImportCommand extends Command
 
                 wp_update_attachment_metadata($attachmentId, @wp_generate_attachment_metadata($attachmentId, $filename));
 
-                return $attachmentId;
+                return [$attachmentId, $url];
             }
 
-            return null;
+            return [null, null];
         };
 
         $htmlSanitizer = new HtmlSanitizer((new HtmlSanitizerConfig())
@@ -239,13 +241,13 @@ class TitusZemanSkImportCommand extends Command
 
             // Images from <img src>
             $content = preg_replace_callback('~<img[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]+src="([0-9a-zA-Zá-žÁ-Ž:/.\-–_]+)"[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]*>~', function ($matches) use ($importAttachment): string {
-                $imageId = $importAttachment(strtr($matches[1], ['http://tituszeman.sk/page/wp-content/uploads/' => '', 'https://tituszeman.sk/page/wp-content/uploads/' => '']));
+                [$imageId, $imageUrl] = $importAttachment(strtr($matches[1], ['http://tituszeman.sk/page/wp-content/uploads/' => '', 'https://tituszeman.sk/page/wp-content/uploads/' => '']));
 
                 if (null === $imageId) {
                     return '';
                 }
 
-                return '<!-- wp:image {"id":' . $imageId . ',"sizeSlug":"full","linkDestination":"none"} --><figure class="wp-block-image size-full"><img src="' . wp_get_attachment_url($imageId) . '" alt="" class="wp-image-' . $imageId . '"/></figure><!-- /wp:image -->';
+                return '<!-- wp:image {"id":' . $imageId . ',"sizeSlug":"full","linkDestination":"none"} --><figure class="wp-block-image size-full"><img src="' . $imageUrl . '" alt="" class="wp-image-' . $imageId . '"/></figure><!-- /wp:image -->';
             }, $content);
 
             // Images from [gallery]
@@ -254,10 +256,10 @@ class TitusZemanSkImportCommand extends Command
 
                 foreach (explode(',', $matches[1]) as $sourceImageId) {
                     if (isset($attachments[$sourceImageId])) {
-                        $imageId = $importAttachment($attachments[$sourceImageId]);
+                        [$imageId, $imageUrl] = $importAttachment($attachments[$sourceImageId]);
 
                         if (null !== $imageId) {
-                            $output .= '<!-- wp:image {"id":' . $imageId . ',"sizeSlug":"large","linkDestination":"none"} --><figure class="wp-block-image size-large"><img src="' . wp_get_attachment_url($imageId) . '" alt="" class="wp-image-' . $imageId . '"/></figure><!-- /wp:image -->';
+                            $output .= '<!-- wp:image {"id":' . $imageId . ',"sizeSlug":"large","linkDestination":"none"} --><figure class="wp-block-image size-large"><img src="' . $imageUrl . '" alt="" class="wp-image-' . $imageId . '"/></figure><!-- /wp:image -->';
                         }
                     }
                 }
@@ -269,13 +271,17 @@ class TitusZemanSkImportCommand extends Command
 
             // Files from <a href>
             $content = preg_replace_callback('~<a[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]+href="([0-9a-zA-Zá-žÁ-Ž:/.\-–_]+)"[\s0-9a-zA-Zá-žÁ-Ž="\-:/._]*>~', function ($matches) use ($importAttachment): string {
-                $fileId = $importAttachment(strtr($matches[1], ['http://tituszeman.sk/page/wp-content/uploads/' => '', 'https://tituszeman.sk/page/wp-content/uploads/' => '']));
+                if (str_contains($matches[1], 'tituszeman.sk')) {
+                    [$fileId, $fileUrl] = $importAttachment(strtr($matches[1], ['http://tituszeman.sk/page/wp-content/uploads/' => '', 'https://tituszeman.sk/page/wp-content/uploads/' => '']));
 
-                if (null === $fileId) {
-                    return '';
+                    if (null === $fileId) {
+                        return '';
+                    }
+
+                    return '<a href="' . $fileUrl . '"/>';
+                } else {
+                    return '<a href="' . $matches[1] . '"/>';
                 }
-
-                return '<a href="' . wp_get_attachment_url($fileId) . '"/>';
             }, $content);
 
             // Paragraphs from line feeds.
