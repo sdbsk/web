@@ -1,84 +1,85 @@
 {
-    "config": {
-        "allow-plugins": {
-            "composer/installers": true,
-            "roots/wordpress-core-installer": true,
-            "symfony/runtime": true
-        },
-        "optimize-autoloader": true,
-        "platform": {
-            "php": "8.3"
-        }
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true,
+      "symfony/runtime": true
     },
-    "extra": {
-        "installer-paths": {
-            "web/app/mu-plugins/{$name}/": [
-                "type:wordpress-muplugin"
-            ],
-            "web/app/plugins/{$name}/": [
-                "type:wordpress-plugin"
-            ],
-            "web/app/themes/{$name}/": [
-                "type:wordpress-theme"
-            ]
-        },
-        "wordpress-install-dir": "web/wp"
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org",
-            "only": [
-                "wpackagist-plugin/*",
-                "wpackagist-theme/*"
-            ]
-        },
-        {
-            "type": "path",
-            "url": "./src/*"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "google/material-symbols",
-                "version": "1.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/marella/material-symbols.git",
-                    "reference": "main"
-                }
-            }
-        }
-    ],
-    "require": {
-        "php": "~8.3.0",
-        "ext-fileinfo": "*",
-        "ext-pdo": "*",
-        "ext-zend-opcache": "*",
-        "composer/installers": "^2.3",
-        "oscarotero/env": "^2.1",
-        "roots/bedrock-autoloader": "^1.0",
-        "roots/bedrock-disallow-indexing": "^2.0",
-        "roots/wordpress": "^6.7",
-        "roots/wp-config": "^1.0",
-        "roots/wp-password-bcrypt": "^1.2",
-        "vlucas/phpdotenv": "^5.6",
-        "wpackagist-plugin/w3-total-cache": "^2.8",
-        "google/material-symbols": "1.0",
-        "saleziani/theme-app": "^1.0",
-        "ext-curl": "*",
-        "symfony/property-access": "^7.2",
-        "symfony/twig-bundle": "^7.2",
-        "symfony/form": "^7.2",
-        "symfony/validator": "^7.2",
-        "symfony/html-sanitizer": "^7.2"
-    },
-    "require-dev": {
-        "deployer/deployer": "^7.5",
-        "roave/security-advisories": "dev-latest",
-        "symfony/var-dumper": "^7.2",
-        "symfony/maker-bundle": "^1.61"
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "8.3"
     }
+  },
+  "extra": {
+    "installer-paths": {
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    },
+    {
+      "type": "path",
+      "url": "./src/*"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "google/material-symbols",
+        "version": "1.0.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/marella/material-symbols.git",
+          "reference": "main"
+        }
+      }
+    }
+  ],
+  "require": {
+    "php": "~8.3.0",
+    "ext-fileinfo": "*",
+    "ext-pdo": "*",
+    "ext-zend-opcache": "*",
+    "composer/installers": "^2.3",
+    "oscarotero/env": "^2.1",
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-disallow-indexing": "^2.0",
+    "roots/wordpress": "^6.7",
+    "roots/wp-config": "^1.0",
+    "roots/wp-password-bcrypt": "^1.2",
+    "vlucas/phpdotenv": "^5.6",
+    "wpackagist-plugin/w3-total-cache": "^2.8",
+    "google/material-symbols": "1.0",
+    "saleziani/theme-app": "^1.0",
+    "ext-curl": "*",
+    "symfony/property-access": "^7.2",
+    "symfony/twig-bundle": "^7.2",
+    "symfony/form": "^7.2",
+    "symfony/validator": "^7.2",
+    "symfony/html-sanitizer": "^7.2",
+    "wpackagist-plugin/generateblocks": "^1.9.1"
+  },
+  "require-dev": {
+    "deployer/deployer": "^7.5",
+    "roave/security-advisories": "dev-latest",
+    "symfony/var-dumper": "^7.2",
+    "symfony/maker-bundle": "^1.61"
+  }
 }
