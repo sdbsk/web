@@ -28,12 +28,13 @@ class DarujmeController extends AbstractController
     {
         try {
             $campaignDecoded = $darujmeFormBlockType->decodedCampaign($campaign);
-            $blockForm = $darujmeFormBlockType->form($campaignDecoded);
+            $blockForm = $darujmeFormBlockType->form($campaignDecoded, blockIndex: $campaignDecoded['block_index'] ?? 0);
             $blockForm->handleRequest($request);
 
             $form = $darujmeFormBlockType->form(
                 $campaignDecoded,
-                formName: ($campaignDecoded['initiated_by_widget'] ?? false) ? 'modal' : ''
+                formName: ($campaignDecoded['initiated_by_widget'] ?? false) ? 'modal' : '',
+                blockIndex: $campaignDecoded['block_index'] ?? 0,
             )->setData($blockForm->getData());
             $form->handleRequest($request);
 

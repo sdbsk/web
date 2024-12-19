@@ -87,15 +87,16 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         return $attributes;
     }
 
-    public function form(array $campaign, bool $isAdmin = false, string $formName = ''): FormInterface
+    public function form(array $campaign, bool $isAdmin = false, string $formName = '', int $blockIndex = 0): FormInterface
     {
         return $this->formFactory
-            ->createNamedBuilder('donation' . ($formName ? '-' . $formName : ''), DonationType::class, options: [
+            ->createNamedBuilder('donation' . ($formName ? '-' . $formName : '') . '-' . $blockIndex, DonationType::class, options: [
                 'campaign' => $campaign,
                 'disabled' => $isAdmin,
                 'action' => $this->urlGenerator->generate('darujme_form', [
                     'campaign' => $this->encodedCampaign([
                         ...$campaign,
+                        'block_index' => $blockIndex,
                         'form_layout' => 'full-form',
                         'initiated_by_widget' => ($campaign['initiated_by_widget'] ?? false) || 'widget' === $campaign['form_layout']
                     ]),
@@ -133,6 +134,8 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
 
     public function render(array $attributes, string $content, WP_Block $block): string
     {
+        static $blockIndex = 0;
+
         $campaign = $this->formCampaign($attributes);
 
         if (!$campaign['has_onetime_payment'] && !$campaign['has_recurring_payment']) {
@@ -140,7 +143,7 @@ class DarujmeFormBlockType extends AbstractBlockType implements BlockTypeInterfa
         }
 
         $isAdmin = defined('REST_REQUEST') && REST_REQUEST;
-        $form = $this->form($campaign, $isAdmin);
+        $form = $this->form($campaign, $isAdmin, '', $blockIndex++);
 
         $form->setData([
             'onetimeAmount' => empty($attributes['default_onetime_amount']) ? null : (float)$attributes['default_onetime_amount'],
