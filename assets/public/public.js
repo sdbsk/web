@@ -89,8 +89,11 @@ class DajnatoForm {
                         }
                     });
 
-                    const $onetimeCheckbox = this.$form.find('.js-onetimeAmount input:eq(' + index + ')');
-                    const $recurringCheckbox = this.$form.find('.js-recurringAmount input:eq(' + index + ')');
+                    const maxOnetimeIndex = this.$form.find('.js-onetimeAmount input').length - 2;
+                    const maxRecurringIndex = this.$form.find('.js-recurringAmount input').length - 2;
+
+                    const $onetimeCheckbox = this.$form.find('.js-onetimeAmount input:eq(' + (index <= maxOnetimeIndex ? index : maxOnetimeIndex) + ')');
+                    const $recurringCheckbox = this.$form.find('.js-recurringAmount input:eq(' + (index <= maxRecurringIndex ? index : maxRecurringIndex) + ')');
 
                     $onetimeCheckbox.prop('checked', true);
                     $recurringCheckbox.prop('checked', true);
