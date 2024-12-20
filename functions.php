@@ -264,14 +264,23 @@ add_action( 'wp_head', function (): void {
 		global $post;
 
 		if ( $post instanceof WP_Post ) {
-			$thumbnailImage = get_the_post_thumbnail_url( $post->ID, 'large' );
+            $image = $fallbackImage;
 
-			$tags = [
-				'title'       => get_the_title(),
-				'description' => get_the_excerpt(),
-				'image'       => empty( $thumbnailImage ) ? $fallbackImage : $thumbnailImage,
-				'url'         => get_permalink(),
-			];
+            foreach ( [ $post->ID, ...get_post_ancestors( $post->ID ) ] as $postId ) {
+                $thumbnail = get_the_post_thumbnail_url( $postId, 'large' );
+
+                if ( ! empty( $thumbnail ) ) {
+                    $image = $thumbnail;
+                    break;
+                }
+            }
+
+            $tags = [
+                'title'       => get_the_title(),
+                'description' => get_the_excerpt(),
+                'image'       => $image,
+                'url'         => get_permalink(),
+            ];
 
 			if ( is_single() ) {
 				$tags['type'] = 'article';
