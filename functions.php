@@ -484,10 +484,9 @@ add_action( 'save_post', function ( int $postId ): void {
 	}
 } );
 
-
 add_filter('query_loop_block_query_vars', function (array $query, WP_Block $block): array {
     if (isset($block->context['queryId'], $_GET['query-' . $block->context['queryId'] . '-category'])) {
-        $category = get_category(intval($_GET['query-' . $block->context['queryId'] . '-category']));
+        $category = get_category_by_slug($_GET['query-' . $block->context['queryId'] . '-category']);
 
         if ($category instanceof WP_Term) {
             $query['cat'] = $category->term_id;
@@ -503,11 +502,14 @@ add_filter('render_block_core/query', function (string $content, array $block, W
         $queryPageParameter = 'query-' . $instance->attributes['queryId'] . '-page';
 
         $menuCategoryId = $instance->attributes['menuCategory'];
+        $currentCategoryId = $menuCategoryId;
 
         if (isset($_GET[$queryCategoryParameter])) {
-            $currentCategoryId = intval($_GET[$queryCategoryParameter]);
-        } else {
-            $currentCategoryId = $menuCategoryId;
+            $currentCategory = get_category_by_slug($_GET[$queryCategoryParameter]);
+
+            if ($currentCategory instanceof WP_Term) {
+                $currentCategoryId = $currentCategory->term_id;
+            }
         }
 
         $categoryUrl = function (int $categoryId) use (
@@ -518,7 +520,11 @@ add_filter('render_block_core/query', function (string $content, array $block, W
             $url = remove_query_arg([$queryCategoryParameter, $queryPageParameter]);
 
             if ($menuCategoryId !== $categoryId) {
-                $url = add_query_arg([$queryCategoryParameter => $categoryId], $url);
+                $category = get_category($categoryId);
+
+                if ($category instanceof WP_Term) {
+                    $url = add_query_arg([$queryCategoryParameter => $category->slug], $url);
+                }
             }
 
             return $url;
