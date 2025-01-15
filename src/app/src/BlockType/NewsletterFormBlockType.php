@@ -70,6 +70,7 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
                  <input type="checkbox" name="gdpr" required="required">
                  <span class="label">Súhlasím so spracúvaním osobných údajov</span>
              </label>
+             <input type="hidden" name="updateExisting" value="1">
              <button type="submit" name="submit" class="mt-2">Registrovať</button>
              </form>
         ');
