@@ -51,10 +51,10 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
                    <span class="label">' . strtoupper($attributes['primary']) . '</span>
                </label>'
             . (empty($attributes['optionals']) ? '' : (implode('', array_map(
-                    fn(WP_Post $newsletter): string => '<label class="input-checkbox">
+                    fn(WP_Post $newsletter): string => $newsletter->post_name === $attributes['primary'] ? '' : ('<label class="input-checkbox">
                         <input type="checkbox" name="custom_fields[' . strtoupper($newsletter->post_name) . ']" value="ano">
                         <span class="label">' . $newsletter->post_title . '</span>
-                    </label>',
+                    </label>'),
                     get_posts(['post__in' => $attributes['optionals'], 'post_type' => 'newsletter', 'posts_per_page' => -1,]),
                 )) . '<div class="border-top w-100 mt-3 pt-3"></div>')) .
             '<label class="input-checkbox">
