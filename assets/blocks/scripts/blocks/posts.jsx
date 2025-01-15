@@ -79,7 +79,7 @@ wp.hooks.addFilter('editor.BlockEdit', 'saleziani/query-with-menu-category-dropd
             return <BlockEdit {...props} />;
         }
 
-        const categories = useSelect((select) => select('core').getEntityRecords('taxonomy', 'category', {_fields: 'id,name', per_page: -1}), []);
+        const categories = useSelect((select) => select('core').getEntityRecords('taxonomy', 'category', {_fields: 'id,name', per_page: -1}));
 
         return (
             <>
