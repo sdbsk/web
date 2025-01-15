@@ -41,6 +41,15 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
 
     public function render(array $attributes, string $content, WP_Block $block): string
     {
+        /** @var array<WP_Post> $optionals */
+        $optionals = empty($attributes['optionals']) ? [] : get_posts(['post__in' => $attributes['optionals'], 'post_type' => 'newsletter', 'posts_per_page' => -1]);
+
+        foreach ($optionals as $index => $optional) {
+            if ($attributes['primary'] === $optional->post_name) {
+                unset($optionals[$index]);
+            }
+        }
+
         return $this->wrapContent($block, '
                 <h3>' . $attributes['title'] . '</h3>
                 <form method="post" action="' . $attributes['url'] . (str_contains($attributes['url'], '?') ? '&' : '?') . 'source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '">
@@ -50,12 +59,12 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
                    <input type="checkbox" name="custom_fields[' . strtoupper($attributes['primary']) . ']" value="ano" checked="checked">
                    <span class="label">' . strtoupper($attributes['primary']) . '</span>
                </label>'
-            . (empty($attributes['optionals']) ? '' : (implode('', array_map(
-                    fn(WP_Post $newsletter): string => $newsletter->post_name === $attributes['primary'] ? '' : ('<label class="input-checkbox">
+            . (empty($optionals) ? '' : (implode('', array_map(
+                    fn(WP_Post $newsletter): string => '<label class="input-checkbox">
                         <input type="checkbox" name="custom_fields[' . strtoupper($newsletter->post_name) . ']" value="ano">
                         <span class="label">' . $newsletter->post_title . '</span>
-                    </label>'),
-                    get_posts(['post__in' => $attributes['optionals'], 'post_type' => 'newsletter', 'posts_per_page' => -1,]),
+                    </label>',
+                    $optionals,
                 )) . '<div class="border-top w-100 mt-3 pt-3"></div>')) .
             '<label class="input-checkbox">
                  <input type="checkbox" name="gdpr" required="required">
