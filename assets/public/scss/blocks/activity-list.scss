@@ -1,0 +1,94 @@
+.activity-list {
+    .activity-item {
+        padding: 1.875rem;
+        background-color: #f9f6f4;
+
+        &:not(:last-of-type) {
+            margin-bottom: 1.875rem;
+        }
+
+        .activity-item-title {
+            display: flex;
+            align-content: center;
+            margin-bottom: 1.25rem;
+
+            h2 {
+                @include display-reg-m;
+                font-weight: 700;
+                margin: 0;
+                color: #000000;
+            }
+
+            .tags {
+                display: flex;
+                margin-bottom: 0;
+                margin-left: 0.625rem;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    font-size: 0.875rem;
+                    padding: 0.25rem 0.5rem;
+                    color: #000000;
+                    border-radius: 0.5rem;
+                    background-color: #eee2d9;
+
+                    &:not(:last-of-type) {
+                        margin-right: 0.625rem;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .activity-item-venue {
+            @include display-reg-s;
+            margin-bottom: 1.25rem;
+            color: #825539;
+        }
+
+        .activity-item-content {
+            @include display-reg-s;
+            margin-bottom: 1.25rem;
+            color: #000000;
+        }
+
+        .activity-item-bottom-content {
+            display: flex;
+            align-items: center;
+
+            :not(:last-child) {
+                margin-right: 2.1875rem;
+            }
+
+            .wp-block-buttons {
+                .wp-block-button {
+                    .wp-element-button {
+                        &:after {
+                            display: none;
+                        }
+
+                        &:hover {
+                            padding-right: 2rem;
+                        }
+                    }
+                }
+            }
+
+            .activity-item-link {
+                color: #cf3942;
+                @include display-reg-s;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+            p {
+                @include display-reg-s;
+                margin-bottom: 0;
+                color: #825539;
+            }
+        }
+    }
+}
