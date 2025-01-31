@@ -27,13 +27,9 @@ jobs:
                     path: /tmp/composer-cache
                     key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
-            -   name: Install php dependencies
-                uses: php-actions/composer@v6
-                with:
-                    php_version: "8.3"
-
             -   name: Install dependencies
                 run: |
+                    php8.3 /usr/local/bin/composer install
                     npm i && npm rebuild node-sass && npm run prod
 
             -   name: Prepare Git
