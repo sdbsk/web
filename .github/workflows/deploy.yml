@@ -52,20 +52,28 @@ jobs:
                     git commit -m "Release $GITHUB_RUN_NUMBER"
                     git push origin release/${{ github.ref_name }} --force
 
-    deploy:
-        needs: build
-        runs-on: self-hosted
-        environment: ${{ github.ref_name }}
-        steps:
-            -   name: Checkout repository
-                uses: actions/checkout@v4
-
-            -   name: Install dependencies
-                run: php8.3 /usr/local/bin/composer install
-
             -   name: Deploy
                 run: |
                     eval $(ssh-agent -s)
                     ssh-add ~/.ssh/id_ed25519
                     php8.3 vendor/bin/dep deploy ${{ github.ref_name }} -vvv
                     eval $(ssh-agent -k)
+
+#
+#    deploy:
+#        needs: build
+#        runs-on: self-hosted
+#        environment: ${{ github.ref_name }}
+#        steps:
+##            -   name: Checkout repository
+##                uses: actions/checkout@v4
+##
+##            -   name: Install dependencies
+##                run: php8.3 /usr/local/bin/composer install
+#
+#            -   name: Deploy
+#                run: |
+#                    eval $(ssh-agent -s)
+#                    ssh-add ~/.ssh/id_ed25519
+#                    php8.3 vendor/bin/dep deploy ${{ github.ref_name }} -vvv
+#                    eval $(ssh-agent -k)
