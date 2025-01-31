@@ -69,7 +69,7 @@
         "symfony/maker-bundle": "^1.61"
     },
     "scripts": {
-        "pre-install-cmd": "chmod 0755 ./install-google-material-symbols.sh && ./install-google-material-symbols.sh",
-        "pre-update-cmd": "chmod 0755 ./install-google-material-symbols.sh && ./install-google-material-symbols.sh"
+        "pre-install-cmd": "sh install-google-material-symbols.sh",
+        "pre-update-cmd": "sh install-google-material-symbols.sh"
     }
 }
