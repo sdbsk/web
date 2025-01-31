@@ -25,7 +25,7 @@ jobs:
 
             -   id: get-composer-cache-directory
                 name: Get Composer caches directory path
-                run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+                run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
                 shell: bash
 
             -   name: Cache Composer dependencies
@@ -45,7 +45,7 @@ jobs:
                     git config --global user.email "ci@github.com"
                     git config --global user.name "GitHub Actions"
                     echo "Build $GITHUB_RUN_NUMBER"
-                    git checkout -b release-${{ github.ref_name }}
+                    git checkout -b release/${{ github.ref_name }}
                     sed -i '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore
                     sed -i '/^\/web\/\.htaccess$/d' .gitignore
                     git add --all
