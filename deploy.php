@@ -11,7 +11,7 @@ require 'recipe/common.php';
 import('hosts.yml');
 
 set('application', 'saleziani.sk');
-set('repository', 'git@bitbucket.org:bratiask/saleziani.git');
+set('repository', 'git@github.com:sdbsk/web.git');
 set('git_tty', true);
 set('shared_files', ['.env.local', 'web/.htaccess']);
 set('shared_dirs', [
