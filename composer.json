@@ -38,18 +38,6 @@
         {
             "type": "path",
             "url": "./src/*"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "google/material-symbols",
-                "version": "1.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/marella/material-symbols.git",
-                    "reference": "main"
-                }
-            }
         }
     ],
     "require": {
@@ -66,7 +54,6 @@
         "roots/wp-password-bcrypt": "^1.2",
         "vlucas/phpdotenv": "^5.6",
         "wpackagist-plugin/w3-total-cache": "^2.8",
-        "google/material-symbols": "1.0",
         "saleziani/theme-app": "^1.0",
         "ext-curl": "*",
         "symfony/property-access": "^7.2",
@@ -80,5 +67,9 @@
         "roave/security-advisories": "dev-latest",
         "symfony/var-dumper": "^7.2",
         "symfony/maker-bundle": "^1.61"
+    },
+    "scripts": {
+        "pre-install-cmd": "./install-google-material-symbols.sh",
+        "pre-update-cmd": "./install-google-material-symbols.sh"
     }
 }

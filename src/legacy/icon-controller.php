@@ -13,12 +13,12 @@ add_action('parse_request', function (WP $wp): void {
             exit;
         }
 
-        if (!preg_match('/[a-z0-9_]+\.svg/', $icon)) {
+        if (!preg_match('/^[a-z0-9_\-]+\.svg$/', $icon)) {
             header('HTTP/1.0 404 Not Found');
             exit;
         }
 
-        $file = "../vendor/google/material-symbols/svg/400/outlined/$icon";
+        $file = "../assets/google-material-symbols/$icon";
 
         if (!file_exists($file)) {
             header('HTTP/1.0 404 Not Found');

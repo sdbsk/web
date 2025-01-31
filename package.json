@@ -27,8 +27,7 @@
     },
     "private": true,
     "scripts": {
-        "build:icons": "node build-icons.js",
-        "dev": "npm run build:icons && encore dev --watch",
-        "prod": "npm run build:icons && encore production --progress"
+        "dev": "encore dev --watch",
+        "prod": "encore production --progress"
     }
 }
