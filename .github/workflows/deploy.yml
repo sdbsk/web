@@ -23,15 +23,21 @@ jobs:
                     node-version: 18
                     cache: 'npm'
 
-            - name: Cache Composer dependencies
-              uses: actions/cache@v3
-              with:
-                  path: vendor
-                  key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+            -   id: get-composer-cache-directory
+                name: Get Composer caches directory path
+                run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+                shell: bash
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: ${{ steps.get-composer-cache-directory.outputs.dir }}
+                    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: ${{ runner.os }}-composer-
 
             -   name: Install dependencies
                 run: |
-                    php8.3 /usr/local/bin/composer install
+                    php8.3 /usr/local/bin/composer --prefer-dist --no-progress --no-suggest install
                     npm i && npm rebuild node-sass && npm run prod
 
             -   name: Prepare Git
@@ -44,7 +50,7 @@ jobs:
                     sed -i '/^\/web\/\.htaccess$/d' .gitignore
                     git add --all
                     git commit -m "Release $GITHUB_RUN_NUMBER"
-                    git push origin release-${{ github.ref_name }} --force
+                    git push origin release/${{ github.ref_name }} --force
 
     deploy:
         needs: build
