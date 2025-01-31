@@ -2,7 +2,7 @@
 
 TMPDIR="${TMPDIR:-$TEMP}"
 TMPDIR="${TMPDIR:-$TMP}"
-TMPDIR="${TMPDIR:-/tmp}"
+TMPDIR="${TMPDIR:-/tmp/}"
 
 CURRENT_DIR=`pwd`
 TARGET_DIR="${CURRENT_DIR}/assets/google-material-symbols/"
