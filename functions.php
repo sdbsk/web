@@ -272,6 +272,28 @@ add_action( 'wp_head', function (): void {
 
 		if ( $post instanceof WP_Post ) {
             $image = $fallbackImage;
+            $url = get_permalink();
+
+            preg_match_all('/wp:query \{"queryId":(\d+)/', $post->post_content, $matches);
+
+            $params = [];
+
+            foreach ($matches[1] as $queryId) {
+                $paramName = "query-$queryId-page";
+                $paramValue = $_GET[$paramName] ?? null;
+
+                if (!empty($paramValue)) {
+                    $params[$paramName] = $paramValue;
+                }
+            }
+
+            if (count($params) > 0) {
+                ksort($params);
+
+                foreach ($params as $name => $value) {
+                    $url = add_query_arg($name, $value, $url);
+                }
+            }
 
             foreach ( [ $post->ID, ...get_post_ancestors( $post->ID ) ] as $postId ) {
                 $thumbnail = get_the_post_thumbnail_url( $postId, 'large' );
@@ -286,7 +308,7 @@ add_action( 'wp_head', function (): void {
                 'title'       => get_the_title(),
                 'description' => get_the_excerpt(),
                 'image'       => $image,
-                'url'         => get_permalink(),
+                'url'         => $url,
             ];
 
 			if ( is_single() ) {
