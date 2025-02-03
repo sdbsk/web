@@ -254,11 +254,18 @@ add_action( 'wp_head', function (): void {
 	if ( is_category() ) {
 		$category = get_queried_object();
 
+        $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+        $url = get_category_link( $category );
+
+        if ($paged > 1) {
+            $url = trailingslashit($url) . 'page/' . $paged;
+        }
+
 		$tags = [
 			'title'       => $category->name,
 			'description' => $category->description,
 			'image'       => $fallbackImage,
-			'url'         => get_category_link( $category ),
+			'url'         => $url,
 		];
 	} else {
 		global $post;
@@ -289,6 +296,10 @@ add_action( 'wp_head', function (): void {
 			$tags = [];
 		}
 	}
+
+    if (isset($tags['url'])) {
+        echo '<link rel="canonical" href="' . esc_attr($tags['url']) . '" />';
+    }
 
 	foreach ( $tags as $name => $value ) {
 		if ( ! empty( $value ) ) {
