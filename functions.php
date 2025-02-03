@@ -258,7 +258,7 @@ add_action( 'wp_head', function (): void {
         $url = get_category_link( $category );
 
         if ($paged > 1) {
-            $url = trailingslashit($url) . 'page/' . $paged . '/';
+            $url = trailingslashit($url) . 'page/' . $paged;
         }
 
 		$tags = [
