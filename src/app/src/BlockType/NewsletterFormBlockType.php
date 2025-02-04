@@ -1,20 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BlockType;
 
 use WP_Block;
+use WP_Post;
 
 class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInterface
 {
     public function attributes(): array
     {
         return [
-            'title' => [
-                'default' => 'Chcete sledovať, čo máme nové? Pridajte sa do nášho newslettra.',
+            'description' => [
+                'default' => '',
+                'type' => 'string',
+            ],
+            'optionals' => [
+                'default' => [],
+                'type' => 'array',
+            ],
+            'primary' => [
+                'default' => 'newsletter',
                 'type' => 'string',
             ],
             'source' => [
-                'default' => 'saleziani-sk',
+                'default' => 'web-saleziani-sk',
+                'type' => 'string',
+            ],
+            'title' => [
+                'default' => 'Chcete sledovať, čo máme nové? Pridajte sa do nášho newslettra.',
                 'type' => 'string',
             ],
             'url' => [
@@ -26,16 +41,38 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
 
     public function render(array $attributes, string $content, WP_Block $block): string
     {
+        /** @var array<WP_Post> $optionals */
+        $optionals = empty($attributes['optionals']) ? [] : get_posts(['post__in' => $attributes['optionals'], 'post_type' => 'newsletter', 'posts_per_page' => -1]);
+
+        foreach ($optionals as $index => $optional) {
+            if ($attributes['primary'] === $optional->post_name) {
+                unset($optionals[$index]);
+            }
+        }
+
         return $this->wrapContent($block, '
                 <h3>' . $attributes['title'] . '</h3>
-                <form method="post" action="' . $attributes['url'] . (strpos($attributes['url'], '?') !== false ? '&' : '?') . 'source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '">
-                    <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
-                    <label class="input-checkbox">
-                        <input type="checkbox" name="gdpr" required="required">
-                        <span class="label">Súhlasím so spracúvaním osobných údajov</span>
-                    </label>
-                    <button type="submit" name="submit">Registrovať</button>
-                </form>
+                <form method="post" action="' . $attributes['url'] . (str_contains($attributes['url'], '?') ? '&' : '?') . 'source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '">
+                    <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">'
+            . (empty($attributes['description']) ? '' : ('<div class="description">' . $attributes['description'] . '</div>'))
+            . '<label class="input-checkbox d-none">
+                   <input type="checkbox" name="custom_fields[' . strtoupper($attributes['primary']) . ']" value="ano" checked="checked">
+                   <span class="label">' . strtoupper($attributes['primary']) . '</span>
+               </label>'
+            . (empty($optionals) ? '' : (implode('', array_map(
+                    fn(WP_Post $newsletter): string => '<label class="input-checkbox">
+                        <input type="checkbox" name="custom_fields[' . strtoupper($newsletter->post_name) . ']" value="ano">
+                        <span class="label">' . $newsletter->post_title . '</span>
+                    </label>',
+                    $optionals,
+                )) . '<div class="border-top w-100 mt-3 pt-3"></div>')) .
+            '<label class="input-checkbox">
+                 <input type="checkbox" name="gdpr" required="required">
+                 <span class="label">Súhlasím so spracúvaním osobných údajov</span>
+             </label>
+             <input type="hidden" name="updateExisting" value="1">
+             <button type="submit" name="submit" class="mt-2">Registrovať</button>
+             </form>
         ');
     }
 }

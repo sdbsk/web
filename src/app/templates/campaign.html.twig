@@ -1,7 +1,9 @@
 {# {% form_theme donation_form 'form/layout.twig' %} #}
 
 {% set isCampaignForm = donation_form.isCampaignForm is defined %}
-<div class="modal-content donation-form js-donation-form{% if isEmbedded %} embedded-donation-form{% endif %}">
+{% set isWidgetFirstStep = 'widget' is same as formLayout and not donation_form.vars.submitted %}
+
+<div class="modal-content donation-form js-donation-form{% if isEmbedded %} embedded-donation-form{% endif %}{% if isWidgetFirstStep %} widget-donation-form{% endif %}">
     {{ form_start(donation_form, {attr: {novalidate: 'novalidate'}}) }}
     <div class="modal-header">
         <h3 class="modal-title">{{ formTitle }}</h3>
@@ -16,7 +18,6 @@
         {% set canBeOnetime = donation_form.onetimeAmount is defined %}
         {% set isRecurring = canBeRecurring and donation_form.onetimeOrRecurring.vars.data == 'recurring' %}
         {% set isExpensesChecboxChecked = donation_form.expenses.vars.data %}
-        {% set isWidgetFirstStep = 'widget' is same as formLayout and not donation_form.vars.submitted %}
 
         {% if isRecurring %}
             {% set showOtherAmount = donation_form.recurringAmount.vars.data is empty %}
@@ -26,11 +27,11 @@
             {% set showOtherAmount = false %}
         {% endif %}
 
-        {% set recurringAmountValue = showOtherAmount ? donation_form.otherAmount.vars.data : (donation_form.recurringAmount.vars.data ?? 0) %}
+        {% set recurringAmountValue = donation_form.recurringAmount.vars.data ? (showOtherAmount ? donation_form.otherAmount.vars.data : donation_form.recurringAmount.vars.data) : 0 %}
         {% set recurringAmountValueTotal = (recurringAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
         {% set recurringAmount = recurringAmountValueTotal ~ '&nbsp;€' %}
 
-        {% set oneTimeAmountValue = showOtherAmount ? donation_form.otherAmount.vars.data : (donation_form.onetimeAmount.vars.data ?? 0) %}
+        {% set oneTimeAmountValue = donation_form.onetimeAmount.vars.data ? (showOtherAmount ? donation_form.otherAmount.vars.data : donation_form.onetimeAmount.vars.data) : 0 %}
         {% set oneTimeAmountValueTotal = (oneTimeAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
         {% set oneTimeAmount = oneTimeAmountValueTotal ~ '&nbsp;€' %}
 
@@ -39,7 +40,7 @@
         </div>
 
         <div class="field-group mb-4 donation-form-amount">
-            <h6>Suma</h6>
+{#            <h6>Suma</h6>#}
             {% if canBeRecurring %}
                 <div class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">
                     {{ form_row(donation_form.recurringAmount) }}

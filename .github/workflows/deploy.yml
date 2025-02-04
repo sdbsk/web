@@ -1,0 +1,79 @@
+name: CI/CD Pipeline
+
+on:
+    push:
+        branches:
+            - develop
+            - main
+
+jobs:
+    build:
+        runs-on: self-hosted
+        permissions:
+            contents: write
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0
+
+            -   name: Set up Node.js
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 18
+                    cache: 'npm'
+
+            -   id: get-composer-cache-directory
+                name: Get Composer caches directory path
+                run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+                shell: bash
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v3
+                with:
+                    path: ${{ steps.get-composer-cache-directory.outputs.dir }}
+                    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: ${{ runner.os }}-composer-
+
+            -   name: Install dependencies
+                run: |
+                    php8.3 /usr/local/bin/composer --prefer-dist --no-progress --no-suggest install
+                    npm i && npm rebuild node-sass && npm run prod
+
+            -   name: Prepare Git
+                run: |
+                    git config --global user.email "ci@github.com"
+                    git config --global user.name "GitHub Actions"
+                    echo "Build $GITHUB_RUN_NUMBER"
+                    git checkout -b release/${{ github.ref_name }}
+                    sed -i '/^\/web\/app\/themes\/saleziani\/assets$/d' .gitignore
+                    sed -i '/^\/web\/\.htaccess$/d' .gitignore
+                    git add --all
+                    git commit -m "Release $GITHUB_RUN_NUMBER"
+                    git push origin release/${{ github.ref_name }} --force
+
+            -   name: Deploy
+                run: |
+                    eval $(ssh-agent -s)
+                    ssh-add ~/.ssh/id_ed25519
+                    php8.3 vendor/bin/dep deploy ${{ github.ref_name }} -vvv
+                    eval $(ssh-agent -k)
+
+#
+#    deploy:
+#        needs: build
+#        runs-on: self-hosted
+#        environment: ${{ github.ref_name }}
+#        steps:
+##            -   name: Checkout repository
+##                uses: actions/checkout@v4
+##
+##            -   name: Install dependencies
+##                run: php8.3 /usr/local/bin/composer install
+#
+#            -   name: Deploy
+#                run: |
+#                    eval $(ssh-agent -s)
+#                    ssh-add ~/.ssh/id_ed25519
+#                    php8.3 vendor/bin/dep deploy ${{ github.ref_name }} -vvv
+#                    eval $(ssh-agent -k)

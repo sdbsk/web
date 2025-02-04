@@ -152,15 +152,13 @@ add_filter( 'allowed_block_types_all', function (): array {
 	];
 }, 10, 2 );
 
-function wpb_embed_block(): void {
-	wp_enqueue_script(
-		'deny-list-blocks',
-		get_template_directory_uri() . '/assets/admin.js',
-		[ 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ],
-	);
-}
-
-add_action( 'enqueue_block_editor_assets', 'wpb_embed_block' );
+add_action( 'enqueue_block_editor_assets', function () use ( $assets, $manifest ): void {
+	wp_enqueue_script( 'deny-list-blocks', home_url() . $manifest[ $assets . 'admin.js' ], [
+		'wp-blocks',
+		'wp-dom-ready',
+		'wp-edit-post'
+	], false, [ 'in_footer' => false ] );
+} );
 
 add_filter( 'excerpt_more', fn(): string => '…' );
 
@@ -272,23 +270,61 @@ add_action( 'wp_head', function (): void {
 	if ( is_category() ) {
 		$category = get_queried_object();
 
+        $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+        $url = get_category_link( $category );
+
+        if ($paged > 1) {
+            $url = trailingslashit($url) . 'page/' . $paged;
+        }
+
 		$tags = [
 			'title'       => $category->name,
 			'description' => $category->description,
 			'image'       => $fallbackImage,
-			'url'         => get_category_link( $category ),
+			'url'         => $url,
 		];
 	} else {
 		global $post;
 
 		if ( $post instanceof WP_Post ) {
-			$thumbnailImage = get_the_post_thumbnail_url( $post->ID, 'large' );
+            $image = $fallbackImage;
+            $url = get_permalink();
+
+            preg_match_all('/wp:query \{"queryId":(\d+)/', $post->post_content, $matches);
+
+            $params = [];
+
+            foreach ($matches[1] as $queryId) {
+                $paramName = "query-$queryId-page";
+                $paramValue = $_GET[$paramName] ?? null;
+
+                if (!empty($paramValue)) {
+                    $params[$paramName] = $paramValue;
+                }
+            }
+
+            if (count($params) > 0) {
+                ksort($params);
+
+                foreach ($params as $name => $value) {
+                    $url = add_query_arg($name, $value, $url);
+                }
+            }
+
+            foreach ( [ $post->ID, ...get_post_ancestors( $post->ID ) ] as $postId ) {
+                $thumbnail = get_the_post_thumbnail_url( $postId, 'large' );
+
+                if ( ! empty( $thumbnail ) ) {
+                    $image = $thumbnail;
+                    break;
+                }
+            }
 
 			$tags = [
 				'title'       => get_the_title(),
 				'description' => get_the_excerpt(),
-				'image'       => empty( $thumbnailImage ) ? $fallbackImage : $thumbnailImage,
-				'url'         => get_permalink(),
+                'image'       => $image,
+                'url'         => $url,
 			];
 
 			if ( is_single() ) {
@@ -298,6 +334,10 @@ add_action( 'wp_head', function (): void {
 			$tags = [];
 		}
 	}
+
+    if (isset($tags['url'])) {
+        echo '<link rel="canonical" href="' . esc_attr($tags['url']) . '" />';
+    }
 
 	foreach ( $tags as $name => $value ) {
 		if ( ! empty( $value ) ) {
@@ -492,6 +532,67 @@ add_action( 'save_post', function ( int $postId ): void {
 		}
 	}
 } );
+
+add_filter('query_loop_block_query_vars', function (array $query, WP_Block $block): array {
+    if (isset($block->context['queryId'], $_GET['query-' . $block->context['queryId'] . '-category'])) {
+        $category = get_category_by_slug($_GET['query-' . $block->context['queryId'] . '-category']);
+
+        if ($category instanceof WP_Term) {
+            $query['cat'] = $category->term_id;
+        }
+    }
+
+    return $query;
+}, 10, 2);
+
+add_filter('render_block_core/query', function (string $content, array $block, WP_Block $instance): string {
+    if ('saleziani/posts' === ($instance->attributes['namespace'] ?? '') && isset($instance->attributes['menuCategory'])) {
+        $queryCategoryParameter = 'query-' . $instance->attributes['queryId'] . '-category';
+        $queryPageParameter = 'query-' . $instance->attributes['queryId'] . '-page';
+
+        $menuCategoryId = $instance->attributes['menuCategory'];
+        $currentCategoryId = $menuCategoryId;
+
+        if (isset($_GET[$queryCategoryParameter])) {
+            $currentCategory = get_category_by_slug($_GET[$queryCategoryParameter]);
+
+            if ($currentCategory instanceof WP_Term) {
+                $currentCategoryId = $currentCategory->term_id;
+            }
+        }
+
+        $categoryUrl = function (int $categoryId) use (
+            $menuCategoryId,
+            $queryCategoryParameter,
+            $queryPageParameter,
+        ): string {
+            $url = remove_query_arg([$queryCategoryParameter, $queryPageParameter]);
+
+            if ($menuCategoryId !== $categoryId) {
+                $category = get_category($categoryId);
+
+                if ($category instanceof WP_Term) {
+                    $url = add_query_arg([$queryCategoryParameter => $category->slug], $url);
+                }
+            }
+
+            return $url;
+        };
+
+        $categories = '<ul class="wp-block-saleziani-categories"><li class="cat-item cat-item-' . $menuCategoryId . ($currentCategoryId === $menuCategoryId ? ' current-cat' : '') . '"><a href="' . $categoryUrl($menuCategoryId) . '">Všetko</a></li>';
+
+        /** @var WP_Term $category */
+        foreach (get_categories(['parent' => $menuCategoryId]) as $category) {
+            $categories .= '<li class="cat-item cat-item-' . $category->term_id . ($currentCategoryId === $category->term_id ? ' current-cat' : '') . '"><a href="' . $categoryUrl($category->term_id) . '">' . $category->name . '</a></li>';
+        }
+
+        $categories .= '</ul>';
+
+        $content = str_replace('<ul', $categories . '<ul', $content);
+    }
+
+    return $content;
+}, 10, 3);
 
 function get_default_category_id( int|string $userId ): int {
 	return (int) get_user_meta( (int) $userId, 'default_category', true ) ?: ( (int) get_option( 'default_category' ) );

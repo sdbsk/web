@@ -23,13 +23,14 @@ class DajnatoForm {
 
         $holder
             .on('submit', 'form', (event) => {
-
                 event.preventDefault();
                 const $button = this.$form.find('button[type=submit]');
                 $button.text('Odosielam...').prop('disabled', true);
 
                 $.ajax({
-                    url: this.$form.attr('action') ?? location.href, data: this.$form.serialize() + '&' + this.$form.attr('name') + '[button]=' + $button.attr('name'), type: 'POST'
+                    url: this.$form.attr('action') ?? location.href,
+                    data: this.$form.serialize() + '&' + this.$form.attr('name') + '[button]=' + $button.attr('name'),
+                    type: 'POST'
                 }).done((response, status, jqXHR) => {
                     const $html = $('<div>' + response + '</div>');
 
@@ -89,8 +90,11 @@ class DajnatoForm {
                         }
                     });
 
-                    const $onetimeCheckbox = this.$form.find('.js-onetimeAmount input:eq(' + index + ')');
-                    const $recurringCheckbox = this.$form.find('.js-recurringAmount input:eq(' + index + ')');
+                    const maxOnetimeIndex = this.$form.find('.js-onetimeAmount input').length - 2;
+                    const maxRecurringIndex = this.$form.find('.js-recurringAmount input').length - 2;
+
+                    const $onetimeCheckbox = this.$form.find('.js-onetimeAmount input:eq(' + (index <= maxOnetimeIndex ? index : maxOnetimeIndex) + ')');
+                    const $recurringCheckbox = this.$form.find('.js-recurringAmount input:eq(' + (index <= maxRecurringIndex ? index : maxRecurringIndex) + ')');
 
                     $onetimeCheckbox.prop('checked', true);
                     $recurringCheckbox.prop('checked', true);
@@ -116,7 +120,7 @@ class DajnatoForm {
 }
 
 $(document).ready(function () {
-    $('form[name=donation]').each(function () {
+    $('form[name^=donation-]').each(function () {
         const form = new DajnatoForm($(this));
     });
 
@@ -131,7 +135,10 @@ $(document).ready(function () {
             const $form = $(this).closest('.js-donation-form').children('form');
 
             $.ajax({
-                type: $form.attr('method'), url: $form.attr('action'), data: $form.serialize() + '&' + $form.attr('name') + '[button]=continue', success: function (response) {
+                type: $form.attr('method'),
+                url: $form.attr('action'),
+                data: $form.serialize() + '&' + $form.attr('name') + '[button]=continue',
+                success: function (response) {
                     const $modalContent = $('#donationFormModalContent');
                     $modalContent.html(response);
                     new DajnatoForm($modalContent.find('form'));
@@ -139,32 +146,6 @@ $(document).ready(function () {
                     setTimeout(() => $button.text('Darovať').prop('disabled', false), 1000);
                 }
             });
-
-            // const $button = $(this);
-            // let url = $button.data('form-url');
-            // const dialog = $('#donationFormModal .modal-dialog');
-            // const buttonText = $button.text();
-            //
-            // if ('BUTTON' === $button.prop('tagName')) {
-            //     $button.text('Čakaj, prosím...').prop('disabled', true);
-            // }
-            //
-            // const $formWidget = $button.closest('.form-widget');
-            //
-            // if ($formWidget.length > 0) {
-            //     url += (url.indexOf('?') === -1 ? '?' : '&') + 'campaign_value=' +
-            //         $formWidget.find('input[type=radio]:checked').val();
-            // }
-            //
-            // $.get(url).then((response) => {
-            //     dialog.html($(response).find('.modal-dialog').html());
-            //     const form = new DajnatoForm($('form[name=donation_modal]'));
-            //     dajnatoCTAModal.show();
-            //
-            //     if ('BUTTON' === $button.prop('tagName')) {
-            //         $button.text(buttonText).prop('disabled', false);
-            //     }
-            // });
         });
 });
 

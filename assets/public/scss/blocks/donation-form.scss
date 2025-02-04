@@ -25,6 +25,14 @@
             padding: 0;
             border: none;
         }
+
+        &.widget-donation-form {
+            form {
+                max-width: 35rem;
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
     }
 
     .donation-form-amount {

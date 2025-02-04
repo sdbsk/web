@@ -1,13 +1,17 @@
 <?php
 
-
-
 add_filter('mod_rewrite_rules', function($rules) {
-    return $rules . <<<HTACCESS
+    return <<<HTACCESS
 <FilesMatch (xmlrpc\.php|readme\.html|wp-cron\.php)>
     Order deny,allow
     Deny from all
 </FilesMatch>
+
+RewriteCond %{HTTP_HOST} \.sk$ [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+$rules
 
 RedirectMatch 301 ^/msaleziani/kto-sme$ /kto-sme
 RedirectMatch 301 ^/animatori$ /spolupraca-s-laikmi
