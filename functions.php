@@ -141,6 +141,14 @@ add_filter( 'allowed_block_types_all', function (): array {
 		'saleziani/darujme-form',
 		'saleziani/icon',
 		'saleziani/icon-column',
+
+		// generateblocks
+		'generateblocks/container',
+		'generateblocks/grid',
+		'generateblocks/headline',
+		'generateblocks/button',
+		'generateblocks/image',
+		'generateblocks/query-loop',
 	];
 }, 10, 2 );
 
@@ -248,6 +256,14 @@ add_action( 'admin_init', function (): void {
 	}
 } );
 
+//function activate_generateblocks(): void {
+//	if ( ! is_plugin_active( 'generateblocks/plugin.php' ) ) {
+//		activate_plugin( 'generateblocks/plugin.php' );
+//	}
+//}
+
+//add_action( 'admin_init', 'activate_generateblocks' );
+
 add_action( 'wp_head', function (): void {
 	$fallbackImage = get_template_directory_uri() . '/assets/images/fb-share.jpg';
 
@@ -304,12 +320,12 @@ add_action( 'wp_head', function (): void {
                 }
             }
 
-            $tags = [
-                'title'       => get_the_title(),
-                'description' => get_the_excerpt(),
+			$tags = [
+				'title'       => get_the_title(),
+				'description' => get_the_excerpt(),
                 'image'       => $image,
                 'url'         => $url,
-            ];
+			];
 
 			if ( is_single() ) {
 				$tags['type'] = 'article';
