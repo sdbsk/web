@@ -24,7 +24,7 @@ echo "  Moving icons to target directory:"
 echo "    $TARGET_DIR"
 rm -rf $TARGET_DIR
 mkdir -p $TARGET_DIR
-mv $TEMP_DIR/svg/300/outlined/* $TARGET_DIR
+mv "${TEMP_DIR}svg/300/outlined/*" $TARGET_DIR
 
 echo "  Building assets/blocks/scripts/icon-names.js"
 cd $CURRENT_DIR && node build-icons.js
