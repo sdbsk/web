@@ -4,6 +4,9 @@
         "last 5 versions",
         "ie >= 11"
     ],
+    "engines": {
+        "node": "18.x"
+    },
     "devDependencies": {
         "@babel/core": "^7.26",
         "@babel/preset-env": "^7.26",
