@@ -15,6 +15,7 @@ require __DIR__ . '/src/legacy/functions/Meta.php';
 require __DIR__ . '/src/legacy/functions/UserSettings.php';
 require __DIR__ . '/src/legacy/functions/PagesExcludedFromIndex.php';
 require __DIR__ . '/src/legacy/functions/Htaccess.php';
+require __DIR__ . '/src/legacy/functions/ExternalJs.php';
 
 $template = wp_get_theme()->get_template();
 $assets   = 'app/themes/' . $template . '/assets/';
