@@ -1,6 +1,6 @@
 WordPress web (téma, pluginy, konfigurácia) pre salezinani.sk. Inštalácia si vyžaduje aspoň základné znalosti PHP a node.js.
 
-Tému je možné použiť aj na webu saleziánskych stredísk, ale je potrebné upraviť niektoré časti kódu a doplniť funkcionality. Ak máš nejaký nápad, neváhaj a vytvor issue alebo ideálne aj pull request.
+Tému je možné použiť aj na weby saleziánskych stredísk, ale v ďalšom vývoji témy bude potrebné upraviť niektoré časti kódu a doplniť funkcionality. Ak máš nejaký nápad, neváhaj a vytvor issue alebo ideálne aj pull request.
 
 # Inštalácia
 
