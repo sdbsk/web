@@ -12,7 +12,7 @@ declare( strict_types=1 );
 <!-- wp:group {"className":"wp-pattern-saleziani-numbers"} -->
 <div class="wp-block-group wp-pattern-saleziani-numbers">
     <!-- wp:group {"className":"row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4"} -->
-    <div class="wp-block-group row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-md-center">
+    <div class="wp-block-group row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
         <!-- wp:group {"className":"col"} -->
         <div class="wp-block-group col">
             <!-- wp:group {"className":"number-box"} -->
