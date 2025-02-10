@@ -9,12 +9,10 @@
 /web/app/mu-plugins
 /web/app/object-cache.php
 /web/app/plugins
-/web/app/themes/saleziani/assets
 /web/app/upgrade
 /web/app/uploads
 /web/app/w3tc-config
 /web/wp
-/web/.htaccess
 /web/app/debug.log
 /src/app/var
 /assets/google-material-symbols
