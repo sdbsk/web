@@ -249,14 +249,6 @@ add_action( 'admin_init', function (): void {
 	}
 } );
 
-//function activate_generateblocks(): void {
-//	if ( ! is_plugin_active( 'generateblocks/plugin.php' ) ) {
-//		activate_plugin( 'generateblocks/plugin.php' );
-//	}
-//}
-
-//add_action( 'admin_init', 'activate_generateblocks' );
-
 add_action( 'wp_head', function (): void {
 	$fallbackImage = get_template_directory_uri() . '/assets/images/fb-share.jpg';
 
