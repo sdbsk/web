@@ -23,4 +23,4 @@ Tému je možné použiť aj na weby saleziánskych stredísk, ale v ďalšom v�
    - Snažíme sa o best practices pre PHP, JS a SCSS.
 4. Otvorenosť spätnej väzbe a kritike
    - Konštruktívna kritika je veľmi vítaná. Umožňuje nám zlepšovať výsledný produkt a zlepšovať naše schopnosti.
-   - Ak máš nejaký nápad na novú funkcionalitu alebo opravu vytvor issue alebo aj pull request.
+   - Ak máš nejaký nápad na novú funkcionalitu alebo opravu, vytvor issue alebo aj pull request.
