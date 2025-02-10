@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57d3d1e55b354726bb64d6478b97fd74",
+    "content-hash": "87049f9eda03c98a661b5c8600514923",
     "packages": [
         {
             "name": "composer/installers",
@@ -6187,24 +6187,6 @@
             "time": "2024-07-20T21:52:34+00:00"
         },
         {
-            "name": "wpackagist-plugin/generateblocks",
-            "version": "1.9.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/generateblocks/",
-                "reference": "tags/1.9.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/generateblocks.1.9.1.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/generateblocks/"
-        },
-        {
             "name": "wpackagist-plugin/w3-total-cache",
             "version": "2.8.4",
             "source": {
@@ -7376,9 +7358,9 @@
         "ext-zend-opcache": "*",
         "ext-curl": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.3"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }
