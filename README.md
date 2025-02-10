@@ -2,10 +2,12 @@ WordPress web (téma, pluginy, konfigurácia) pre salezinani.sk. Inštalácia si
 
 Tému je možné použiť aj na weby saleziánskych stredísk, ale v ďalšom vývoji témy bude potrebné upraviť niektoré časti kódu a doplniť funkcionality. Ak máš nejaký nápad, neváhaj a vytvor issue alebo ideálne aj pull request.
 
+Na diskusiu môžeš tiež použiť [Slack "Saleziánske weby"](https://join.slack.com/t/salezinskeweby/shared_invite/zt-2zchfis87-NAwgdEIt2bzmsTAw2hyeDg).
+
 # Inštalácia
 
 1. Naklonuj si repozitár
-2. Vytvor kópiu súboru `.env.example`, premenuj ho na `.env.local` a nastav v ňom prístupové údaje k databáze a iné konfiguračné premenné
+2. Vytvor kópiu súboru `.env`, premenuj ho na `.env.local` a nastav v ňom prístupové údaje k databáze a iné konfiguračné premenné
 3. Spusti `composer install` (PHP verzia 8.3.x)
 4. Spusti db migrácie `bin/console doctrine:migration:migrate -n`
 5. Spusti `npm install` (node verzia 18.x)
