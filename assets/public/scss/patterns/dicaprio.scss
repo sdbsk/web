@@ -1,0 +1,21 @@
+.wp-pattern-dicaprio {
+  img {
+    border-radius: 8px;
+  }
+
+  .content-right {
+    padding-left: 60px;
+    @include media-breakpoint-down(md) {
+      padding-top: 30px;
+      padding-left: 0;
+    }
+  }
+
+  .content-left {
+    padding-right: 60px;
+    @include media-breakpoint-down(md) {
+      padding-top: 30px;
+      padding-right: 0;
+    }
+  }
+}
