@@ -7,8 +7,11 @@ Tému je možné použiť aj na weby saleziánskych stredísk, ale v ďalšom v�
 1. Naklonuj si repozitár
 2. vytvor kópiu súboru `.env.example`, premenuj ho na `.env.local` a nastav v ňom prístupové údaje k databáze a iné konfiguračné premenné
 3. spusti `composer install` (PHP verzia 8.3.x)
-4. spusti `npm install` (node verzia 18.x)
-5. spusti `npm run dev` (vývojový režim) alebo `npm run prod` (produkčný režim) na prekompilovanie js/scss assetov
+4. spusti db migrácie `bin/console doctrine:migration:migrate -n`
+5. spusti `npm install` (node verzia 18.x)
+6. spusti `npm run dev` (vývojový režim) alebo `npm run prod` (produkčný režim) na prekompilovanie js/scss assetov
+
+Pri vývoji môžeš použiť dev web server spustením `symfony serve`.
 
 # Zásady vývoja
 
