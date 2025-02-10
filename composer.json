@@ -60,8 +60,7 @@
     "symfony/twig-bundle": "^7.2",
     "symfony/form": "^7.2",
     "symfony/validator": "^7.2",
-    "symfony/html-sanitizer": "^7.2",
-    "wpackagist-plugin/generateblocks": "^1.9.1"
+    "symfony/html-sanitizer": "^7.2"
   },
   "require-dev": {
     "deployer/deployer": "^7.5",
