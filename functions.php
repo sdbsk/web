@@ -10,6 +10,13 @@ if (Config::get('WP_DEBUG')) {
     Debug::enable();
 }
 
+require __DIR__ . '/src/legacy/functions/DisableFeatures.php';
+require __DIR__ . '/src/legacy/functions/Meta.php';
+require __DIR__ . '/src/legacy/functions/UserSettings.php';
+require __DIR__ . '/src/legacy/functions/PagesExcludedFromIndex.php';
+require __DIR__ . '/src/legacy/functions/Htaccess.php';
+require __DIR__ . '/src/legacy/functions/ExternalJs.php';
+
 $template = wp_get_theme()->get_template();
 $assets = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/web/' . $assets . 'manifest.json'), true);
@@ -65,11 +72,6 @@ add_action('init', function () use ($template): void {
     register_block_pattern_category($template, [
         'label' => 'Saleziáni',
     ]);
-});
-
-add_action('after_setup_theme', function () {
-    remove_theme_support('core-block-patterns');
-    add_filter('should_load_remote_block_patterns', '__return_false');
 });
 
 add_filter('block_categories_all', function ($categories) {
@@ -143,6 +145,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/icon',
         'saleziani/icon-column',
     ];
+
 }, 10, 2);
 
 add_action('enqueue_block_editor_assets', function () use ($assets, $manifest): void {
@@ -159,181 +162,6 @@ function placeholder_image_path(int $width, int $height): string
 {
     return 'https://placehold.co/' . $width . 'x' . $height . '/F8DAD3/272727';
 }
-
-add_filter('xmlrpc_enabled', '__return_false');
-
-// Disable all xml-rpc endpoints
-add_filter('xmlrpc_methods', fn(): array => [], PHP_INT_MAX);
-
-// remove some meta tags from WordPress
-remove_action('wp_head', 'wp_generator');
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wlwmanifest_link');
-remove_action('wp_head', 'wp_shortlink_wp_head');
-
-add_action('after_setup_theme', function () {
-    // Remove the REST API lines from the HTML Header
-    remove_action('wp_head', 'rest_output_link_wp_head');
-    remove_action('wp_head', 'wp_oembed_add_discovery_links');
-
-    // Remove the REST API endpoint.
-    remove_action('rest_api_init', 'wp_oembed_register_route');
-
-    // Turn off oEmbed auto discovery.
-    add_filter('embed_oembed_discover', '__return_false');
-
-    // Don't filter oEmbed results.
-    remove_filter('oembed_dataparse', 'wp_filter_oembed_result');
-
-    // Remove oEmbed discovery links.
-    remove_action('wp_head', 'wp_oembed_add_discovery_links');
-
-    // Remove oEmbed-specific JavaScript from the front-end and back-end.
-    remove_action('wp_head', 'wp_oembed_add_host_js');
-
-    // Filters for WP-API version 1.x
-    add_filter('json_enabled', '__return_false');
-    add_filter('json_jsonp_enabled', '__return_false');
-
-    // Filters for WP-API version 2.x
-    add_filter('rest_jsonp_enabled', '__return_false');
-
-    remove_action('wp_head', 'feed_links_extra', 3);
-    remove_action('wp_head', 'feed_links', 2);
-});
-
-add_filter('rest_authentication_errors', fn($errors) => is_wp_error($errors) ? $errors : (is_user_logged_in() ?
-    $errors :
-    new WP_Error('not_found', 'Not found', ['status' => 404])
-));
-
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_print_styles', 'print_emoji_styles');
-
-remove_action('wp_head', 'rel_canonical');
-
-add_action('wp_dashboard_setup', function () {
-    remove_action('welcome_panel', 'wp_welcome_panel');
-    remove_meta_box('dashboard_primary', 'dashboard', 'side');
-    remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
-    remove_meta_box('health_check_status', 'dashboard', 'normal');
-    remove_meta_box('dashboard_site_health', 'dashboard', 'normal');
-});
-
-add_action('wp_before_admin_bar_render', function (): void {
-    global $wp_admin_bar;
-
-    $wp_admin_bar->remove_menu('about');            // Remove the about WordPress link
-    $wp_admin_bar->remove_menu('comments');         // Remove the comments link
-    $wp_admin_bar->remove_menu('documentation');    // Remove the WordPress documentation link
-    $wp_admin_bar->remove_menu('feedback');         // Remove the feedback link
-    $wp_admin_bar->remove_menu('site-editor');      // Remove the comments link
-    $wp_admin_bar->remove_menu('support-forums');   // Remove the support forums link
-    $wp_admin_bar->remove_menu('updates');          // Remove the updates link
-    $wp_admin_bar->remove_menu('w3tc');             // If you use w3 total cache remove the performance link
-    $wp_admin_bar->remove_menu('wp-logo');          // Remove the WordPress logo
-    $wp_admin_bar->remove_menu('wporg');            // Remove the WordPress.org link
-});
-
-add_action('admin_init', function (): void {
-    global $menu;
-
-    if (is_iterable($menu)) {
-        remove_menu_page('edit-comments.php');
-        remove_menu_page('plugins.php');
-        remove_menu_page('tools.php');
-        remove_menu_page('w3tc_dashboard');
-
-        if (false === current_user_can('edit_others_posts')) {
-            remove_menu_page('index.php');
-        }
-    }
-});
-
-add_action('wp_head', function (): void {
-    $fallbackImage = get_template_directory_uri() . '/assets/images/fb-share.jpg';
-
-    if (is_category()) {
-        $category = get_queried_object();
-
-        $tags = [
-            'title' => $category->name,
-            'description' => $category->description,
-            'image' => $fallbackImage,
-            'url' => get_category_link($category),
-        ];
-    } else {
-        global $post;
-
-        if ($post instanceof WP_Post) {
-            $image = $fallbackImage;
-
-            foreach ([$post->ID, ...get_post_ancestors($post->ID)] as $postId) {
-                $thumbnail = get_the_post_thumbnail_url($postId, 'large');
-
-                if (!empty($thumbnail)) {
-                    $image = $thumbnail;
-                    break;
-                }
-            }
-
-            $tags = [
-                'title' => get_the_title(),
-                'description' => get_the_excerpt(),
-                'image' => $image,
-                'url' => get_permalink(),
-            ];
-
-            if (is_single()) {
-                $tags['type'] = 'article';
-            }
-        } else {
-            $tags = [];
-        }
-    }
-
-    foreach ($tags as $name => $value) {
-        if (!empty($value)) {
-            echo '<meta property="og:' . $name . '" content="' . esc_attr($value) . '" />';
-        }
-    }
-
-    if (defined('WP_ENV') && WP_ENV === 'production') {
-        echo <<<TRACKING
-        <!-- Matomo -->
-        <script>
-          var _paq = window._paq = window._paq || [];
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u='//matomo.saleziani.sk/';
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '1']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-        <!-- End Matomo Code -->
-
-
-        <!-- Meta Pixel Code -->
-        <script type="text/plain" data-category="targeting">
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '920280066494770');
-        fbq('track', 'PageView');
-        </script>
-        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=920280066494770&ev=PageView&noscript=1"/></noscript>
-        <!-- End Meta Pixel Code -->
-TRACKING;
-    }
-});
 
 add_action('wp_body_open', function () {
     ob_start();
@@ -374,36 +202,6 @@ add_filter('embed_oembed_html', function ($html) {
     return $html;
 });
 
-add_filter('do_redirect_guess_404_permalink', fn() => false);
-add_filter('wp_sitemaps_add_provider', fn($provider, $name) => 'users' === $name ? false : $provider, 10, 2);
-add_filter('wp_sitemaps_taxonomies', function ($taxonomies) {
-    unset($taxonomies['post_tag']);
-
-    return $taxonomies;
-});
-
-require __DIR__ . '/.htaccess.php';
-
-function disable_all_feeds(): void
-{
-    global $wp_query;
-    $wp_query->is_feed = false;
-    $wp_query->set_404();
-    status_header(404);
-    nocache_headers();
-
-    echo 'Not Found';
-    exit;
-}
-
-add_action('do_feed', 'disable_all_feeds', 1);
-add_action('do_feed_rdf', 'disable_all_feeds', 1);
-add_action('do_feed_rss', 'disable_all_feeds', 1);
-add_action('do_feed_rss2', 'disable_all_feeds', 1);
-add_action('do_feed_atom', 'disable_all_feeds', 1);
-add_action('do_feed_rss2_comments', 'disable_all_feeds', 1);
-add_action('do_feed_atom_comments', 'disable_all_feeds', 1);
-
 add_action('template_redirect', function (): void {
     global $post;
 
@@ -413,40 +211,6 @@ add_action('template_redirect', function (): void {
         status_header(404);
     }
 });
-
-function add_user_custom_settings(WP_User $user): void
-{
-    if (current_user_can('administrator')) {
-        echo '<h2>Vlastné nastavenia</h2><table class="form-table"><tr><th><label for="default_category">' . translate('Default Post Category') . '</label></th><td>';
-
-        wp_dropdown_categories(
-            [
-                'hide_empty' => 0,
-                'hierarchical' => true,
-                'name' => 'default_category',
-                'option_none_value' => '',
-                'orderby' => 'name',
-                'selected' => get_user_meta($user->ID, 'default_category', true),
-                'show_option_none' => '-',
-            ],
-        );
-
-        echo '<p class="description">Ak je nastavené, má vyššiu prioritu ako ' . translate('Settings') . ' -> ' . translate('Writing') . ' -> ' . translate('Default Post Category') . '.</p></td></tr></table>';
-    }
-}
-
-add_action('show_user_profile', 'add_user_custom_settings');
-add_action('edit_user_profile', 'add_user_custom_settings');
-
-function save_user_custom_settings($userId): void
-{
-    if (current_user_can('administrator') && isset($_POST['default_category'])) {
-        update_user_meta($userId, 'default_category', $_POST['default_category']);
-    }
-}
-
-add_action('personal_options_update', 'save_user_custom_settings');
-add_action('edit_user_profile_update', 'save_user_custom_settings');
 
 add_filter('get_terms', function (array $terms, array $taxonomies): array {
     if (is_user_logged_in() && 'category' === $taxonomies[0] && (is_admin() || wp_is_json_request())) {
@@ -490,68 +254,69 @@ add_action('save_post', function (int $postId): void {
     }
 });
 
-add_filter('query_loop_block_query_vars', function (array $query, WP_Block $block): array {
-    if (isset($block->context['queryId'], $_GET['query-' . $block->context['queryId'] . '-category'])) {
-        $category = get_category_by_slug($_GET['query-' . $block->context['queryId'] . '-category']);
+add_filter( 'query_loop_block_query_vars', function ( array $query, WP_Block $block ): array {
+	if ( isset( $block->context['queryId'], $_GET[ 'query-' . $block->context['queryId'] . '-category' ] ) ) {
+		$category = get_category_by_slug( $_GET[ 'query-' . $block->context['queryId'] . '-category' ] );
 
-        if ($category instanceof WP_Term) {
-            $query['cat'] = $category->term_id;
-        }
-    }
+		if ( $category instanceof WP_Term ) {
+			$query['cat'] = $category->term_id;
+		}
+	}
 
-    return $query;
-}, 10, 2);
+	return $query;
+}, 10, 2 );
 
-add_filter('render_block_core/query', function (string $content, array $block, WP_Block $instance): string {
-    if ('saleziani/posts' === ($instance->attributes['namespace'] ?? '') && isset($instance->attributes['menuCategory'])) {
-        $queryCategoryParameter = 'query-' . $instance->attributes['queryId'] . '-category';
-        $queryPageParameter = 'query-' . $instance->attributes['queryId'] . '-page';
+add_filter( 'render_block_core/query', function ( string $content, array $block, WP_Block $instance ): string {
+	if ( 'saleziani/posts' === ( $instance->attributes['namespace'] ?? '' ) && isset( $instance->attributes['menuCategory'] ) ) {
+		$queryCategoryParameter = 'query-' . $instance->attributes['queryId'] . '-category';
+		$queryPageParameter     = 'query-' . $instance->attributes['queryId'] . '-page';
 
-        $menuCategoryId = $instance->attributes['menuCategory'];
-        $currentCategoryId = $menuCategoryId;
+		$menuCategoryId    = $instance->attributes['menuCategory'];
+		$currentCategoryId = $menuCategoryId;
 
-        if (isset($_GET[$queryCategoryParameter])) {
-            $currentCategory = get_category_by_slug($_GET[$queryCategoryParameter]);
+		if ( isset( $_GET[ $queryCategoryParameter ] ) ) {
+			$currentCategory = get_category_by_slug( $_GET[ $queryCategoryParameter ] );
 
-            if ($currentCategory instanceof WP_Term) {
-                $currentCategoryId = $currentCategory->term_id;
-            }
-        }
+			if ( $currentCategory instanceof WP_Term ) {
+				$currentCategoryId = $currentCategory->term_id;
+			}
+		}
 
-        $categoryUrl = function (int $categoryId) use (
-            $menuCategoryId,
-            $queryCategoryParameter,
-            $queryPageParameter,
-        ): string {
-            $url = remove_query_arg([$queryCategoryParameter, $queryPageParameter]);
+		$categoryUrl = function ( int $categoryId ) use (
+			$menuCategoryId,
+			$queryCategoryParameter,
+			$queryPageParameter,
+		): string {
+			$url = remove_query_arg( [ $queryCategoryParameter, $queryPageParameter ] );
 
-            if ($menuCategoryId !== $categoryId) {
-                $category = get_category($categoryId);
+			if ( $menuCategoryId !== $categoryId ) {
+				$category = get_category( $categoryId );
 
-                if ($category instanceof WP_Term) {
-                    $url = add_query_arg([$queryCategoryParameter => $category->slug], $url);
-                }
-            }
+				if ( $category instanceof WP_Term ) {
+					$url = add_query_arg( [ $queryCategoryParameter => $category->slug ], $url );
+				}
+			}
 
-            return $url;
-        };
+			return $url;
+		};
 
-        $categories = '<ul class="wp-block-saleziani-categories"><li class="cat-item cat-item-' . $menuCategoryId . ($currentCategoryId === $menuCategoryId ? ' current-cat' : '') . '"><a href="' . $categoryUrl($menuCategoryId) . '">Všetko</a></li>';
+		$categories = '<ul class="wp-block-saleziani-categories"><li class="cat-item cat-item-' . $menuCategoryId . ( $currentCategoryId === $menuCategoryId ? ' current-cat' : '' ) . '"><a href="' . $categoryUrl( $menuCategoryId ) . '">Všetko</a></li>';
 
-        /** @var WP_Term $category */
-        foreach (get_categories(['parent' => $menuCategoryId]) as $category) {
-            $categories .= '<li class="cat-item cat-item-' . $category->term_id . ($currentCategoryId === $category->term_id ? ' current-cat' : '') . '"><a href="' . $categoryUrl($category->term_id) . '">' . $category->name . '</a></li>';
-        }
+		/** @var WP_Term $category */
+		foreach ( get_categories( [ 'parent' => $menuCategoryId ] ) as $category ) {
+			$categories .= '<li class="cat-item cat-item-' . $category->term_id . ( $currentCategoryId === $category->term_id ? ' current-cat' : '' ) . '"><a href="' . $categoryUrl( $category->term_id ) . '">' . $category->name . '</a></li>';
+		}
 
-        $categories .= '</ul>';
+		$categories .= '</ul>';
 
-        $content = str_replace('<ul', $categories . '<ul', $content);
-    }
+		$content = str_replace( '<ul', $categories . '<ul', $content );
+	}
 
-    return $content;
-}, 10, 3);
+	return $content;
+}, 10, 3 );
 
 function get_default_category_id(int|string $userId): int
 {
     return (int)get_user_meta((int)$userId, 'default_category', true) ?: ((int)get_option('default_category'));
 }
+
