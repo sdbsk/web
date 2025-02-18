@@ -7,5 +7,5 @@ import './scripts/blocks/organization-columns';
 import './scripts/blocks/project-columns';
 import './scripts/blocks/posts';
 import './scripts/blocks/post-columns';
-
+import './scripts/blocks/activities';
 import './scss/all.scss';
