@@ -142,6 +142,7 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/organization-column',
         'saleziani/newsletter-form',
         'saleziani/darujme-form',
+        'saleziani/activity',
         'saleziani/icon',
         'saleziani/icon-column',
     ];

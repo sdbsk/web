@@ -1,3 +1,4 @@
+import './scripts/blocks/activity';
 import './scripts/blocks/darujme-form';
 import './scripts/blocks/icon';
 import './scripts/blocks/icon-columns';
