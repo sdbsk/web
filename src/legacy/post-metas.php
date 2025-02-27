@@ -8,15 +8,15 @@ return [
             'show_in_rest' => true,
             'single' => true,
         ],
-        'buttonText' => [
+        'button_text' => [
             'show_in_rest' => true,
             'single' => true,
         ],
-        'buttonUrl' => [
+        'button_url' => [
             'show_in_rest' => true,
             'single' => true,
         ],
-        'bottomText' => [
+        'bottom_text' => [
             'show_in_rest' => true,
             'single' => true,
         ],
