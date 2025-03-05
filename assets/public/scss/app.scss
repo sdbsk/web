@@ -24,6 +24,7 @@
 
 @import 'fonts/all';
 @import 'mixin';
+@import 'consent';
 
 .wp-site-blocks {
     @include layout;
@@ -32,7 +33,6 @@
     @import 'patterns/all';
     @import 'blocks/all';
     @import 'templates/all';
-    @import 'consent';
 }
 
 p {
