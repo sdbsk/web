@@ -5,7 +5,7 @@ if (accordions.length) {
         toggle(accordion, 0);
         accordion.querySelectorAll('.accordion-collapse').forEach((item, index) => {
             let itemBody = item.querySelector('.accordion-body');
-            item.style.maxHeight = itemBody.offsetHeight + 'px';
+            item.style.maxHeight = itemBody.offsetHeight + 50 + 'px';
         });
         accordion.querySelectorAll('.accordion-button').forEach((button, index) => {
             button.addEventListener('click', () => {

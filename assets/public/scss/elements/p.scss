@@ -1,15 +1,21 @@
 p {
-    @include body-m;
-    margin-top: 0;
-    color: $dark;
+  @include body-m;
+  margin-top: 0;
+  color: $dark;
 
-    a {
-        transition: color 0.2s ease-in-out;
-        text-decoration: none;
-        color: $red;
+  a {
+    transition: color 0.2s ease-in-out;
+    text-decoration: none;
+    color: $red;
 
-        &:hover {
-            color: darken($red, 10%);
-        }
+    &:hover {
+      color: darken($red, 10%);
     }
+  }
+
+  + h2,
+  + h3 {
+    margin-top: 3rem
+  }
 }
+

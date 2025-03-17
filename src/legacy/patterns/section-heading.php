@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
 /**
  * Title: Úvod sekcie
@@ -18,8 +18,8 @@ declare(strict_types=1);
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at cursus arcu, id varius dui. Ut
         tristique, lorem a consequat varius, sapien urna volutpat sem</p>
     <!-- /wp:paragraph -->
-    <!-- wp:paragraph -->
-    <p>
+    <!-- wp:paragraph {"className":"link"} -->
+    <p class="link">
         <a href="#">Zobraziť všetko</a>
     </p>
     <!-- /wp:paragraph -->
