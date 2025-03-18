@@ -1,43 +1,49 @@
 .wp-template-single {
-    .article-info {
-        margin-bottom: 4rem;
+  .article-info {
+    margin-bottom: 4rem;
 
-        > div {
-            display: inline;
-        }
-
-        .wp-block-saleziani-post-categories {
-            a {
-                @include body-m;
-                font-weight: 500;
-                text-decoration: none;
-                color: $dark;
-            }
-
-            .wp-block-post-categories__separator {
-                @include dark-dot;
-                vertical-align: middle;
-            }
-
-            &:not(:empty):after {
-                @include dark-dot;
-                content: '';
-                vertical-align: middle;
-            }
-        }
-
-        .wp-block-saleziani-domicil {
-            &::after {
-                content: ',';
-            }
-        }
-
-        .wp-block-post-date {
-            > {
-                @include body-m;
-                text-decoration: none;
-                color: $dark;
-            }
-        }
+    > div {
+      display: inline;
     }
+
+    .wp-block-saleziani-post-categories {
+      a {
+        @include body-m;
+        font-weight: 500;
+        text-decoration: none;
+        color: $dark;
+      }
+
+      .wp-block-post-categories__separator {
+        @include dark-dot;
+        vertical-align: middle;
+      }
+
+      &:not(:empty):after {
+        @include dark-dot;
+        content: '';
+        vertical-align: middle;
+      }
+    }
+
+    .wp-block-saleziani-domicil {
+      &::after {
+        content: ',';
+      }
+    }
+
+    .wp-block-post-date {
+      > {
+        @include body-m;
+        text-decoration: none;
+        color: $dark;
+      }
+    }
+  }
+
+  p {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }

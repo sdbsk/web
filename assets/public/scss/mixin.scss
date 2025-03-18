@@ -185,6 +185,15 @@
         }
       }
     }
+
+    > .wp-pattern-dicaprio {
+      @include block-layout($top: 0);
+
+    }
+
+    > .wp-pattern-dicaprio ~ .wp-pattern-dicaprio {
+      @include block-layout($top: 8rem);
+    }
   }
 }
 
