@@ -94,6 +94,17 @@
             "customFontSize": false
         },
         "blocks": {
+            "core/button": {
+                "border": {
+                    "radius": false
+                },
+                "color": {
+                    "background": false
+                },
+                "shadow": {
+                    "defaultPresets": false
+                }
+            },
             "core/paragraph": {
                 "color": {
                     "background": false

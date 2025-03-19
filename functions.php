@@ -147,14 +147,6 @@ add_filter( 'allowed_block_types_all', function (): array {
 
 }, 10, 2 );
 
-add_action( 'enqueue_block_editor_assets', function () use ( $assets, $manifest ): void {
-	wp_enqueue_script( 'deny-list-blocks', home_url() . $manifest[ $assets . 'admin.js' ], [
-		'wp-blocks',
-		'wp-dom-ready',
-		'wp-edit-post'
-	], false, [ 'in_footer' => false ] );
-} );
-
 add_filter( 'excerpt_more', fn(): string => '…' );
 
 function placeholder_image_path( int $width, int $height ): string {
