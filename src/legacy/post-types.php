@@ -38,7 +38,7 @@ return [
         'rewrite' => ['slug' => 'aktivity'],
         'show_in_menu' => current_user_can('edit_others_posts'),
         'show_in_rest' => true,
-        'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'supports' => ['title', 'editor', 'excerpt', 'custom-fields'],
     ],
     'campaign' => [
         'labels' => [

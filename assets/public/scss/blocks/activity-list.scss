@@ -63,7 +63,9 @@
 
             .wp-block-buttons {
                 .wp-block-button {
-                    .wp-element-button {
+                    a {
+                        color: $white;
+
                         &:after {
                             display: none;
                         }

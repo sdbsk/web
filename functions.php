@@ -68,10 +68,29 @@ add_action('init', function () use ($template): void {
             register_post_meta($type, $key, $args);
         }
     }
-
     register_block_pattern_category($template, [
         'label' => 'Saleziáni',
     ]);
+
+    register_taxonomy('activity_tag', ['activity'], [
+        'labels' => [
+            'name' => 'Značky aktivít',
+            'singular_name' => 'Značka aktivít',
+            'search_items' => 'Vyhladať značky aktivít',
+            'all_items' => 'Všetky značky aktivít',
+            'parent_item' => 'Nadradená značka aktivít',
+            'parent_item_colon' => 'Nadradená značka aktivít:',
+            'edit_item' => 'Upraviť značku aktivít',
+            'update_item' => 'Aktualizovať značku aktivít',
+            'add_new_item' => 'Pridať novú značku aktivít',
+            'new_item_name' => 'Nový názov značky aktivít',
+            'menu_name' => 'Značky aktivít',
+        ],
+        'rewrite' => ['slug' => 'activity-tag'],
+        'show_in_rest' => true,
+    ]);
+
+    register_taxonomy_for_object_type('activity_tag', 'activity');
 });
 
 add_filter('block_categories_all', function ($categories) {
@@ -146,7 +165,6 @@ add_filter('allowed_block_types_all', function (): array {
         'saleziani/icon',
         'saleziani/icon-column',
     ];
-
 }, 10, 2);
 
 add_action('enqueue_block_editor_assets', function () use ($assets, $manifest): void {
@@ -255,66 +273,66 @@ add_action('save_post', function (int $postId): void {
     }
 });
 
-add_filter( 'query_loop_block_query_vars', function ( array $query, WP_Block $block ): array {
-	if ( isset( $block->context['queryId'], $_GET[ 'query-' . $block->context['queryId'] . '-category' ] ) ) {
-		$category = get_category_by_slug( $_GET[ 'query-' . $block->context['queryId'] . '-category' ] );
+add_filter('query_loop_block_query_vars', function (array $query, WP_Block $block): array {
+    if (isset($block->context['queryId'], $_GET['query-' . $block->context['queryId'] . '-category'])) {
+        $category = get_category_by_slug($_GET['query-' . $block->context['queryId'] . '-category']);
 
-		if ( $category instanceof WP_Term ) {
-			$query['cat'] = $category->term_id;
-		}
-	}
+        if ($category instanceof WP_Term) {
+            $query['cat'] = $category->term_id;
+        }
+    }
 
-	return $query;
-}, 10, 2 );
+    return $query;
+}, 10, 2);
 
-add_filter( 'render_block_core/query', function ( string $content, array $block, WP_Block $instance ): string {
-	if ( 'saleziani/posts' === ( $instance->attributes['namespace'] ?? '' ) && isset( $instance->attributes['menuCategory'] ) ) {
-		$queryCategoryParameter = 'query-' . $instance->attributes['queryId'] . '-category';
-		$queryPageParameter     = 'query-' . $instance->attributes['queryId'] . '-page';
+add_filter('render_block_core/query', function (string $content, array $block, WP_Block $instance): string {
+    if ('saleziani/posts' === ($instance->attributes['namespace'] ?? '') && isset($instance->attributes['menuCategory'])) {
+        $queryCategoryParameter = 'query-' . $instance->attributes['queryId'] . '-category';
+        $queryPageParameter = 'query-' . $instance->attributes['queryId'] . '-page';
 
-		$menuCategoryId    = $instance->attributes['menuCategory'];
-		$currentCategoryId = $menuCategoryId;
+        $menuCategoryId = $instance->attributes['menuCategory'];
+        $currentCategoryId = $menuCategoryId;
 
-		if ( isset( $_GET[ $queryCategoryParameter ] ) ) {
-			$currentCategory = get_category_by_slug( $_GET[ $queryCategoryParameter ] );
+        if (isset($_GET[$queryCategoryParameter])) {
+            $currentCategory = get_category_by_slug($_GET[$queryCategoryParameter]);
 
-			if ( $currentCategory instanceof WP_Term ) {
-				$currentCategoryId = $currentCategory->term_id;
-			}
-		}
+            if ($currentCategory instanceof WP_Term) {
+                $currentCategoryId = $currentCategory->term_id;
+            }
+        }
 
-		$categoryUrl = function ( int $categoryId ) use (
-			$menuCategoryId,
-			$queryCategoryParameter,
-			$queryPageParameter,
-		): string {
-			$url = remove_query_arg( [ $queryCategoryParameter, $queryPageParameter ] );
+        $categoryUrl = function (int $categoryId) use (
+            $menuCategoryId,
+            $queryCategoryParameter,
+            $queryPageParameter,
+        ): string {
+            $url = remove_query_arg([$queryCategoryParameter, $queryPageParameter]);
 
-			if ( $menuCategoryId !== $categoryId ) {
-				$category = get_category( $categoryId );
+            if ($menuCategoryId !== $categoryId) {
+                $category = get_category($categoryId);
 
-				if ( $category instanceof WP_Term ) {
-					$url = add_query_arg( [ $queryCategoryParameter => $category->slug ], $url );
-				}
-			}
+                if ($category instanceof WP_Term) {
+                    $url = add_query_arg([$queryCategoryParameter => $category->slug], $url);
+                }
+            }
 
-			return $url;
-		};
+            return $url;
+        };
 
-		$categories = '<ul class="wp-block-saleziani-categories"><li class="cat-item cat-item-' . $menuCategoryId . ( $currentCategoryId === $menuCategoryId ? ' current-cat' : '' ) . '"><a href="' . $categoryUrl( $menuCategoryId ) . '">Všetko</a></li>';
+        $categories = '<ul class="wp-block-saleziani-categories"><li class="cat-item cat-item-' . $menuCategoryId . ($currentCategoryId === $menuCategoryId ? ' current-cat' : '') . '"><a href="' . $categoryUrl($menuCategoryId) . '">Všetko</a></li>';
 
-		/** @var WP_Term $category */
-		foreach ( get_categories( [ 'parent' => $menuCategoryId ] ) as $category ) {
-			$categories .= '<li class="cat-item cat-item-' . $category->term_id . ( $currentCategoryId === $category->term_id ? ' current-cat' : '' ) . '"><a href="' . $categoryUrl( $category->term_id ) . '">' . $category->name . '</a></li>';
-		}
+        /** @var WP_Term $category */
+        foreach (get_categories(['parent' => $menuCategoryId]) as $category) {
+            $categories .= '<li class="cat-item cat-item-' . $category->term_id . ($currentCategoryId === $category->term_id ? ' current-cat' : '') . '"><a href="' . $categoryUrl($category->term_id) . '">' . $category->name . '</a></li>';
+        }
 
-		$categories .= '</ul>';
+        $categories .= '</ul>';
 
-		$content = str_replace( '<ul', $categories . '<ul', $content );
-	}
+        $content = str_replace('<ul', $categories . '<ul', $content);
+    }
 
-	return $content;
-}, 10, 3 );
+    return $content;
+}, 10, 3);
 
 function get_default_category_id(int|string $userId): int
 {

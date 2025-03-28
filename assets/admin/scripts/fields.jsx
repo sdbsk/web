@@ -1,12 +1,11 @@
 const {registerPlugin} = window.wp.plugins;
-const {PluginPostStatusInfo} = window.wp.editPost;
+const {PluginPostStatusInfo} = window.wp.editor;
 const {TextControl} = window.wp.components;
 const {withSelect, withDispatch} = window.wp.data;
 const {compose} = window.wp.compose;
 
 export const registerMetaTextField = (label, name) => {
     let Field = (props) => {
-        console.log(props);
         return <PluginPostStatusInfo>
             <TextControl label={label} value={props[name]} onChange={value => props.onChange(value)}/>
         </PluginPostStatusInfo>;
@@ -25,4 +24,4 @@ export const registerMetaTextField = (label, name) => {
     ])(Field);
 
     registerPlugin(name, {render: Field});
-}
+};
