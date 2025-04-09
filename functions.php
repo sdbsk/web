@@ -91,6 +91,8 @@ add_action('init', function () use ($template): void {
     ]);
 
     register_taxonomy_for_object_type('activity_tag', 'activity');
+
+    register_taxonomy_for_object_type('category', 'activity');
 });
 
 add_filter('block_categories_all', function ($categories) {
@@ -286,7 +288,7 @@ add_filter('query_loop_block_query_vars', function (array $query, WP_Block $bloc
 }, 10, 2);
 
 add_filter('render_block_core/query', function (string $content, array $block, WP_Block $instance): string {
-    if ('saleziani/posts' === ($instance->attributes['namespace'] ?? '') && isset($instance->attributes['menuCategory'])) {
+    if (('saleziani/posts' || 'saleziani/activities' === ($instance->attributes['namespace'] ?? '')) && isset($instance->attributes['menuCategory'])) {
         $queryCategoryParameter = 'query-' . $instance->attributes['queryId'] . '-category';
         $queryPageParameter = 'query-' . $instance->attributes['queryId'] . '-page';
 
@@ -328,7 +330,13 @@ add_filter('render_block_core/query', function (string $content, array $block, W
 
         $categories .= '</ul>';
 
-        $content = str_replace('<ul', $categories . '<ul', $content);
+        $content = preg_replace_callback(
+            '/<div class="activity-list">.*?<\/div>|<ul(?![^<]*<\/div>)/s',
+            function ($matches) use ($categories) {
+                return str_contains($matches[0], '<div class="activity-list">') ? $matches[0] : $categories . '<ul';
+            },
+            $content,
+        );
     }
 
     return $content;
