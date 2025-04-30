@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
     'activity' => [
-        'venue' => [
+        'bottom-text' => [
             'show_in_rest' => true,
             'single' => true,
         ],
@@ -16,7 +16,10 @@ return [
             'show_in_rest' => true,
             'single' => true,
         ],
-        'bottom-text' => [
+        'date' => [
+            'show_in_rest' => true,
+        ],
+        'venue' => [
             'show_in_rest' => true,
             'single' => true,
         ],
