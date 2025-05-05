@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\BlockType;
 
 use App\Service\Stack;
+use DateTime;
 use WP_Block;
 
 class ActivityBlockType extends AbstractBlockType implements BlockTypeInterface
@@ -27,6 +28,40 @@ class ActivityBlockType extends AbstractBlockType implements BlockTypeInterface
             }
         }
 
+        $activityDates = [];
+
+        foreach (get_post_meta($this->stack->page()->ID, 'date') as $item) {
+            $decoded = json_decode($item, true);
+            if (isset($decoded['start'], $decoded['end'])) {
+                $start = new DateTime($decoded['start']);
+                $end = new DateTime($decoded['end']);
+
+                if ($end < new DateTime()) {
+                    continue;
+                }
+
+                if ($start->format('H:i') === '00:00' && $end->format('H:i') === '00:00') {
+                    if ($start->format('Y-m-d') === $end->format('Y-m-d')) {
+                        $activityDates[] = $start->format('j. n. Y');
+                    } else {
+                        if ($start->format('Y') === $end->format('Y')) {
+                            $activityDates[] = $start->format('j. n.') . ' - ' . $end->format('j. n. Y');
+                        } else {
+                            $activityDates[] = $start->format('j. n. Y') . ' - ' . $end->format('j. n. Y');
+                        }
+                    }
+                } else {
+                    if ($start->format('Y-m-d') === $end->format('Y-m-d')) {
+                        $activityDates[] = $start->format('j. n. Y H:i') . ' - ' . $end->format('H:i');
+                    } else {
+                        $activityDates[] = $start->format('j. n. Y H:i') . ' - ' . $end->format('j. n. Y H:i');
+                    }
+                }
+            }
+        }
+
+        $dates = implode(', ', $activityDates);
+
         $buttons = '';
         if ($buttonText && $buttonUrl) {
             $buttons .= '<!-- wp:buttons -->
@@ -48,6 +83,7 @@ class ActivityBlockType extends AbstractBlockType implements BlockTypeInterface
         <p class="activity-item-venue">' . get_post_meta($this->stack->page()->ID, 'venue', true) . '</p>
         <div class="activity-item-content">
             <p>' . get_the_excerpt() . '</p>
+            <p>' . $dates . '</p>
         </div>
         <div class="activity-item-bottom-content">' .
             $buttons .
