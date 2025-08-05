@@ -60,16 +60,17 @@
     "symfony/twig-bundle": "^7.2",
     "symfony/form": "^7.2",
     "symfony/validator": "^7.2",
-    "symfony/html-sanitizer": "^7.2"
+    "symfony/html-sanitizer": "^7.2",
+    "wpackagist-plugin/firebox": "dev-trunk"
   },
   "require-dev": {
     "deployer/deployer": "^7.5",
     "roave/security-advisories": "dev-latest",
     "symfony/var-dumper": "^7.2",
     "symfony/maker-bundle": "^1.61"
-    },
-    "scripts": {
-        "pre-install-cmd": "sh install-google-material-symbols.sh",
-        "pre-update-cmd": "sh install-google-material-symbols.sh"
+  },
+  "scripts": {
+    "pre-install-cmd": "sh install-google-material-symbols.sh",
+    "pre-update-cmd": "sh install-google-material-symbols.sh"
   }
 }

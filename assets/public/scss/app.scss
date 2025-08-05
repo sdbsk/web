@@ -27,21 +27,42 @@
 @import 'consent';
 
 .wp-site-blocks {
-    @include layout;
-    @import 'elements/all';
-    @import 'parts/all';
-    @import 'patterns/all';
-    @import 'blocks/all';
-    @import 'templates/all';
+  @include layout;
+  @import 'elements/all';
+  @import 'parts/all';
+  @import 'patterns/all';
+  @import 'blocks/all';
+  @import 'templates/all';
+}
+
+
+// FireBox plugin styles for newsletter popup
+@import "blocks/newsletter-form";
+.fb-init {
+  .wp-block-saleziani-newsletter-form {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+
+    h3 {
+      padding-right: 15px;
+    }
+  }
+
+  .fb-dialog {
+    padding: 24px;
+    border-radius: 8px;
+
+  }
 }
 
 p {
-    img {
-        //max-width: 100%;
-        //height: auto;
-    }
+  img {
+    //max-width: 100%;
+    //height: auto;
+  }
 }
 
 mark {
-    padding: 0;
+  padding: 0;
 }
