@@ -32,6 +32,15 @@ class Stack {
         return $this->pages[$pageId];
     }
 
+    function hasSubnavigation(?WP_Post $page = null): bool
+    {
+        $topLevelPageId = $this->topLevelPageId($page);
+
+        // zisti z meta, ci ma zapnutu subnavigaciu
+
+        return true;
+    }
+
     function topLevelPageId(?WP_Post $page = null): int
     {
         $page = $page ?? $this->page();
