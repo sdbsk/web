@@ -13,6 +13,10 @@ return [
             'show_in_rest' => true,
             'single' => true,
         ],
+        'has_navigation' => [
+            'show_in_rest' => true,
+            'single' => true,
+        ],
     ],
     'post' => [
         'domicil' => [
