@@ -12,6 +12,10 @@ class DajnatoForm {
     onetimeAmount;
     expenses;
 
+    /**
+     * @param {jQuery} $form
+     */
+
     constructor($form) {
         this.$form = $form;
 
