@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\BlockType;
 
 use App\Service\Stack;
@@ -16,6 +18,7 @@ class NavigationBlockType extends AbstractBlockType implements BlockTypeInterfac
         $output = '';
         $page = $this->stack->page();
         $topLevelPageId = $this->stack->topLevelPageId($page);
+        $hasNavigation = (bool)get_post_meta($topLevelPageId, 'has_navigation', true);
 
         $children = get_children([
             'order' => 'ASC',
@@ -24,7 +27,7 @@ class NavigationBlockType extends AbstractBlockType implements BlockTypeInterfac
             'post_type' => 'page',
         ]);
 
-        if ($topLevelPageId === $page->ID && empty($children)) {
+        if ($topLevelPageId === $page->ID && empty($children) || !$hasNavigation) {
             return '';
         }
 
