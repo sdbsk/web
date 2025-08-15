@@ -1,0 +1,13 @@
+.wp-block-saleziani-breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .breadcrumb-item {
+        display: inline-block;
+
+        &:before {
+            margin: 0 0.5rem;
+        }
+    }
+}
