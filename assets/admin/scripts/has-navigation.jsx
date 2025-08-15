@@ -33,7 +33,7 @@ if ('page' === window.pagenow) {
         if (undefined === plugin) {
             const post = wp.data.select('core/editor').getCurrentPost();
 
-            if (post && false === pluginRegistered) {
+            if (post && 0 === post.parent && false === pluginRegistered) {
                 registerPlugin('has-navigation', {render: HasNavigationField});
                 pluginRegistered = true;
             }
