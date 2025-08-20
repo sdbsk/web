@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
 /**
  * Title: Zoznam odkazov
@@ -8,6 +8,7 @@ declare(strict_types=1);
  * Categories: saleziani
  */
 ?>
+
 
 <!-- wp:group {"className":"wp-pattern-saleziani-link-list"} -->
 <div class="wp-block-group wp-pattern-saleziani-link-list">

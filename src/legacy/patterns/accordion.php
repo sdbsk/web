@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare( strict_types=1 );
 
 /**
  * Title: Akordeón
@@ -8,6 +8,7 @@ declare(strict_types=1);
  * Categories: saleziani
  */
 ?>
+
 
 <!-- wp:group {"className":"accordion wp-pattern-saleziani-accordion"} -->
 <div class="accordion wp-block-group wp-pattern-saleziani-accordion">
