@@ -1,0 +1,30 @@
+{
+  "entrypoints": {
+    "admin": {
+      "js": [
+        "/app/themes/saleziani/assets/admin.88552d23.js"
+      ]
+    },
+    "blocks": {
+      "css": [
+        "/app/themes/saleziani/assets/blocks.486985f8.css"
+      ],
+      "js": [
+        "/app/themes/saleziani/assets/blocks.35eee8ee.js"
+      ]
+    },
+    "public": {
+      "css": [
+        "/app/themes/saleziani/assets/public.5145efb9.css"
+      ],
+      "js": [
+        "/app/themes/saleziani/assets/public.3f1d8a06.js"
+      ]
+    },
+    "consent": {
+      "js": [
+        "/app/themes/saleziani/assets/consent.b163b3e9.js"
+      ]
+    }
+  }
+}
