@@ -6,6 +6,18 @@ import {Modal} from 'bootstrap';
 
 import $ from 'jquery';
 
+window.addEventListener('beforeunload', function () {
+    try {
+        FireBox.getInstances().forEach(box => {
+            document.cookie = `firebox_${box.id}=1; path=/`;
+            box.close();
+        });
+    }
+    catch (e) {
+        console.error('Error closing FireBox instances:', e);
+    }
+});
+
 class DajnatoForm {
     $form;
     recurringAmount;
