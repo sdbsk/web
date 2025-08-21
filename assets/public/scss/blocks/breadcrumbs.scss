@@ -5,9 +5,17 @@
 
     .breadcrumb-item {
         display: inline-block;
+    }
 
-        &:before {
-            margin: 0 0.5rem;
+    .breadcrumb-divider {
+        margin: 0 0.5rem;
+    }
+
+    .category-breadcrumbs {
+        width: 100%;
+
+        &:not(:last-of-type) {
+            margin-bottom: 0.5rem;
         }
     }
 }
