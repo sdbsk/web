@@ -2,9 +2,16 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin: 3rem 0;
 
     .breadcrumb-item {
         display: inline-block;
+        text-decoration: none;
+        color: $dark;
+
+        &:hover {
+            color: $red;
+        }
     }
 
     .breadcrumb-divider {

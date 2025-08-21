@@ -54,7 +54,7 @@ class BreadcrumbsBlockType extends AbstractBlockType implements BlockTypeInterfa
                     $cat = get_category($categoryId);
                     $url = get_category_link($categoryId);
                     $class = $i === $lastIndex ? 'breadcrumb-item current' : 'breadcrumb-item';
-                    $output .= '<a href="' . esc_url($url) . '" class="' . $class . '">' . esc_html($cat->name) . '</a>';
+                    $output .= '<a href="' . esc_url($url) . '" class="' . $class . '"><strong>' . esc_html($cat->name) . '</strong></a>';
                     if ($i !== $lastIndex) {
                         $output .= '<span class="breadcrumb-divider">/</span>';
                     }
@@ -79,7 +79,7 @@ class BreadcrumbsBlockType extends AbstractBlockType implements BlockTypeInterfa
 
                 $output .= $isCurrent
                     ? '<span class="breadcrumb-item current">' . esc_html($breadcrumbPage->post_title) . '</span>'
-                    : '<a href="' . esc_url($url) . '" class="breadcrumb-item">' . esc_html($breadcrumbPage->post_title) . '</a><span class="breadcrumb-divider">/</span>';
+                    : '<a href="' . esc_url($url) . '" class="breadcrumb-item"><strong>' . esc_html($breadcrumbPage->post_title) . '</strong></a><span class="breadcrumb-divider">/</span>';
             }
         }
 
