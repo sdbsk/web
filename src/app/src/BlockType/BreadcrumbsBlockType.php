@@ -49,16 +49,12 @@ class BreadcrumbsBlockType extends AbstractBlockType implements BlockTypeInterfa
 
             foreach ($filteredBreadcrumbIds as $breadcrumbId) {
                 $output .= '<div class="category-breadcrumbs">';
-                $lastIndex = count($breadcrumbId) - 1;
                 foreach ($breadcrumbId as $i => $categoryId) {
                     $cat = get_category($categoryId);
                     $url = get_category_link($categoryId);
-                    $class = $i === $lastIndex ? 'breadcrumb-item current' : 'breadcrumb-item';
-                    $output .= '<a href="' . esc_url($url) . '" class="' . $class . '"><strong>' . esc_html($cat->name) . '</strong></a>';
-                    if ($i !== $lastIndex) {
-                        $output .= '<span class="breadcrumb-divider">/</span>';
-                    }
+                    $output .= '<a href="' . esc_url($url) . '" class="breadcrumb-item"><strong>' . esc_html($cat->name) . '</strong></a><span class="breadcrumb-divider">/</span>';
                 }
+                $output .= '<span class="breadcrumb-item current">' . esc_html(get_the_title($page->ID)) . '</span>';
                 $output .= '</div>';
             }
         } else {
