@@ -12,6 +12,13 @@
         &:hover {
             color: $red;
         }
+
+        &.current {
+            &:hover {
+                cursor: text;
+                color: $dark;
+            }
+        }
     }
 
     .breadcrumb-divider {
