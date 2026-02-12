@@ -316,3 +316,8 @@ function get_default_category_id( int|string $userId ): int {
 	return (int) get_user_meta( (int) $userId, 'default_category', true ) ?: ( (int) get_option( 'default_category' ) );
 }
 
+add_filter('upload_mimes', function ($mime_types){
+    $mime_types['epub'] = 'application/epub+zip';
+    return $mime_types;
+});
+
