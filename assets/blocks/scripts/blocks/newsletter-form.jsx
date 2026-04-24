@@ -2,7 +2,8 @@ const ServerSideRender = window.wp.serverSideRender;
 const {BaseControl, CheckboxControl, Notice, PanelBody, SelectControl, TextareaControl, TextControl} = window.wp.components;
 const {InspectorControls, useBlockProps} = window.wp.blockEditor;
 const {registerBlockType} = window.wp.blocks;
-const {useSelect} = window.wp.data;
+const {useDispatch, useSelect} = window.wp.data;
+const {useEffect} = window.wp.element;
 
 registerBlockType('saleziani/newsletter-form', {
     attributes: {
@@ -36,9 +37,20 @@ registerBlockType('saleziani/newsletter-form', {
     example: {},
     icon: 'email',
     title: 'Newsletter formulár',
-    edit: ({attributes, setAttributes, name}) => {
+    edit: ({attributes, clientId, setAttributes, name}) => {
         const newsletters = useSelect((select) => select('core').getEntityRecords('postType', 'newsletter', {_fields: 'id,slug,title', per_page: -1})) ?? [];
         const misconfigured = attributes.primary === '' && attributes.optionals.length === 0;
+        const {lockPostSaving, unlockPostSaving} = useDispatch('core/editor');
+        const lockKey = `saleziani-newsletter-form-${clientId}`;
+
+        useEffect(() => {
+            if (misconfigured) {
+                lockPostSaving(lockKey);
+            } else {
+                unlockPostSaving(lockKey);
+            }
+            return () => unlockPostSaving(lockKey);
+        }, [misconfigured, lockKey]);
 
         return <>
             <InspectorControls>
