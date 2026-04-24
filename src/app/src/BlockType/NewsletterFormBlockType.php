@@ -52,6 +52,10 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
 
         $requireSelection = empty($attributes['primary']);
 
+        if ($requireSelection && empty($optionals)) {
+            return '';
+        }
+
         return $this->wrapContent($block, '
                 <h3>' . $attributes['title'] . '</h3>
                 <form method="post" action="' . $attributes['url'] . (str_contains($attributes['url'], '?') ? '&' : '?') . 'source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '"' . ($requireSelection ? ' data-require-newsletter-selection="1"' : '') . '>

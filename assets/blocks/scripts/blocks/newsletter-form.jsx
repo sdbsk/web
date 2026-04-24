@@ -1,5 +1,5 @@
 const ServerSideRender = window.wp.serverSideRender;
-const {BaseControl, CheckboxControl, PanelBody, SelectControl, TextareaControl, TextControl} = window.wp.components;
+const {BaseControl, CheckboxControl, Notice, PanelBody, SelectControl, TextareaControl, TextControl} = window.wp.components;
 const {InspectorControls, useBlockProps} = window.wp.blockEditor;
 const {registerBlockType} = window.wp.blocks;
 const {useSelect} = window.wp.data;
@@ -38,6 +38,7 @@ registerBlockType('saleziani/newsletter-form', {
     title: 'Newsletter formulár',
     edit: ({attributes, setAttributes, name}) => {
         const newsletters = useSelect((select) => select('core').getEntityRecords('postType', 'newsletter', {_fields: 'id,slug,title', per_page: -1})) ?? [];
+        const misconfigured = attributes.primary === '' && attributes.optionals.length === 0;
 
         return <>
             <InspectorControls>
@@ -93,7 +94,11 @@ registerBlockType('saleziani/newsletter-form', {
                     )}
                 </PanelBody>
             </InspectorControls>
-            <ServerSideRender attributes={attributes} block={name}/>
+            {misconfigured ?
+                <Notice status={'error'} isDismissible={false}>
+                    Používateľ si má vybrať newsletter, ale nie sú zaškrtnuté žiadne voliteľné newslettre. Zaškrtnite aspoň jeden voliteľný newsletter, inak sa blok nezobrazí.
+                </Notice> :
+                <ServerSideRender attributes={attributes} block={name}/>}
         </>;
     }
 });
