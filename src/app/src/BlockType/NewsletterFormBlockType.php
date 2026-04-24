@@ -50,15 +50,17 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
             }
         }
 
+        $requireSelection = empty($attributes['primary']);
+
         return $this->wrapContent($block, '
                 <h3>' . $attributes['title'] . '</h3>
-                <form method="post" action="' . $attributes['url'] . (str_contains($attributes['url'], '?') ? '&' : '?') . 'source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '">
+                <form method="post" action="' . $attributes['url'] . (str_contains($attributes['url'], '?') ? '&' : '?') . 'source=' . preg_replace('~[^a-zA-Z0-9\-]~', '', $attributes['source']) . '"' . ($requireSelection ? ' data-require-newsletter-selection="1"' : '') . '>
                     <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">'
             . (empty($attributes['description']) ? '' : ('<div class="description">' . $attributes['description'] . '</div>'))
-            . '<label class="input-checkbox d-none">
+            . ($requireSelection ? '' : '<label class="input-checkbox d-none">
                    <input type="checkbox" name="custom_fields[' . strtoupper($attributes['primary']) . ']" value="ano" checked="checked">
                    <span class="label">' . strtoupper($attributes['primary']) . '</span>
-               </label>'
+               </label>')
             . (empty($optionals) ? '' : (implode('', array_map(
                     fn(WP_Post $newsletter): string => '<label class="input-checkbox">
                         <input type="checkbox" name="custom_fields[' . strtoupper($newsletter->post_name) . ']" value="ano">

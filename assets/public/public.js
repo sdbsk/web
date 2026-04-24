@@ -136,6 +136,23 @@ class DajnatoForm {
 }
 
 $(document).ready(function () {
+    $('body').on('submit', 'form[data-require-newsletter-selection]', function (event) {
+        const $form = $(this);
+        const anyChecked = $form.find('input[type=checkbox][name^="custom_fields["]:checked').length > 0;
+
+        if (!anyChecked) {
+            event.preventDefault();
+            const $firstCheckbox = $form.find('input[type=checkbox][name^="custom_fields["]:first');
+            if ($firstCheckbox.length) {
+                $firstCheckbox[0].setCustomValidity('Vyberte, prosím, aspoň jeden newsletter.');
+                $firstCheckbox[0].reportValidity();
+                $form.one('change', 'input[type=checkbox][name^="custom_fields["]', function () {
+                    $firstCheckbox[0].setCustomValidity('');
+                });
+            }
+        }
+    });
+
     $('form[name^=donation-]').each(function () {
         const form = new DajnatoForm($(this));
     });

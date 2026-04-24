@@ -69,6 +69,7 @@ registerBlockType('saleziani/newsletter-form', {
                         label={'Primárny newsletter'}
                         value={attributes.primary}
                         options={[
+                            {label: 'Používateľ musí zvoliť newsletter', value: ''},
                             ...newsletters.map((newsletter) => ({
                                 label: newsletter.title.rendered,
                                 value: newsletter.slug
