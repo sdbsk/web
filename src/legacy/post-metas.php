@@ -20,4 +20,12 @@ return [
             'single' => true,
         ],
     ],
+    'newsletter' => [
+        'short_description' => [
+            'auth_callback' => fn(): bool => current_user_can('edit_posts'),
+            'show_in_rest' => true,
+            'single' => true,
+            'type' => 'string',
+        ],
+    ],
 ];

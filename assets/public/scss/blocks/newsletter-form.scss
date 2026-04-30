@@ -28,7 +28,7 @@
         input[type=email] {
             @include body-m;
             width: 100%;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             padding: 0.88rem 1.5rem 0.81rem 1.5rem;
             color: rgba(39, 39, 39, 0.60);
             border: 1px solid rgba(39, 39, 39, 0.20);
@@ -47,7 +47,15 @@
         .input-checkbox {
             position: relative;
             display: block;
-            margin-bottom: 1rem;
+            margin-bottom: 0.375rem;
+
+            > .description {
+                display: block;
+                margin-top: 0.25rem;
+                padding-left: 1.625rem;
+                color: rgba(39, 39, 39, 0.6);
+                font-size: 0.875em;
+            }
 
             input {
                 position: absolute;
@@ -71,6 +79,17 @@
                         border: 0.125rem solid #7b7a79;
                         border-radius: 0.125rem;
                         background-color: transparent;
+                    }
+                }
+
+                &[name^="custom_fields"] {
+                    + .label:before {
+                        position: relative;
+                        top: 5px;
+                    }
+
+                    &:checked + .label:after {
+                        top: calc(-0.0625rem + 5px);
                     }
                 }
 

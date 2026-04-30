@@ -16,6 +16,7 @@ require __DIR__ . '/src/legacy/functions/UserSettings.php';
 require __DIR__ . '/src/legacy/functions/PagesExcludedFromIndex.php';
 require __DIR__ . '/src/legacy/functions/Htaccess.php';
 require __DIR__ . '/src/legacy/functions/ExternalJs.php';
+require __DIR__ . '/src/legacy/functions/NewsletterAdmin.php';
 
 $template = wp_get_theme()->get_template();
 $assets   = 'app/themes/' . $template . '/assets/';
@@ -320,4 +321,3 @@ add_filter('upload_mimes', function ($mime_types){
     $mime_types['epub'] = 'application/epub+zip';
     return $mime_types;
 });
-

@@ -66,10 +66,15 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
                    <span class="label">' . strtoupper($attributes['primary']) . '</span>
                </label>')
             . (empty($optionals) ? '' : (implode('', array_map(
-                    fn(WP_Post $newsletter): string => '<label class="input-checkbox">
+                    function (WP_Post $newsletter): string {
+                        $shortDescription = trim((string)get_post_meta($newsletter->ID, 'short_description', true));
+
+                        return '<label class="input-checkbox">
                         <input type="checkbox" name="custom_fields[' . strtoupper($newsletter->post_name) . ']" value="ano">
-                        <span class="label">' . $newsletter->post_title . '</span>
-                    </label>',
+                        <span class="label">' . $newsletter->post_title . '</span>'
+                            . ('' === $shortDescription ? '' : '<span class="description">' . esc_html($shortDescription) . '</span>')
+                            . '</label>';
+                    },
                     $optionals,
                 )) . '<div class="border-top w-100 mt-3 pt-3"></div>')) .
             '<label class="input-checkbox">
@@ -77,7 +82,7 @@ class NewsletterFormBlockType extends AbstractBlockType implements BlockTypeInte
                  <span class="label">Súhlasím so spracúvaním osobných údajov</span>
              </label>
              <input type="hidden" name="updateExisting" value="1">
-             <button type="submit" name="submit" class="mt-2">Registrovať</button>
+             <button type="submit" name="submit" class="mt-4">Registrovať</button>
              </form>
         ');
     }
