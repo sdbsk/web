@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54ae84472545f0aead7a6a2a9df7d356",
+    "content-hash": "d97746d487657065628ee94ae7f28e48",
     "packages": [
         {
             "name": "composer/installers",
@@ -6267,6 +6267,24 @@
             "time": "2025-10-23T11:00:23+00:00"
         },
         {
+            "name": "wpackagist-plugin/mainwp-child",
+            "version": "6.1.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/mainwp-child/",
+                "reference": "tags/6.1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/mainwp-child.6.1.6.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/mainwp-child/"
+        },
+        {
             "name": "wpackagist-plugin/w3-total-cache",
             "version": "2.8.14",
             "source": {
@@ -7569,8 +7587,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "wpackagist-plugin/firebox": 20,
-        "roave/security-advisories": 20
+        "roave/security-advisories": 20,
+        "wpackagist-plugin/firebox": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -7581,9 +7599,9 @@
         "ext-zend-opcache": "*",
         "ext-curl": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.3"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.9.0"
 }
