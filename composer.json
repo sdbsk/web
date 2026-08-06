@@ -62,7 +62,8 @@
         "symfony/validator": "^7.2",
         "symfony/html-sanitizer": "^7.2",
         "wpackagist-plugin/firebox": "dev-trunk",
-        "wpackagist-theme/twentytwentyfive": "1.3"
+        "wpackagist-theme/twentytwentyfive": "1.3",
+        "wpackagist-plugin/mainwp-child": "^6.1"
     },
     "require-dev": {
         "deployer/deployer": "^7.5",
