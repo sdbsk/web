@@ -22,12 +22,14 @@ $template = wp_get_theme()->get_template();
 $assets   = 'app/themes/' . $template . '/assets/';
 $manifest = json_decode( file_get_contents( __DIR__ . '/web/' . $assets . 'manifest.json' ), true );
 
-add_action( 'admin_enqueue_scripts', function () use ( $assets, $manifest ): void {
-	wp_enqueue_script( 'admin', home_url() . $manifest[ $assets . 'admin.js' ], [], false, [ 'in_footer' => true ] );
-} );
-
 add_action( 'enqueue_block_assets', function () use ( $assets, $manifest ): void {
 	wp_enqueue_style( 'blocks', home_url() . $manifest[ $assets . 'blocks.css' ] );
+} );
+
+// blocks.js only registers block types, so it belongs to the editor alone. Its
+// wp-edit-post dependency pulls in postbox, which core registers on admin
+// screens only, and since 6.9.1 that mismatch raises a _doing_it_wrong notice.
+add_action( 'enqueue_block_editor_assets', function () use ( $assets, $manifest ): void {
 	wp_enqueue_script( 'blocks', home_url() . $manifest[ $assets . 'blocks.js' ], [
 		'wp-blocks',
 		'wp-components',
@@ -148,6 +150,9 @@ add_filter( 'allowed_block_types_all', function (): array {
 
 }, 10, 2 );
 
+// Every module in admin.js targets the block editor, so this is its only
+// enqueue — loading it on plain admin screens too meant it ran without
+// wp-data/wp-blocks registered there, and twice over in the editor.
 add_action( 'enqueue_block_editor_assets', function () use ( $assets, $manifest ): void {
 	wp_enqueue_script( 'deny-list-blocks', home_url() . $manifest[ $assets . 'admin.js' ], [
 		'wp-blocks',
