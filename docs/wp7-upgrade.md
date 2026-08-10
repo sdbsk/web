@@ -2,7 +2,8 @@
 
 **Branch:** `hotfix/wp-6.8.6-cve-2026-60137`
 **Status:** applied, verified against a full production copy including a browser
-pass over the admin and the block editor. Committed, not pushed, not deployed.
+pass over the admin and the block editor. Pushed; open for review as
+[PR #20](https://github.com/sdbsk/web/pull/20). Not deployed.
 **Last worked on:** 2026-08-10
 
 ## Goal
@@ -244,11 +245,20 @@ Deployer layout at `/home/html/multi_175876/saleziani.sk/web`).
 
 ## Next steps
 
-1. Push the branch and open a PR (no `gh` CLI here — use a prefilled compare URL).
-2. Deploy to the `develop` stage first — `hosts.yml` points it at
-   `~/saleziani.sk/_sub/stage` — and only then to `main`.
-3. After the `main` deploy, confirm on production that the front end still loads
+Review and deploy are with a colleague as of 2026-08-10; the work below is theirs
+unless it comes back.
+
+1. Deploy to the `develop` stage first — `hosts.yml` points it at
+   `~/saleziani.sk/_sub/stage` — and only then to `main`. Deploys trigger only on
+   pushes to `develop` / `main`, and `develop` is currently 14 commits behind `main`
+   and 0 ahead, so merging this brings those along too.
+2. After the `main` deploy, confirm on production that the front end still loads
    `public.js` / `consent.js` / `firebox.js` and that `blocks.js` is gone, and that
    the block editor opens an existing article without invalid blocks.
-4. Separately: the Block API v1 migration and the `__next40pxDefaultSize` deadline
+3. Separately: the Block API v1 migration and the `__next40pxDefaultSize` deadline
    (known issues 1 and 3), `deployer/deployer` 8.0.5, and production Redis.
+
+PR #20 was originally opened as the WP 6.8.6 CVE bump, so its first description
+argued that 6.9/7.0 should be a separate tested upgrade. The description has been
+replaced; if an old copy resurfaces anywhere, that reservation is answered by the
+browser pass above, not still open.
