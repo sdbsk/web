@@ -1,0 +1,40 @@
+# Local development database for saleziani.sk.
+#
+# Pinned to MariaDB 10.5 to match production (db-05.nameserver.sk runs
+# 10.5.29-MariaDB-ubu2004-log) — testing against a different major version
+# would defeat the point of having a production copy locally.
+#
+# Published on 127.0.0.1:3306 with a password-less root so the DATABASE_URL
+# already in .env.local works unchanged:
+#   DATABASE_URL=mysql://root:@127.0.0.1:3306/saleziani
+services:
+  db:
+    image: mariadb:10.5
+    container_name: saleziani-db
+    restart: unless-stopped
+    ports:
+      # Bound to loopback only — never expose a password-less root publicly.
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: saleziani
+      MYSQL_ROOT_HOST: "%"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      # WP serialised options and post_content rows get large; the default 16M
+      # aborts the import of a production dump.
+      - --max-allowed-packet=512M
+      - --innodb-buffer-pool-size=1G
+      - --innodb-log-file-size=256M
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./docker/mariadb-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  db-data:
