@@ -19,10 +19,15 @@ wp.data && wp.data.subscribe(() => {
         template = defaultTemplate;
     }
 
-    selectors.forEach((selector) => {
-        const element = document.querySelector(selector);
+    // Since WP 7 the post editor canvas is always an iframe, so the elements live
+    // in its document rather than in the admin page.
+    const canvas = document.querySelector('iframe[name="editor-canvas"]');
+    const canvasDocument = canvas?.contentDocument ?? document;
 
-        if (element instanceof Element) {
+    selectors.forEach((selector) => {
+        const element = canvasDocument.querySelector(selector);
+
+        if (element instanceof canvasDocument.defaultView.Element) {
             element.classList.forEach((templateClass) => {
                 if (templateClass.startsWith(cssClassPrefix)) {
                     element.classList.remove(templateClass);
