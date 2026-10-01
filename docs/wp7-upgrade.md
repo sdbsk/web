@@ -1,10 +1,62 @@
 # WordPress 7 upgrade
 
-**Branch:** `hotfix/wp-6.8.6-cve-2026-60137`
-**Status:** applied, verified against a full production copy including a browser
-pass over the admin and the block editor. Pushed; open for review as
-[PR #20](https://github.com/sdbsk/web/pull/20). Not deployed.
-**Last worked on:** 2026-08-10
+**Branch:** `hotfix/wp-6.8.6-cve-2026-60137` (7.0.3, merged to `main` as
+[PR #20](https://github.com/sdbsk/web/pull/20) and deployed), then
+`fix/wp7-editor-canvas-and-patterns` (editor fixes + 7.1.2).
+**Last worked on:** 2026-10-01
+
+## Follow-up: editor fixes and WordPress 7.1.2 (2026-10-01)
+
+Editors reported two regressions after the 7.0.3 deploy (kanban issue #471):
+
+- **Canvas lost its margins.** The canvas width comes from `wp-template-page` /
+  `wp-template-narrow` classes that `append-template-class-to-post-title-and-post-content.js`
+  adds to the post content. It looked them up in the admin `document`, but the canvas
+  is an iframe (`iframe[name="editor-canvas"]`), so the class never landed. It only
+  ever worked because v1 blocks kept the editor un-iframed. Fixed by querying the
+  iframe's document.
+- **List View flattened, accordion items could not be duplicated.** Since 6.9 a block
+  with `metadata.patternName` (core adds it to anything inserted from a pattern) is a
+  contentOnly section. Turned off with `disableContentOnlyForUnsyncedPatterns` in a
+  `block_editor_settings_all` filter (`functions.php`). The many nested "Skupina"
+  groups that now show are the real structure of `patterns/accordion.php`.
+
+Then 7.0.3 → **7.1.2**, firebox 3.1.13, mainwp-child 6.2.1, w3-total-cache 2.10.6,
+Symfony 7.4.x patches and, as dependencies, doctrine/dbal 4.5.0 and doctrine/orm 3.7.2.
+7.1 has no DB schema bump (`db_version` stays 61833).
+
+Verified with a snapshot harness (headless Chrome over CDP, scripts in the session
+scratchpad, not in the repo): 327 front-end URLs (all pages, campaigns, newsletters,
+60 latest posts, categories, search, 404, feed), 23 admin screens, 66 posts/pages in
+the block editor (every page with a pattern or a `saleziani/*` block). Two runs on
+7.0.3 established the noise floor: structural checks were identical between them.
+Against 7.1.2:
+
+- Front end: same HTTP status, title, script count and console output on all 327
+  URLs. HTML differs only in core CSS (`:root` presets, button and post-template grid
+  rules) and FireBox splitting `animate.min.css` into per-animation files. Screenshot
+  differences were the newsletter popup / cookie dialog caught mid-fade; after a 6 s
+  settle the pages match.
+- Editor: no invalid blocks, no `core/missing`, template class present on every post,
+  accordion items duplicable. The 15 posts with v1 blocks (`darujme-form`,
+  `newsletter-form`), not iframed on 7.0, are iframed on 7.1 and render correctly. The
+  36px-size deprecation warnings are gone (7.1 forces 40px). New warning on every post:
+  `global-styles-css-custom-properties-inline-css was added to the iframe incorrectly`,
+  emitted by core itself; FireBox's `fpframework-admin-css` gives the same warning.
+- Admin: all screens load, no new notices. The admin toolbar now stays visible in the
+  editor, and the media grid scrolls infinitely (both 7.1 changes).
+- REST media upload as a logged-in user works (sizes generated), and saving a page
+  round-trips its content unchanged.
+- `/a/update_campaigns` still returns the same pre-existing 500 (no Darujme credentials
+  locally).
+- `doctrine:schema:validate` now runs on DBAL 4.5 (known issue 6 below is resolved) and
+  reports that `app_darujme_campaign.created_at` / `updated_at` still carry DBAL 3's
+  `(DC2Type:datetime_immutable)` column comment. Harmless; a migration dropping the
+  comment would silence it.
+
+Local server is now the Symfony CLI (`symfony server:start --port=8765 --no-tls -d`
+with `WP_HOME`/`WP_SITEURL` exported, see below). It does not resolve directory
+indexes, so `/wp/wp-admin/` redirects to the homepage; use `/wp/wp-admin/index.php`.
 
 ## Goal
 

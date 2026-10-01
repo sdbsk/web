@@ -150,6 +150,16 @@ add_filter( 'allowed_block_types_all', function (): array {
 
 }, 10, 2 );
 
+// Since WP 6.9 every block carrying metadata.patternName — which core adds to
+// anything inserted from a pattern — becomes a contentOnly section: the List View
+// shows only its text blocks and its inner groups (e.g. accordion items) can no
+// longer be selected or duplicated. Editors build pages by duplicating those.
+add_filter( 'block_editor_settings_all', function ( array $settings ): array {
+	$settings['disableContentOnlyForUnsyncedPatterns'] = true;
+
+	return $settings;
+} );
+
 // Every module in admin.js targets the block editor, so this is its only
 // enqueue — loading it on plain admin screens too meant it ran without
 // wp-data/wp-blocks registered there, and twice over in the editor.
